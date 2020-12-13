@@ -22,4 +22,10 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('login');
 	}
+	
+	public function blank()
+	{
+		$data['title'] = "Blank Page";
+		$this->template->load('aronox','blank', $data);
+	}
 }

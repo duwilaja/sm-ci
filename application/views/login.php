@@ -45,12 +45,6 @@
 		<link rel="stylesheet" href="my/vendor/bootstrap/css/bootstrap-select.min.css">
 		<link rel="stylesheet" href="my/vendor/bootstrap/css/bootstrap-datetimepicker.min.css">
 		
-		<!-- leaflet CSS-->
-		<link rel="stylesheet" href="my/vendor/leaflet/leaflet.css">
-		<link rel="stylesheet" href="my/vendor/leaflet/MarkerCluster.css">
-		<link rel="stylesheet" href="my/vendor/leaflet/MarkerCluster.Default.css">
-		<link rel="stylesheet" href="my/vendor/leaflet/leaflet.awesome-markers.css">
-		
 		<!-- fancybox CSS-->
 		<link rel="stylesheet" href="my/vendor/jquery-fancybox/jquery.fancybox.min.css">
 		
@@ -92,7 +86,8 @@
 										</div>
 										<div class="row mb-0">
 											<div class="col-12">
-												<button type="submit" onclick="if($('#login').valid()){this.form.submit();}" class="btn btn-primary btn-block">Login</button>
+												<!--button type="submit" onclick="if($('#login').valid()){this.form.submit();}" class="btn btn-primary btn-block">Login</button-->
+												<a class="btn btn-primary btn-block" href="welcome/blank">Login</a>
 											</div>
 											<div class="col-12 mb-0">
 												<a href="#" onclick="openForm('',0,'#reset_form');" data-toggle="modal" data-target="#modal_reset" class="btn btn-link box-shadow-0 px-0">Forgot password?</a>
@@ -327,10 +322,6 @@
     <script src="my/vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="my/vendor/jquery-fancybox/jquery.fancybox.min.js"></script>
     <script src="my/vendor/chart.js/Chart.min.js"></script>
-    
-	<script src="my/vendor/leaflet/leaflet.js"></script>
-    <script src="my/vendor/leaflet/leaflet.markercluster.js"></script>
-	<script src="my/vendor/leaflet/leaflet.awesome-markers.js"></script>
     
 	<!-- global vars -->
 	<script>
