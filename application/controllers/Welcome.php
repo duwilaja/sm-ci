@@ -26,6 +26,6 @@ class Welcome extends CI_Controller {
 	public function blank()
 	{
 		$data['title'] = "Blank Page";
-		$this->template->load('aronox','blank', $data);
+		$this->template->load('blank', $data);
 	}
 }
