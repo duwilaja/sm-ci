@@ -20,6 +20,12 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->load->view('login');
+	}
+	
+	public function blank()
+	{
+		$data['title'] = "Blank Page";
+		$this->template->load('aronox','blank', $data);
 	}
 }
