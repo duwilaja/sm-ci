@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class SetupData extends CI_Controller {
+class Setup extends CI_Controller {
     
     public function __construct()
     {
