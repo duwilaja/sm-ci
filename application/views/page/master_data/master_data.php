@@ -2,7 +2,7 @@
 
     <div class="card">
         <div class="card-header">
-            <div class="card-title">Master Data: <span style="text-transform: capitalize;"><?=$title;?></span></div>
+            <div class="card-title">Master Data :: <span style="text-transform: capitalize;"><?=$title;?></span></div>
             <div class="card-options ">
                 <!--a href="#" title="Batch" class=""><i class="fe fe-upload"></i></a-->
                 <a href="#"  data-toggle="modal" data-target="#myModal" title="Add" class=""><i class="fe fe-plus"></i></a>
