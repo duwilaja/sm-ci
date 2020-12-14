@@ -27,7 +27,7 @@ class MasterData extends CI_Controller {
 
     public function get_konstruksi()
     {
-         echo json_encode(KONTRUKSI);
+         echo json_encode(KONSTRUKSI);
     }
 
     public function kondisi_alam()
