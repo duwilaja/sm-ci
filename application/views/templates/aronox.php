@@ -1,7 +1,8 @@
 <?php
 $page_title = isset($title)?$title:"";
 $base_url = base_url();
-$avatar=$session['unit']!=''?$session['unit'].'.png':'sm.png';
+// $avatar=$session['unit']!=''?$session['unit'].'.png':'sm.png';
+$avatar=$this->session->userdata('unit')!=''?$this->session->userdata('unit').'.png':'sm.png';
 $avatar=$base_url.'my/images/'.$avatar;
 ?>
 <!DOCTYPE html>
@@ -218,7 +219,7 @@ $avatar=$base_url.'my/images/'.$avatar;
 
 				<div class="app-content page-body">
 					<div class="container">
-<?php if(isset($title)){?>
+						<?php if(isset($title)){?>
 						<!--Page header-->
 						<div class="page-header">
 							<div class="page-leftheader">
@@ -227,6 +228,8 @@ $avatar=$base_url.'my/images/'.$avatar;
 
 						</div>
 						<!--End Page header-->
+						<?php
+						} ?>
 						
 						<?php echo $contents;?>
 						
