@@ -167,30 +167,30 @@ class MasterData extends CI_Controller {
         $arr = [
             'tabel' => 'prasarana_public',
             'field_in' =>[
-                srlen('pp_id') => 'ID|select|get_prasarana_public',
+                srlen('pp_id') => 'PRASARANA|select|get_prasarana_public',
                 srlen('pp_nama') => 'NAMA',
-                srlen('pp_table') => 'Table',
+                // srlen('pp_table') => 'Table',
             ],
             'field_up' =>[
                 'rowid' => 'hidden',
-                'pp_id' => 'ID|select|get_prasarana_public',
+                'pp_id' => 'PRASARANA|select|get_prasarana_public',
                 'pp_nama' => 'Nama',
-                'pp_table' => 'Table',
+                // 'pp_table' => 'Table',
             ],
             'field_se' =>[
-                'pp_id' => 'ID',
-                'pp_nama' => 'NAMA',
+                'pp_id' => 'PRASARANA',
+                'pp_nama' => 'NAMA PRASARANA',
             ],
             'dt' => [
                 'order' => [
                     'pp_id',
-                    'pp_nama',
-                    'pp_table'
+                    'pp_nama'
+                    // 'pp_table'
                 ],
                 'search' => [
                     'pp_id',
-                    'pp_nama',
-                    'pp_table'
+                    'pp_nama'
+                    // 'pp_table'
                 ],
                 'view' => [
                     'pp_id',
@@ -202,6 +202,114 @@ class MasterData extends CI_Controller {
         
         $this->mg->crud($arr);
        
+    }
+
+    public function potensi_masyarakat()
+    {
+        $arr = [
+            'tabel' => 'potensi_masyarakat',
+            'field_in' =>[
+                srlen('pm_id') => 'ID',
+                srlen('k_nama') => 'Jenis Potensi'
+            ],
+            'field_up' =>[
+                'rowid' => 'hidden',
+                'pm_id' => 'ID',
+                'pm_nama' => 'Jenis Potensi'
+            ],
+            'field_se' =>[
+                'pm_id' => 'ID',
+                'pm_nama' => 'Jenis Potensi'
+            ],
+            'dt' => [
+                'order' => [
+                    'pm_id',
+                    'pm_nama'
+                ],
+                'search' => [
+                    'pm_id',
+                    'pm_nama'
+                ],
+                'view' => [
+                    'pm_id',
+                    'pm_nama'
+                ]
+            ]
+        ];
+        
+        $this->mg->crud($arr);
+    }
+
+    public function kegiatan()
+    {
+        $arr = [
+            'tabel' => 'kegiatan',
+            'field_in' =>[
+                srlen('k_id') => 'ID',
+                srlen('k_nama') => 'Jenis Kegiatan'
+            ],
+            'field_up' =>[
+                'rowid' => 'hidden',
+                'k_id' => 'ID',
+                'k_nama' => 'Jenis Kegiatan'
+            ],
+            'field_se' =>[
+                'k_id' => 'ID',
+                'k_nama' => 'Jenis Kegiatan'
+            ],
+            'dt' => [
+                'order' => [
+                    'k_id',
+                    'k_nama'
+                ],
+                'search' => [
+                    'k_id',
+                    'k_nama'
+                ],
+                'view' => [
+                    'k_id',
+                    'k_nama'
+                ]
+            ]
+        ];
+        
+        $this->mg->crud($arr);
+    }
+
+    public function kuat_personil()
+    {
+        $arr = [
+            'tabel' => 'kuat_personil',
+            'field_in' =>[
+                srlen('kp_id') => 'ID',
+                srlen('kp_nama') => 'Kuat Pesonil'
+            ],
+            'field_up' =>[
+                'rowid' => 'hidden',
+                'kp_id' => 'ID',
+                'kp_nama' => 'Kuat Pesonil'
+            ],
+            'field_se' =>[
+                'kp_id' => 'ID',
+                'kp_nama' => 'Kuat Pesonil'
+            ],
+            'dt' => [
+                'order' => [
+                    'kp_id',
+                    'kp_nama'
+                ],
+                'search' => [
+                    'kp_id',
+                    'kp_nama'
+                ],
+                'view' => [
+                    'kp_id',
+                    'kp_nama'
+                ]
+            ]
+        ];
+        
+        $this->mg->crud($arr);
     }
 
    
