@@ -25,6 +25,31 @@ class MasterData extends CI_Controller {
 	// 	$this->load->view('_main',$d);
     // }
 
+    public function get_konstruksi()
+    {
+
+        $konstruksi = 
+        [
+            [
+                'nilai' => 1,
+                'nama' => 'Tanah'
+            ],
+            [
+                'nilai' => 2,
+                'nama' => 'Batu'
+            ],
+            [
+                'nilai' => 3,
+                'nama' => 'Aspal'
+            ],
+            [
+                'nilai' => 4,
+                'nama' => 'Beton'
+            ],
+        ];
+         echo json_encode($konstruksi);
+    }
+
     public function kondisi_alam()
     {
         $arr = [
@@ -70,7 +95,7 @@ class MasterData extends CI_Controller {
                 srlen('nama_jalan') => 'NAMA JALAN',
                 srlen('kelas_jalan') => 'KELAS JALAN',
                 srlen('status_jalan') => 'STATUS JALAN',
-                srlen('konstruksi_jalan') => 'KONSTRUKSI JALAN'
+                srlen('konstruksi_jalan') => 'KONSTRUKSI JALAN|select|get_konstruksi'
             ],
             'field_up' =>[
                 'rowid' => 'hidden',
@@ -78,7 +103,7 @@ class MasterData extends CI_Controller {
                 'nama_jalan' => 'NAMA JALAN',
                 'kelas_jalan' => 'KELAS JALAN',
                 'status_jalan' => 'STATUS JALAN',
-                'konstruksi_jalan' => 'KONSTRUKSI JALAN'
+                'konstruksi_jalan' => 'KONSTRUKSI JALAN|select|get_konstruksi'
                 
             ],
             'field_se' =>[
