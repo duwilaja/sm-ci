@@ -1,6 +1,8 @@
 <?php
 $page_title = isset($title)?$title:"";
 $base_url = base_url();
+$avatar=$session['unit']!=''?$session['unit'].'.png':'sm.png';
+$avatar=$base_url.'my/images/'.$avatar;
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -70,12 +72,12 @@ $base_url = base_url();
 					<div class="container">
 						<div class="d-flex">
 							<a id="horizontal-navtoggle" class="animated-arrow hor-toggle"><span></span></a><!-- sidebar-toggle-->
-							<a class="header-brand" href="home.php">
+							<a class="header-brand" href="<?php echo $base_url;?>home">
 								<img src="<?php echo $base_url;?>my/images/logo.png" class="header-brand-img desktop-lgo" alt="Aronox logo">
 								<img src="<?php echo $base_url;?>my/images/sm.png" class="header-brand-img mobile-logo" alt="Aronox logo">
 							</a>
 
-							<div class="mt-1">
+							<!--div class="mt-1">
 								<form class="form-inline" method="POST" action="n_device.php">
 									<div class="search-element">
 										<input name="cari" type="search" class="form-control header-search" placeholder="Search..." aria-label="Search" tabindex="1">
@@ -85,7 +87,7 @@ $base_url = base_url();
 							</div><!-- SEARCH -->
 
 							<div class="d-flex order-lg-2 ml-auto">
-								<a href="#" data-toggle="search" class="nav-link nav-link-lg d-md-none navsearch"><i class="fa fa-search"></i></a>
+								<!--a href="#" data-toggle="search" class="nav-link nav-link-lg d-md-none navsearch"><i class="fa fa-search"></i></a-->
 								<div class="dropdown   header-fullscreen" >
 									<a  class="nav-link icon full-screen-link"  id="fullscreen-button">
 										<i class="mdi mdi-arrow-collapse"></i>
@@ -147,23 +149,23 @@ $base_url = base_url();
 								<div class="dropdown ">
 									<a class="nav-link pr-0 leading-none" href="#" data-toggle="dropdown" aria-expanded="false">
 									    <div class="profile-details mt-2">
-											<span class="mr-3 font-weight-semibold">a</span>
-											<small class="text-muted mr-3"></small>
+											<span class="mr-3 font-weight-semibold"><?php echo isset($session)?$session['nrp']:""?></span>
+											<small class="text-muted mr-3"><?php echo isset($session)?$session['unit']:""?></small>
 										</div>
-										<img class="avatar avatar-md brround" src="images/.png" alt="image">
+										<img class="avatar avatar-md brround" src="<?php echo $avatar?>" alt="image">
 									 </a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow ">
-										<a class="dropdown-item" href="profile.php">
+										<a class="dropdown-item" href="<?php echo $base_url?>account">
 											<i class="dropdown-icon mdi mdi-account-outline "></i> My Account
 										</a>
-										<a class="dropdown-item" href="logout.php">
+										<a class="dropdown-item" href="<?php echo $base_url?>login/out">
 											<i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out
 										</a>
-														<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="m_user.php">
+									<!--div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="<?php echo $base_url?>users">
 											<i class="dropdown-icon mdi  mdi-account-multiple"></i> Users
-										</a>
-												</div>
+										</a-->
+									</div>
 								</div>
 							</div>
 						</div>
@@ -175,15 +177,15 @@ $base_url = base_url();
 					<div class="horizontal-mainwrapper container clearfix">
 						<nav class="horizontalMenu clearfix">
 							<ul class="horizontalMenu-list">
-								<li aria-haspopup="true"><a href="home.php" class=""><i class="fa fa-at"></i> Home</a>
+								<li aria-haspopup="true"><a href="<?php echo $base_url?>home" class=""><i class="fa fa-at"></i> Home</a>
 								</li>
-								<li aria-haspopup="true"><a href="myprofile.php" class=""><i class="fa fa-address-card-o"></i> Profil</a>
+								<li aria-haspopup="true"><a href="<?php echo $base_url?>profile" class=""><i class="fa fa-address-card-o"></i> Profil</a>
 								</li>
-								<li aria-haspopup="true"><a href="laporan.php" class="sub-icon"><i class="fa fa-pencil-square-o"></i> Laporan</a>
+								<li aria-haspopup="true"><a href="<?php echo $base_url?>laporan" class="sub-icon"><i class="fa fa-pencil-square-o"></i> Laporan</a>
 								</li>
-								<li aria-haspopup="true"><a href="rekap.php" class="sub-icon"><i class="fa fa-file-text-o"></i> Rekap</a>
+								<li aria-haspopup="true"><a href="<?php echo $base_url?>rekap" class="sub-icon"><i class="fa fa-file-text-o"></i> Rekap</a>
 								</li>
-								<li aria-haspopup="true"><a href="dashboard.php" class="sub-icon"><i class="fa fa-dashboard"></i> Dashboard</a>
+								<li aria-haspopup="true"><a href="<?php echo $base_url?>dashboard" class="sub-icon"><i class="fa fa-dashboard"></i> Dashboard</a>
 								</li>
 								<!--li aria-haspopup="true"><a href="#" class="sub-icon"><i class="fa fa-dashboard"></i> Overview <i class="fa fa-angle-down horizontal-icon"></i></a>
 									<ul class="sub-menu">
@@ -193,20 +195,21 @@ $base_url = base_url();
 										<li aria-haspopup="true" class="home"><a class="home" href="home4.php">Dash Polres</a></li>
 									</ul>
 								</li-->
-									<li aria-haspopup="true"><a href="#" class="sub-icon"><i class="fa fa-cogs"></i> Setup <i class="fa fa-angle-down horizontal-icon"></i></a>
+								<li aria-haspopup="true"><a href="#" class="sub-icon"><i class="fa fa-cogs"></i> Setup <i class="fa fa-angle-down horizontal-icon"></i></a>
 									<ul class="sub-menu">
 										<!--li aria-haspopup="true"><a href="m_user.php">User</a></li-->
-										<li aria-haspopup="true"><a href="m_da.php">Polda</a></li>
-										<li aria-haspopup="true"><a href="m_res.php">Polres</a></li>
-										<li aria-haspopup="true"><a href="m_dit.php">Direktorat</a></li>
-										<li aria-haspopup="true"><a href="m_sub.php">Subdit</a></li>
-										<li aria-haspopup="true"><a href="m_bag.php">Bagian</a></li>
-										<li aria-haspopup="true"><a href="m_unit.php">Unit</a></li>
-										<li aria-haspopup="true"><a href="m_pang.php">Kepangkatan</a></li>
-										<li aria-haspopup="true"><a href="m_dg.php">Dasar Giat</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>polda">Polda</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>polres">Polres</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>dir">Direktorat</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>subdit">Subdit</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>bag">Bagian</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>subbag">Sub Bagian</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>unit">Unit</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>pangkat">Kepangkatan</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>dasargiat">Dasar Giat</a></li>
 									</ul>
 								</li>
-								</ul>
+							</ul>
 						</nav>
 						<!--Nav end -->
 					</div>
@@ -215,13 +218,11 @@ $base_url = base_url();
 
 				<div class="app-content page-body">
 					<div class="container">
-
+<?php if(isset($title)){?>
 						<!--Page header-->
 						<div class="page-header">
 							<div class="page-leftheader">
 								<h4 class="page-title"><?php echo $page_title?></h4>
-								<ol class="breadcrumb pl-0">
-									<li class="breadcrumb-item">Parent</li><li class="breadcrumb-item">Title of Page</li>								</ol>
 							</div>
 
 						</div>
@@ -346,17 +347,22 @@ $base_url = base_url();
     
 	<!-- global vars -->
 	<script>
-	var ext='.php';
-	var page='maps';
+	var ext='';
+	var page='';
+	var base_url='<?php echo $base_url;?>';
 	</script>
+	
 	<!-- my own custom js -->
 	<script src="<?php echo $base_url;?>my/js/custom_dw.js"></script>
 	
-	<!-- this page's JavaScript -->
-	<script>
+<!-- this page's JavaScript -->
+<script>
 $(document).ready(function(){
 	page_ready();
-})
+	if(typeof(thispage_ready)=='function'){
+		thispage_ready();
+	}
+});
 </script>
 
   </body>

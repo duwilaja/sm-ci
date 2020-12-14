@@ -1,3 +1,6 @@
+<?php
+$base_url = base_url();
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	<head>
@@ -10,46 +13,46 @@
 		<title>Smart Manajemen</title>
 
 		<!--Favicon -->
-		<link rel="icon" href="aronox/assets/images/brand/favicon.ico" type="image/x-icon"/>
+		<link rel="icon" href="<?php echo $base_url;?>aronox/assets/images/brand/favicon.ico" type="image/x-icon"/>
 
 		<!-- Style css -->
-		<link href="aronox/assets/css/style.css" rel="stylesheet" />
+		<link href="<?php echo $base_url;?>aronox/assets/css/style.css" rel="stylesheet" />
 
 		<!--Horizontal css -->
-        <link id="effect" href="aronox/assets/plugins/horizontal-menu/dropdown-effects/fade-up.css" rel="stylesheet" />
-        <link href="aronox/assets/plugins/horizontal-menu/horizontal.css" rel="stylesheet" />
+        <link id="effect" href="<?php echo $base_url;?>aronox/assets/plugins/horizontal-menu/dropdown-effects/fade-up.css" rel="stylesheet" />
+        <link href="<?php echo $base_url;?>aronox/assets/plugins/horizontal-menu/horizontal.css" rel="stylesheet" />
 
 		<!-- P-scroll bar css-->
-		<link href="aronox/assets/plugins/p-scroll/perfect-scrollbar.css" rel="stylesheet" />
+		<link href="<?php echo $base_url;?>aronox/assets/plugins/p-scroll/perfect-scrollbar.css" rel="stylesheet" />
 
 		<!---Icons css-->
-		<link href="aronox/assets/plugins/iconfonts/icons.css" rel="stylesheet" />
-		<link href="aronox/assets/plugins/iconfonts/font-awesome/font-awesome.min.css" rel="stylesheet">
-		<link href="aronox/assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
+		<link href="<?php echo $base_url;?>aronox/assets/plugins/iconfonts/icons.css" rel="stylesheet" />
+		<link href="<?php echo $base_url;?>aronox/assets/plugins/iconfonts/font-awesome/font-awesome.min.css" rel="stylesheet">
+		<link href="<?php echo $base_url;?>aronox/assets/plugins/iconfonts/plugin.css" rel="stylesheet" />
 		
 		<!-- WYSIWYG Editor css -->
-		<link href="aronox/assets/plugins/wysiwyag/richtext.css" rel="stylesheet" />
+		<link href="<?php echo $base_url;?>aronox/assets/plugins/wysiwyag/richtext.css" rel="stylesheet" />
 		
 		<!-- Select2 css -->
-		<link href="aronox/assets/plugins/select2/select2.min.css" rel="stylesheet" />
+		<link href="<?php echo $base_url;?>aronox/assets/plugins/select2/select2.min.css" rel="stylesheet" />
 
 		<!-- Skin css-->
-		<link id="theme" rel="stylesheet" type="text/css" media="all" href="aronox/assets/skins/hor-skin/hor-skin1.css" />
+		<link id="theme" rel="stylesheet" type="text/css" media="all" href="<?php echo $base_url;?>aronox/assets/skins/hor-skin/hor-skin1.css" />
 		
 		<!-- datatables CSS-->
 		<!--link rel="stylesheet" href="my/vendor/datatables/datatables.min.css"-->
-		<link rel="stylesheet" href="my/vendor/datatables.net-bs4/dataTables.bootstrap4.css">
-		<link rel="stylesheet" href="my/vendor/datatables-buttons/css/buttons.bootstrap4.min.css">
+		<link rel="stylesheet" href="<?php echo $base_url;?>my/vendor/datatables.net-bs4/dataTables.bootstrap4.css">
+		<link rel="stylesheet" href="<?php echo $base_url;?>my/vendor/datatables-buttons/css/buttons.bootstrap4.min.css">
 		
 		<!-- bootstrap CSS-->
-		<link rel="stylesheet" href="my/vendor/bootstrap/css/bootstrap-select.min.css">
-		<link rel="stylesheet" href="my/vendor/bootstrap/css/bootstrap-datetimepicker.min.css">
+		<link rel="stylesheet" href="<?php echo $base_url;?>my/vendor/bootstrap/css/bootstrap-select.min.css">
+		<link rel="stylesheet" href="<?php echo $base_url;?>my/vendor/bootstrap/css/bootstrap-datetimepicker.min.css">
 		
 		<!-- fancybox CSS-->
-		<link rel="stylesheet" href="my/vendor/jquery-fancybox/jquery.fancybox.min.css">
+		<link rel="stylesheet" href="<?php echo $base_url;?>my/vendor/jquery-fancybox/jquery.fancybox.min.css">
 		
 		<!-- overwrite css -->
-		<link href="my/css/custom.css" rel="stylesheet" />
+		<link href="<?php echo $base_url;?>my/css/custom.css" rel="stylesheet" />
 
 	</head>
 
@@ -57,7 +60,7 @@
 		
 		<!---Global-loader-->
 		<div id="global-loader" >
-			<img src="aronox/assets/images/svgs/loader.svg" alt="loader">
+			<img src="<?php echo $base_url;?>aronox/assets/images/svgs/loader.svg" alt="loader">
 		</div>
 
 		<div class="page">
@@ -65,15 +68,15 @@
 							<div class="container text-center single-page single-pageimage construction-body">
 				    <div class="row justify-content-center">
 						<div class="col-xl-7 col-lg-6 col-md-12">
-							<!--img src="aronox/assets/images/sm_img/gambar-logo.png" class="construction-img mb-7 h-480  mt-5 mt-xl-0" alt="">
-							<img src="aronox/assets/images/svgs/login.svg" class="construction-img mb-7 h-480  mt-5 mt-xl-0" alt=""-->
-							<img src="my/images/gambar-login.png" class="construction-img mb-7 mt-5 mt-xl-0" alt="">
+							<!--img src="<?php echo $base_url;?>aronox/assets/images/sm_img/gambar-logo.png" class="construction-img mb-7 h-480  mt-5 mt-xl-0" alt="">
+							<img src="<?php echo $base_url;?>aronox/assets/images/svgs/login.svg" class="construction-img mb-7 h-480  mt-5 mt-xl-0" alt=""-->
+							<img src="<?php echo $base_url;?>my/images/gambar-login.png" class="construction-img mb-7 mt-5 mt-xl-0" alt="">
 						</div>
 						<div class="col-xl-5 col-lg-6 col-md-12 ">
 							<div class="col-lg-12">
-							    <img src="my/images/logo.png" class=" light-view mb-4" alt="Aronox logo">
+							    <img src="<?php echo $base_url;?>my/images/logo.png" class=" light-view mb-4" alt="Aronox logo">
 								<div class="wrapper wrapper2">
-									<form id="login" method="post" class="card-body" tabindex="500">
+									<form id="login" method="post" class="card-body" tabindex="500" action="<?php echo $base_url;?>login">
 										<h2 class="mb-1 font-weight-semibold">Login</h2>
 										<p class="mb-6">Sign In to your account</p>
 										<div class="input-group mb-3">
@@ -86,8 +89,8 @@
 										</div>
 										<div class="row mb-0">
 											<div class="col-12">
-												<!--button type="submit" onclick="if($('#login').valid()){this.form.submit();}" class="btn btn-primary btn-block">Login</button-->
-												<a class="btn btn-primary btn-block" href="welcome/blank">Login</a>
+												<button type="submit" class="btn btn-primary btn-block">Login</button>
+												<!--a class="btn btn-primary btn-block" href="welcome/blank">Login</a-->
 											</div>
 											<div class="col-12 mb-0">
 												<a href="#" onclick="openForm('',0,'#reset_form');" data-toggle="modal" data-target="#modal_reset" class="btn btn-link box-shadow-0 px-0">Forgot password?</a>
@@ -278,50 +281,50 @@
       </div>
       <!-- /.modal -->
 		<!-- Jquery js-->
-		<script src="aronox/assets/js/vendors/jquery-3.4.0.min.js"></script>
+		<script src="<?php echo $base_url;?>aronox/assets/js/vendors/jquery-3.4.0.min.js"></script>
 
 		<!-- Bootstrap4 js-->
-		<script src="aronox/assets/plugins/bootstrap/popper.min.js"></script>
-		<script src="aronox/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="<?php echo $base_url;?>aronox/assets/plugins/bootstrap/popper.min.js"></script>
+		<script src="<?php echo $base_url;?>aronox/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
 		<!--Othercharts js-->
-		<script src="aronox/assets/plugins/othercharts/jquery.sparkline.min.js"></script>
+		<script src="<?php echo $base_url;?>aronox/assets/plugins/othercharts/jquery.sparkline.min.js"></script>
 
 		<!-- Circle-progress js-->
-		<script src="aronox/assets/js/vendors/circle-progress.min.js"></script>
+		<script src="<?php echo $base_url;?>aronox/assets/js/vendors/circle-progress.min.js"></script>
 
 		<!--Horizontal js-->
-		<script src="aronox/assets/plugins/horizontal-menu/horizontal.js"></script>
+		<script src="<?php echo $base_url;?>aronox/assets/plugins/horizontal-menu/horizontal.js"></script>
 
 		<!-- P-scroll js-->
-		<script src="aronox/assets/plugins/p-scroll/perfect-scrollbar.js"></script>
+		<script src="<?php echo $base_url;?>aronox/assets/plugins/p-scroll/perfect-scrollbar.js"></script>
 		
 		<!-- Peitychart js-->
-		<script src="aronox/assets/plugins/peitychart/jquery.peity.min.js"></script>
+		<script src="<?php echo $base_url;?>aronox/assets/plugins/peitychart/jquery.peity.min.js"></script>
 		
 		<!-- Custom js-->
-		<script src="aronox/assets/js/custom.js"></script>
+		<script src="<?php echo $base_url;?>aronox/assets/js/custom.js"></script>
 		
 		<!-- WYSIWYG Editor js -->
-		<script src="aronox/assets/plugins/wysiwyag/jquery.richtext.js"></script>
+		<script src="<?php echo $base_url;?>aronox/assets/plugins/wysiwyag/jquery.richtext.js"></script>
 		
 		<!--Select2 js -->
-		<script src="aronox/assets/plugins/select2/select2.full.min.js"></script>
+		<script src="<?php echo $base_url;?>aronox/assets/plugins/select2/select2.full.min.js"></script>
 			
-	<script src="my/vendor/bootstrap/js/moment.min.js"></script>
-    <script src="my/vendor/bootstrap/js/bootstrap-select.min.js"></script>
-    <script src="my/vendor/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="<?php echo $base_url;?>my/vendor/bootstrap/js/moment.min.js"></script>
+    <script src="<?php echo $base_url;?>my/vendor/bootstrap/js/bootstrap-select.min.js"></script>
+    <script src="<?php echo $base_url;?>my/vendor/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
     
-	<script src="my/vendor/datatables/datatables.min.js"></script>
-    <script src="my/vendor/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-    <script src="my/vendor/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="my/vendor/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="my/vendor/datatables-buttons/js/buttons.html5.min.js"></script>
+	<script src="<?php echo $base_url;?>my/vendor/datatables/datatables.min.js"></script>
+    <script src="<?php echo $base_url;?>my/vendor/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="<?php echo $base_url;?>my/vendor/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="<?php echo $base_url;?>my/vendor/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="<?php echo $base_url;?>my/vendor/datatables-buttons/js/buttons.html5.min.js"></script>
 	
-    <script src="my/vendor/swal2/sweetalert.min.js"></script>
-    <script src="my/vendor/jquery-validation/jquery.validate.min.js"></script>
-    <script src="my/vendor/jquery-fancybox/jquery.fancybox.min.js"></script>
-    <script src="my/vendor/chart.js/Chart.min.js"></script>
+    <script src="<?php echo $base_url;?>my/vendor/swal2/sweetalert.min.js"></script>
+    <script src="<?php echo $base_url;?>my/vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="<?php echo $base_url;?>my/vendor/jquery-fancybox/jquery.fancybox.min.js"></script>
+    <script src="<?php echo $base_url;?>my/vendor/chart.js/Chart.min.js"></script>
     
 	<!-- global vars -->
 	<script>
@@ -329,12 +332,19 @@
 	var page='';
 	</script>
 	<!-- my own custom js -->
-	<script src="my/js/custom_dw.js"></script>
+	<script src="<?php echo $base_url;?>my/js/custom_dw.js"></script>
 	
 	<!-- this page's JavaScript -->
 	<script>
-var x="";
-var m="";
+<?php
+$m=""; $x="";
+if(isset($retval)){
+	$m=$retval[2];
+	$x=$retval[3];
+}
+?>
+var x="<?php echo $x?>";
+var m="<?php echo $m?>";
 var jvalidate, jvalidate2, jvalidate3;
 $(document).ready(function (){
 	$(".page-main").addClass("page-single");
