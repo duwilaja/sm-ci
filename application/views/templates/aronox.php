@@ -77,7 +77,7 @@ $avatar=$base_url.'my/images/'.$avatar;
 								<img src="<?php echo $base_url;?>my/images/sm.png" class="header-brand-img mobile-logo" alt="Aronox logo">
 							</a>
 
-							<div class="mt-1">
+							<!--div class="mt-1">
 								<form class="form-inline" method="POST" action="n_device.php">
 									<div class="search-element">
 										<input name="cari" type="search" class="form-control header-search" placeholder="Search..." aria-label="Search" tabindex="1">
@@ -87,7 +87,7 @@ $avatar=$base_url.'my/images/'.$avatar;
 							</div><!-- SEARCH -->
 
 							<div class="d-flex order-lg-2 ml-auto">
-								<a href="#" data-toggle="search" class="nav-link nav-link-lg d-md-none navsearch"><i class="fa fa-search"></i></a>
+								<!--a href="#" data-toggle="search" class="nav-link nav-link-lg d-md-none navsearch"><i class="fa fa-search"></i></a-->
 								<div class="dropdown   header-fullscreen" >
 									<a  class="nav-link icon full-screen-link"  id="fullscreen-button">
 										<i class="mdi mdi-arrow-collapse"></i>
@@ -161,10 +161,10 @@ $avatar=$base_url.'my/images/'.$avatar;
 										<a class="dropdown-item" href="<?php echo $base_url?>login/out">
 											<i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out
 										</a>
-									<div class="dropdown-divider"></div>
+									<!--div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="<?php echo $base_url?>users">
 											<i class="dropdown-icon mdi  mdi-account-multiple"></i> Users
-										</a>
+										</a-->
 									</div>
 								</div>
 							</div>
@@ -198,14 +198,15 @@ $avatar=$base_url.'my/images/'.$avatar;
 								<li aria-haspopup="true"><a href="#" class="sub-icon"><i class="fa fa-cogs"></i> Setup <i class="fa fa-angle-down horizontal-icon"></i></a>
 									<ul class="sub-menu">
 										<!--li aria-haspopup="true"><a href="m_user.php">User</a></li-->
-										<li aria-haspopup="true"><a href="m_da.php">Polda</a></li>
-										<li aria-haspopup="true"><a href="m_res.php">Polres</a></li>
-										<li aria-haspopup="true"><a href="m_dit.php">Direktorat</a></li>
-										<li aria-haspopup="true"><a href="m_sub.php">Subdit</a></li>
-										<li aria-haspopup="true"><a href="m_bag.php">Bagian</a></li>
-										<li aria-haspopup="true"><a href="m_unit.php">Unit</a></li>
-										<li aria-haspopup="true"><a href="m_pang.php">Kepangkatan</a></li>
-										<li aria-haspopup="true"><a href="m_dg.php">Dasar Giat</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>polda">Polda</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>polres">Polres</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>dir">Direktorat</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>subdit">Subdit</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>bag">Bagian</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>subbag">Sub Bagian</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>unit">Unit</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>pangkat">Kepangkatan</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>dasargiat">Dasar Giat</a></li>
 									</ul>
 								</li>
 							</ul>
