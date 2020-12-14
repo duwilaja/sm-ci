@@ -86,7 +86,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 // Varibel global taro dibawah ya bro makasih
 
-define('KONTRUKSI',
+define('KONSTRUKSI',
 [
     [
         'nilai' => 1,
