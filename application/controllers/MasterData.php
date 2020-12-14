@@ -30,6 +30,11 @@ class MasterData extends CI_Controller {
          echo json_encode(KONSTRUKSI);
     }
 
+    public function get_prasarana_public()
+    {
+         echo json_encode(PRASARANA_PUBLIC);
+    }
+
     public function kondisi_alam()
     {
         $arr = [
@@ -101,7 +106,7 @@ class MasterData extends CI_Controller {
                      null,
                      null,
                      null,
-                     
+
                 ],
                 'search' => [
                     'kj_id',
@@ -154,6 +159,49 @@ class MasterData extends CI_Controller {
         ];
         
         $this->mg->crud($arr);
+    }
+
+
+    public function prasarana_public()
+    {
+        $arr = [
+            'tabel' => 'prasarana_public',
+            'field_in' =>[
+                srlen('pp_id') => 'ID|select|get_prasarana_public',
+                srlen('pp_nama') => 'NAMA',
+                srlen('pp_table') => 'Table',
+            ],
+            'field_up' =>[
+                'rowid' => 'hidden',
+                'pp_id' => 'ID|select|get_prasarana_public',
+                'pp_nama' => 'Nama',
+                'pp_table' => 'Table',
+            ],
+            'field_se' =>[
+                'pp_id' => 'ID',
+                'pp_nama' => 'NAMA',
+            ],
+            'dt' => [
+                'order' => [
+                    'pp_id',
+                    'pp_nama',
+                    'pp_table'
+                ],
+                'search' => [
+                    'pp_id',
+                    'pp_nama',
+                    'pp_table'
+                ],
+                'view' => [
+                    'pp_id',
+                    'pp_nama',
+                    // 'pp_table'
+                ]
+            ]
+        ];
+        
+        $this->mg->crud($arr);
+       
     }
 
    

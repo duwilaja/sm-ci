@@ -14,5 +14,8 @@ function select_dt($t='',$field,$dt=''){
     if ($t == 'kondisi_jalan') {
         $field[4] = cari_arr(KONSTRUKSI,$field[4]);
     }
+    if ($t == 'prasarana_public') {
+        // $field[0] = cari_arr(PRASARANA_PUBLIC,$field[0]);
+    }
     return $field;
 }
