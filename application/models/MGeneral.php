@@ -2,7 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MGeneral extends CI_Model {
-
+    
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->helper('dt');
+    }
+    
     public function crud($arr=[])
     {
         $ax = $this->input->get('ax');
@@ -103,7 +109,7 @@ class MGeneral extends CI_Model {
             foreach ($view as $x) {
                array_push($field,$arr[$x]);
             }
-            $f = $this->select_dt($table,$field,$dt);
+            $f = select_dt($table,$field,$dt);
             array_push($data,$f);
         }
         // echo json_encode($data);
@@ -117,12 +123,6 @@ class MGeneral extends CI_Model {
         
         // Output to JSON format
         return json_encode($output);
-    }
-
-    public function select_dt($t='',$field,$dt='')
-    {
-        $field[0] = '<a href="#" data-toggle="modal" data-target="#myModal2" onclick="get_data_id('.$dt->rowid.')">'.$field[0].'</a>';
-        return $field;
     }
 
     // DataTable general versi 2

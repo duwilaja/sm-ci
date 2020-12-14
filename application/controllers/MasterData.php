@@ -27,27 +27,7 @@ class MasterData extends CI_Controller {
 
     public function get_konstruksi()
     {
-
-        $konstruksi = 
-        [
-            [
-                'nilai' => 1,
-                'nama' => 'Tanah'
-            ],
-            [
-                'nilai' => 2,
-                'nama' => 'Batu'
-            ],
-            [
-                'nilai' => 3,
-                'nama' => 'Aspal'
-            ],
-            [
-                'nilai' => 4,
-                'nama' => 'Beton'
-            ],
-        ];
-         echo json_encode($konstruksi);
+         echo json_encode(KONTRUKSI);
     }
 
     public function kondisi_alam()
