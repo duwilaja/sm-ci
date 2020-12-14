@@ -199,15 +199,15 @@ $avatar=$base_url.'my/images/'.$avatar;
 								<li aria-haspopup="true"><a href="#" class="sub-icon"><i class="fa fa-cogs"></i> Setup <i class="fa fa-angle-down horizontal-icon"></i></a>
 									<ul class="sub-menu">
 										<!--li aria-haspopup="true"><a href="m_user.php">User</a></li-->
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>polda">Polda</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>polres">Polres</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>dir">Direktorat</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>subdit">Subdit</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>bag">Bagian</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>subbag">Sub Bagian</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>unit">Unit</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>pangkat">Kepangkatan</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>dasargiat">Dasar Giat</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/polda">Polda</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/polres">Polres</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/direktorat">Direktorat</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/subdit">Subdit</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/bagian">Bagian</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/subbag">Sub Bagian</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/unit">Unit</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/pangkat">Kepangkatan</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/dasargiat">Dasar Giat</a></li>
 									</ul>
 								</li>
 								<li aria-haspopup="true"><a href="#" class="sub-icon"><i class="fa fa-database"></i>Master Data <i class="fa fa-angle-down horizontal-icon"></i></a>

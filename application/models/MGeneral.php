@@ -40,6 +40,7 @@ class MGeneral extends CI_Model {
             echo json_encode(['msg' => 'Sukses','status' => true]);
         }else{
             $data = [
+                'title' => @$arr['title'],
                 'js_local' => 'master_data/master_data.js',
                 'var' => [
                     'in' => $field_in,
