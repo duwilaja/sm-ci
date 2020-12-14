@@ -1,3 +1,4 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed') ?>
 
     <div class="card">
         <div class="card-header">
@@ -39,14 +40,17 @@
                 <div class="modal-body">
                     <!--p>Lorem ipsum dolor sit amet consectetur.</p-->
                         <div class="row">
-                            <?php foreach ($var['in'] as $k => $v) { 
-                                ?>
+                            <?php foreach ($var['in'] as $k => $v) { ?>
                                 <div class="form-group col-md-12">
-                                    <label><?=$v;?></label>
-                                    <input type="text" id="i_<?=$k?>" name="i_<?=$k?>" placeholder="..." class="form-control" required>
+                                    <label><?=urai($v)[0];?></label>
+                                    
+                                    <?php if (!empty(urai($v)[1]) == "select") {
+                                        echo '<select id="i_'.$k.'" name="i_'.$k.'" data_url="'.urai($v)[2].'" class="form-control" required></select>';
+                                    }else{
+                                        echo '<input type="text" id="i_'.$k.'" name="i_'.$k.'" placeholder="..." class="form-control" required>';
+                                    } ?>
                                 </div>
-                                <?php
-                          } ?>
+                            <?php } ?>
                         </div>
                     </div>
                 <div class="modal-footer">
@@ -73,8 +77,12 @@
                                 if ($v != 'hidden') {
                                    ?>
                                     <div class="form-group col-md-12">
-                                    <label><?=$v;?></label>
-                                    <input type="text" id="u_<?=$k?>" name="u_<?=$k?>" placeholder="..." class="form-control" required>
+                                    <label><?=urai($v)[0];?></label>
+                                        <?php if (!empty(urai($v)[1]) == "select") {
+                                            echo '<select id="u_'.$k.'" name="u_'.$k.'" data_url="'.urai($v)[2].'" data_key='.$k.' class="form-control" required></select>';
+                                        }else{
+                                            echo '<input type="text" id="u_'.$k.'" name="u_'.$k.'" placeholder="..." class="form-control" required>';
+                                        } ?>
                                     </div>
                                    <?php
                                 }else{

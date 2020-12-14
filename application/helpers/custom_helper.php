@@ -1,19 +1,10 @@
 <?php
-if (!function_exists('sample_cp')) {
-	function sample_cp($file='',$file_ubah='')
-    {
-        // Store the path of source file 
-        $source = './sample/'.$file;  
-        
-        // Store the path of destination file 
-        $destination = './sample/'.$file_ubah;  
-        
-        if(!copy($source, $destination)) {  
-           return false; 
-        }else {  
-           return true; 
-        }
-    }
+
+if (!function_exists('urai')) {
+	function urai($v){
+		$x = explode('|',$v);
+		return $x;
+	}
 }
 
 if (!function_exists('torp')) {

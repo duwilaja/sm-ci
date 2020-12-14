@@ -2,7 +2,35 @@ var link = window.location.pathname.split('/');
 
 $(document).ready(function () {
     show_dt();
+    cek_data_form_add();
 });
+
+function cek_data_form_add() { 
+    var myForm = document.getElementById('form_add');
+    //Extract Each Element Value
+    for (var i = 0; i < myForm.elements.length; i++) {
+       var elm = myForm.elements[i];
+       var ok = elm.getAttribute('data_url');
+       
+       if (ok) {
+           get_select(ok,'',elm.name);
+       }
+    }   
+}
+
+function cek_data_form_up(id='',key='') { 
+    var myForm = document.getElementById('form_up');
+    //Extract Each Element Value
+    for (var i = 0; i < myForm.elements.length; i++) {
+       var elm = myForm.elements[i];
+       var ok = elm.getAttribute('data_url');
+       if (ok) {
+           if (elm.getAttribute('data_key') == key) {
+               get_select(ok,id,elm.name);
+           }
+       }
+    }   
+}
 
 $('#form_add').submit(function (e) { 
     e.preventDefault();
@@ -89,6 +117,7 @@ function get_data_id(id='') {
             for (const prop in r) {
                 console.log(`obj.${prop} = ${r[prop]}`);
                 $('#u_'+prop).val(r[prop]);
+                cek_data_form_up(r[prop],prop);
             }
         }
     });
@@ -127,25 +156,25 @@ function deAnggota(id='') {
     }
  }
 
-// function get_select(url='',id='',name='') { 
-//     if(name == '') name = 'customer';
-//     $('select[name="'+name+'"]').html('');
-//     $.ajax({
-//         type: "get",
-//         url:url,
-//         dataType: "json",
-//         success: function (res) {
-//             $('select[name="'+name+'"]').html('<option value="">-- Select --</option>');
-//             $.each( res, function( key, value ) {
-//                 if (value.id == id) {
-//                     $('select[name="'+name+'"]').append("<option selected value='"+value.id+"'>"+value.custend+"</option>");
-//                 }else{
-//                     $('select[name="'+name+'"]').append("<option value='"+value.id+"'>"+value.custend+"</option>");
-//                 }
-//             });
-//         }
-//     });
-// }
+function get_select(url='',id='',name='') { 
+    if(name == '') name = 'customer';
+    $('select[name="'+name+'"]').html('');
+    $.ajax({
+        type: "get",
+        url:url,
+        dataType: "json",
+        success: function (res) {
+            $('select[name="'+name+'"]').html('<option value="">-- Select --</option>');
+            $.each( res, function( key, value ) {
+                if (value.nilai == id) {
+                    $('select[name="'+name+'"]').append("<option selected value='"+value.nilai+"'>"+value.nama+"</option>");
+                }else{
+                    $('select[name="'+name+'"]').append("<option value='"+value.nilai+"'>"+value.nama+"</option>");
+                }
+            });
+        }
+    });
+}
 
  function show_dt() {
     $('#tabel').DataTable({
