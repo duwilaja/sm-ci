@@ -14,9 +14,11 @@
                 <table id="tabel" class="table table-striped table-bordered w-100">
                     <thead>
                         <tr>
-                            <?php foreach ($var['se'] as $v) { ?>
+                            <?php foreach ($var['se'] as $v) { 
+                            ?>
                             <th><?=$v;?></th>
-                            <? } ?>
+                            <?php
+                            } ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,13 +39,14 @@
                 <div class="modal-body">
                     <!--p>Lorem ipsum dolor sit amet consectetur.</p-->
                         <div class="row">
-                            <?php foreach ($var['in'] as $k => $v) { ?>
+                            <?php foreach ($var['in'] as $k => $v) { 
+                                ?>
                                 <div class="form-group col-md-12">
                                     <label><?=$v;?></label>
                                     <input type="text" id="i_<?=$k?>" name="i_<?=$k?>" placeholder="..." class="form-control" required>
                                 </div>
-                            <?php } ?>
-
+                                <?php
+                          } ?>
                         </div>
                     </div>
                 <div class="modal-footer">
@@ -66,14 +69,20 @@
                 <div class="modal-body">
                     <!--p>Lorem ipsum dolor sit amet consectetur.</p-->
                         <div class="row">
-                            <?php foreach ($var['up'] as $k => $v) { if($v != 'hidden'){ ?>
-                                <div class="form-group col-md-12">
+                            <?php foreach ($var['up'] as $k => $v) { 
+                                if ($v != 'hidden') {
+                                   ?>
+                                    <div class="form-group col-md-12">
                                     <label><?=$v;?></label>
                                     <input type="text" id="u_<?=$k?>" name="u_<?=$k?>" placeholder="..." class="form-control" required>
-                                </div>
-                            <?php  } else { ?>
-                                <input type="hidden" id="u_<?=$k?>" name="u_<?=$k?>">
-                            <?php } } ?>
+                                    </div>
+                                   <?php
+                                }else{
+                                    ?>
+                                     <input type="hidden" id="u_<?=$k?>" name="u_<?=$k?>">
+                                    <?php
+                                }
+                             } ?>
 
                         </div>
                     </div>
