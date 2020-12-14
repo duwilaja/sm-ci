@@ -38,6 +38,7 @@ class MasterData extends CI_Controller {
     public function kondisi_alam()
     {
         $arr = [
+            'title' => 'Kondisi Alam',
             'tabel' => 'kondisi_alam',
             'field_in' =>[
                 srlen('ka_id') => 'ID',
@@ -74,6 +75,7 @@ class MasterData extends CI_Controller {
     public function kondisi_jalan()
     {
         $arr = [
+            'title' => 'Kondisi Jalan',
             'tabel' => 'kondisi_jalan',
             'field_in' =>[
                 srlen('kj_id') => 'ID',
@@ -128,6 +130,7 @@ class MasterData extends CI_Controller {
     public function kondisi_lalin()
     {
         $arr = [
+            'title' => 'Kondisi Lalin',
             'tabel' => 'kondisi_lalin',
             'field_in' =>[
                 srlen('kl_id') => 'ID',
@@ -165,6 +168,7 @@ class MasterData extends CI_Controller {
     public function prasarana_public()
     {
         $arr = [
+            'title' => 'Prasarana Public',
             'tabel' => 'prasarana_public',
             'field_in' =>[
                 srlen('pp_id') => 'PRASARANA|select|get_prasarana_public',
@@ -207,6 +211,7 @@ class MasterData extends CI_Controller {
     public function potensi_masyarakat()
     {
         $arr = [
+            'title' => 'Potensi Masyarakat',
             'tabel' => 'potensi_masyarakat',
             'field_in' =>[
                 srlen('pm_id') => 'ID',
@@ -243,6 +248,7 @@ class MasterData extends CI_Controller {
     public function kegiatan()
     {
         $arr = [
+            'title' => 'Kegiatan',
             'tabel' => 'kegiatan',
             'field_in' =>[
                 srlen('k_id') => 'ID',
@@ -276,41 +282,41 @@ class MasterData extends CI_Controller {
         $this->mg->crud($arr);
     }
 
-    public function kuat_personil()
-    {
-        $arr = [
-            'tabel' => 'kuat_personil',
-            'field_in' =>[
-                srlen('kp_id') => 'ID',
-                srlen('kp_nama') => 'Kuat Pesonil'
-            ],
-            'field_up' =>[
-                'rowid' => 'hidden',
-                'kp_id' => 'ID',
-                'kp_nama' => 'Kuat Pesonil'
-            ],
-            'field_se' =>[
-                'kp_id' => 'ID',
-                'kp_nama' => 'Kuat Pesonil'
-            ],
-            'dt' => [
-                'order' => [
-                    'kp_id',
-                    'kp_nama'
-                ],
-                'search' => [
-                    'kp_id',
-                    'kp_nama'
-                ],
-                'view' => [
-                    'kp_id',
-                    'kp_nama'
-                ]
-            ]
-        ];
+    // public function kuat_personil()
+    // {
+    //     $arr = [
+    //         'tabel' => 'kuat_personil',
+    //         'field_in' =>[
+    //             srlen('kp_id') => 'ID',
+    //             srlen('kp_nama') => 'Kuat Pesonil'
+    //         ],
+    //         'field_up' =>[
+    //             'rowid' => 'hidden',
+    //             'kp_id' => 'ID',
+    //             'kp_nama' => 'Kuat Pesonil'
+    //         ],
+    //         'field_se' =>[
+    //             'kp_id' => 'ID',
+    //             'kp_nama' => 'Kuat Pesonil'
+    //         ],
+    //         'dt' => [
+    //             'order' => [
+    //                 'kp_id',
+    //                 'kp_nama'
+    //             ],
+    //             'search' => [
+    //                 'kp_id',
+    //                 'kp_nama'
+    //             ],
+    //             'view' => [
+    //                 'kp_id',
+    //                 'kp_nama'
+    //             ]
+    //         ]
+    //     ];
         
-        $this->mg->crud($arr);
-    }
+    //     $this->mg->crud($arr);
+    // }
 
    
 
