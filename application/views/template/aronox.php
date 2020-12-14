@@ -195,8 +195,8 @@ $base_url = base_url();
 								</li-->
 									<li aria-haspopup="true"><a href="#" class="sub-icon"><i class="fa fa-cogs"></i> Setup <i class="fa fa-angle-down horizontal-icon"></i></a>
 									<ul class="sub-menu">
-													<!--li aria-haspopup="true"><a href="m_user.php">User</a></li-->
-													<li aria-haspopup="true"><a href="m_da.php">Polda</a></li>
+										<!--li aria-haspopup="true"><a href="m_user.php">User</a></li-->
+										<li aria-haspopup="true"><a href="m_da.php">Polda</a></li>
 										<li aria-haspopup="true"><a href="m_res.php">Polres</a></li>
 										<li aria-haspopup="true"><a href="m_dit.php">Direktorat</a></li>
 										<li aria-haspopup="true"><a href="m_sub.php">Subdit</a></li>
@@ -227,9 +227,7 @@ $base_url = base_url();
 						</div>
 						<!--End Page header-->
 						
-			<?php
-                echo $contents;
-                ?>
+						<?php echo $contents;?>
 						
 					</div>
 				</div><!-- end app-content-->
@@ -341,6 +339,10 @@ $base_url = base_url();
     <script src="<?php echo $base_url;?>my/vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/jquery-fancybox/jquery.fancybox.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/chart.js/Chart.min.js"></script>
+
+	<?php if(@$js_local){ ?>
+		<script src="<?= base_url('my/js_local/'.$js_local);?>"></script>
+	<?php } ?>
     
 	<!-- global vars -->
 	<script>
