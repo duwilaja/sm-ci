@@ -9,6 +9,43 @@ class MasterData extends CI_Controller {
         
     } 
 
+    public function kondisi_lalin()
+    {
+        $arr = [
+            'tabel' => 'kondisi_lalin',
+            'field_in' =>[
+                srlen('kl_id') => 'ID',
+                srlen('kondisi_lalin') => 'Kondisi Lalin'
+            ],
+            'field_up' =>[
+                'rowid' => 'hidden',
+                'kl_id' => 'ID',
+                'kondisi_lalin' => 'Kondisi Lalin'
+            ],
+            'field_se' =>[
+                'kl_id' => 'ID',
+                'kondisi_lalin' => 'Kondisi Lalin'
+            ],
+            'dt' => [
+                'order' => [
+                    'kl_id',
+                    'kondisi_lalin'
+                ],
+                'search' => [
+                    'kl_id',
+                    'kondisi_lalin'
+                ],
+                'view' => [
+                    'kl_id',
+                    'kondisi_lalin'
+                ]
+            ]
+        ];
+        
+        $this->mg->crud($arr);
+       
+    }
+
     public function polda()
     {
         $arr = [
