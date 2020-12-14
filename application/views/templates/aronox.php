@@ -228,10 +228,7 @@ $avatar=$base_url.'my/images/'.$avatar;
 						</div>
 						<!--End Page header-->
 						
-			<?php
-}
-                echo $contents;
-                ?>
+						<?php echo $contents;?>
 						
 					</div>
 				</div><!-- end app-content-->
@@ -343,6 +340,10 @@ $avatar=$base_url.'my/images/'.$avatar;
     <script src="<?php echo $base_url;?>my/vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/jquery-fancybox/jquery.fancybox.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/chart.js/Chart.min.js"></script>
+
+	<?php if(@$js_local){ ?>
+		<script src="<?= base_url('my/js_local/'.$js_local);?>"></script>
+	<?php } ?>
     
 	<!-- global vars -->
 	<script>
