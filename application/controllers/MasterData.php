@@ -97,7 +97,11 @@ class MasterData extends CI_Controller {
             'dt' => [
                 'order' => [
                     'kj_id',
-                    'nama_jalan'
+                    'nama_jalan',
+                     null,
+                     null,
+                     null,
+                     
                 ],
                 'search' => [
                     'kj_id',
