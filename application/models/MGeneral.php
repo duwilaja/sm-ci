@@ -37,7 +37,7 @@ class MGeneral extends CI_Model {
                     'se' => $field_se,
                 ]
             ];
-            $this->template->load('aronox','page/master_data/master_data', $data);
+            $this->template->load('page/master_data/master_data', $data);
         }
     }
 
