@@ -237,7 +237,7 @@ $avatar=$base_url.'my/images/'.$avatar;
 						<!--Page header-->
 						<div class="page-header">
 							<div class="page-leftheader">
-								<h4 class="page-title"><?php echo $page_title?></h4>
+								<!-- <h4 class="page-title"><?php echo $page_title?></h4> -->
 							</div>
 
 						</div>
