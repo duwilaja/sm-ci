@@ -1,4 +1,6 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 $base_url = base_url();
 ?>
 <!DOCTYPE html>
@@ -70,7 +72,7 @@ $base_url = base_url();
 						<div class="col-xl-7 col-lg-6 col-md-12">
 							<!--img src="<?php echo $base_url;?>aronox/assets/images/sm_img/gambar-logo.png" class="construction-img mb-7 h-480  mt-5 mt-xl-0" alt="">
 							<img src="<?php echo $base_url;?>aronox/assets/images/svgs/login.svg" class="construction-img mb-7 h-480  mt-5 mt-xl-0" alt=""-->
-							<img src="<?php echo $base_url;?>my/images/gambar-login.png" class="construction-img mb-7 mt-5 mt-xl-0" alt="">
+							<img src="<?php echo $base_url;?>my/images/gambar-login.png" class="mb-7 mt-5 mt-xl-0" alt="">
 						</div>
 						<div class="col-xl-5 col-lg-6 col-md-12 ">
 							<div class="col-lg-12">
@@ -102,7 +104,7 @@ $base_url = base_url();
 										<!--a class="btn  btn-social btn-fb mr-2"><i class="fa fa-facebook"></i> </a>
 										<a class="btn  btn-social btn-googleplus mr-2"><i class="fa fa-google-plus"></i></a>
 										<a class="btn  btn-social btn-twitter-transparant  "><i class="fa fa-twitter"></i></a-->
-										Smart Manajemen
+										Smart Management
 									</div>
 								</div>
 							</div>
