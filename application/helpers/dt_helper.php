@@ -9,10 +9,15 @@ function cari_arr($arr=[],$nilai='')
 }
 
 function select_dt($t='',$field,$dt=''){
-    $field[0] = '<a href="#" data-toggle="modal" data-target="#myModal2" onclick="get_data_id('.$dt->rowid.')">'.$field[0].'</a>';
+    
     // atur If disini bos
     if ($t == 'kondisi_jalan') {
         $field[4] = cari_arr(KONSTRUKSI,$field[4]);
+    }else if ($t == 'prasarana_public') {
+        $field[0] = cari_arr(PRASARANA_PUBLIC,$field[0]);
     }
+
+    $field[0] = '<a href="#" data-toggle="modal" data-target="#myModal2" onclick="get_data_id('.$dt->rowid.')">'.$field[0].'</a>';
+    
     return $field;
 }

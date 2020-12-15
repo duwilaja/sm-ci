@@ -105,3 +105,47 @@ define('KONSTRUKSI',
         'nama' => 'Beton'
     ]
 ]);
+
+define('PRASARANA_PUBLIC',
+[
+    [
+        'nilai' => 1,
+        'nama' => 'Terminal'
+    ],
+    [
+        'nilai' => 2,
+        'nama' => 'Pelabuhan'
+    ],
+    [
+        'nilai' => 3,
+        'nama' => 'Bandara'
+    ],
+    [
+        'nilai' => 4,
+        'nama' => 'Stasiun'
+    ],
+    [
+        'nilai' => 5,
+        'nama' => 'Tempat Wisata'
+    ],
+    [
+        'nilai' => 6,
+        'nama' => 'Gerbang Tol'
+    ],
+    [
+        'nilai' => 7,
+        'nama' => 'Gedung'
+    ],
+    [
+        'nilai' => 8,
+        'nama' => 'Pusat Perbelanjaan'
+    ],
+    [
+        'nilai' => 9,
+        'nama' => 'Sarana Olahraga'
+    ],
+    [
+        'nilai' => 10,
+        'nama' => 'Check Point'
+    ],
+]);

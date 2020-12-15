@@ -27,6 +27,7 @@ class Setup extends CI_Controller {
     public function dasargiat()
     {
         $arr = [
+            'title' => 'Dasar Giat',
             'tabel' => 'dasargiat',
             'field_in' =>[
                 srlen('dg_id') => 'ID',
@@ -64,6 +65,7 @@ class Setup extends CI_Controller {
     public function pangkat()
     {
         $arr = [
+            'title' => 'Kepangkatan',
             'tabel' => 'pangkat',
             'field_in' =>[
                 srlen('pang_id') => 'ID',
@@ -101,6 +103,7 @@ class Setup extends CI_Controller {
     public function unit()
     {
         $arr = [
+            'title' => 'Unit',
             'tabel' => 'unit',
             'field_in' =>[
                 srlen('unit_id') => 'ID',
@@ -135,9 +138,10 @@ class Setup extends CI_Controller {
        
     }
 
-    public function subag()
+    public function subbag()
     {
         $arr = [
+            'title' => 'Sub Bagian',
             'tabel' => 'bagian',
             'field_in' =>[
                 srlen('bag_id') => 'ID',
@@ -180,6 +184,7 @@ class Setup extends CI_Controller {
     public function subdit()
     {
         $arr = [
+            'title' => 'Subdit',
             'tabel' => 'subdit',
             'field_in' =>[
                 srlen('sub_id') => 'ID',
@@ -222,6 +227,7 @@ class Setup extends CI_Controller {
     public function polda()
     {
         $arr = [
+            'title' => 'polda',
             'tabel' => 'polda',
             'field_in' =>[
                 srlen('da_id') => 'ID',
@@ -259,6 +265,7 @@ class Setup extends CI_Controller {
     public function polres()
     {
         $arr = [
+            'title' => 'polres',
             'tabel' => 'polres',
             'field_in' =>[
                 srlen('res_id') => 'ID',
@@ -295,6 +302,7 @@ class Setup extends CI_Controller {
     public function direktorat()
     {
         $arr = [
+            'title' => 'direktorat',
             'tabel' => 'direktorat',
             'field_in' =>[
                 srlen('dit_id') => 'ID',
