@@ -76,8 +76,9 @@ class Laporan extends CI_Controller {
 		if(isset($user)){
 			$id=$this->input->post('id');
 			$data['dummy']="this is dummy data";
-			$retval=$this->load->view("formulir/$id",$data);
-			echo $retval;
+			//$retval=
+			$this->load->view("formulir/$id",$data);
+			//echo $retval;
 		}else{
 			$retval=array("403","Failed","Please login","error");
 			$data['retval']=$retval;
