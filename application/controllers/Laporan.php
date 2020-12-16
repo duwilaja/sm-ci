@@ -20,7 +20,7 @@ class Laporan extends CI_Controller {
         $d = [
 			'title' => 'Entry Laporan Gatur Lalin',
 			'linkView' => 'page/laporan/lap_gat_lin',
-			'fileScript' => 'lap_gat_lin.js',
+			'fileScript' => 'laporan/lap_gat_lin.js',
 			'bread' => [
 				'nama' => 'Laporan Gatur Lalin',
 				'data' => [

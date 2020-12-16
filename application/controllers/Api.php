@@ -7,41 +7,45 @@ class Api extends CI_Controller {
         parent::__construct();
         $this->load->model('MGeneral','mg');
         
+        header('Access-Control-Allow-Origin: *');
+        header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
     } 
 
     //  ini get input type select di form laporan gatur lalin
-    public function get()
-    {
+    public function kegiatan()
+    { 
         $status = false;
         $msg = "Gagal Mendapatkan List Kegiatan";
+        $data = [];
+
         $method = $_SERVER['REQUEST_METHOD'];
+        
+
         if ($method === 'GET') {
-            $get = $this->mg->get();
-            
+            $q = $this->mg->get('kegiatan','','*');
+            if($q->num_rows() > 0){
+                $status = true;
+                $data = $q->result();
+                $msg = "Data berhasil didapatkan";
+            } 
         }elseif ($method === 'POST') {
-            # code...
+            // kalau insert disini
         }elseif ($method === 'PUT') {
-            # code...
-        }elseif ($method === 'DELETE') {
-            # code...
+            // Update/edit
+        }elseif ($method === "DELETE") {
+            // Delete
         }else{
-            $method = "Method Tidak Diketahui";
+            $msg = "Method Tidak Diketahui";
         }
 
-        
-        
-
-        if ($get) {
-            $status = true;
-            $msg = "Berhasil Mendapatkan List Kegiatan";
-        }
-        $dt = [
-            'data' => $get->result(),
+        $rsp = [
+            'data' => $data,
 			'msg' => $msg,
 			'status' => $status
 		];
 
-		echo json_encode($dt);
+		echo json_encode($rsp);
     }
 
     // public function get_kegiatan()
