@@ -49,9 +49,18 @@ class Api extends CI_Controller {
         echo json_encode($rsp);
     }
 
-    public function api_lap_gatlin(Type $var = null)
+    public function api_lap_gatlin()
     {
-        # code...
+        $method = $_SERVER['REQUEST_METHOD'];
+        if ($method == "GET") {
+           
+        }elseif ($method == "POST") {
+            # code...
+        }elseif ($method == "PUT") {
+            # code...
+        }else{
+
+        }
     }
 
     
