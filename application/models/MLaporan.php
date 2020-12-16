@@ -9,17 +9,6 @@ class MLaporan extends CI_Model {
         $this->load->helper('dt');
     }
 
-        public function get($tabel,$where='',$x='*')
-        {
-            $this->db->select($x);
-            if ($where != '') {
-                $q = $this->db->get_where($tabel,$where);
-            }else{
-                $q = $this->db->get($tabel);
-            }
-            return $q;
-        }
-
         // model master data laporan gatur lalu lintas
         public function dt_lap_gat_lin()
         {

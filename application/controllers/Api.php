@@ -5,29 +5,64 @@ class Api extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('MLaporan','ml');
+        $this->load->model('MGeneral','mg');
         
     } 
 
     //  ini get input type select di form laporan gatur lalin
-    public function get_kegiatan($table,$where)
+    public function get()
     {
         $status = false;
         $msg = "Gagal Mendapatkan List Kegiatan";
+        $method = $_SERVER['REQUEST_METHOD'];
+        if ($method === 'GET') {
+            $get = $this->mg->get();
+            
+        }elseif ($method === 'POST') {
+            # code...
+        }elseif ($method === 'PUT') {
+            # code...
+        }elseif ($method === 'DELETE') {
+            # code...
+        }else{
+            $method = "Method Tidak Diketahui";
+        }
+
         
-        $get = $this->ml->get($table,$where);
+        
 
         if ($get) {
             $status = true;
             $msg = "Berhasil Mendapatkan List Kegiatan";
         }
         $dt = [
+            'data' => $get->result(),
 			'msg' => $msg,
 			'status' => $status
 		];
 
 		echo json_encode($dt);
     }
+
+    // public function get_kegiatan()
+    // {
+    //     $status = false;
+    //     $msg = "Gagal Mendapatkan List Kegiatan";
+        
+    //     $get = $this->mg->get('kegiatan');
+
+    //     if ($get) {
+    //         $status = true;
+    //         $msg = "Berhasil Mendapatkan List Kegiatan";
+    //     }
+    //     $dt = [
+    //         'data' => $get->result(),
+	// 		'msg' => $msg,
+	// 		'status' => $status
+	// 	];
+
+	// 	echo json_encode($dt);
+    // }
 
     public function get_kejadian($table,$where)
     {
