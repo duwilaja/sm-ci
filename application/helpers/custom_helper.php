@@ -195,3 +195,13 @@ if (!function_exists('test')) {
 		return date('Y-m-d H:i:s',strtotime($where));
 	}
 }
+
+if (!function_exists('comboopts')){
+	function comboopts($arrobj){
+		$ret=array();
+		foreach($arrobj as $d){
+			$ret[$d->v] = $d->t;
+		}
+		return $ret;
+	}
+}

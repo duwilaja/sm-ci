@@ -30,6 +30,7 @@ class Login extends CI_Controller {
 				$data['session']=$retval[0];
 				$this->template->load("home",$data);
 			}
+			$retval=array("404","Failed","Person not found","error");
 		}
 		if(!$loggedin){
 			$data['retval']=$retval;
