@@ -41,9 +41,8 @@ class Profile extends CI_Controller {
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs);
 			echo json_encode($retval);
 		}else{
-			$retval=array("403","Failed","Please login","error");
-			$data['retval']=$retval;
-			$this->load->view('login',$data);
+			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>array());
+			echo json_encode($retval);
 		}
 	}
 	
@@ -56,9 +55,8 @@ class Profile extends CI_Controller {
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$ret);
 			echo json_encode($retval);
 		}else{
-			$retval=array("403","Failed","Please login","error");
-			$data['retval']=$retval;
-			$this->load->view('login',$data);
+			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>array());
+			echo json_encode($retval);
 		}
 	}
 }
