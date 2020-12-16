@@ -59,4 +59,47 @@ class MLaporan extends CI_Model {
             return json_encode($output);
         }
 
+        public function api_lap_gatur_lalin()
+        { 
+            $ax = $this->input->get('api');
+            $table = 'lap_gatur_lalin';
+            $where = 'rowid='.$this->input->post('rowid');
+            $select = '*';
+    
+            $data = [
+                'kegiatan' => $this->input->post('kegiatan'),
+                'no_sprint' => $this->input->post('no_sprint'),
+                'tanggal' => $this->input->post('tanggal'),
+                'jam' => $this->input->post('jam'),
+                'pos_simpang' => $this->input->post('pos_simpang'),
+                'kordinat' => $this->input->post('kordinat'),
+                'kejadian' => $this->input->post('kejadian'),
+                'status_lalin' => $this->input->post('status_lalin'),
+                'a_timur' => $this->input->post('a_timur'),
+                'a_barat' => $this->input->post('a_barat'),
+                'a_utara' => $this->input->post('a_utara'),
+                'a_selatan' => $this->input->post('a_selatan'),
+                'penyebab' => $this->input->post('penyebab'),
+    
+            ];
+          
+            if ($ax == "get") {
+                $rsp = $this->_api->get($table,$where,$select);
+                echo json_encode($rsp);
+            }elseif ($ax == "in") {
+                $this->db->insert($table, $data);
+                // $id = $this->db->insert_id();
+                //  tinggal insert foto
+                echo json_encode(['msg' => 'Sukses','status' => true]);
+            }elseif ($ax == "up") {
+                $this->db->set($data);
+                $this->db->where('rowid', $this->input->post('rowid'));
+                $this->db->update($table);
+                 //  tinggal upd foto
+                echo json_encode(['msg' => 'Sukses','status' => true]);
+            }else{
+                echo json_encode(['msg' => 'Gagal Akes Api','status' => false]);
+            }
+        }
+
 }   

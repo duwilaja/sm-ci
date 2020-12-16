@@ -13,7 +13,7 @@ class Api extends CI_Controller {
     } 
 
     //  ini get input type select di form laporan gatur lalin
-    public function kegiatan()
+    public function api_kegiatan()
     { 
         $table = 'kegiatan';
         $where = '';
@@ -21,8 +21,17 @@ class Api extends CI_Controller {
         $rsp = $this->_api->get($table,$where,$select);
         echo json_encode($rsp);
     }
+
+    public function api_kejadian_ditemukan()
+    { 
+        $table = 'kejadian_ditemukan';
+        $where = '';
+        $select = '*';
+        $rsp = $this->_api->get($table,$where,$select);
+        echo json_encode($rsp);
+    }
     
-    public function parameter_antrian()
+    public function api_parameter_antrian()
     { 
         $table = 'parameter_antrian';
         $where = '';
@@ -31,45 +40,20 @@ class Api extends CI_Controller {
         echo json_encode($rsp);
     }
 
-    public function get_($table,$where)
-    {
-        $status = false;
-        $msg = "Gagal Mendapatkan List Parameter Antrian";
-        
-        $get = $this->ml->get($table,$where);
-
-        if ($get) {
-            $status = true;
-            $msg = "Berhasil Mendapatkan List Parameter Antrian";
-        }
-        $dt = [
-			'msg' => $msg,
-			'status' => $status
-		];
-
-		echo json_encode($dt);
+    public function api_penyebab()
+    { 
+        $table = 'penyebab';
+        $where = '';
+        $select = '*';
+        $rsp = $this->_api->get($table,$where,$select);
+        echo json_encode($rsp);
     }
 
-    public function get_penyebab($table,$where)
+    public function api_lap_gatlin(Type $var = null)
     {
-        $status = false;
-        $msg = "Gagal Mendapatkan List Penyabab";
-        
-        $get = $this->ml->get($table,$where);
-
-        if ($get) {
-            $status = true;
-            $msg = "Berhasil Mendapatkan List Penyabab";
-        }
-        $dt = [
-			'msg' => $msg,
-			'status' => $status
-		];
-
-		echo json_encode($dt);
+        # code...
     }
 
-
-
+    
     // end get input type select di form laporan gatur 
 }
