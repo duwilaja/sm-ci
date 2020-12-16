@@ -62,9 +62,9 @@ class MGeneral extends CI_Model {
     }
 
     // Digunakan untuk mengambil semua data
-    public function get($tabel,$where='',$x='*')
+    public function get($tabel,$where='',$select='*')
     {
-        $this->db->select($x);
+        $this->db->select($select);
         if ($where != '') {
             $q = $this->db->get_where($tabel,$where);
         }else{

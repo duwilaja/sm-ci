@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
   
-  class Api {
+  class _api {
     
     public function __construct() {
         

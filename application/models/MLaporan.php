@@ -40,11 +40,10 @@ class MLaporan extends CI_Model {
             foreach ($dataTabel as $dt) {
                 $i++;
                 $data[] = array(
-                    //$i,
                     $dt->no_sprint,
                     $dt->kegiatan,
                     $dt->kejadian,
-                    $dt->tgl,
+                    $dt->tanggal,
                     '<button class="btn btn-sm btn-outline-primary badge" type="button" data-toggle="modal" data-target="#user-form-modal">Edit</button><button class="btn btn-sm btn-outline-primary badge" type="button"><i class="fa fa-eye"></i></button>',
                 );
             }

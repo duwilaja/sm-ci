@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('template','session','database','api');
+$autoload['libraries'] = array('_api','session','database','template');
 /*
 | -------------------------------------------------------------------
 |  Auto-load Drivers

@@ -17,18 +17,11 @@ class Laporan extends CI_Controller {
 
     public function lap_gat_lin()
     {
-        $d = [
-			'title' => 'Entry Laporan Gatur Lalin',
-			'linkView' => 'page/laporan/lap_gat_lin',
-			'fileScript' => 'laporan/lap_gat_lin.js',
-			'bread' => [
-				'nama' => 'Laporan Gatur Lalin',
-				'data' => [
-					//['nama' => 'Karyawan','link' => site_url('main/karyawan'),'active' => 'active']
-                    ]
-                ]
-            ];
-        $this->load->view('_main',$d);
+        $data = [
+            'title' => 'Laporan Giat Lalin',
+            'js_local' => 'laporan/lap_gat_lin.js',
+        ];
+        $this->template->load('page/laporan/lap_gat_lin', $data);
     }
 
 }   

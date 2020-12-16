@@ -18,33 +18,20 @@ class Api extends CI_Controller {
         $table = 'kegiatan';
         $where = '';
         $select = '*';
-        $rsp = $this->Api->get($table,$where,$select);
+        $rsp = $this->_api->get($table,$where,$select);
         echo json_encode($rsp);
-	
+    }
+    
+    public function parameter_antrian()
+    { 
+        $table = 'parameter_antrian';
+        $where = '';
+        $select = '*';
+        $rsp = $this->_api->get($table,$where,$select);
+        echo json_encode($rsp);
     }
 
-
-
-    public function get_kejadian($table,$where)
-    {
-        $status = false;
-        $msg = "Gagal Mendapatkan List Kejadian";
-        
-        $get = $this->ml->get($table,$where);
-
-        if ($get) {
-            $status = true;
-            $msg = "Berhasil Mendapatkan List Kejadian";
-        }
-        $dt = [
-			'msg' => $msg,
-			'status' => $status
-		];
-
-		echo json_encode($dt);
-    }
-
-    public function get_parameter_antrian($table,$where)
+    public function get_($table,$where)
     {
         $status = false;
         $msg = "Gagal Mendapatkan List Parameter Antrian";

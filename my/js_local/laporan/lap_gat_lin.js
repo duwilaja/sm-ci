@@ -21,7 +21,7 @@ function showtable() {
         },
         //Set column definition initialisation properties
         "columnDefs": [{
-          "targets": [5],
+          // "targets": [5],
           "orderable": false
         }]
       });
