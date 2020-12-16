@@ -282,43 +282,116 @@ class MasterData extends CI_Controller {
         $this->mg->crud($arr);
     }
 
-    // public function kuat_personil()
-    // {
-    //     $arr = [
-    //         'tabel' => 'kuat_personil',
-    //         'field_in' =>[
-    //             srlen('kp_id') => 'ID',
-    //             srlen('kp_nama') => 'Kuat Pesonil'
-    //         ],
-    //         'field_up' =>[
-    //             'rowid' => 'hidden',
-    //             'kp_id' => 'ID',
-    //             'kp_nama' => 'Kuat Pesonil'
-    //         ],
-    //         'field_se' =>[
-    //             'kp_id' => 'ID',
-    //             'kp_nama' => 'Kuat Pesonil'
-    //         ],
-    //         'dt' => [
-    //             'order' => [
-    //                 'kp_id',
-    //                 'kp_nama'
-    //             ],
-    //             'search' => [
-    //                 'kp_id',
-    //                 'kp_nama'
-    //             ],
-    //             'view' => [
-    //                 'kp_id',
-    //                 'kp_nama'
-    //             ]
-    //         ]
-    //     ];
+    public function penyebab()
+    {
+        $arr = [
+            'title' => 'Penyebab',
+            'tabel' => 'penyebab',
+            'field_in' =>[
+                srlen('p_id') => 'ID',
+                srlen('p_nam') => 'Penyebab'
+            ],
+            'field_up' =>[
+                'rowid' => 'hidden',
+                'p_id' => 'ID',
+                'p_nam' => 'Penyebab'
+            ],
+            'field_se' =>[
+                'p_id' => 'ID',
+                'p_nam' => 'Penyebab'
+            ],
+            'dt' => [
+                'order' => [
+                    'p_id',
+                    'p_nam'
+                ],
+                'search' => [
+                    'p_id',
+                    'p_nam'
+                ],
+                'view' => [
+                    'p_id',
+                    'p_nam'
+                ]
+            ]
+        ];
         
-    //     $this->mg->crud($arr);
-    // }
+        $this->mg->crud($arr);
+    }
 
-   
+    public function parameter_antrian()
+    {
+        $arr = [
+            'title' => 'Parameter Antrian',
+            'tabel' => 'parameter_antrian',
+            'field_in' =>[
+                srlen('prm_antr_id') => 'ID',
+                srlen('prm_antr_nam') => 'Parameter'
+            ],
+            'field_up' =>[
+                'rowid' => 'hidden',
+                'prm_antr_id' => 'ID',
+                'prm_antr_nam' => 'Parameter'
+            ],
+            'field_se' =>[
+                'prm_antr_id' => 'ID',
+                'prm_antr_nam' => 'Parameter'
+            ],
+            'dt' => [
+                'order' => [
+                    'prm_antr_id',
+                    'prm_antr_nam'
+                ],
+                'search' => [
+                    'prm_antr_id',
+                    'prm_antr_nam'
+                ],
+                'view' => [
+                    'prm_antr_id',
+                    'prm_antr_nam'
+                ]
+            ]
+        ];
+        
+        $this->mg->crud($arr);
+    }
+
+    public function kejadian_ditemukan()
+    {
+        $arr = [
+            'title' => 'Kejadian Ditemukan',
+            'tabel' => 'kejadian_ditemukan',
+            'field_in' =>[
+                srlen('kjd_dit_id') => 'ID',
+                srlen('kjd_dit_nam') => 'Kejadian Ditemukan'
+            ],
+            'field_up' =>[
+                'rowid' => 'hidden',
+                'kjd_dit_id' => 'ID',
+                'kjd_dit_nam' => 'Kejadian Ditemukan'
+            ],
+            'field_se' =>[
+                'kjd_dit_id' => 'ID',
+                'kjd_dit_nam' => 'Kejadian Ditemukan'
+            ],
+            'dt' => [
+                'order' => [
+                    'kjd_dit_id',
+                    'kjd_dit_nam'
+                ],
+                'search' => [
+                    'kjd_dit_id',
+                    'kjd_dit_nam'
+                ],
+                'view' => [
+                    'kjd_dit_id',
+                    'kjd_dit_nam'
+                ]
+            ]
+        ];
+        
+        $this->mg->crud($arr);
+    }
 
 }
 

@@ -219,9 +219,9 @@ $avatar=$base_url.'my/images/'.$avatar;
 										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/prasarana_public">Prasarana Public</a></li>
 										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/potensi_masyarakat">Potensi Masyarakat</a></li>
 										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kegiatan">Kegiatan</a></li>
-										<!-- <li aria-haspopup="true"><a href="<?php echo $base_url?>unit">Unit</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>pangkat">Kepangkatan</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>dasargiat">Dasar Giat</a></li> -->
+										 <li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/penyebab">Penyebab</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kejadian_ditemukan">Kejadian Ditemukan</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/parameter_antrian">Parameter Antrian</a></li>
 									</ul>
 								</li>
 							</ul>
