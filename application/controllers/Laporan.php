@@ -10,6 +10,11 @@ class Laporan extends CI_Controller {
     } 
 
     //Éntry Laporan Gatur Lalin
+    public function dt_lap_gat_lin()
+    {
+        echo ($this->ml->dt_lap_gat_lin());
+    }
+
     public function lap_gat_lin()
     {
         $d = [
