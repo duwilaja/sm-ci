@@ -19,7 +19,7 @@
 						<th>Kegiatan</th>
 						<th>Kejadian</th>
 						<th>Tanggal</th>
-						<th>Actions</th>
+						<th>#</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -67,7 +67,7 @@
 									<div class="col">
 										<div class="form-group">
 											<label>Kejadian</label>
-											<input class="form-control form-control-sm" type="text" name="username" placeholder="johnny.s" value="johnny.s">
+											<select class="form-control form-control-sm" name="kejadian" id="kejadian"></select>
 										</div>
 									</div>
 								</div>
@@ -105,7 +105,7 @@
 								<div class="row">
 									<div class="col">
 										<label>Tindakan Yang dilakukan</label>
-										<textarea class="form-control"  rows="8" placeholder="My Bio"></textarea>
+										<textarea class="form-control" name="tindakan"  rows="8" placeholder="..."></textarea>
 									</div>
 								</div>
 							</div>
@@ -117,46 +117,66 @@
 									<div class="col">
 										<div class="form-group">
 											<label>Status</label>
-											<input class="form-control" type="password" placeholder="••••••">
+											<select class="form-control" name="status" id="status">
+												<option value="lancar">Lancar</option>
+												<option value="padata">Padat</option>
+											</select>
 										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col">
-										<div class="form-group">
-											<label>New Password</label>
-											<!-- <input class="form-control" type="password" placeholder="••••••"> -->
-										</div>
-									</div>
-									<div class="col">
-										<div class="form-group">
-											<label>Confirm <span class="d-none d-xl-inline">Password</span></label>
-											<input class="form-control" type="password" placeholder="••••••">
+									<div class="col-md-12">
+										<div class="rsp_status">
+											<div class="row">
+												<div class="col-md-12">
+													<table class="table table-bordred">
+														<thead>
+															<tr>
+																<th>Dari Arah</th>
+																<th>Antrian</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>Timur</td>
+																<td><input type="text" name="a_timur"></td>
+															</tr>
+															<tr>
+																<td>Barat</td>
+																<td><input type="text" name="a_timur"></td>
+															</tr>
+															<tr>
+																<td>Utara</td>
+																<td><input type="text" name="a_utara"></td>
+															</tr>
+															<tr>
+																<td>Selatan</td>
+																<td><input type="text" name="a_selatan"></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="col-md-12">
+													<label>Penyebab</label>
+													<select class="form-control" name="penyebab" id="penyebab"></select>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-12 col-sm-5 offset-sm-1 mb-3">
-								<div class="mb-2"><b>Keeping in Touch</b></div>
-								<div class="row">
-									<div class="col">
-										<label>Email Notifications</label>
-										<div class="custom-controls-stacked px-2">
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input" id="notifications-blog" checked="">
-												<label class="custom-control-label" for="notifications-blog">Blog posts</label>
-											</div>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input" id="notifications-news" checked="">
-												<label class="custom-control-label" for="notifications-news">Newsletter</label>
-											</div>
-											<div class="custom-control custom-checkbox">
-												<input type="checkbox" class="custom-control-input" id="notifications-offers" checked="">
-												<label class="custom-control-label" for="notifications-offers">Personal Offers</label>
-											</div>
-										</div>
-									</div>
-								</div>
+							<div class="col-md-6">
+								<div><b>Dokumentasi</b></div>
+								<table class="mt-2 table">
+									<tbody>
+										<tr>
+											<td>Foto</td>
+											<td><input type="file" name="foto"></td>
+										</tr>
+										<tr>
+											<td>Video</td>
+											<td><input type="file" name="video"></td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 						<div class="row">

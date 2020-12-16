@@ -148,6 +148,13 @@ if (!function_exists('setStatus')) {
 	}
 }
 
+if (!function_exists('inp')) {
+	function inp()
+	{
+		return json_decode(file_get_contents("php://input"),true);
+	}
+}
+
 if (!function_exists('calcHours')) {
 	function calcHours($startdate,$enddate)
 	{
