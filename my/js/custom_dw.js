@@ -407,9 +407,9 @@ function getMultiSelect(lnk,q,id,target,glue=";"){
 }
 
 function getSubQ(q,id,tgt,dv=""){
-	var url='dataget.php';
+	var url=base_url+q;
 	var mtd='POST';
-	var frmdata={q:q,id:id};
+	var frmdata={id:id};
 	
 	//alert(frmdata);
 	
@@ -445,3 +445,42 @@ function getSubQ(q,id,tgt,dv=""){
 	});
 }
 
+function getFormData($form){
+    var unindexed_array = $form.serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+
+    return indexed_array;
+}
+
+function sendData(f,u){
+	var url=base_url+u;
+	var mtd='POST';
+	var frmdata=getFormData($(f));
+	
+	//alert(frmdata);
+	
+	$.ajax({
+		type: mtd,
+		url: url,
+		data: frmdata,
+		success: function(data){
+			var json = JSON.parse(data);
+			//modal(json['ttl'],json['msgs']);
+			if(json['code']=='200'){
+				$(".modal_form").modal("hide");
+				if(typeof(senddatacallback)=='function') senddatacallback();
+				alrt(json['msgs'],'success',json['ttl']);
+			}else{
+				alrt(json['msgs'],'error',json['ttl']);
+			}
+		},
+		error: function(xhr){
+			//modal('Error','Please check your connection');
+			alrt('Please check your connection','error','Error');
+		}
+	});
+};

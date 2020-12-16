@@ -33,7 +33,7 @@
     <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left modal_form">
         <div role="document" class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header"><strong id="exampleModalLabel" class="modal-title">Polda</strong>
+                <div class="modal-header"><strong id="exampleModalLabel" class="modal-title">Add</strong>
                     <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">x</span></button>
                 </div>
                 <form action="javascript:void(0);" id="form_add" class="form-horizontal">
@@ -66,7 +66,7 @@
      <div id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left modal_form">
         <div role="document" class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header"><strong id="exampleModalLabel" class="modal-title">Polda</strong>
+                <div class="modal-header"><strong id="exampleModalLabel" class="modal-title">Edit</strong>
                     <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">x</span></button>
                 </div>
                 <form action="javascript:void(0);" id="form_up" class="form-horizontal">
