@@ -451,7 +451,43 @@ class Setup extends CI_Controller {
         $this->mg->crud($arr);
        
     }
-
+    public function dasar_giat()
+    {
+        $arr = [
+            'title' => 'Dasar Giat',
+            'tabel' => 'dasargiat',
+            'field_in' =>[
+                srlen('dg_id') => 'ID',
+                srlen('dg_nam') => 'NAMA'
+            ],  
+            'field_up' =>[
+                'rowid' => 'hidden',
+                'dg_id' => 'ID',
+                'dg_nam' => 'NAMA'
+            ],
+            'field_se' =>[
+                'dg_id' => 'ID',
+                'dg_nam' => 'NAMA'
+            ],
+            'dt' => [
+                'order' => [
+                    'dg_id',
+                    'dg_nam'
+                ],
+                'search' => [
+                    'dg_id',
+                    'dg_nam'
+                ],
+                'view' => [
+                    'dg_id',
+                    'dg_nam'
+                ]
+            ]
+        ];
+        
+        $this->mg->crud($arr);
+       
+    }
 
     public function polda()
     {
