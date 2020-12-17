@@ -13,7 +13,7 @@ class Api extends CI_Controller {
     } 
 
     //  ini get input type select di form laporan gatur lalin
-    public function api_kegiatan()
+    public function kegiatan()
     { 
         $table = 'kegiatan';
         $where = '';
