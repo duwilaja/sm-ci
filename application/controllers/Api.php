@@ -58,9 +58,10 @@ class Api extends CI_Controller {
             'tanggal' => 'tanggal',
             'jam' => 'jam',
             'pos_simpang' => 'pos_simpang',
-            'kordinat' => 'kordinat',
+            'koordinat' => 'kordinat',
             'kejadian' => 'kejadian',
-            'status_lalin' => 'status_lalin',
+            'tindakan' => 'ket_tindakan',
+            'status' => 'status_lalin',
             'a_timur' => 'a_timur',
             'a_barat' => 'a_barat',
             'a_utara' => 'a_utara',
@@ -76,9 +77,8 @@ class Api extends CI_Controller {
         $i = inp();
 
         foreach ($i as $k => $v) {
-            $obj[$k] = $v;
+            if(!empty($inp[$k])) $obj[$inp[$k]] = $v;
         }
-        
         $method = $_SERVER['REQUEST_METHOD'];
 
         if ($method == "GET") {
@@ -93,7 +93,7 @@ class Api extends CI_Controller {
         }elseif ($method == "PUT") {
             $where = ['rowid' =>  $i['rowid']];
             foreach ($i as $k => $v) {
-                $obj[$k] = $v;
+                if(!empty($inp[$k])) $obj[$inp[$k]] = $v;
             }
             
             $q =  $this->mg->up($table,$obj,$where);

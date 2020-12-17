@@ -117,48 +117,16 @@
 									<div class="col">
 										<div class="form-group">
 											<label>Status</label>
-											<select class="form-control" name="status" id="status">
-												<option value="lancar">Lancar</option>
-												<option value="padata">Padat</option>
+											<select class="form-control" onchange="get_status(this.value)" name="status" id="status">
+												<option value=""></option>
+												<option value="1">Lancar</option>
+												<option value="2">Padat</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="rsp_status">
-											<div class="row">
-												<div class="col-md-12">
-													<table class="table table-bordred">
-														<thead>
-															<tr>
-																<th>Dari Arah</th>
-																<th>Antrian</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr>
-																<td>Timur</td>
-																<td><input type="text" name="a_timur" class="form-control"></td>
-															</tr>
-															<tr>
-																<td>Barat</td>
-																<td><input type="text" name="a_timur" class="form-control"></td>
-															</tr>
-															<tr>
-																<td>Utara</td>
-																<td><input type="text" name="a_utara" class="form-control"></td>
-															</tr>
-															<tr>
-																<td>Selatan</td>
-																<td><input type="text" name="a_selatan" class="form-control"></td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-												<div class="col-md-12">
-													<label>Penyebab</label>
-													<select class="form-control" name="penyebab" id="penyebab"></select>
-												</div>
-											</div>
+											
 										</div>
 									</div>
 								</div>
@@ -181,7 +149,11 @@
 						</div>
 						<div class="row">
 							<div class="col d-flex justify-content-end">
-								<button class="btn btn-primary" type="submit">Save Changes</button>
+								<button class="btn btn-primary" id="btn-save" type="submit">Save Changes</button>
+								<button class="btn btn-primary" id="btn-save-loading" type="button" style="display:none;" disabled>
+								<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+								Loading...
+								</button>
 							</div>
 						</div>
 				</div>

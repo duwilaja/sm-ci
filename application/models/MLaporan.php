@@ -29,7 +29,7 @@ class MLaporan extends CI_Model {
         // Set select column fields
         $CI->dt->select = 'a.rowid,a.no_sprint,b.k_nama as kegiatan,c.kjd_dit_nam as kejadian,a.tanggal';
         // Set default order
-        $CI->dt->order = ['a.rowid' => 'asc'];
+        $CI->dt->order = ['a.rowid' => 'DESC'];
         
         $condition = [
             //['where',$this->t.'.status',$status],

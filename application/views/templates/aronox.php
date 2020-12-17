@@ -272,6 +272,8 @@ $avatar=$base_url.'my/images/'.$avatar;
 		<!-- Jquery js-->
 		<script src="<?php echo $base_url;?>aronox/assets/js/vendors/jquery-3.4.0.min.js"></script>
 
+		<script src="<?php echo $base_url;?>my/vendor/swal2/sweetalert.min.js"></script>
+
 		<!-- Bootstrap4 js-->
 		<script src="<?php echo $base_url;?>aronox/assets/plugins/bootstrap/popper.min.js"></script>
 		<script src="<?php echo $base_url;?>aronox/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -310,7 +312,6 @@ $avatar=$base_url.'my/images/'.$avatar;
     <script src="<?php echo $base_url;?>my/vendor/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/datatables-buttons/js/buttons.html5.min.js"></script>
 	
-    <script src="<?php echo $base_url;?>my/vendor/swal2/sweetalert.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/jquery-fancybox/jquery.fancybox.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/chart.js/Chart.min.js"></script>
