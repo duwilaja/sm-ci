@@ -224,9 +224,9 @@ $avatar=$base_url.'my/images/'.$avatar;
 													</div>
 													<div class="col-lg-3 col-md-12 col-xs-12 link-list">
 														<ul>
-															<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kejadian_ditemukan">Kejadian Ditemukan</a></li>
-															<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/parameter_antrian">Parameter Antrian</a></li>
-															<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/dasar_giat">Dasar Giat</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/ro">Ro</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/formulir">Formulir</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/dasar_giat">Dasar Giat</a></li>
 														</ul>
 													</div>
 												</div>
