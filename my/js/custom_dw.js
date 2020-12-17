@@ -457,9 +457,12 @@ function getFormData($form){
 }
 
 function sendData(f,u){
+	if($(f).valid()){
+	
 	var url=base_url+u;
 	var mtd='POST';
-	var frmdata=getFormData($(f));
+	//var frmdata=getFormData($(f));
+	var frmdata=new FormData($(f)[0]);
 	
 	//alert(frmdata);
 	
@@ -467,6 +470,8 @@ function sendData(f,u){
 		type: mtd,
 		url: url,
 		data: frmdata,
+		processData: false, //formdata
+		contentType: false, //formdata
 		success: function(data){
 			var json = JSON.parse(data);
 			//modal(json['ttl'],json['msgs']);
@@ -483,5 +488,7 @@ function sendData(f,u){
 			alrt('Please check your connection','error','Error');
 		}
 	});
+	
+	}
 };
 
