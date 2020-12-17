@@ -7,6 +7,7 @@ class MGeneral extends CI_Model {
     {
         parent::__construct();
         $this->load->helper('dt');
+        $this->load->library('_dt');
     }
     
     public function crud($arr=[])
@@ -89,7 +90,7 @@ class MGeneral extends CI_Model {
             foreach ($view as $x) {
                array_push($field,$arr[$x]);
             }
-            $f = select_dt($table,$field,$dt);
+            $f = $this->_dt->select_dt($table,$field,$dt);
             array_push($data,$f);
         }
         // echo json_encode($data);

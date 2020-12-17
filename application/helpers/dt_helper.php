@@ -16,6 +16,9 @@ function select_dt($t='',$field,$dt=''){
     }else if ($t == 'prasarana_public') {
         $field[0] = cari_arr(PRASARANA_PUBLIC,$field[0]);
     }
+    // elseif ($t == 'subbag') {
+    //     $field[2] = cari_arr(SUBBAG,$field[0]);
+    // }
 
     $field[0] = '<a href="#" data-toggle="modal" data-target="#myModal2" onclick="get_data_id('.$dt->rowid.')">'.$field[0].'</a>';
     
