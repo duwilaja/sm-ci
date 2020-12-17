@@ -137,19 +137,19 @@
 														<tbody>
 															<tr>
 																<td>Timur</td>
-																<td><input type="text" name="a_timur"></td>
+																<td><input type="text" name="a_timur" class="form-control"></td>
 															</tr>
 															<tr>
 																<td>Barat</td>
-																<td><input type="text" name="a_timur"></td>
+																<td><input type="text" name="a_timur" class="form-control"></td>
 															</tr>
 															<tr>
 																<td>Utara</td>
-																<td><input type="text" name="a_utara"></td>
+																<td><input type="text" name="a_utara" class="form-control"></td>
 															</tr>
 															<tr>
 																<td>Selatan</td>
-																<td><input type="text" name="a_selatan"></td>
+																<td><input type="text" name="a_selatan" class="form-control"></td>
 															</tr>
 														</tbody>
 													</table>

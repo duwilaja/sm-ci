@@ -21,19 +21,21 @@ class MLaporan extends CI_Model {
         $CI->load->model('DataTable', 'dt');
         
         // Set table name
-        $CI->dt->table = 'lap_gatur_lalin';
+        $CI->dt->table = 'lap_gatur_lalin a';
         // Set orderable column fields
-        $CI->dt->column_order = ['rowid','no_sprint','kegiatan','kejadian','tanggal'];
+        $CI->dt->column_order = ['a.rowid','a.no_sprint','a.kegiatan','a.kejadian','a.tanggal'];
         // Set searchable column fields
-        $CI->dt->column_search = ['no_sprint', 'kegiatan','kejadian'];
+        $CI->dt->column_search = ['a.no_sprint', 'b.k_nama','c.kjd_dit_nam'];
         // Set select column fields
-        $CI->dt->select = 'rowid,no_sprint,kegiatan,kejadian,tanggal';
+        $CI->dt->select = 'a.rowid,a.no_sprint,b.k_nama as kegiatan,c.kjd_dit_nam as kejadian,a.tanggal';
         // Set default order
-        $CI->dt->order = ['rowid' => 'asc'];
+        $CI->dt->order = ['a.rowid' => 'asc'];
         
-        // $condition = [
-            //     ['where',$this->t.'.pnjm_nip_pengajuan',$this->session->userdata('nip')],
-            // ];
+        $condition = [
+            //['where',$this->t.'.status',$status],
+            ['join','kegiatan b','b.rowid = a.kegiatan','left'],
+			['join','kejadian_ditemukan c','c.rowid = a.kejadian','left'],
+        ];
             // Fetch member's records
             $dataTabel = $this->dt->getRows($_POST, $condition);
             
@@ -44,8 +46,11 @@ class MLaporan extends CI_Model {
                     $dt->no_sprint,
                     $dt->kegiatan,
                     $dt->kejadian,
-                    $dt->tanggal,
-                    '<button class="btn btn-sm btn-outline-primary badge" type="button" data-toggle="modal" data-target="#user-form-modal">Edit</button><button class="btn btn-sm btn-outline-primary badge" type="button"><i class="fa fa-eye"></i></button>',
+                    tgl_indo($dt->tanggal),
+                    '<div class="btn-group align-top">
+                     <button class="btn btn-sm btn-outline-primary badge" type="button" data-toggle="modal" data-target="#user-form-modal">Edit</button>
+                     <button class="btn btn-sm btn-outline-primary badge" type="button"><i class="fa fa-eye"></i></button>
+                    </div>',
                 );
             }
             
