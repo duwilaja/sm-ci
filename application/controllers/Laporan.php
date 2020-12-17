@@ -15,6 +15,8 @@ class Laporan extends CI_Controller {
 		if(isset($user)){
 			$data['session'] = $user;
 			$data['direktorat'] = comboopts($this->db->select('dit_id as v,dit_nam as t')->get('direktorat')->result());
+			$data['ro'] = comboopts($this->db->select('ro_id as v,ro_nam as t')->get('ro')->result());
+			$data['dasargiat'] = comboopts($this->db->select('dg_id as v,dg_nam as t')->get('dasargiat')->result());
 			
 			$this->template->load('laporan',$data);
 		}else{
@@ -76,8 +78,9 @@ class Laporan extends CI_Controller {
 		if(isset($user)){
 			$id=$this->input->post('id');
 			$data['dummy']="this is dummy data";
-			$retval=$this->load->view("formulir/$id",$data);
-			echo $retval;
+			//$retval=
+			$this->load->view("formulir/$id",$data);
+			//echo $retval;
 		}else{
 			$retval=array("403","Failed","Please login","error");
 			$data['retval']=$retval;
@@ -85,4 +88,25 @@ class Laporan extends CI_Controller {
 		}
 	}
 	
+	public function create()
+	{
+		$user=$this->session->userdata('user_data');
+		if(isset($user)){
+			$msgs="No data has been saved";
+			$tname=$this->input->post('tablename');
+			$fname=$this->input->post('fieldnames');
+			$data=$this->input->post(explode(",",$fname));
+			$this->db->insert($tname,$data);
+			$ret=$this->db->affected_rows();
+			if($ret>0){
+				$msgs="$ret record(s) saved";
+			}
+			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs);
+			echo json_encode($retval);
+		}else{
+			$retval=array("403","Failed","Please login","error");
+			$data['retval']=$retval;
+			$this->load->view('login',$data);
+		}
+	}
 }

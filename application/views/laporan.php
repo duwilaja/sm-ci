@@ -32,7 +32,7 @@
 							<label class="form-label">Direktorat</label>
 <?php
 $direktorat['']='---pilih direktorat---';
-$opt=array('class'=>'form-control','id'=>'direktorat','onchange'=>"getSubQ('laporan/get_subdit',this.value,'#subdit','','---pilih subdit---');");
+$opt=array('class'=>'form-control','id'=>'direktorat','onchange'=>"reset_sub('dit'); getSubQ('laporan/get_subdit',this.value,'#subdit','','---pilih subdit---');");
 echo form_dropdown('direktorat', array_reverse($direktorat), '',$opt);
 ?>
 						</div>
@@ -41,8 +41,8 @@ echo form_dropdown('direktorat', array_reverse($direktorat), '',$opt);
 						<div class="form-group">
 							<label class="form-label">Subdit</label>
 							<select id="subdit" name="subdit" class="form-control" onchange="getSubQ('laporan/get_sie',this.value,'#sie','','---pilih sie---');">
-								<option value="">---pilih subdit---</option>
-								
+								<!--option value="">---pilih subdit---</option-->
+								<option value=""></option>
 							</select>
 						</div>
 					</div>
@@ -50,8 +50,8 @@ echo form_dropdown('direktorat', array_reverse($direktorat), '',$opt);
 						<div class="form-group">
 							<label class="form-label">Sie</label>
 							<select id="sie" name="sie" class="form-control">
-								<option value="">---pilih sie---</option>
-								
+								<!--option value="">---pilih sie---</option-->
+								<option value=""></option>
 							</select>
 						</div>
 					</div>
@@ -60,18 +60,19 @@ echo form_dropdown('direktorat', array_reverse($direktorat), '',$opt);
 					<div class="col-sm-6 col-md-3">
 						<div class="form-group">
 							<label class="form-label">RO</label>
-							<select id="ro" name="ro" class="form-control" onchange="getSubQ('laporan/get_bag',this.value,'#bag','','---pilih bagian---');">
-								<option value="">---pilih ro---</option>
-								
-							</select>
+<?php
+$ro['']='---pilih ro---';
+$opt=array('class'=>'form-control','id'=>'ro','onchange'=>"reset_sub('ro'); getSubQ('laporan/get_bag',this.value,'#bag','','---pilih bagian---');");
+echo form_dropdown('ro', array_reverse($ro), '',$opt);
+?>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-3">
 						<div class="form-group">
 							<label class="form-label">Bagian</label>
 							<select id="bag" name="bag" class="form-control" onchange="getSubQ('laporan/get_subbag',this.value,'#subbag','','---pilih subbag---');">
-								<option value="">---pilih bagian---</option>
-								
+								<!--option value="">---pilih bagian---</option-->
+								<option value=""></option>
 							</select>
 						</div>
 					</div>
@@ -79,7 +80,8 @@ echo form_dropdown('direktorat', array_reverse($direktorat), '',$opt);
 						<div class="form-group">
 							<label class="form-label">Sub Bagian</label>
 							<select id="subbag" name="subbag" class="form-control">
-								<option value="">---pilih subbag---</option>
+								<!--option value="">---pilih subbag---</option-->
+								<option value=""></option>
 								
 							</select>
 						</div>
@@ -98,19 +100,18 @@ echo form_dropdown('direktorat', array_reverse($direktorat), '',$opt);
 						<div class="form-group">
 							<label class="form-label">Formulir</label>
 							<select class="form-control" id="formulir" name="formulir" onchange="ambil_isi(this.value);">
-								<option value="">---pilih formulir---</option>
-								<option value="tmc_monitoring_lalin">Monitoring Lalin</option>
-								<option value="tmc_gatur_lalin">Gatur Lalin</option>
+								<!--option value="">---pilih formulir---</option-->
 							</select>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-4">
 						<div class="form-group">
 							<label class="form-label">Dasar</label>
-							<select id="dasar" name="dasar" class="form-control">
-								<option value="">---pilih dasar---</option>
-								
-							</select>
+<?php
+$dasargiat['']='---pilih dasar giat---';
+$opt=array('class'=>'form-control','id'=>'dasar');
+echo form_dropdown('dasar', array_reverse($dasargiat), '',$opt);
+?>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-4">
@@ -139,7 +140,7 @@ echo form_dropdown('direktorat', array_reverse($direktorat), '',$opt);
 				<div id="isilaporan"></div>
 			</form></div>
 			<div class="card-footer text-right">
-				<button type="button" id="btn_save" class="btn btn-primary hidden" onclick="sendData();">Simpan Laporan</button>
+				<button type="button" id="btn_save" class="btn btn-primary hidden" onclick="sendData('#myf','laporan/create');">Simpan Laporan</button>
 			</div>
 		</div>
 	</div>
@@ -147,17 +148,47 @@ echo form_dropdown('direktorat', array_reverse($direktorat), '',$opt);
 <!-- End Row-->
 
 <script>
+var jvalidate;
+
 function ambil_isi(v){
 	if(v==''){
+		reset_isi();
 		//alrt("Please select a value for formulir","error");
 		return;
 	}
 	get_content('laporan/get_content',{id:v},'.ldr','#isilaporan');
 }
+function reset_form(){
+	$("#direktorat").val("");
+	$("#ro").val("");
+	reset_sub('dit');
+	reset_sub('ro');
+}
+function reset_isi(){
+	$("#isilaporan").html('');
+	$("#btn_save").hide();
+}
+function reset_sub(d){
+	reset_isi();
+	if(d=='dit'){
+		sisakan_top('#subdit');
+		sisakan_top('#sie');
+	}
+	if(d=='ro'){
+		sisakan_top('#bag');
+		sisakan_top('#subbag');
+	}
+	sisakan_top('#formulir','');
+}
+function sisakan_top(tgt,blnk=''){
+	$(tgt).find('option').remove();
+	var s='<option value="">'+blnk+'</option>';
+	$(tgt).append(s);
+}
 function ambil_form(){
 	//at least direktorat is selected
-	if($("#direktorat").val()==""){
-		alrt("Please select a value for direktorat","error");
+	if($("#direktorat").val()==""&&$("#ro").val()==""){
+		alrt("Please select a value for direktorat or RO","error");
 		return;
 	}
 	
