@@ -340,7 +340,7 @@ function get_content(url,data,ldr,target,mthd='POST'){
 	$(ldr).show();
 	$.ajax({
 		type: mthd,
-		url: url,
+		url: base_url+url,
 		data: data,
 		success: function(result){
 			$(ldr).hide();
@@ -406,7 +406,7 @@ function getMultiSelect(lnk,q,id,target,glue=";"){
 	});
 }
 
-function getSubQ(q,id,tgt,dv=""){
+function getSubQ(q,id,tgt,dv="",blnk=""){
 	var url=base_url+q;
 	var mtd='POST';
 	var frmdata={id:id};
@@ -421,7 +421,7 @@ function getSubQ(q,id,tgt,dv=""){
 			var json=JSON.parse(data);
 			console.log(json);
 			$(tgt).find('option').remove();
-			var s='<option value=""></option>';
+			var s='<option value="">'+blnk+'</option>';
 			if(json['code']=="200"){
 				for(i=0;i<json['msgs'].length;i++){
 					v="";t="";
@@ -484,3 +484,4 @@ function sendData(f,u){
 		}
 	});
 };
+
