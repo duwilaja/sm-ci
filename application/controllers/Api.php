@@ -22,7 +22,7 @@ class Api extends CI_Controller {
         echo json_encode($rsp);
     }
 
-    public function api_kejadian_ditemukan()
+    public function kejadian()
     { 
         $table = 'kejadian_ditemukan';
         $where = '';
@@ -31,7 +31,7 @@ class Api extends CI_Controller {
         echo json_encode($rsp);
     }
     
-    public function api_parameter_antrian()
+    public function parameter_antrian()
     { 
         $table = 'parameter_antrian';
         $where = '';
@@ -40,7 +40,7 @@ class Api extends CI_Controller {
         echo json_encode($rsp);
     }
 
-    public function api_penyebab()
+    public function penyebab()
     { 
         $table = 'penyebab';
         $where = '';
