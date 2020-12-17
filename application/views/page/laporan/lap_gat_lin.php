@@ -38,9 +38,9 @@
 					<span aria-hidden="true">×</span>
 				</button>
 			</div>
+			<form class="form" action="javascript:void(0);" id="form_add">
 			<div class="modal-body">
 				<div class="py-1">
-					<form class="form" novalidate="">
 						<div class="row">
 							<div class="col">
 								<div class="row">
@@ -184,9 +184,9 @@
 								<button class="btn btn-primary" type="submit">Save Changes</button>
 							</div>
 						</div>
-					</form>
 				</div>
 			</div>
+			</form>
 		</div>
 	</div>
 </div>
