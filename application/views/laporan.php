@@ -140,7 +140,7 @@ echo form_dropdown('dasar', array_reverse($dasargiat), '',$opt);
 				<div id="isilaporan"></div>
 			</form></div>
 			<div class="card-footer text-right">
-				<button type="button" id="btn_save" class="btn btn-primary hidden" onclick="sendData('#myf','laporan/create');">Simpan Laporan</button>
+				<button type="button" id="btn_save" class="btn btn-primary hidden" onclick="sendData('#myf','laporan/save');">Simpan Laporan</button>
 			</div>
 		</div>
 	</div>
@@ -163,6 +163,8 @@ function reset_form(){
 	$("#ro").val("");
 	reset_sub('dit');
 	reset_sub('ro');
+	$("#dasar").val("");
+	$("#nomor").val("");
 }
 function reset_isi(){
 	$("#isilaporan").html('');

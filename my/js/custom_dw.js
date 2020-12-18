@@ -458,7 +458,7 @@ function getFormData($form){
 
 function sendData(f,u){
 	if($(f).valid()){
-	
+	modal();
 	var url=base_url+u;
 	var mtd='POST';
 	//var frmdata=getFormData($(f));
@@ -482,13 +482,18 @@ function sendData(f,u){
 			}else{
 				alrt(json['msgs'],'error',json['ttl']);
 			}
+			setTimeout(process_end,500);
 		},
 		error: function(xhr){
 			//modal('Error','Please check your connection');
 			alrt('Please check your connection','error','Error');
+			setTimeout(process_end,500);
 		}
 	});
 	
 	}
 };
 
+function process_end(){
+	$("#modal_process").modal("hide");
+}

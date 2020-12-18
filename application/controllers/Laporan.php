@@ -76,19 +76,19 @@ class Laporan extends CI_Controller {
 	{
 		$user=$this->session->userdata('user_data');
 		if(isset($user)){
-			$id=$this->input->post('id');
+			$id=$this->input->post('id');//this is the view
+			
+			//put all masterdatas needed here
 			$data['dummy']="this is dummy data";
-			//$retval=
-			$this->load->view("formulir/$id",$data);
-			//echo $retval;
+			
+			$this->load->view("formulir/$id",$data); //load the view
+			
 		}else{
-			$retval=array("403","Failed","Please login","error");
-			$data['retval']=$retval;
-			$this->load->view('login',$data);
+			echo "<script>alrt('Session Closed, please login','error','Error');</script>";
 		}
 	}
 	
-	public function create()
+	public function save()
 	{
 		$user=$this->session->userdata('user_data');
 		if(isset($user)){
@@ -104,9 +104,8 @@ class Laporan extends CI_Controller {
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs);
 			echo json_encode($retval);
 		}else{
-			$retval=array("403","Failed","Please login","error");
-			$data['retval']=$retval;
-			$this->load->view('login',$data);
+			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>array());
+			echo json_encode($retval);
 		}
 	}
 }
