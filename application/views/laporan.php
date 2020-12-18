@@ -20,21 +20,21 @@
 			</div>
 			<div class="card-body"><form id="myf">
 			
-<!--hidden-->
-<input type="hidden" name="rowid" id="rowid" value="0" />
-<input type="hidden" name="nrp" value="<?php echo $session['nrp']?>">
-<input type="hidden" name="polda" value="<?php echo $session['polda']?>">
-<input type="hidden" name="polres" value="<?php echo $session['polres']?>">
+			<!--hidden-->
+			<input type="hidden" name="rowid" id="rowid" value="0" />
+			<input type="hidden" name="nrp" value="<?php echo $session['nrp']?>">
+			<input type="hidden" name="polda" value="<?php echo $session['polda']?>">
+			<input type="hidden" name="polres" value="<?php echo $session['polres']?>">
 			
 				<div class="row">
 					<div class="col-sm-6 col-md-3">
 						<div class="form-group">
 							<label class="form-label">Direktorat</label>
-<?php
-$direktorat['']='---pilih direktorat---';
-$opt=array('class'=>'form-control','id'=>'direktorat','onchange'=>"reset_sub('dit'); getSubQ('laporan/get_subdit',this.value,'#subdit','','---pilih subdit---');");
-echo form_dropdown('direktorat', array_reverse($direktorat), '',$opt);
-?>
+							<?php
+							$direktorat['']='---pilih direktorat---';
+							$opt=array('class'=>'form-control','id'=>'direktorat','onchange'=>"getSubQ('laporan/get_subdit',this.value,'#subdit','','---pilih subdit---');");
+							echo form_dropdown('direktorat', array_reverse($direktorat), '',$opt);
+							?>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-3">
