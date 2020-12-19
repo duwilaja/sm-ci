@@ -138,7 +138,7 @@ $base_url = base_url();
 						<label>Pangkat</label>
 		<?php
 		$opt=array('class'=>'form-control','id'=>'pangkat');
-		echo form_dropdown('pangkat', $pangkat, $session['pangkat'], $opt);
+		echo form_dropdown('pangkat', $pangkat, '', $opt);
 		?>
 					</div>
 					<div class="form-group col-md-6">
@@ -366,6 +366,9 @@ $(document).ready(function (){
             required : true
         },
 		"pangkat" : {
+            required : true
+        },
+		"polres" : {
             required : true
         },
 		"unit" : {
