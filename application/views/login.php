@@ -368,6 +368,9 @@ $(document).ready(function (){
 		"pangkat" : {
             required : true
         },
+		"polres" : {
+            required : true
+        },
 		"unit" : {
             required : true
         },

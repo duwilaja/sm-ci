@@ -477,7 +477,7 @@ function sendData(f,u){
 			//modal(json['ttl'],json['msgs']);
 			if(json['code']=='200'){
 				$(".modal_form").modal("hide");
-				if(typeof(senddatacallback)=='function') senddatacallback();
+				if(typeof(senddatacallback)=='function') senddatacallback(f);
 				alrt(json['msgs'],'success',json['ttl']);
 			}else{
 				alrt(json['msgs'],'error',json['ttl']);
@@ -486,7 +486,7 @@ function sendData(f,u){
 		},
 		error: function(xhr){
 			//modal('Error','Please check your connection');
-			alrt('Please check your connection','error','Error');
+			alrt('Please check the link','error','Error');
 			setTimeout(process_end,500);
 		}
 	});
