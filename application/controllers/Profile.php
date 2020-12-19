@@ -39,8 +39,9 @@ class Profile extends CI_Controller {
 			$this->db->update('persons',$_POST);
 			if($this->db->affected_rows()>0){
 				$msgs="Data updated";
-				$user=$this->db->get("persons")->result_array();
-				$this->session->set_userdata('user_data',$user);
+				$this->db->where('rowid',$this->input->post('rowid'));
+				$u=$this->db->get("persons")->result_array();
+				$this->session->set_userdata('user_data',$u[0]);
 			}else{
 				$msgs="No update has been made";
 			}
