@@ -191,7 +191,6 @@ var jvalidate,jvalidatex;
 function thispage_ready(){
 	getSubQ('profile/get_polres',$('#polda').val(),'#polres','<?php echo $session['polres']?>');
 	getSubQ('profile/get_subdin',$('#dinas').val(),'#subdinas','<?php echo $session['subdinas']?>');
-	//getSubQ('profile/get_subbag',$('#bagian').val(),'#subbag','<?php echo $session['subbag']?>');
 	
 	get_content('profile/ravatar',{},'.ldr','.preset');
 	
