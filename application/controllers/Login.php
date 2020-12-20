@@ -29,9 +29,9 @@ class Login extends CI_Controller {
 				$this->session->set_userdata('user_data',$retval[0]);
 				$data['session']=$retval[0];
 				if($retval[0]['unit']==''){
-					redirect('/profile');
+					redirect(base_url().'profile');
 				}else{
-					redirect('/laporan');
+					redirect(base_url().'laporan');
 				}
 			}
 			$retval=array("404","Failed","Person not found","error");

@@ -1,9 +1,12 @@
 <?php
 $page_title = isset($title)?$title:"";
 $base_url = base_url();
-// $avatar=$session['unit']!=''?$session['unit'].'.png':'sm.png';
 $avatar=$session['unit']!=''?$session['unit'].'.png':'sm.png';
 $avatar=$base_url.'my/images/'.$avatar;
+$farr=glob('./uploads/avatars/'.$session['nrp'].'.*');
+if(count($farr)>0&&$session['nrp']!=''){
+	$avatar=$farr[0];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -173,6 +176,7 @@ $avatar=$base_url.'my/images/'.$avatar;
 					</div>
 				</div>
 				
+		<?php if(!isset($incomplete_profile)){?>
 				<!-- Horizontal-menu -->
 				<div class="horizontal-main hor-menu clearfix">
 					<div class="horizontal-mainwrapper container clearfix">
@@ -182,7 +186,6 @@ $avatar=$base_url.'my/images/'.$avatar;
 								</li>
 								<li aria-haspopup="true"><a href="<?php echo $base_url?>profile" class=""><i class="fa fa-address-card-o"></i> Profil</a>
 								</li-->
-						<?php if(!isset($incomplete_profile)){?>
 								<li aria-haspopup="true"><a href="<?php echo $base_url?>laporan" class="sub-icon"><i class="fa fa-pencil-square-o"></i> Formulir</a>
 								</li>
 								<li aria-haspopup="true"><a href="<?php echo $base_url?>rekap" class="sub-icon"><i class="fa fa-file-text-o"></i> Rekap</a>
@@ -226,14 +229,14 @@ $avatar=$base_url.'my/images/'.$avatar;
 										<li aria-haspopup="true"><a href="<?php echo $base_url?>dasargiat">Dasar Giat</a></li> -->
 									</ul>
 								</li>
-						<?php }
-						}	?>
+						<?php } ?>
 							</ul>
 						</nav>
 						<!--Nav end -->
 					</div>
 				</div>
 				<!-- Horizontal-menu end -->
+		<?php } ?>
 
 				<div class="app-content page-body">
 					<div class="container">
