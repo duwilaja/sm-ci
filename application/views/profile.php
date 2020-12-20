@@ -36,7 +36,7 @@ if(isset($incomplete_profile)){
 					<form id="myfxx">
 					<input type="hidden" name="preset" id="preset" value="">
 					<div class="form-group">
-						<input type="file" class="form-control" name="foto" accept="image/*">
+						<input type="file" class="form-control" id="foto" name="foto" accept="image/*">
 					</div>
 					</form>
 					<div class="form-footer row">
