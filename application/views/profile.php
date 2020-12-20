@@ -231,13 +231,12 @@ function thispage_ready(){
 }
 function senddatacallback(f){
 <?php if(isset($incomplete_profile)){?>
-		if(f=='#myf')document.location.href=base_url+'laporan';
+	if(f=='#myf')document.location.href=base_url+'laporan';
 <?php }?>
 
 	if(f=='#myfxx'){
 		$("#foto").val("");
-		//get_content('profile/ravatar',{},'.ldr','.preset');
-		//$(".avatar").attr("")
+		get_content('profile/ravatar',{},'.ldr','.preset');
 	}
 
 }
