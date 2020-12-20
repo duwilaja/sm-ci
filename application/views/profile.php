@@ -26,7 +26,7 @@ if(isset($incomplete_profile)){
 			<div class="card-body">
 					<div class="row mb-2">
 						<div class="col-auto preset">
-							<img src="<?php echo $base_url?>my/images/sm.png" class="avatar brround avatar-xl" alt="img">
+							<img src="<?php echo base_url()?>my/images/sm.png" class="avatar brround avatar-xl" alt="img">
 						</div>
 						<div class="col">
 							<h3 class="mb-1 "><?php echo $session["nama"]?></h3>
