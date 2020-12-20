@@ -3,10 +3,10 @@ $page_title = isset($title)?$title:"";
 $base_url = base_url();
 $avatar=$session['unit']!=''?$session['unit'].'.png':'sm.png';
 $avatar=$base_url.'my/images/'.$avatar;
-$farr=glob('./uploads/avatars/'.$session['nrp'].'.*');
+/*$farr=glob('./uploads/avatars/'.$session['nrp'].'.*');
 if(count($farr)>0&&$session['nrp']!=''){
 	$avatar=$farr[0];
-}
+}*/
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
