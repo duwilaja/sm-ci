@@ -196,6 +196,20 @@ $avatar=$base_url.'my/images/'.$avatar;
 										<li aria-haspopup="true" class="home"><a class="home" href="home4.php">Dash Polres</a></li>
 									</ul>
 								</li-->
+								<li aria-haspopup="true"><a href="#" class="sub-icon"><i class="fa fa-database"></i>Master Data <i class="fa fa-angle-down horizontal-icon"></i></a>
+									<ul class="sub-menu">
+										<!--li aria-haspopup="true"><a href="m_user.php">User</a></li-->
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kondisi_alam">Kondisi Alam</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kondisi_jalan">Kondisi Jalan</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kondisi_lalin">Kondisi Lalin</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/prasarana_public">Prasarana Public</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/potensi_masyarakat">Potensi Masyarakat</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kegiatan">Kegiatan</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/penyebab">Penyebab</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kejadian_ditemukan">Kejadian Ditemukan</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/parameter_antrian">Parameter Antrian</a></li>
+									</ul>
+								</li>
 								<li aria-haspopup="true"><a href="#" class="sub-icon "><i class="fa fa-cogs"></i> Setup <i class="fa fa-angle-down horizontal-icon"></i></a>
 									<div class="horizontal-megamenu clearfix">
 										<div class="container">
@@ -234,20 +248,7 @@ $avatar=$base_url.'my/images/'.$avatar;
 										</div>
 									</div>
 								</li>
-								<li aria-haspopup="true"><a href="#" class="sub-icon"><i class="fa fa-database"></i>Master Data <i class="fa fa-angle-down horizontal-icon"></i></a>
-									<ul class="sub-menu">
-										<!--li aria-haspopup="true"><a href="m_user.php">User</a></li-->
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kondisi_alam">Kondisi Alam</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kondisi_jalan">Kondisi Jalan</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kondisi_lalin">Kondisi Lalin</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/prasarana_public">Prasarana Public</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/potensi_masyarakat">Potensi Masyarakat</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kegiatan">Kegiatan</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/penyebab">Penyebab</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kejadian_ditemukan">Kejadian Ditemukan</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/parameter_antrian">Parameter Antrian</a></li>
-									</ul>
-								</li>
+						
 							</ul>
 						</nav>
 						<!--Nav end -->
