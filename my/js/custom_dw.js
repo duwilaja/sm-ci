@@ -406,10 +406,10 @@ function getMultiSelect(lnk,q,id,target,glue=";"){
 	});
 }
 
-function getSubQ(q,id,tgt,dv="",blnk=""){
+function getSubQ(q,id,tgt,dv="",blnk="",tname="",cols="",where=""){
 	var url=base_url+q;
 	var mtd='POST';
-	var frmdata={id:id};
+	var frmdata={id:id,tname:tname,cols:cols,where:where};
 	
 	//alert(frmdata);
 	
@@ -491,6 +491,8 @@ function sendData(f,u){
 		}
 	});
 	
+	}else{
+		alrt('Please enter all mandatory fields','warning','');
 	}
 };
 

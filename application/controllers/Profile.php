@@ -125,7 +125,7 @@ class Profile extends CI_Controller {
 					$r.=$farr[$i]."failed";
 				}
 			}
-			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$r);
+			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>"Done");
 			if($this->input->post('preset')=='N'){
 				$config['upload_path'] = './uploads/avatars/';
 				$config['allowed_types'] = 'gif|jpg|jpeg|png';

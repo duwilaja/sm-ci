@@ -26,7 +26,7 @@ if(isset($incomplete_profile)){
 			<div class="card-body">
 					<div class="row mb-2">
 						<div class="col-auto preset">
-							<img src="<?php echo $base_url?>my/images/sm.png" class="avatar brround avatar-xl" alt="img">
+							<img src="<?php echo base_url()?>my/images/sm.png" class="avatar brround avatar-xl" alt="img">
 						</div>
 						<div class="col">
 							<h3 class="mb-1 "><?php echo $session["nama"]?></h3>
@@ -36,7 +36,7 @@ if(isset($incomplete_profile)){
 					<form id="myfxx">
 					<input type="hidden" name="preset" id="preset" value="">
 					<div class="form-group">
-						<input type="file" class="form-control" name="foto" accept="image/*">
+						<input type="file" class="form-control" id="foto" name="foto" accept="image/*">
 					</div>
 					</form>
 					<div class="form-footer row">
@@ -130,6 +130,24 @@ if(isset($incomplete_profile)){
 					</div>
 					<div class="col-sm-6 col-md-4">
 						<div class="form-group">
+							<label class="form-label">Dinas</label>
+							<?php
+$dinas['']='';
+$opt=array('class'=>'form-control','id'=>'dinas','onchange'=>"mabesbukan(this.value);getSubQ('profile/get_subdin',this.value,'#subdinas','".$session['subdinas']."');");
+echo form_dropdown('dinas', array_reverse($dinas,true), $session['dinas'],$opt);
+							?>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4">
+						<div class="form-group">
+							<label class="form-label">Subdinas</label>
+							<select name="subdinas" id="subdinas" class="form-control">
+								<option value=""></option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4">
+						<div class="form-group">
 							<label class="form-label">Unit</label>
 							<?php
 							$unit['']='';
@@ -138,7 +156,7 @@ if(isset($incomplete_profile)){
 							?>
 						</div>
 					</div>
-					<div class="col-sm-6 col-md-4">
+					<div class="col-sm-6 col-md-4 notmabes">
 						<div class="form-group">
 							<label class="form-label">Polda</label>
 							<?php
@@ -149,28 +167,10 @@ echo form_dropdown('polda', array_reverse($polda,true), $session['polda'],$opt);
 							?>
 						</div>
 					</div>
-					<div class="col-sm-6 col-md-4">
+					<div class="col-sm-6 col-md-4 notmabes">
 						<div class="form-group">
 							<label class="form-label">Polres</label>
 							<select name="polres" id="polres" class="form-control">
-								<option value=""></option>
-							</select>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4">
-						<div class="form-group">
-							<label class="form-label">Dinas</label>
-							<?php
-$dinas['']='';
-$opt=array('class'=>'form-control','id'=>'dinas','onchange'=>"getSubQ('profile/get_subdin',this.value,'#subdinas','".$session['subdinas']."');");
-echo form_dropdown('dinas', array_reverse($dinas,true), $session['dinas'],$opt);
-							?>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4">
-						<div class="form-group">
-							<label class="form-label">Subdinas</label>
-							<select name="subdinas" id="subdinas" class="form-control">
 								<option value=""></option>
 							</select>
 						</div>
@@ -189,9 +189,9 @@ echo form_dropdown('dinas', array_reverse($dinas,true), $session['dinas'],$opt);
 <script>
 var jvalidate,jvalidatex;
 function thispage_ready(){
+	mabesbukan('<?php echo $session['dinas']?>');
 	getSubQ('profile/get_polres',$('#polda').val(),'#polres','<?php echo $session['polres']?>');
 	getSubQ('profile/get_subdin',$('#dinas').val(),'#subdinas','<?php echo $session['subdinas']?>');
-	//getSubQ('profile/get_subbag',$('#bagian').val(),'#subbag','<?php echo $session['subbag']?>');
 	
 	get_content('profile/ravatar',{},'.ldr','.preset');
 	
@@ -232,14 +232,22 @@ function thispage_ready(){
 }
 function senddatacallback(f){
 <?php if(isset($incomplete_profile)){?>
-		if(f=='#myf')document.location.href=base_url+'laporan';
+	if(f=='#myf')document.location.href=base_url+'laporan';
 <?php }?>
 
 	if(f=='#myfxx'){
 		$("#foto").val("");
-		//get_content('profile/ravatar',{},'.ldr','.preset');
-		//$(".avatar").attr("")
+		get_content('profile/ravatar',{},'.ldr','.preset');
 	}
 
+}
+function mabesbukan(tv){
+	if(tv=='Korlantas'){
+		$(".notmabes").hide();
+		$("#polda").val("");
+		$("#polres").val("");
+	}else{
+		$(".notmabes").show();
+	}
 }
 </script>

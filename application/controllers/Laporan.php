@@ -52,6 +52,10 @@ class Laporan extends CI_Controller {
 			//put all masterdatas needed here
 			$data['dummy']="this is dummy data";
 			
+			if($id=='tmc_info_lalin'){  //tmc info lalin
+				$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
+			}
+			
 			$this->load->view("formulir/$id",$data); //load the view
 			
 		}else{
@@ -73,6 +77,23 @@ class Laporan extends CI_Controller {
 				$msgs="$ret record(s) saved";
 			}
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs);
+			echo json_encode($retval);
+		}else{
+			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>array());
+			echo json_encode($retval);
+		}
+	}
+	
+	public function get_subq()
+	{
+		$user=$this->session->userdata('user_data');
+		if(isset($user)){
+			$id=$this->input->post('id');
+			$cols=$this->input->post('cols');
+			$tname=$this->input->post('tname');
+			$where=$this->input->post('where');
+			$ret=$this->db->select($cols)->where(array($where=>$id))->get($tname)->result();
+			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$ret);
 			echo json_encode($retval);
 		}else{
 			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>array());
