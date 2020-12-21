@@ -1,9 +1,12 @@
 <?php
 $page_title = isset($title)?$title:"";
 $base_url = base_url();
-// $avatar=$session['unit']!=''?$session['unit'].'.png':'sm.png';
-$avatar=$this->session->userdata('unit')!=''?$this->session->userdata('unit').'.png':'sm.png';
+$avatar=$session['unit']!=''?$session['unit'].'.png':'sm.png';
 $avatar=$base_url.'my/images/'.$avatar;
+/*$farr=glob('./uploads/avatars/'.$session['nrp'].'.*');
+if(count($farr)>0&&$session['nrp']!=''){
+	$avatar=$farr[0];
+}*/
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -156,8 +159,8 @@ $avatar=$base_url.'my/images/'.$avatar;
 										<img class="avatar avatar-md brround" src="<?php echo $avatar?>" alt="image">
 									 </a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow ">
-										<a class="dropdown-item" href="<?php echo $base_url?>account">
-											<i class="dropdown-icon mdi mdi-account-outline "></i> My Account
+										<a class="dropdown-item" href="<?php echo $base_url?>profile">
+											<i class="dropdown-icon mdi mdi-account-outline "></i> My Profile
 										</a>
 										<a class="dropdown-item" href="<?php echo $base_url?>login/out">
 											<i class="dropdown-icon mdi  mdi-logout-variant"></i> Sign out
@@ -173,22 +176,23 @@ $avatar=$base_url.'my/images/'.$avatar;
 					</div>
 				</div>
 				
+		<?php if(!isset($incomplete_profile)){?>
 				<!-- Horizontal-menu -->
 				<div class="horizontal-main hor-menu clearfix">
 					<div class="horizontal-mainwrapper container clearfix">
 						<nav class="horizontalMenu clearfix">
 							<ul class="horizontalMenu-list">
-								<li aria-haspopup="true"><a href="<?php echo $base_url?>home" class=""><i class="fa fa-at"></i> Home</a>
+								<!--li aria-haspopup="true"><a href="<?php echo $base_url?>home" class=""><i class="fa fa-at"></i> Home</a>
 								</li>
 								<li aria-haspopup="true"><a href="<?php echo $base_url?>profile" class=""><i class="fa fa-address-card-o"></i> Profil</a>
-								</li>
-								<li aria-haspopup="true"><a href="<?php echo $base_url?>laporan" class="sub-icon"><i class="fa fa-pencil-square-o"></i> Laporan</a>
+								</li-->
+								<li aria-haspopup="true"><a href="<?php echo $base_url?>laporan" class="sub-icon"><i class="fa fa-pencil-square-o"></i> Formulir</a>
 								</li>
 								<li aria-haspopup="true"><a href="<?php echo $base_url?>rekap" class="sub-icon"><i class="fa fa-file-text-o"></i> Rekap</a>
 								</li>
-								<li aria-haspopup="true"><a href="<?php echo $base_url?>dashboard" class="sub-icon"><i class="fa fa-dashboard"></i> Dashboard</a>
+								<!--li aria-haspopup="true"><a href="<?php echo $base_url?>dashboard" class="sub-icon"><i class="fa fa-dashboard"></i> Dashboard</a>
 								</li>
-								<!--li aria-haspopup="true"><a href="#" class="sub-icon"><i class="fa fa-dashboard"></i> Overview <i class="fa fa-angle-down horizontal-icon"></i></a>
+								<li aria-haspopup="true"><a href="#" class="sub-icon"><i class="fa fa-dashboard"></i> Overview <i class="fa fa-angle-down horizontal-icon"></i></a>
 									<ul class="sub-menu">
 										<li aria-haspopup="true" class="home"><a class="home" href="home.php">Summary</a></li>
 										<li aria-haspopup="true" class="home"><a class="home" href="home2.php">Dash Pusat</a></li>
@@ -196,6 +200,21 @@ $avatar=$base_url.'my/images/'.$avatar;
 										<li aria-haspopup="true" class="home"><a class="home" href="home4.php">Dash Polres</a></li>
 									</ul>
 								</li-->
+						<?php if($session['adm']=='Y'){?>
+								<li aria-haspopup="true"><a href="#" class="sub-icon"><i class="fa fa-cogs"></i> Setup <i class="fa fa-angle-down horizontal-icon"></i></a>
+									<ul class="sub-menu">
+										<!--li aria-haspopup="true"><a href="m_user.php">User</a></li-->
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/polda">Polda</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/polres">Polres</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/direktorat">Direktorat</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/subdit">Subdit</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/bagian">Bagian</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/subbag">Sub Bagian</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/unit">Unit</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/pangkat">Kepangkatan</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/dasargiat">Dasar Giat</a></li>
+									</ul>
+								</li>
 								<li aria-haspopup="true"><a href="#" class="sub-icon"><i class="fa fa-database"></i>Master Data <i class="fa fa-angle-down horizontal-icon"></i></a>
 									<ul class="sub-menu">
 										<!--li aria-haspopup="true"><a href="m_user.php">User</a></li-->
@@ -249,12 +268,14 @@ $avatar=$base_url.'my/images/'.$avatar;
 									</div>
 								</li>
 						
+						<?php } ?>
 							</ul>
 						</nav>
 						<!--Nav end -->
 					</div>
 				</div>
 				<!-- Horizontal-menu end -->
+		<?php } ?>
 
 				<div class="app-content page-body">
 					<div class="container">

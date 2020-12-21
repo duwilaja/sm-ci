@@ -15,9 +15,8 @@ class Laporan extends CI_Controller {
 		$user=$this->session->userdata('user_data');
 		if(isset($user)){
 			$data['session'] = $user;
-			$data['direktorat'] = comboopts($this->db->select('dit_id as v,dit_nam as t')->get('direktorat')->result());
-			$data['ro'] = comboopts($this->db->select('ro_id as v,ro_nam as t')->get('ro')->result());
 			$data['dasargiat'] = comboopts($this->db->select('dg_id as v,dg_nam as t')->get('dasargiat')->result());
+			$data['formulir'] = comboopts($this->db->select('view_laporan as v,nama_laporan as t')->where("unit",$user['unit'])->get('formulir')->result());
 			
 			$this->template->load('laporan',$data);
 		}else{
@@ -44,34 +43,6 @@ class Laporan extends CI_Controller {
     
 
 	
-	public function get_subdit()
-	{
-		$user=$this->session->userdata('user_data');
-		if(isset($user)){
-			$id=$this->input->post('id');
-			$ret=$this->db->select('sub_id as v,sub_nam as t')->where(array('direktorat'=>$id))->get('subdit')->result();
-			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$ret);
-			echo json_encode($retval);
-		}else{
-			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>array());
-			echo json_encode($retval);
-		}
-	}
-	
-	public function get_sie()
-	{
-		$user=$this->session->userdata('user_data');
-		if(isset($user)){
-			$id=$this->input->post('id');
-			$ret=$this->db->select('si_id as v,si_nam as t')->where(array('subdit'=>$id))->get('sie')->result();
-			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$ret);
-			echo json_encode($retval);
-		}else{
-			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>array());
-			echo json_encode($retval);
-		}
-	}
-	
 	public function get_form()
 	{
 		$user=$this->session->userdata('user_data');
@@ -94,19 +65,19 @@ class Laporan extends CI_Controller {
 	{
 		$user=$this->session->userdata('user_data');
 		if(isset($user)){
-			$id=$this->input->post('id');
+			$id=$this->input->post('id');//this is the view
+			
+			//put all masterdatas needed here
 			$data['dummy']="this is dummy data";
-			//$retval=
-			$this->load->view("formulir/$id",$data);
-			//echo $retval;
+			
+			$this->load->view("formulir/$id",$data); //load the view
+			
 		}else{
-			$retval=array("403","Failed","Please login","error");
-			$data['retval']=$retval;
-			$this->load->view('login',$data);
+			echo "<script>alrt('Session Closed, please login','error','Error');</script>";
 		}
 	}
 	
-	public function create()
+	public function save()
 	{
 		$user=$this->session->userdata('user_data');
 		if(isset($user)){
@@ -122,9 +93,8 @@ class Laporan extends CI_Controller {
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs);
 			echo json_encode($retval);
 		}else{
-			$retval=array("403","Failed","Please login","error");
-			$data['retval']=$retval;
-			$this->load->view('login',$data);
+			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>array());
+			echo json_encode($retval);
 		}
 	}
 }

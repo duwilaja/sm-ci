@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <input type="hidden" name="tablename" value="dikmas_dikpen_penyuluhan">
-<input type="hidden" name="fieldnames" value="nrp,polda,polres,direktorat,subdit,sie,ro,bag,subbag,dasar,nomor,deskgiat,namagiat,dasar,tgl,tglgiat">
+<input type="hidden" name="fieldnames" value="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,deskgiat,namagiat,tglgiat">
 
 <div class="row">
 	<div class="col-sm-6 col-md-2">
@@ -18,7 +18,7 @@
 	</div>
 	<div class="col-sm-6 col-md-6">
 		<div class="form-group">
-			<label class="form-label">Deskripsi kegiatan</label>
+			<label class="form-label">Deskripsi Kegiatan</label>
 			<textarea name="deskgiat" class="form-control" placeholder="" ></textarea>
 		</div>
 	</div>

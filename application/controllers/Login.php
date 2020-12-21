@@ -28,12 +28,17 @@ class Login extends CI_Controller {
 				$loggedin=true;
 				$this->session->set_userdata('user_data',$retval[0]);
 				$data['session']=$retval[0];
-				$this->template->load("home",$data);
+				if($retval[0]['unit']==''){
+					redirect(base_url().'profile');
+				}else{
+					redirect(base_url().'laporan');
+				}
 			}
 			$retval=array("404","Failed","Person not found","error");
 		}
 		if(!$loggedin){
 			$data['retval']=$retval;
+			$data['pangkat'] = comboopts($this->db->select('pang_id as v,pang_nam as t')->get('pangkat')->result());
 			$this->load->view('login',$data);
 		}
 	}
@@ -43,6 +48,7 @@ class Login extends CI_Controller {
 		session_destroy();
 		$retval=array("200","OK","Logged out","success");
 		$data['retval']=$retval;
+		$data['pangkat'] = comboopts($this->db->select('pang_id as v,pang_nam as t')->get('pangkat')->result());
 		$this->load->view("login",$data);
 	}
 	

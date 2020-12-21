@@ -123,59 +123,43 @@ $base_url = base_url();
             </div>
             <div class="modal-body">
 				<form id="register_form">
-					<input type="hidden" name="rowid" value="0">
-					<input type="hidden" name="mnu" value="register">
 				  <div class="row">
-					<div class="form-group col-md-6">
-						<label>NRP</label>
-						<input type="text" name="nrp" placeholder="..." class="form-control">
-					</div>
 				    <div class="form-group col-md-6">
 						<label>Nama</label>
 						<input type="text" name="nama" placeholder="..." class="form-control">
+					</div>
+					<div class="form-group col-md-6">
+						<label>NRP</label>
+						<input type="text" name="nrp" placeholder="..." class="form-control">
 					</div>
 				  </div>
 				  <div class="row">
 					<div class="form-group col-md-6">
 						<label>Pangkat</label>
-						<select name="pangkat" placeholder="..." class="form-control">
-						<option value="AKBP">AKBP</option>						</select>
-					</div>
-					<div class="form-group col-md-6">
-						<label>Polda</label>
-						<select name="polda" placeholder="..." class="form-control" onchange="getSubQ('cmbres',this.value,'#polres');">
-						<option value=""></option>
-						<option value="METRO">Pola Metro Jaya</option>						</select>
-					</div>
-				  </div>
-				  <div class="row">
-					<div class="form-group col-md-6">
-						<label>Polres</label>
-						<select id="polres" name="polres" placeholder="..." class="form-control">
-						<option value=""></option>
-						</select>
-					</div>
-					<div class="form-group col-md-6">
-						<label>Unit</label>
-						<select name="unit" placeholder="..." class="form-control">
-						<option value="ETLE">ETLE</option><option value="SDC">SDC</option><option value="TMC">TMC</option>						</select>
-					</div>
-				  </div>
-				  <div class="row">
-					<div class="form-group col-md-6">
-						<label>Email</label>
-						<input type="text" name="email" placeholder="..." class="form-control">
+		<?php
+		$opt=array('class'=>'form-control','id'=>'pangkat');
+		echo form_dropdown('pangkat', $pangkat, '', $opt);
+		?>
 					</div>
 					<div class="form-group col-md-6">
 						<label>Telp.</label>
 						<input type="text" name="telp" placeholder="..." class="form-control">
 					</div>
 				  </div>
+				  <div class="row">
+				  </div>
+				  <div class="row">
+					<div class="form-group col-md-6">
+						<label>Email</label>
+						<input type="text" name="email" placeholder="..." class="form-control">
+					</div>
+
+				  </div>
 				  
 				</form>
             </div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-success" onclick="saveData('#register_form');">Register</button>
+				<button type="button" class="btn btn-success" onclick="sendData('#register_form','account/register');">Register</button>
 			</div>
           </div>
           <!-- /.modal-content -->
@@ -194,8 +178,6 @@ $base_url = base_url();
             </div>
             <div class="modal-body">
 			<form id="reset_form">
-				<input type="hidden" name="rowid" value="0">
-				<input type="hidden" name="mnu" value="reset">
 			  <div class="row">
 				<div class="form-group col-md-12">
 					<label>NRP</label>
@@ -211,7 +193,7 @@ $base_url = base_url();
 			</form>
             </div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-success" onclick="saveData('#reset_form');">Reset My Password</button>
+				<button type="button" class="btn btn-success" onclick="sendData('#reset_form','account/forgot');">Reset My Password</button>
 			</div>
           </div>
           <!-- /.modal-content -->
@@ -347,6 +329,9 @@ if(isset($retval)){
 ?>
 var x="<?php echo $x?>";
 var m="<?php echo $m?>";
+
+var base_url='<?php echo $base_url;?>';
+
 var jvalidate, jvalidate2, jvalidate3;
 $(document).ready(function (){
 	$(".page-main").addClass("page-single");
@@ -380,7 +365,10 @@ $(document).ready(function (){
 		"nama" : {
             required : true
         },
-		"polda" : {
+		"pangkat" : {
+            required : true
+        },
+		"polres" : {
             required : true
         },
 		"unit" : {
