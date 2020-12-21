@@ -130,6 +130,24 @@ if(isset($incomplete_profile)){
 					</div>
 					<div class="col-sm-6 col-md-4">
 						<div class="form-group">
+							<label class="form-label">Dinas</label>
+							<?php
+$dinas['']='';
+$opt=array('class'=>'form-control','id'=>'dinas','onchange'=>"mabesbukan(this.value);getSubQ('profile/get_subdin',this.value,'#subdinas','".$session['subdinas']."');");
+echo form_dropdown('dinas', array_reverse($dinas,true), $session['dinas'],$opt);
+							?>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4">
+						<div class="form-group">
+							<label class="form-label">Subdinas</label>
+							<select name="subdinas" id="subdinas" class="form-control">
+								<option value=""></option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-4">
+						<div class="form-group">
 							<label class="form-label">Unit</label>
 							<?php
 							$unit['']='';
@@ -138,7 +156,7 @@ if(isset($incomplete_profile)){
 							?>
 						</div>
 					</div>
-					<div class="col-sm-6 col-md-4">
+					<div class="col-sm-6 col-md-4 notmabes">
 						<div class="form-group">
 							<label class="form-label">Polda</label>
 							<?php
@@ -149,28 +167,10 @@ echo form_dropdown('polda', array_reverse($polda,true), $session['polda'],$opt);
 							?>
 						</div>
 					</div>
-					<div class="col-sm-6 col-md-4">
+					<div class="col-sm-6 col-md-4 notmabes">
 						<div class="form-group">
 							<label class="form-label">Polres</label>
 							<select name="polres" id="polres" class="form-control">
-								<option value=""></option>
-							</select>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4">
-						<div class="form-group">
-							<label class="form-label">Dinas</label>
-							<?php
-$dinas['']='';
-$opt=array('class'=>'form-control','id'=>'dinas','onchange'=>"getSubQ('profile/get_subdin',this.value,'#subdinas','".$session['subdinas']."');");
-echo form_dropdown('dinas', array_reverse($dinas,true), $session['dinas'],$opt);
-							?>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-4">
-						<div class="form-group">
-							<label class="form-label">Subdinas</label>
-							<select name="subdinas" id="subdinas" class="form-control">
 								<option value=""></option>
 							</select>
 						</div>
@@ -189,6 +189,7 @@ echo form_dropdown('dinas', array_reverse($dinas,true), $session['dinas'],$opt);
 <script>
 var jvalidate,jvalidatex;
 function thispage_ready(){
+	mabesbukan('<?php echo $session['dinas']?>');
 	getSubQ('profile/get_polres',$('#polda').val(),'#polres','<?php echo $session['polres']?>');
 	getSubQ('profile/get_subdin',$('#dinas').val(),'#subdinas','<?php echo $session['subdinas']?>');
 	
@@ -239,5 +240,14 @@ function senddatacallback(f){
 		get_content('profile/ravatar',{},'.ldr','.preset');
 	}
 
+}
+function mabesbukan(tv){
+	if(tv=='Korlantas'){
+		$(".notmabes").hide();
+		$("#polda").val("");
+		$("#polres").val("");
+	}else{
+		$(".notmabes").show();
+	}
 }
 </script>
