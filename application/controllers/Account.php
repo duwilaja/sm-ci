@@ -75,7 +75,7 @@ class Account extends CI_Controller {
 					$msgs="Account successfully created. ";
 					$code="200";
 					$ttl="Success";
-					$content="Hi $nama, terima kasih sudah mendaftar.<br /><br />Password anda adalah $pwd <br /><br /><br />rgds<br />admin";
+					$content="Hi $nama, terima kasih sudah mendaftar.<br /><br />Akun anda adalah $nrp<br />Password anda adalah $pwd <br /><br /><br />rgds<br />admin";
 					$sen=$this->sendmail($email,"New Account",$content);
 					if($sen) { $msgs.="Password sent to $email"; }else{ $msgs.="Failed sending mail to $email"; }
 				}else{
