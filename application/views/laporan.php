@@ -40,7 +40,7 @@ echo form_dropdown('formulir', array_reverse($formulir,true), '',$opt);
 ?>
 						</div>
 					</div>
-					<div class="col-sm-6 col-md-4">
+					<div class="col-sm-6 col-md-4 dasar">
 						<div class="form-group">
 							<label class="form-label">Dasar</label>
 <?php
@@ -50,7 +50,7 @@ echo form_dropdown('dasar', array_reverse($dasargiat,true), '',$opt);
 ?>
 						</div>
 					</div>
-					<div class="col-sm-6 col-md-4">
+					<div class="col-sm-6 col-md-4 nomor">
 						<div class="form-group">
 							<label class="form-label">Nomor</label>
 							<input type="text" id="nomor" name="nomor" class="form-control" placeholder="" >
@@ -76,7 +76,7 @@ echo form_dropdown('dasar', array_reverse($dasargiat,true), '',$opt);
 				<div id="isilaporan"></div>
 			</form></div>
 			<div class="card-footer text-right">
-				<button type="button" id="btn_save" class="btn btn-primary hidden" onclick="sendData('#myf','laporan/save');">Simpan Laporan</button>
+				<button type="button" id="btn_save" class="btn btn-primary hidden" onclick="simpanlah();">Simpan Laporan</button>
 			</div>
 		</div>
 	</div>
@@ -86,6 +86,13 @@ echo form_dropdown('dasar', array_reverse($dasargiat,true), '',$opt);
 <script>
 var jvalidate;
 
+function simpanlah(){
+	if(typeof(safeform)=="function"){
+		safeform('#myf'); //sendData to the specific controller/function
+	}else{
+		sendData('#myf','laporan/save');
+	}
+}
 function ambil_isi(v){
 	if(v==''){
 		reset_isi();
@@ -94,81 +101,16 @@ function ambil_isi(v){
 	}
 	get_content('laporan/get_content',{id:v},'.ldr','#isilaporan');
 }
-function reset_form(){
-	$("#direktorat").val("");
-	$("#ro").val("");
-	reset_sub('dit');
-	reset_sub('ro');
-	$("#dasar").val("");
-	$("#nomor").val("");
-}
 function reset_isi(){
 	$("#isilaporan").html('');
 	$("#btn_save").hide();
-}
-function reset_sub(d){
-	reset_isi();
-	if(d=='dit'){
-		sisakan_top('#subdit');
-		sisakan_top('#sie');
-	}
-	if(d=='ro'){
-		sisakan_top('#bag');
-		sisakan_top('#subbag');
-	}
-	sisakan_top('#formulir','');
-}
-function sisakan_top(tgt,blnk=''){
-	$(tgt).find('option').remove();
-	var s='<option value="">'+blnk+'</option>';
-	$(tgt).append(s);
-}
-function ambil_form(){
-	//at least direktorat is selected
-	if($("#direktorat").val()==""&&$("#ro").val()==""){
-		alrt("Please select a value for direktorat or RO","error");
-		return;
-	}
-	
-	var url=base_url+'laporan/get_form';
-	var mtd='POST';
-	var frmdata=getFormData($('#myf'));
-	var tgt='#formulir';
-	var dv='';
-	var blnk='---pilih formulir---';
-	
-	//alert(frmdata);
-	
-	$.ajax({
-		type: mtd,
-		url: url,
-		data: frmdata,
-		success: function(data){
-			var json=JSON.parse(data);
-			console.log(json);
-			$(tgt).find('option').remove();
-			var s='<option value="">'+blnk+'</option>';
-			if(json['code']=="200"){
-				for(i=0;i<json['msgs'].length;i++){
-					v="";t="";
-					$.each(json['msgs'][i],function (key,val){
-						if(key=='v'){v=val;}
-						if(key=='t'){t=val;}
-					});
-					if(v==dv){
-						s+='<option selected value="'+v+'">'+t+'</option>';
-					}else{
-						s+='<option value="'+v+'">'+t+'</option>';
-					}
-				}
-				//log(s);
-			}
-			$(tgt).append(s);
-		},
-		error: function(xhr){
-			console.log("Error:"+xhr);
-		}
-	});
+	$(".nomor").hide();
+	$(".dasar").hide();
+	$(".is-invalid").removeClass("is-invalid");
+	$(".is-valid").removeClass("is-valid");
 }
 
+function thispage_ready(){
+	reset_isi();
+}
 </script>

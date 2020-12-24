@@ -14,16 +14,22 @@ $cols.="namajalan,lat,lng,status,jammulai,jamsampai,penyebab,penyebabd,lainnya,s
 			<input type="text" name="namajalan" class="form-control" placeholder="" >
 		</div>
 	</div>
-	<div class="col-sm-6 col-md-4">
+	<div class="col-sm-6 col-md-3">
 		<div class="form-group">
 			<label class="form-label">Latitude</label>
 			<input type="text" name="lat" class="form-control" placeholder="" >
 		</div>
 	</div>
-	<div class="col-sm-6 col-md-4">
+	<div class="col-sm-6 col-md-3">
 		<div class="form-group">
 			<label class="form-label">Longitude</label>
 			<input type="text" name="lng" class="form-control" placeholder="" >
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-2">
+		<div class="form-group">
+			<label class="form-label">&nbsp;</label>
+			<button type="button" class="btn btn-icon btn-facebook"><i class="fa fa-map-marker"></i></button>
 		</div>
 	</div>
 </div>
@@ -66,6 +72,7 @@ echo form_dropdown('penyebab', array_reverse($penyebab,true), '',$opt);
 		<div class="form-group">
 			<label class="form-label">Detil</label>
 			<select name="penyebabd" id="penyebabd" class="form-control" placeholder="" onchange="lainnyabukan(this.value);">
+			<option value=""></option>
 			</select>
 		</div>
 	</div>
@@ -142,7 +149,14 @@ jvalidate = $("#myf").validate({
     }});
 
 $("#btn_save").show();
+$(".dasar").show();
+$(".nomor").show();
+
 datepicker(true);
 timepicker();
 macetgak('');
+
+	$(".is-invalid").removeClass("is-invalid");
+	$(".is-valid").removeClass("is-valid");
+
 </script>
