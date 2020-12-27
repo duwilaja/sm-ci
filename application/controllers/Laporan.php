@@ -55,6 +55,9 @@ class Laporan extends CI_Controller {
 			if($id=='tmc_info_lalin'){  //tmc info lalin
 				$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
 			}
+			if($id=='eri_kendaraan'){  //eri kendaraan
+				$data['polda'] = comboopts($this->db->select('da_id as v,da_nam as t')->get('polda')->result());
+			}
 			
 			$this->load->view("formulir/$id",$data); //load the view
 			

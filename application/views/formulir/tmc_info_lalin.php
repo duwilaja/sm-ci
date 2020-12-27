@@ -17,19 +17,19 @@ $cols.="namajalan,lat,lng,status,jammulai,jamsampai,penyebab,penyebabd,lainnya,s
 	<div class="col-sm-6 col-md-3">
 		<div class="form-group">
 			<label class="form-label">Latitude</label>
-			<input type="text" name="lat" class="form-control" placeholder="" >
+			<input type="text" id="lat" name="lat" class="form-control" placeholder="" >
 		</div>
 	</div>
 	<div class="col-sm-6 col-md-3">
 		<div class="form-group">
 			<label class="form-label">Longitude</label>
-			<input type="text" name="lng" class="form-control" placeholder="" >
+			<input type="text" id="lng" name="lng" class="form-control" placeholder="" >
 		</div>
 	</div>
 	<div class="col-sm-6 col-md-2">
 		<div class="form-group">
 			<label class="form-label">&nbsp;</label>
-			<button type="button" class="btn btn-icon btn-facebook"><i class="fa fa-map-marker"></i></button>
+			<button type="button" class="btn btn-icon btn-facebook" onclick="mappicker('#lat','#lng');"><i class="fa fa-map-marker"></i></button>
 		</div>
 	</div>
 </div>
@@ -114,6 +114,9 @@ echo form_dropdown('penyebab', array_reverse($penyebab,true), '',$opt);
 
 
 <script>
+function mappicker(lat,lng){
+	window.open(base_url+"map?lat="+$(lat).val()+"&lng="+$(lng).val(),"MapWindow","width=830,height=500,location=no");
+}
 function lainnyabukan(tv){
 	if(tv=='Lainnya'){
 		$(".lainnya").show();
