@@ -18,7 +18,20 @@
 					<!--a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a-->
 				</div>
 			</div>
-			<div class="card-body"><form id="myf">
+			<div class="card-body"><form name="myf" id="myf">
+			
+			<div class="row"><div class="col-lg-12">
+				<div class="btn-list">
+					<?php 
+					$keys=array_keys($formulir);
+					$values=array_values($formulir);
+					for($i=0;$i<count($formulir);$i++){
+					?>
+					<button type="button" class="btn btn-twitter btn-pill <?php echo $keys[$i]?>" onclick="ambil_isi('<?php echo $keys[$i]?>');"><i class="fa fa-list-alt"></i> <?php echo $values[$i]?></button>
+					<?php } ?>
+				</div>
+			</div></div>
+			<br />
 			
 <!--hidden-->
 <input type="hidden" name="rowid" id="rowid" value="0" />
@@ -30,7 +43,7 @@
 <input type="hidden" name="unit" value="<?php echo $session['unit']?>">
 
 				<div class="row">
-					<div class="col-sm-6 col-md-4">
+					<div class="col-sm-6 col-md-4 hidden">
 						<div class="form-group">
 							<label class="form-label">Formulir</label>
 <?php
@@ -84,7 +97,7 @@ echo form_dropdown('dasar', array_reverse($dasargiat,true), '',$opt);
 <!-- End Row-->
 
 <script>
-var jvalidate;
+var jvalidate=null;
 
 function simpanlah(){
 	if(typeof(safeform)=="function"){
@@ -94,14 +107,17 @@ function simpanlah(){
 	}
 }
 function ambil_isi(v){
+	$(".btn-pill").attr("disabled",false);
+	reset_isi();
 	if(v==''){
-		reset_isi();
 		//alrt("Please select a value for formulir","error");
 		return;
 	}
+	$("."+v).attr("disabled",true);
 	get_content('laporan/get_content',{id:v},'.ldr','#isilaporan');
 }
 function reset_isi(){
+	jvalidate=null;
 	$("#isilaporan").html('');
 	$("#btn_save").hide();
 	$(".nomor").hide();
