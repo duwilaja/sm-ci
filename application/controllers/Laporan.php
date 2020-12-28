@@ -15,7 +15,7 @@ class Laporan extends CI_Controller {
 		if(isset($user)){
 			$data['session'] = $user;
 			$data['dasargiat'] = comboopts($this->db->select('dg_id as v,dg_nam as t')->get('dasargiat')->result());
-			$data['formulir'] = comboopts($this->db->select('view_laporan as v,nama_laporan as t')->where("unit",$user['unit'])->get('formulir')->result());
+			$data['formulir'] = comboopts($this->db->select('view_laporan as v,nama_laporan as t')->where("unit",$user['unit'])->or_where("unit",$user["subdinas"])->get('formulir')->result());
 			$data['title'] = "Formulir";
 			
 			$this->template->load('laporan',$data);

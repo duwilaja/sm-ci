@@ -114,10 +114,11 @@ function ambil_isi(v){
 		return;
 	}
 	$("."+v).attr("disabled",true);
+	$("#formulir").val(v);
 	get_content('laporan/get_content',{id:v},'.ldr','#isilaporan');
 }
 function reset_isi(){
-	jvalidate=null;
+	$('#myf').removeData('validator');
 	$("#isilaporan").html('');
 	$("#btn_save").hide();
 	$(".nomor").hide();

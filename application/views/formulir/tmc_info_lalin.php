@@ -115,7 +115,7 @@ echo form_dropdown('penyebab', array_reverse($penyebab,true), '',$opt);
 
 <script>
 function mappicker(lat,lng){
-	window.open(base_url+"map?lat="+$(lat).val()+"&lng="+$(lng).val(),"MapWindow","width=830,height=500,location=no");
+	window.open(base_url+"map?lat="+$(lat).val()+"&lng="+$(lng).val(),"MapWindow","width=830,height=500,location=no").focus();
 }
 function lainnyabukan(tv){
 	if(tv=='Lainnya'){
