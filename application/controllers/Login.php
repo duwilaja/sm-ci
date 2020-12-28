@@ -23,6 +23,7 @@ class Login extends CI_Controller {
 			
 		if(count($acc)>0){
 			$this->db->where('nrp',$nrp);
+			$this->db->where('isactive','Y');
 			$retval=$this->db->get("persons")->result_array();
 			if(count($retval)>0){
 				$loggedin=true;
