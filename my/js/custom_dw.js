@@ -406,10 +406,10 @@ function getMultiSelect(lnk,q,id,target,glue=";"){
 	});
 }
 
-function getSubQ(q,id,tgt,dv="",blnk=""){
+function getSubQ(q,id,tgt,dv="",blnk="",tname="",cols="",where=""){
 	var url=base_url+q;
 	var mtd='POST';
-	var frmdata={id:id};
+	var frmdata={id:id,tname:tname,cols:cols,where:where};
 	
 	//alert(frmdata);
 	
@@ -457,9 +457,12 @@ function getFormData($form){
 }
 
 function sendData(f,u){
+	if($(f).valid()){
+	modal();
 	var url=base_url+u;
 	var mtd='POST';
-	var frmdata=getFormData($(f));
+	//var frmdata=getFormData($(f));
+	var frmdata=new FormData($(f)[0]);
 	
 	//alert(frmdata);
 	
@@ -467,21 +470,32 @@ function sendData(f,u){
 		type: mtd,
 		url: url,
 		data: frmdata,
+		processData: false, //formdata
+		contentType: false, //formdata
 		success: function(data){
 			var json = JSON.parse(data);
 			//modal(json['ttl'],json['msgs']);
 			if(json['code']=='200'){
 				$(".modal_form").modal("hide");
-				if(typeof(senddatacallback)=='function') senddatacallback();
+				if(typeof(senddatacallback)=='function') senddatacallback(f);
 				alrt(json['msgs'],'success',json['ttl']);
 			}else{
 				alrt(json['msgs'],'error',json['ttl']);
 			}
+			setTimeout(process_end,500);
 		},
 		error: function(xhr){
 			//modal('Error','Please check your connection');
-			alrt('Please check your connection','error','Error');
+			alrt('Please check the link','error','Error');
+			setTimeout(process_end,500);
 		}
 	});
+	
+	}else{
+		alrt('Please enter all mandatory fields','warning','');
+	}
 };
 
+function process_end(){
+	$("#modal_process").modal("hide");
+}
