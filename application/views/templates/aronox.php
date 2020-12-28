@@ -204,45 +204,6 @@ if(count($farr)>0&&$session['nrp']!=''){
 										<li aria-haspopup="true" class="home"><a class="home" href="home4.php">Dash Polres</a></li>
 									</ul>
 								</li-->
-<<<<<<< HEAD
-								<li aria-haspopup="true"><a href="#" class="sub-icon "><i class="fa fa-cogs"></i> Setup <i class="fa fa-angle-down horizontal-icon"></i></a>
-									<div class="horizontal-megamenu clearfix">
-										<div class="container">
-											<div class="mega-menubg">
-												<div class="row">
-													<div class="col-lg-3 col-md-12 col-xs-12 link-list">
-														<ul>
-															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/polda">Polda</a></li>
-															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/polres">Polres</a></li>
-															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/direktorat">Direktorat</a></li>
-														</ul>
-													</div>
-													<div class="col-lg-3 col-md-12 col-xs-12 link-list">
-														<ul>
-															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/subdit">Subdit</a></li>
-															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/bagian">Bagian</a></li>
-															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/subbag">Sub Bagian</a></li>
-														</ul>
-													</div>
-													<div class="col-lg-3 col-md-12 col-xs-12 link-list">
-														<ul>
-															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/unit">Unit</a></li>
-															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/pangkat">Kepangkatan</a></li>
-															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/sie">Sie</a></li>
-														</ul>
-													</div>
-													<div class="col-lg-3 col-md-12 col-xs-12 link-list">
-														<ul>
-															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/ro">Ro</a></li>
-															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/formulir">Formulir</a></li>
-															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/dasar_giat">Dasar Giat</a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-=======
 						<?php if(false){?>
 								<li aria-haspopup="true"><a href="#" class="sub-icon"><i class="fa fa-cogs"></i> Setup <i class="fa fa-angle-down horizontal-icon"></i></a>
 									<ul class="sub-menu">
@@ -257,7 +218,6 @@ if(count($farr)>0&&$session['nrp']!=''){
 										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/pangkat">Kepangkatan</a></li>
 										<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/dasargiat">Dasar Giat</a></li>
 									</ul>
->>>>>>> 0ca8f214225aac1827e13402323ec74b430aaf21
 								</li>
 								<li aria-haspopup="true"><a href="#" class="sub-icon"><i class="fa fa-database"></i>Master Data <i class="fa fa-angle-down horizontal-icon"></i></a>
 									<ul class="sub-menu">
@@ -268,9 +228,9 @@ if(count($farr)>0&&$session['nrp']!=''){
 										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/prasarana_public">Prasarana Public</a></li>
 										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/potensi_masyarakat">Potensi Masyarakat</a></li>
 										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kegiatan">Kegiatan</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/penyebab">Penyebab</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kejadian_ditemukan">Kejadian Ditemukan</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/parameter_antrian">Parameter Antrian</a></li>
+										<!-- <li aria-haspopup="true"><a href="<?php echo $base_url?>unit">Unit</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>pangkat">Kepangkatan</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>dasargiat">Dasar Giat</a></li> -->
 									</ul>
 								</li>
 						<?php } ?>
@@ -308,7 +268,7 @@ if(count($farr)>0&&$session['nrp']!=''){
 				<div class="container">
 					<div class="row align-items-center flex-row-reverse">
 						<div class="col-md-12 col-sm-12 mt-3 mt-lg-0 text-center">
-							Copyright ©2020 <a target="_blank" href="http://www.matrik.co.id">Matrik</a>. All rights reserved.
+							Copyright Â©2020 <a target="_blank" href="http://www.matrik.co.id">Matrik</a>. All rights reserved.
 						</div>
 					</div>
 				</div>
@@ -322,8 +282,6 @@ if(count($farr)>0&&$session['nrp']!=''){
 
 		<!-- Jquery js-->
 		<script src="<?php echo $base_url;?>aronox/assets/js/vendors/jquery-3.4.0.min.js"></script>
-
-		<script src="<?php echo $base_url;?>my/vendor/swal2/sweetalert.min.js"></script>
 
 		<!-- Bootstrap4 js-->
 		<script src="<?php echo $base_url;?>aronox/assets/plugins/bootstrap/popper.min.js"></script>
@@ -363,6 +321,7 @@ if(count($farr)>0&&$session['nrp']!=''){
     <script src="<?php echo $base_url;?>my/vendor/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/datatables-buttons/js/buttons.html5.min.js"></script>
 	
+    <script src="<?php echo $base_url;?>my/vendor/swal2/sweetalert.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/jquery-fancybox/jquery.fancybox.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/chart.js/Chart.min.js"></script>
