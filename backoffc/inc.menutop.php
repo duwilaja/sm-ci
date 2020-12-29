@@ -11,7 +11,7 @@
 									<ul class="sub-menu">
 										<li aria-haspopup="true"><a href="m_user<?php echo $ext?>">User</a></li>
 			<?php if($s_LVL=="Korlantas" && $s_GRP=='Bag TIK'){ ?>
-										
+										<li aria-haspopup="true"><a href="m_form<?php echo $ext?>">Formulir</a></li>
 										<li class="sub-menu-sub">
 											<span class="horizontalMenu-click02"><i class="horizontalMenu-arrow fa fa-angle-down"></i></span><a href="#">Setup</a>
 											<ul class="sub-menu">
@@ -28,8 +28,8 @@
 										<li class="sub-menu-sub">
 											<span class="horizontalMenu-click02"><i class="horizontalMenu-arrow fa fa-angle-down"></i></span><a href="#">TMC</a>
 											<ul class="sub-menu">
-												<li aria-haspopup="true"><a href="m_macet<?php echo $ext?>">Penyebab Macet</a></li>
-												<li aria-haspopup="true"><a href="m_macetd<?php echo $ext?>">Penyebab Detil</a></li>
+												<li aria-haspopup="true"><a href="tmc_macet<?php echo $ext?>">Penyebab Macet</a></li>
+												<li aria-haspopup="true"><a href="tmc_macetd<?php echo $ext?>">Penyebab Detil</a></li>
 											</ul>
 										</li>
 			<?php }?>
