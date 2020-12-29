@@ -80,6 +80,24 @@ $cols.="giat,tempat,tanggal,audien,sasaran,media,lnk";
 			<input type="text" name="lnk" class="form-control" placeholder="" >
 		</div>
 	</div>
+	<div class="col-sm-6 col-md-4">
+		<div class="form-group">
+			<label class="form-label">Materi</label>
+			<input type="file" name="materi" class="form-control" placeholder="" >
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-4">
+		<div class="form-group">
+			<label class="form-label">Kesimpulan</label>
+			<input type="file" name="kesimpulan" class="form-control" placeholder="" >
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-4">
+		<div class="form-group">
+			<label class="form-label">Doc.</label>
+			<input type="file" name="doc" class="form-control" placeholder="" >
+		</div>
+	</div>
 	
 </div>
 

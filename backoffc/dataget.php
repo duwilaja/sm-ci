@@ -27,6 +27,7 @@ switch($q){
 	case 'dg': $sql="select * from dasargiat where rowid='$id'"; break;
 	case 'pang': $sql="select * from pangkat where rowid='$id'"; break;
 	case 'spec': $sql="select * from spesialisasi where rowid='$id'"; break;
+	case 'formulir': $sql="select * from formulir where rowid='$id'"; break;
 	
 	case 'myprofile': $sql="select * from persons where nrp='$id'"; break;
 	case 'didik': $sql="select * from pendidikan where rowid='$id'"; break;
