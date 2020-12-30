@@ -188,7 +188,11 @@ if(count($farr)>0&&$session['nrp']!=''){
 								</li-->
 								<li aria-haspopup="true"><a href="<?php echo $base_url?>laporan" class="sub-icon"><i class="fa fa-pencil-square-o"></i> Formulir</a>
 								</li>
-								<li aria-haspopup="true"><a href="<?php echo $base_url?>rekap" class="sub-icon"><i class="fa fa-file-text-o"></i> Rekap</a>
+								<?php if($session['unit']=='TMC'){?>
+								<li aria-haspopup="true"><a href="JavaScript:alrt('Under Construction');" class="sub-icon"><i class="fa fa-truck"></i> Inventory</a>
+								</li>
+								<?php }?>
+								<li aria-haspopup="true"><a href="JavaScript:alrt('Under Construction');" class="sub-icon"><i class="fa fa-file-text-o"></i> Rekap</a>
 								</li>
 								<!--li aria-haspopup="true"><a href="<?php echo $base_url?>dashboard" class="sub-icon"><i class="fa fa-dashboard"></i> Dashboard</a>
 								</li>
@@ -200,7 +204,7 @@ if(count($farr)>0&&$session['nrp']!=''){
 										<li aria-haspopup="true" class="home"><a class="home" href="home4.php">Dash Polres</a></li>
 									</ul>
 								</li-->
-						<?php if($session['adm']=='Y'){?>
+						<?php if(false){?>
 								<li aria-haspopup="true"><a href="#" class="sub-icon"><i class="fa fa-cogs"></i> Setup <i class="fa fa-angle-down horizontal-icon"></i></a>
 									<ul class="sub-menu">
 										<!--li aria-haspopup="true"><a href="m_user.php">User</a></li-->
