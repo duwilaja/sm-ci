@@ -30,7 +30,7 @@ $cols.="jenis,nama,yan,lat,lng";
 		<div class="form-group">
 			<label class="form-label">Pelayanan</label>
 			<select name="yan" class="form-control" placeholder="">
-				<option value="Faskes">Ambulance</option>
+				<option value="Ambulance">Ambulance</option>
 				<option value="Mobil Derek">Mobil Derek</option>
 				<option value="Bengkel Keliling">Bengkel Keliling</option>
 			</select>

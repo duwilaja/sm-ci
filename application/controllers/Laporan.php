@@ -59,6 +59,14 @@ class Laporan extends CI_Controller {
 			if($id=='eri_kendaraan'){  //eri kendaraan
 				$data['polda'] = comboopts($this->db->select('da_id as v,da_nam as t')->get('polda')->result());
 			}
+			if($id=='intan_analytic'){
+				if($user["polda"]!=""){ $this->db->where("polda",$user["polda"]); }
+				if($user["polres"]!=""){ $this->db->where("polres",$user["polres"]); }
+				$data['ambulance']=$this->db->select("lat,lng")->where("yan","Ambulance")->get('ssc_yan_darurat')->result();
+				$data['faskes']=$this->db->select("lat,lng")->where("yan","Faskes")->get('ssc_yan_publik')->result();
+				$data['pospol']=$this->db->select("lat,lng")->where("pos","Pos Polisi")->get('ssc_jalan')->result();
+				$data['pospjr']=$this->db->select("lat,lng")->where("pos","Pos PJR")->get('ssc_jalan')->result();
+			}
 			
 			$this->load->view("formulir/$id",$data); //load the view
 			
