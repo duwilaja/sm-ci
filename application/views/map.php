@@ -55,6 +55,7 @@ if($lat==""||$lng==""){$z="12";$latlng="-6.175540717418276,106.82719230651857";}
 			
 			document.mapfrm.lat.value=e.latlng.lat;
 			document.mapfrm.lng.value=e.latlng.lng;
+			map.panTo([e.latlng.lat,e.latlng.lng]);
 		}
 
 		map.on('click', onMapClick);

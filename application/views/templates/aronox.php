@@ -58,6 +58,9 @@ if(count($farr)>0&&$session['nrp']!=''){
 		<!-- fancybox CSS-->
 		<link rel="stylesheet" href="<?php echo $base_url;?>my/vendor/jquery-fancybox/jquery.fancybox.min.css">
 		
+		<link rel="stylesheet" href="<?php echo $base_url;?>my/vendor/leaflet/leaflet.css" />
+		<link rel="stylesheet" href="<?php echo $base_url;?>my/vendor/leaflet/leaflet.awesome-markers.css" />
+		
 		<!-- overwrite css -->
 		<link href="<?php echo $base_url;?>my/css/custom.css" rel="stylesheet" />
 
@@ -325,6 +328,9 @@ if(count($farr)>0&&$session['nrp']!=''){
     <script src="<?php echo $base_url;?>my/vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/jquery-fancybox/jquery.fancybox.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/chart.js/Chart.min.js"></script>
+
+	<script src="<?php echo base_url();?>my/vendor/leaflet/leaflet.js"></script>
+	<script src="<?php echo base_url();?>my/vendor/leaflet/leaflet.awesome-markers.min.js"></script>
 
 	<?php if(@$js_local){ ?>
 		<script src="<?= base_url('my/js_local/'.$js_local);?>"></script>
