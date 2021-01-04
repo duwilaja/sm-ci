@@ -39,9 +39,10 @@ $cols.="jenis,jalan,lat,lng";
 			<div class="col-md-12">
 			  <ul class="list-group">
 				<li class="list-group-item justify-content-between">Faskes <span class="badgetext badge badge-primary bg-green badge-pill"><?php echo count($faskes)?></span></li>
-				<li class="list-group-item justify-content-between">Ambulance <span class="badgetext badge badge-primary bg-red badge-pill"><?php echo count($ambulance)?></span></li>
+				<li class="list-group-item justify-content-between">Ambulance <span class="badgetext badge badge-primary bg-orange badge-pill"><?php echo count($ambulance)?></span></li>
 				<li class="list-group-item justify-content-between">Pos Polisi <span class="badgetext badge badge-primary bg-lime badge-pill"><?php echo count($pospol)?></span></li>
 				<li class="list-group-item justify-content-between">Pos PJR <span class="badgetext badge badge-info badge-pill"><?php echo count($pospjr)?></span></li>
+				<li class="list-group-item justify-content-between">Ambang Gangguan <span class="badgetext badge badge-primary bg-red badge-pill"><?php echo count($koordinasi)?></span></li>
 			  </ul>
 			</div>
 		</div>
@@ -50,12 +51,13 @@ $cols.="jenis,jalan,lat,lng";
 		<div id="map" style="width: 100%; height: 450px;"></div>
 	</div>
 </div>
-	
+
 <script>
 var ambulance=<?php echo json_encode($ambulance)?>;
 var faskes=<?php echo json_encode($faskes)?>;
 var pospjr=<?php echo json_encode($pospjr)?>;
 var pospol=<?php echo json_encode($pospol)?>;
+var koordinasi=<?php echo json_encode($koordinasi)?>;
 
 jvalidate = $("#myf").validate({
     rules :{
@@ -121,10 +123,12 @@ function preparemap(){
 	marker = L.marker();
 
 	map.on('click', onMapClick);
-	draw_pointers("Ambulance","red","ambulance",ambulance);
+	
+	draw_pointers("Ambulance","orange","ambulance",ambulance);
 	draw_pointers("Faskes","green","hospital-o",faskes);
 	draw_pointers("Pos Polisi","cadetblue","user-secret",pospol);
 	draw_pointers("Pos PJR","blue","taxi",pospjr);
+	draw_pointers("Koordinasi","red","",koordinasi);
 }
 function contentcallback(){
 	preparemap();
@@ -132,14 +136,27 @@ function contentcallback(){
 
 function draw_pointers(title,color,icon,data){
 	//var markers = L.markerClusterGroup();
-		
+		var ttl=title;
+		var icn=icon;
 		for (var i = 0; i < data.length; i++) {
 			var a = data[i];
 			//var title = a['name'];
 			//var color = a['onoff']>0?"green":"red";
-			var myicon = new L.AwesomeMarkers.icon({icon: icon, prefix: 'fa', markerColor: color});
-			L.marker(new L.LatLng(a['lat'], a['lng']), { title: title, icon: myicon }).addTo(map);
-			
+			if(a['lat'].trim()!=""&&a['lng'].trim()!=""){
+				if(icon==""){
+					ttl=a["giat"];
+					switch(ttl){
+						case "Pembangunan Jalan" : icn="road";  break;
+						case "Olahraga" : icn="futbol-o";  break;
+						case "Keagamaan" : icn="users";  break;
+						case "Pameran" : icn="fort-awesome";  break;
+						case "Konser" : icn="child";  break;
+						default : icn = "slideshare"; break;
+					}
+				}
+				var myicon = new L.AwesomeMarkers.icon({icon: icn, prefix: 'fa', markerColor: color});
+				L.marker(new L.LatLng(a['lat'], a['lng']), { title: ttl, icon: myicon }).addTo(map);
+			}
 			//var marker = L.marker(new L.LatLng(a['lat'], a['lng']), { title: title, icon: icon });
 			
 			//var fn=markerClickFunction(a['locid']);
