@@ -192,8 +192,8 @@ if(count($farr)>0&&$session['nrp']!=''){
 								<li aria-haspopup="true"><a href="<?php echo $base_url?>laporan" class="sub-icon"><i class="fa fa-pencil-square-o"></i> Formulir</a>
 								</li>
 								<?php if($session['unit']=='TMC'){?>
-								<li aria-haspopup="true"><a href="JavaScript:alrt('Under Construction');" class="sub-icon"><i class="fa fa-truck"></i> Inventory</a>
-								</li>
+								<!--li aria-haspopup="true"><a href="JavaScript:alrt('Under Construction');" class="sub-icon"><i class="fa fa-truck"></i> Inventory</a>
+								</li-->
 								<?php }?>
 								<li aria-haspopup="true"><a href="JavaScript:alrt('Under Construction');" class="sub-icon"><i class="fa fa-file-text-o"></i> Rekap</a>
 								</li>

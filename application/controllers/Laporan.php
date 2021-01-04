@@ -66,6 +66,7 @@ class Laporan extends CI_Controller {
 				$data['faskes']=$this->db->select("lat,lng")->where("yan","Faskes")->get('ssc_yan_publik')->result();
 				$data['pospol']=$this->db->select("lat,lng")->where("pos","Pos Polisi")->get('ssc_jalan')->result();
 				$data['pospjr']=$this->db->select("lat,lng")->where("pos","Pos PJR")->get('ssc_jalan')->result();
+				$data['koordinasi']=$this->db->select("giat,lat,lng")->get('tmc_koordinasi')->result();
 			}
 			
 			$this->load->view("formulir/$id",$data); //load the view
