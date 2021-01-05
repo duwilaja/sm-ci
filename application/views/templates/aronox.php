@@ -54,6 +54,7 @@ if(count($farr)>0&&$session['nrp']!=''){
 		<!-- bootstrap CSS-->
 		<link rel="stylesheet" href="<?php echo $base_url;?>my/vendor/bootstrap/css/bootstrap-select.min.css">
 		<link rel="stylesheet" href="<?php echo $base_url;?>my/vendor/bootstrap/css/bootstrap-datetimepicker.min.css">
+		<link rel="stylesheet" href="<?php echo $base_url;?>my/vendor/bootstrap/css/yearpicker.css">
 		
 		<!-- fancybox CSS-->
 		<link rel="stylesheet" href="<?php echo $base_url;?>my/vendor/jquery-fancybox/jquery.fancybox.min.css">
@@ -317,6 +318,7 @@ if(count($farr)>0&&$session['nrp']!=''){
 	<script src="<?php echo $base_url;?>my/vendor/bootstrap/js/moment.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/bootstrap/js/bootstrap-select.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="<?php echo $base_url;?>my/vendor/bootstrap/js/yearpicker.js"></script>
     
 	<script src="<?php echo $base_url;?>my/vendor/datatables/datatables.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/datatables.net-bs4/dataTables.bootstrap4.js"></script>
