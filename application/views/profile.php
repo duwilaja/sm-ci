@@ -175,6 +175,18 @@ echo form_dropdown('polda', array_reverse($polda,true), $session['polda'],$opt);
 							</select>
 						</div>
 					</div>
+					<div class="col-sm-6 col-md-6">
+						<div class="form-group">
+							<label class="form-label">Spesialisasi</label>
+							<?php
+//print_r(array_reverse($polda,true));
+$selected_specs=explode(";",$session['specs']);
+$opt=array('class'=>'form-control select2','id'=>'tmp_spek','multiple'=>'multiple','onchange'=>"specs_changed();");
+echo form_dropdown('tmp_spek', $specs, $selected_specs,$opt);
+echo form_hidden('specs',$session['specs']);
+							?>
+						</div>
+					</div>
 					
 				</div>
 			</form></div>
@@ -229,6 +241,8 @@ function thispage_ready(){
 			equalTo : "#np"
 		}
     }});
+	
+	$(".select2").select2({});
 }
 function senddatacallback(f){
 <?php if(isset($incomplete_profile)){?>
@@ -249,5 +263,9 @@ function mabesbukan(tv){
 	}else{
 		$(".notmabes").show();
 	}
+}
+
+function specs_changed(){
+	$("input[name=specs]").val($("#tmp_spek").val().join(";"));
 }
 </script>

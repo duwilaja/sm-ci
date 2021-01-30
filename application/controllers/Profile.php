@@ -19,10 +19,12 @@ class Profile extends CI_Controller {
 			$data['unit'] = comboopts($this->db->select('unit_id as v,unit_nam as t')->order_by("unit_id","DESC")->get('unit')->result());
 			$data['dinas'] = comboopts($this->db->select('din_id as v,din_nam as t')->get('dinas')->result());
 			//$data['bagian'] = comboopts($this->db->select('bag_id as v,bag_nam as t')->get('bagian')->result());
+			$data['specs'] = comboopts($this->db->select('spec_id as v,spec_nam as t')->get('spesialisasi')->result());
 			
 			if($user['unit']==''){
 				$data['incomplete_profile']=true;
 			}
+			$data['title'] = "My Profile";
 			$this->template->load('profile',$data);
 		}else{
 			$retval=array("403","Failed","Please login","error");
@@ -36,7 +38,9 @@ class Profile extends CI_Controller {
 		$user=$this->session->userdata('user_data');
 		if(isset($user)){
 			$this->db->where('rowid',$this->input->post('rowid'));
-			$this->db->update('persons',$_POST);
+			$post_data=$_POST;
+			if(isset($post_data['tmp_spek']))	unset($post_data['tmp_spek']); //specs multiple select
+			$this->db->update('persons',$post_data);
 			if($this->db->affected_rows()>0){
 				$msgs="Data updated";
 				$this->db->where('rowid',$this->input->post('rowid'));
