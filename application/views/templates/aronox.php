@@ -228,11 +228,50 @@ if(count($farr)>0&&$session['nrp']!=''){
 										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/prasarana_public">Prasarana Public</a></li>
 										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/potensi_masyarakat">Potensi Masyarakat</a></li>
 										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kegiatan">Kegiatan</a></li>
-										<!-- <li aria-haspopup="true"><a href="<?php echo $base_url?>unit">Unit</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>pangkat">Kepangkatan</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>dasargiat">Dasar Giat</a></li> -->
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/penyebab">Penyebab</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kejadian_ditemukan">Kejadian Ditemukan</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/parameter_antrian">Parameter Antrian</a></li>
 									</ul>
 								</li>
+								<li aria-haspopup="true"><a href="#" class="sub-icon "><i class="fa fa-cogs"></i> Setup <i class="fa fa-angle-down horizontal-icon"></i></a>
+									<div class="horizontal-megamenu clearfix">
+										<div class="container">
+											<div class="mega-menubg">
+												<div class="row">
+													<div class="col-lg-3 col-md-12 col-xs-12 link-list">
+														<ul>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/polda">Polda</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/polres">Polres</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/direktorat">Direktorat</a></li>
+														</ul>
+													</div>
+													<div class="col-lg-3 col-md-12 col-xs-12 link-list">
+														<ul>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/subdit">Subdit</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/bagian">Bagian</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/subbag">Sub Bagian</a></li>
+														</ul>
+													</div>
+													<div class="col-lg-3 col-md-12 col-xs-12 link-list">
+														<ul>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/unit">Unit</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/pangkat">Kepangkatan</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/sie">Sie</a></li>
+														</ul>
+													</div>
+													<div class="col-lg-3 col-md-12 col-xs-12 link-list">
+														<ul>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/ro">Ro</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/formulir">Formulir</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/dasar_giat">Dasar Giat</a></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+						
 						<?php } ?>
 							</ul>
 						</nav>

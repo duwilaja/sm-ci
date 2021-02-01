@@ -178,20 +178,16 @@ if (!function_exists('calc_minute')) {
 	}
 }
 
-if (!function_exists('categ')) {
-	 function categ($c='')
+if (!function_exists('gnrt_inp')) {
+	 function gnrt_inp($i='',$inp=[])
     {
-        if ($c != '') {
-             if ($c == 'pp') {
-                 return 'Potential Prospect';
-             }else if ($c == 'pt') {
-                 return 'Potential Target';
-             }else if ($c == 'qo') {
-                 return 'Qualified Opportunity';
-             }else{
-				 return '-';
-			 }
-        }
+	   $obj = [];
+		if ($i != '' && !empty($inp)) {
+			foreach ($i as $k => $v) {
+				if(!empty($inp[$k])) $obj[$inp[$k]] = $v;
+			}
+		}
+	   return $obj;
     }
 }
 

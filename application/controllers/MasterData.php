@@ -215,7 +215,7 @@ class MasterData extends CI_Controller {
             'tabel' => 'potensi_masyarakat',
             'field_in' =>[
                 srlen('pm_id') => 'ID',
-                srlen('k_nama') => 'Jenis Potensi'
+                srlen('pm_nama') => 'Jenis Potensi'
             ],
             'field_up' =>[
                 'rowid' => 'hidden',

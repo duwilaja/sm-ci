@@ -46,11 +46,11 @@
 					<div class="col-sm-6 col-md-4 hidden">
 						<div class="form-group">
 							<label class="form-label">Formulir</label>
-							<?php
-							$formulir['']='---pilih formulir---';
-							$opt=array('class'=>'form-control','id'=>'formulir','onchange'=>"ambil_isi(this.value);");
-							echo form_dropdown('formulir', array_reverse($formulir,true), '',$opt);
-							?>
+<?php
+$formulir['']='---pilih formulir---';
+$opt=array('class'=>'form-control','id'=>'formulir','onchange'=>"ambil_isi(this.value);");
+echo form_dropdown('formulir', array_reverse($formulir,true), '',$opt);
+?>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-4 dasar">

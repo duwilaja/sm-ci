@@ -33,4 +33,37 @@
         return $rsp;
     }
 
+    public function validasi($arr_validasi=[])
+    {
+      $i = inp();
+
+      foreach ($arr_validasi as $k => $v) {
+        $x = $v[1];
+        $expp = explode('.',$v[0]);
+        $exp = explode('.',$x);
+        if ($exp[0] == 'required') {
+          if ($expp[0] == 'form' && $this->CI->input->post($expp[1]) == '') {
+            $this->set_json_valid($v[2]);
+          }else if($expp[0] == 'json' && isset($i[$expp[1]]) && $i[$expp[1]] == ''){
+            $this->set_json_valid($v[2]);
+          }
+        }else{
+          $q = $this->CI->mg->get($exp[0],[$exp[1] => $i[$expp[1]] ])->num_rows();
+          if ($q > 0) $this->set_json_valid($v[2]);
+        }
+      }
+
+      return false;
+    }
+
+    private function set_json_valid($msg='')
+    {
+      $data = [
+        'status' => false,
+        'msg' => $msg
+      ];
+      echo json_encode($data);
+      die;
+    }
+
   }    

@@ -48,6 +48,13 @@ class Setup extends CI_Controller {
         echo json_encode($q->result());
     }
 
+     // Get Polda
+     public function get_polda()
+     {
+         $q = $this->mg->get('polda','','da_id as nilai,da_nam as nama');
+         echo json_encode($q->result());
+     }
+
     public function dasargiat()
     {
         $arr = [
@@ -510,15 +517,15 @@ class Setup extends CI_Controller {
             'dt' => [
                 'order' => [
                     'da_id',
-                    'da_nam'
+                    'da_nam',
                 ],
                 'search' => [
                     'da_id',
-                    'da_nam'
+                    'da_nam',
                 ],
                 'view' => [
                     'da_id',
-                    'da_nam'
+                    'da_nam',
                 ]
             ]
         ];
@@ -534,29 +541,35 @@ class Setup extends CI_Controller {
             'tabel' => 'polres',
             'field_in' =>[
                 srlen('res_id') => 'ID',
-                srlen('res_nam') => 'NAMA'
+                srlen('res_nam') => 'NAMA',
+                srlen('polda') => 'Polda|select|get_polda',
             ],
             'field_up' =>[
                 'rowid' => 'hidden',
                 'res_id' => 'ID',
-                'res_nam' => 'NAMA'
+                'res_nam' => 'NAMA',
+                'polda' => 'Polda|select|get_polda',
             ],
             'field_se' =>[
                 'res_id' => 'ID',
-                'res_nam' => 'NAMA'
+                'res_nam' => 'NAMA',
+                'polda' => 'POLDA'
             ],
             'dt' => [
                 'order' => [
                     'res_id',
-                    'res_nam'
+                    'res_nam',
+                    'polda'
                 ],
                 'search' => [
                     'res_id',
-                    'res_nam'
+                    'res_nam',
+                    'polda'
                 ],
                 'view' => [
                     'res_id',
-                    'res_nam'
+                    'res_nam',
+                    'polda'
                 ]
             ]
         ];
@@ -600,6 +613,23 @@ class Setup extends CI_Controller {
         
         $this->mg->crud($arr);
        
+    }
+
+    // Users
+
+    public function users()
+    {
+        $data = [
+            'title' => 'Users',
+            'js_local' => 'users/users.js',
+        ];
+        $this->template->load('page/users/users', $data);
+    }
+
+    public function dt_users()
+    {
+        $this->load->model('MUsers','mu');
+        echo $this->mu->dt_users();
     }
 
 }
