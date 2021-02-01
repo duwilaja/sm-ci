@@ -33,14 +33,6 @@
 			</div></div>
 			<br />
 			
-<<<<<<< HEAD
-			<!--hidden-->
-			<input type="hidden" name="rowid" id="rowid" value="0" />
-			<input type="hidden" name="nrp" value="<?php echo $session['nrp']?>">
-			<input type="hidden" name="polda" value="<?php echo $session['polda']?>">
-			<input type="hidden" name="polres" value="<?php echo $session['polres']?>">
-			
-=======
 <!--hidden-->
 <input type="hidden" name="rowid" id="rowid" value="0" />
 <input type="hidden" name="nrp" value="<?php echo $session['nrp']?>">
@@ -50,35 +42,25 @@
 <input type="hidden" name="subdinas" value="<?php echo $session['subdinas']?>">
 <input type="hidden" name="unit" value="<?php echo $session['unit']?>">
 
->>>>>>> 0ca8f214225aac1827e13402323ec74b430aaf21
 				<div class="row">
 					<div class="col-sm-6 col-md-4 hidden">
 						<div class="form-group">
-<<<<<<< HEAD
-							<label class="form-label">Direktorat</label>
-							<?php
-							$direktorat['']='---pilih direktorat---';
-							$opt=array('class'=>'form-control','id'=>'direktorat','onchange'=>"getSubQ('laporan/get_subdit',this.value,'#subdit','','---pilih subdit---');");
-							echo form_dropdown('direktorat', array_reverse($direktorat), '',$opt);
-							?>
-=======
 							<label class="form-label">Formulir</label>
-<?php
-$formulir['']='---pilih formulir---';
-$opt=array('class'=>'form-control','id'=>'formulir','onchange'=>"ambil_isi(this.value);");
-echo form_dropdown('formulir', array_reverse($formulir,true), '',$opt);
-?>
->>>>>>> 0ca8f214225aac1827e13402323ec74b430aaf21
+							<?php
+							$formulir['']='---pilih formulir---';
+							$opt=array('class'=>'form-control','id'=>'formulir','onchange'=>"ambil_isi(this.value);");
+							echo form_dropdown('formulir', array_reverse($formulir,true), '',$opt);
+							?>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-4 dasar">
 						<div class="form-group">
 							<label class="form-label">Dasar</label>
-<?php
-$dasargiat['']='---pilih dasar giat---';
-$opt=array('class'=>'form-control','id'=>'dasar');
-echo form_dropdown('dasar', array_reverse($dasargiat,true), '',$opt);
-?>
+							<?php
+							$dasargiat['']='---pilih dasar giat---';
+							$opt=array('class'=>'form-control','id'=>'dasar');
+							echo form_dropdown('dasar', array_reverse($dasargiat,true), '',$opt);
+							?>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-4 nomor">
@@ -128,14 +110,14 @@ function ambil_isi(v){
 	$(".btn-pill").attr("disabled",false);
 	reset_isi();
 	if(v==''){
-		//alrt("Please select a value for formulir","error");
+		alrt("Please select a value for formulir","error");
 		return;
 	}
 	$("."+v).attr("disabled",true);
 	get_content('laporan/get_content',{id:v},'.ldr','#isilaporan');
 }
 function reset_isi(){
-	$('#myf').removeData('validator');
+	jvalidate=null;
 	$("#isilaporan").html('');
 	$("#btn_save").hide();
 	$(".nomor").hide();
