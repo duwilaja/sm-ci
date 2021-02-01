@@ -54,9 +54,13 @@ if(count($farr)>0&&$session['nrp']!=''){
 		<!-- bootstrap CSS-->
 		<link rel="stylesheet" href="<?php echo $base_url;?>my/vendor/bootstrap/css/bootstrap-select.min.css">
 		<link rel="stylesheet" href="<?php echo $base_url;?>my/vendor/bootstrap/css/bootstrap-datetimepicker.min.css">
+		<link rel="stylesheet" href="<?php echo $base_url;?>my/vendor/bootstrap/css/yearpicker.css">
 		
 		<!-- fancybox CSS-->
 		<link rel="stylesheet" href="<?php echo $base_url;?>my/vendor/jquery-fancybox/jquery.fancybox.min.css">
+		
+		<link rel="stylesheet" href="<?php echo $base_url;?>my/vendor/leaflet/leaflet.css" />
+		<link rel="stylesheet" href="<?php echo $base_url;?>my/vendor/leaflet/leaflet.awesome-markers.css" />
 		
 		<!-- overwrite css -->
 		<link href="<?php echo $base_url;?>my/css/custom.css" rel="stylesheet" />
@@ -189,8 +193,8 @@ if(count($farr)>0&&$session['nrp']!=''){
 								<li aria-haspopup="true"><a href="<?php echo $base_url?>laporan" class="sub-icon"><i class="fa fa-pencil-square-o"></i> Formulir</a>
 								</li>
 								<?php if($session['unit']=='TMC'){?>
-								<li aria-haspopup="true"><a href="JavaScript:alrt('Under Construction');" class="sub-icon"><i class="fa fa-truck"></i> Inventory</a>
-								</li>
+								<!--li aria-haspopup="true"><a href="JavaScript:alrt('Under Construction');" class="sub-icon"><i class="fa fa-truck"></i> Inventory</a>
+								</li-->
 								<?php }?>
 								<li aria-haspopup="true"><a href="JavaScript:alrt('Under Construction');" class="sub-icon"><i class="fa fa-file-text-o"></i> Rekap</a>
 								</li>
@@ -353,6 +357,7 @@ if(count($farr)>0&&$session['nrp']!=''){
 	<script src="<?php echo $base_url;?>my/vendor/bootstrap/js/moment.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/bootstrap/js/bootstrap-select.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="<?php echo $base_url;?>my/vendor/bootstrap/js/yearpicker.js"></script>
     
 	<script src="<?php echo $base_url;?>my/vendor/datatables/datatables.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/datatables.net-bs4/dataTables.bootstrap4.js"></script>
@@ -364,6 +369,9 @@ if(count($farr)>0&&$session['nrp']!=''){
     <script src="<?php echo $base_url;?>my/vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/jquery-fancybox/jquery.fancybox.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/chart.js/Chart.min.js"></script>
+
+	<script src="<?php echo base_url();?>my/vendor/leaflet/leaflet.js"></script>
+	<script src="<?php echo base_url();?>my/vendor/leaflet/leaflet.awesome-markers.min.js"></script>
 
 	<?php if(@$js_local){ ?>
 		<script src="<?= base_url('my/js_local/'.$js_local);?>"></script>
