@@ -67,7 +67,7 @@ class Rekap extends CI_Controller {
 			$cols=base64_decode($this->input->post('cols')); //tablename
 			
 			//build where polda/polres
-			$where['tgl'] = date('Y-m-d');
+			$where['tgl'] = $this->input->post('tgl'); //date('Y-m-d');
 			$d=$user['polres'];
 			//if($d!='')
 				$where['polres']=$d;

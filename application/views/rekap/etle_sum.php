@@ -7,7 +7,18 @@ $tname="etle_sum";
 
 <div class="card">
 	<div class="card-header">
-		<div class="card-title judul">Summary ETLE</div>
+		<div class="card-title judul">Summary ETLE
+		
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<div class="input-group-text">
+														<i class="fa fa-calendar"></i>
+													</div>
+												</div>
+												<input type="text" class="form-control datepicker" id="tgl">
+											</div>
+										
+		</div>
 		<div class="card-options ">
 			<!--a href="#" title="Batch" class=""><i class="fe fe-upload"></i></a>
 			<a href="#" onclick="openForm(0);" data-toggle="modal" data-target="#myModal" title="Add" class=""><i class="fe fe-plus"></i></a-->
@@ -52,13 +63,15 @@ function load_table(){
 			url: '<?php echo base_url()?>rekap/datatable_all',
 			data: function (d) {
 				d.cols= '<?php echo base64_encode($cols); ?>',
-				d.tname= '<?php echo base64_encode($tname); ?>';
+				d.tname= '<?php echo base64_encode($tname); ?>',
+				d.tgl= $('#tgl').val();
 			}
 		},
 		initComplete: function(){
 			dttbl_buttons(); //for ajax call
 		}
 	});
+	datepicker();
 }
 
 function contentcallback(){
