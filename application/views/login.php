@@ -138,7 +138,7 @@ $base_url = base_url();
 						<label>Pangkat</label>
 		<?php
 		$opt=array('class'=>'form-control','id'=>'pangkat');
-		echo form_dropdown('pangkat', $pangkat, '', $opt);
+		echo form_dropdown('pangkat', array(), '', $opt);
 		?>
 					</div>
 					<div class="form-group col-md-6">
@@ -379,6 +379,8 @@ $(document).ready(function (){
 			email: true
 		}
     }});
+	
+	getSubQ('login/get_pangkat','','#pangkat');
 });
 
 function showAlert(){

@@ -196,7 +196,7 @@ if(count($farr)>0&&$session['nrp']!=''){
 								<!--li aria-haspopup="true"><a href="JavaScript:alrt('Under Construction');" class="sub-icon"><i class="fa fa-truck"></i> Inventory</a>
 								</li-->
 								<?php }?>
-								<li aria-haspopup="true"><a href="JavaScript:alrt('Under Construction');" class="sub-icon"><i class="fa fa-file-text-o"></i> Rekap</a>
+								<li aria-haspopup="true"><a href="<?php echo $base_url?>rekap" class="sub-icon"><i class="fa fa-file-text-o"></i> Rekap</a>
 								</li>
 								<!--li aria-haspopup="true"><a href="<?php echo $base_url?>dashboard" class="sub-icon"><i class="fa fa-dashboard"></i> Dashboard</a>
 								</li>
@@ -325,6 +325,7 @@ if(count($farr)>0&&$session['nrp']!=''){
     <script src="<?php echo $base_url;?>my/vendor/datatables-buttons/js/dataTables.buttons.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/datatables-buttons/js/buttons.html5.min.js"></script>
+	<script src="<?php echo $base_url;?>my/vendor/datatables-buttons/js/jszip.min.js"></script>
 	
     <script src="<?php echo $base_url;?>my/vendor/swal2/sweetalert.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/jquery-validation/jquery.validate.min.js"></script>
