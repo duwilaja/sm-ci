@@ -12,6 +12,7 @@
 										<li aria-haspopup="true"><a href="m_user<?php echo $ext?>">User</a></li>
 			<?php if($s_LVL=="Korlantas" && $s_GRP=='Bag TIK'){ ?>
 										<li aria-haspopup="true"><a href="m_form<?php echo $ext?>">Formulir</a></li>
+										<li aria-haspopup="true"><a href="m_penduduk<?php echo $ext?>">Penduduk</a></li>
 										<li class="sub-menu-sub">
 											<span class="horizontalMenu-click02"><i class="horizontalMenu-arrow fa fa-angle-down"></i></span><a href="#">Setup</a>
 											<ul class="sub-menu">
