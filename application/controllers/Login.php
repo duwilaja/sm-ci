@@ -53,4 +53,11 @@ class Login extends CI_Controller {
 		$this->load->view("login",$data);
 	}
 	
+	public function get_pangkat()
+	{
+		$ret=$this->db->select('pang_id as v,pang_nam as t')->get('pangkat')->result();
+		$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$ret);
+		echo json_encode($retval);
+	}
+	
 }
