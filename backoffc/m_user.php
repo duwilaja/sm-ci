@@ -1,6 +1,6 @@
 <?php 
 $restrict_lvl=array("Korlantas","Ditlantas","Satlantas");
-$restrict_grp=array("Bag TIK");
+$restrict_grp=array("Bag TIK","Polda","Polres");
 
 include "inc.common.php";
 include "inc.session.php";
@@ -185,11 +185,12 @@ $cols="nrp,nama,email,dinas,subdinas,da_nam,res_nam,adm,das,isactive,p.rowid";
 $csrc="nama,nrp,email,subdinas,dinas,da_nam,res_nam";
 $where="nrp<>'$s_ID'";
 if($s_LVL=='Ditlantas'){
-	$where="polda='$s_POLDA'";
+	$where.=" and p.polda='$s_POLDA'";
 }
 if($s_LVL=='Satlantas'){
-	$where="polres='$s_POLRES'";
+	$where.=" and p.polres='$s_POLRES'";
 }
+//echo $cols.$tname.$where;
 ?>
 
 <script>
