@@ -61,9 +61,9 @@ if($lat==""||$lng==""){$z="12";$latlng="-6.175540717418276,106.82719230651857";}
 		map.on('click', onMapClick);
 
 	function okclick(){
-		window.opener.document.myf.lat.value=document.mapfrm.lat.value;
-		window.opener.document.myf.lng.value=document.mapfrm.lng.value;
-		window.close();
+		parent.window.opener.document.myf.lat.value=document.mapfrm.lat.value;
+		parent.window.opener.document.myf.lng.value=document.mapfrm.lng.value;
+		parent.window.close();
 	}
 	</script>
 	<form name="mapfrm">
