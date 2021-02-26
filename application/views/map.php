@@ -70,7 +70,7 @@ if($lat==""||$lng==""){$z="12";$latlng="-6.175540717418276,106.82719230651857";}
 	<input type="text" name="lat" value="<?php echo $lat;?>">
 	<input type="text" name="lng" value="<?php echo $lng;?>">
 	<input type="button" onclick="okclick();" value="OK">
-	<input type="button" onclick="window.close();" value="Close">
+	<input type="button" onclick="parent.window.close();" value="Close">
 	</form>
 	
 </body>
