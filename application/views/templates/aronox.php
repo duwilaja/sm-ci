@@ -142,7 +142,7 @@ if(count($farr)>0&&$session['nrp']!=''){
 									</div>
 								</div><!-- MESSAGE-BOX -->
 
-								<!--div class="dropdown header-notify">
+								<!-- <div class="dropdown header-notify">
 									<a class="nav-link icon" data-toggle="dropdown">
 										<i class="mdi mdi-bell-outline"></i>
 										<span class="pulse bg-danger hidden"></span>
@@ -152,8 +152,34 @@ if(count($farr)>0&&$session['nrp']!=''){
 									
 									</div>
 									</div>
-								</div-->
+								</div> -->
+										   <?php
+											
+										    if ($session['unit'] == "TMC" && $this->uri->segment(1) == "laporan") {
+											$i = 0;
+											foreach ($jumlah as $value) {
+												$i++;	
+											}
+											?>
+											<div class="dropdown header-notify">
+											<a class="nav-link icon" data-toggle="dropdown">
+												<i class="mdi mdi-bell-outline"></i>
+												<span class="pulse bg-danger "></span>
+											</a>
+											<div id="lonceng" class="">
+												<div id="isilonceng" class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+													<div class="h4">
+														<a class="dropdown-item" onclick="ambil_isi('tmc_patwal')">
+															<i class="dropdown-icon mdi  mdi-car"></i> <span style="color: red;"><?php echo $i ?> </span> Permohonan Pengawalan
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									<?php
+								}
 								
+								?>
 								<div class="dropdown ">
 									<a class="nav-link pr-0 leading-none" href="#" data-toggle="dropdown" aria-expanded="false">
 									    <div class="profile-details mt-2">
