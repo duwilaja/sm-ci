@@ -13,6 +13,8 @@ class Map extends CI_Controller {
 	{
 		$data['lat'] = $this->input->get("lat");
 		$data['lng'] = $this->input->get("lng");
+		$data['latfld'] = $this->input->get("latfld");
+		$data['lngfld'] = $this->input->get("lngfld");
 		$this->load->view('map',$data);
 	}
 }
