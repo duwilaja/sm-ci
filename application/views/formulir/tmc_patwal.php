@@ -365,9 +365,9 @@ $(document).ready(function(){
         dropdownParent: $('#proses')
     });
     $("#cari").click(function(){
-        if (date == '' && time != '') {
-            alert('isi Tanggal');
-        }else{
+        // if (date == '' || time != '') {
+        //     alert('isi Tanggal');
+        // }else{
             date = $("#date").val();
             time =   $("#time").val();
             status =   $("#status").val();
@@ -405,7 +405,7 @@ $(document).ready(function(){
             });
             datepicker(); 
             timepicker();
-        }
+        // }
     });
 });
 
