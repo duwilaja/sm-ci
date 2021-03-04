@@ -230,6 +230,22 @@
                 </div>
             </div>
             <hr>
+            <div class="row">
+                <input type="hidden" name="id_detail" id="id_detail" value="">
+                <div class="col">
+                    <h5 class="mb-4 ">No Ktp</h5>
+                    <p class="text-gray" id="ktp_detail"></p>
+                </div>
+                <div class="col">
+                    <h5 class="mb-4">No Tlp</h5>
+                    <p class="text-gray" id="no_hp_detail"></p>
+                </div>
+                <div class="col">
+                    <h5 class="mb-4">Email</h5>
+                    <p class="text-gray" id="email_detail"></p>
+                </div>
+            </div>
+            <hr>
             <div>
                 <h5>Kategori Pengawalan</h5>
                 <p class="text-gray" id="kategori_pengawalan_detail"></p>
@@ -487,6 +503,9 @@ function detail (id){
                     $("#kategori_pengawalan_detail").html(data.pk_id);
                     $("#alamat_awal_detail").html(data.alamat_awal);
                     $("#alamat_tujuan_detail").html(data.alamat_tujuan);
+                    $("#ktp_detail").html(data.ktp);
+                    $("#no_hp_detail").html(data.no_hp);
+                    $("#email_detail").html(data.email);
                     $("#deskripsi").html(data.deskripsi);        
                 }
             });
