@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols.="media,jenis,jenisd,ket";
+$cols.="media,jenis,jenisd,ket,lat,lng";
 ?>
 
 <input type="hidden" name="tablename" value="tmc_interaksi">
@@ -51,15 +51,38 @@ $cols.="media,jenis,jenisd,ket";
 			<textarea name="ket" class="form-control"></textarea>
 		</div>
 	</div>
+	<div class="col-sm-6 col-md-2 aduan hidden">
+		<div class="form-group">
+			<label class="form-label">Latitude</label>
+			<input type="text" id="lat" name="lat" class="form-control" placeholder="" >
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-2 aduan hidden">
+		<div class="form-group">
+			<label class="form-label">Longitude</label>
+			<input type="text" id="lng" name="lng" class="form-control" placeholder="" >
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-1 aduan hidden">
+		<div class="form-group">
+			<label class="form-label">&nbsp;</label>
+			<button type="button" class="btn btn-icon btn-facebook" onclick="mappicker('#lat','#lng');"><i class="fa fa-map-marker"></i></button>
+		</div>
+	</div>
 </div>
 
 
 <script>
+function mappicker(lat,lng){
+	window.open(base_url+"map?lat="+$(lat).val()+"&lng="+$(lng).val(),"MapWindow","width=830,height=500,location=no").focus();
+}
 function jenischanged(tv){
 	if(tv=='Yan Aduan'){
 		$(".aduan").show();
 	}else{
 		$("#jenisd").val("");
+		$("#lat").val("");
+		$("#lng").val("");
 		$(".aduan").hide();
 	}
 }
