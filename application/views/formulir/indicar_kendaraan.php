@@ -10,52 +10,6 @@
 	<div class="card-header">
 		<div class="card-title judul">
              Data Kendaraan		
-            <div class="row mt-5">
-                <div class="col">
-                <form method="POST">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                    </div>
-                    <input type="text" class="form-control datepicker" id="date">
-                </div>
-                </div>
-                <div class="col">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                        <i class="fa fa-times"></i>
-                        </div>
-                    </div>
-                    <input type="text" class="form-control timepicker" id="time">
-                </div>
-                </div>
-                <div class="col">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                        <i class="fa fa-list"></i>
-                        </div>
-                    </div>
-                    <select name="status" id="status" class="form-control">
-                        <option value="">All</option>
-                        <option value="0">Pengajuan</option>
-                        <option value="1">Disetujui</option>
-                        <option value="2">Ditolak</option>
-                        <option value="3">Sedang Berjalan</option>
-                        <option value="4">Selesai</option>
-                    </select>
-                </div>
-                </div>
-                <div class="col">
-                <div class="input-group">
-                    <button type="button" id="cari" class="btn btn-success" >Cari</button>
-                </div>
-                </form>
-                </div>
-            </div>
 		</div>
 		<div class="card-options ">
 			<!--a href="#" title="Batch" class=""><i class="fe fe-upload"></i></a>-->
@@ -159,31 +113,7 @@ $(document).ready(function(){
     datepicker(); 
     timepicker();
     $("#cari").click(function(){
-            date = $("#tgl").val();
-            table =  $('#mytbl').DataTable({
-                // Processing indicator
-                "bAutoWidth": false,
-                "destroy": true,
-                "autoWidth": true,
-                "searching": false,
-                "processing": true,
-                "serverSide": true,
-                "scrollX": true,
-                // "buttons": ['copy', {extend : 'excelHtml5', messageTop: $(".judul").text()}],
-                "order": [],
-                "ajax": {
-                    "url": '<?php echo base_url()?>api_indicar/dt_kendaraan',
-                    "type": "POST",
-                    "data" : {
-                        'a' : null,
-                        'tgl' : null,
-                        'length' : 10,
-                    }
-                },
-                "columnDefs": [{
-                    "orderable": false
-                }]
-            });
+            dt();
             datepicker(); 
             timepicker();
         // }
@@ -195,7 +125,7 @@ $(document).ready(function(){
             var t_longitude=$('#t_longitude').val();
             $.ajax({
                 type : "POST",
-                url  : "<?php echo base_url()?>api_indicar/proses_tambah",
+                url  : "<?php echo base_url()?>api_indicar/tambah_kendaraan",
                 dataType : "JSON",
                 data : {
                     t_nama:t_nama,
@@ -219,7 +149,7 @@ $(document).ready(function(){
             var kendaraannama=$('#kendaraannama').val();
             $.ajax({
                 type : "POST",
-                url  : "<?php echo base_url()?>api_indicar/proses_edit",
+                url  : "<?php echo base_url()?>api_indicar/edit_kendaraan",
                 dataType : "JSON",
                 data : {kendaraanid:kendaraanid , kendaraannama:kendaraannama,},
                 success: function(data){
@@ -235,7 +165,7 @@ $(document).ready(function(){
             var kendaraanid=$('#kendaraanid').val();
             $.ajax({
                 type : "POST",
-                url  : "<?php echo base_url()?>api_indicar/proses_delete",
+                url  : "<?php echo base_url()?>api_indicar/delete_kendaraan",
                 dataType : "JSON",
                 data : {kendaraanid:kendaraanid,},
                 success: function(data){
@@ -249,29 +179,10 @@ $(document).ready(function(){
 });
 
 function dt(){
-    table =  $('#mytbl').DataTable({
-        // Processing indicator
-        "bAutoWidth": false,
-        "destroy": true,
-        "autoWidth": true,
-        "searching": false,
-        "processing": true,
-        "serverSide": true,
-        "scrollX": true,
-        // "buttons": ['copy', {extend : 'excelHtml5', messageTop: $(".judul").text()}],
-        "order": [],
-        "ajax": {
-            "url": '<?php echo base_url()?>api_indicar/dt_kendaraan',
-            "type": "POST",
-            "data" : {
-                'a' : null,
-                'tgl' : null,
-                'length' : 10,
-            }
-        },
-        "columnDefs": [{
-            "orderable": false
-        }]
+    $(document).ready(function() {
+        $('#mytbl').DataTable( {
+            "ajax": '<?php echo base_url()?>api_indicar/dt_kendaraan'
+        } );
     });
 }
 
