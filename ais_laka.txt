@@ -1,0 +1,2 @@
+ALTER TABLE `ais_laka` ADD `tanggal` DATE NOT NULL AFTER `thn`, ADD `jam` TIME NOT NULL AFTER `tanggal`, ADD `penyebab` VARCHAR(100) NOT NULL AFTER `jam`, ADD `lokasi` VARCHAR(100) NOT NULL AFTER `penyebab`, ADD `kendaraan` VARCHAR(75) NOT NULL AFTER `lokasi`;
+
