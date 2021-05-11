@@ -48,12 +48,13 @@ class Laporan extends CI_Controller {
 	{
 		$user=$this->session->userdata('user_data');
 		if(isset($user)){
+			$data['session'] = $user;
 			$id=$this->input->post('id');//this is the view
 			
 			//put all masterdatas needed here
 			$data['dummy']="this is dummy data";
 			
-			if($id=='tmc_info_lalin'){  //tmc info lalin
+			if($id=='tmc_info_lalin' || $id=='ais_laka'){  //tmc info lalin
 				$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
 			}
 			if($id=='eri_kendaraan'||$id=='ais_laka'){  //eri kendaraan
