@@ -17,15 +17,15 @@ class Login extends CI_Controller {
 		$nrp=$this->input->post("user");
 		$pwd=$this->input->post("passwd");
 		
-		$this->db->where('nrp',$nrp);
-		$this->db->where('pwd',md5($pwd));
-		$acc=$this->db->get("accounts")->result_array();
+		$this->db->where('uid',$nrp);
+		$this->db->where('upwd',md5($pwd));
+		$acc=$this->db->get_where("core_user",['usts' => '1'])->result_array();
 			
 		if(count($acc)>0){
 			$this->db->where('nrp',$nrp);
 			$this->db->where('isactive','Y');
 			$retval=$this->db->get("persons")->result_array();
-			if(count($retval)>0){
+			if(count($retval) > 0){
 				$loggedin=true;
 				$this->session->set_userdata('user_data',$retval[0]);
 				$data['session']=$retval[0];

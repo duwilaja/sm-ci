@@ -65,7 +65,7 @@ if (!function_exists('cekData')) {
 if (!function_exists('srlen')) {
 	function srlen($n='')
 	{
-		$x = str_replace([0,1,2,3,4,5,6,7,8,9],['z%','x$','j#','k!','i`','u&','b*','a(','c)','f_'],$n);
+		$x = str_replace([0,1,2,3,4,5,6,7,8,9],['z%','x$','j#','k!','i`','u&','b*','a(','c)','f~_'],$n);
 		$okz= base64_encode($x);
 		return $okz;
 	}
@@ -75,7 +75,7 @@ if (!function_exists('srlde')) {
 	function srlde($okj='')
 	{
 		$nama = base64_decode($okj);
-		$x = str_replace(['z%','x$','j#','k!','i`','u&','b*','a(','c)','f_'],[0,1,2,3,4,5,6,7,8,9],$nama);
+		$x = str_replace(['z%','x$','j#','k!','i`','u&','b*','a(','c)','f~_'],[0,1,2,3,4,5,6,7,8,9],$nama);
 		return $x;
 	}
 }
@@ -148,6 +148,13 @@ if (!function_exists('setStatus')) {
 	}
 }
 
+if (!function_exists('inp')) {
+	function inp()
+	{
+		return json_decode(file_get_contents("php://input"),true);
+	}
+}
+
 if (!function_exists('calcHours')) {
 	function calcHours($startdate,$enddate)
 	{
@@ -171,20 +178,16 @@ if (!function_exists('calc_minute')) {
 	}
 }
 
-if (!function_exists('categ')) {
-	 function categ($c='')
+if (!function_exists('gnrt_inp')) {
+	 function gnrt_inp($i='',$inp=[])
     {
-        if ($c != '') {
-             if ($c == 'pp') {
-                 return 'Potential Prospect';
-             }else if ($c == 'pt') {
-                 return 'Potential Target';
-             }else if ($c == 'qo') {
-                 return 'Qualified Opportunity';
-             }else{
-				 return '-';
-			 }
-        }
+	   $obj = [];
+		if ($i != '' && !empty($inp)) {
+			foreach ($i as $k => $v) {
+				if(!empty($inp[$k])) $obj[$inp[$k]] = $v;
+			}
+		}
+	   return $obj;
     }
 }
 
@@ -194,6 +197,33 @@ if (!function_exists('test')) {
 	{
 		return date('Y-m-d H:i:s',strtotime($where));
 	}
+}
+
+if (!function_exists('tgl_indo')) {
+	 function tgl_indo($tanggal){
+		$bulan = array (
+		  1=>'Januari',
+		  'Februari',
+		  'Maret',
+		  'April',
+		  'Mei',
+		  'Juni',
+		  'Juli',
+		  'Agustus',
+		  'September',
+		  'Oktober',
+		  'November',
+		  'Desember'
+		);
+		$tgl = explode(' ',$tanggal);
+		$pecahkan = explode('-', $tgl[0]);
+		
+		// variabel pecahkan 0 = tanggal
+		// variabel pecahkan 1 = bulan
+		// variabel pecahkan 2 = tahun
+	   
+		return @$pecahkan[2] . ' ' . @$bulan[ (int)$pecahkan[1] ] . ' ' . @$pecahkan[0]. ' ';
+	  }
 }
 
 if (!function_exists('comboopts')){

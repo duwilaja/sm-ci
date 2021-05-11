@@ -56,11 +56,11 @@ echo form_dropdown('formulir', array_reverse($formulir,true), '',$opt);
 					<div class="col-sm-6 col-md-4 dasar">
 						<div class="form-group">
 							<label class="form-label">Dasar</label>
-<?php
-$dasargiat['']='---pilih dasar giat---';
-$opt=array('class'=>'form-control','id'=>'dasar');
-echo form_dropdown('dasar', array_reverse($dasargiat,true), '',$opt);
-?>
+							<?php
+							$dasargiat['']='---pilih dasar giat---';
+							$opt=array('class'=>'form-control','id'=>'dasar');
+							echo form_dropdown('dasar', array_reverse($dasargiat,true), '',$opt);
+							?>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-4 nomor">
@@ -110,7 +110,7 @@ function ambil_isi(v){
 	$(".btn-pill").attr("disabled",false);
 	reset_isi();
 	if(v==''){
-		//alrt("Please select a value for formulir","error");
+		alrt("Please select a value for formulir","error");
 		return;
 	}
 	$("."+v).attr("disabled",true);
@@ -118,7 +118,7 @@ function ambil_isi(v){
 	get_content('laporan/get_content',{id:v},'.ldr','#isilaporan');
 }
 function reset_isi(){
-	$('#myf').removeData('validator');
+	jvalidate=null;
 	$("#isilaporan").html('');
 	$("#btn_save").hide();
 	$(".nomor").hide();

@@ -41,7 +41,7 @@ $('#form_add').submit(function (e) {
         dataType: "json",
         success: function (r) {
             if (r.status) {
-                alert(r.msg);
+                swal("Berhasil", r.msg, "success");
                 document.getElementById("form_add").reset();
                 show_dt();
                 $('#myModal').modal('hide');
@@ -66,16 +66,12 @@ $('#form_up').submit(function (e) {
         dataType: "json",
         success: function (r) {
             if (r.status) {
-                alert(r.msg);
+                swal("Berhasil", r.msg, "success");
                 document.getElementById("form_up").reset();
                 show_dt();
                 $('#myModal2').modal('hide');
             }else{
-                Swal.fire(
-                    'Gagal',
-                    r.msg,
-                    'error'
-                  );
+                swal("Gagal", r.msg, "error");
             } 
         }
     });
@@ -92,16 +88,12 @@ $('#btn_del').click(function (e) {
             dataType: "json",
             success: function (r) {
                 if (r.status) {
-                    alert(r.msg);
+                    swal("Berhasil", r.msg, "success");
                     document.getElementById("form_up").reset();
                     show_dt();
                     $('#myModal2').modal('hide');
                 }else{
-                    Swal.fire(
-                        'Gagal',
-                        r.msg,
-                        'error'
-                    );
+                    swal("Gagal", r.msg, "error");
                 } 
             }
         });
@@ -123,38 +115,38 @@ function get_data_id(id='') {
     });
 }
 
-function deAnggota(id='') { 
-    if (id != '') {
-        var r = confirm("Apakah anda yakin ingin menghapus data ini ?");
-        if (r == true) {
-            txt = "You pressed OK!";
-            $.ajax({
-                type: "POST",
-                url: "deAnggota",
-                data: {id : id},
-                dataType: "json",
-                success: function (r) {
-                    if (r.status) {
-                        Swal.fire(
-                            'Berhasil',
-                            r.msg,
-                            'success'
-                          );
-                          showAnggota();
-                     }else{
-                         Swal.fire(
-                             'Gagal',
-                             r.msg,
-                             'error'
-                           );
-                     }
-                }
-            });
-        } else {
-          txt = "You pressed Cancel!";
-        }
-    }
- }
+// function deAnggota(id='') { 
+//     if (id != '') {
+//         var r = confirm("Apakah anda yakin ingin menghapus data ini ?");
+//         if (r == true) {
+//             txt = "You pressed OK!";
+//             $.ajax({
+//                 type: "POST",
+//                 url: "deAnggota",
+//                 data: {id : id},
+//                 dataType: "json",
+//                 success: function (r) {
+//                     if (r.status) {
+//                         Swal.fire(
+//                             'Berhasil',
+//                             r.msg,
+//                             'success'
+//                           );
+//                           showAnggota();
+//                      }else{
+//                          Swal.fire(
+//                              'Gagal',
+//                              r.msg,
+//                              'error'
+//                            );
+//                      }
+//                 }
+//             });
+//         } else {
+//           txt = "You pressed Cancel!";
+//         }
+//     }
+//  }
 
 function get_select(url='',id='',name='') { 
     if(name == '') name = 'customer';

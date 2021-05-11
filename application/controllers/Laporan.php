@@ -5,7 +5,8 @@ class Laporan extends CI_Controller {
 	
 	public function __construct()
 	{
-		parent::__construct();
+        parent::__construct();
+        $this->load->model('MLaporan','ml');
 		// Your own constructor code
 	}
 	
@@ -14,6 +15,7 @@ class Laporan extends CI_Controller {
 		$user=$this->session->userdata('user_data');
 		if(isset($user)){
 			$data['session'] = $user;
+			$data['jumlah'] = comboopts($this->db->select('id as v, status as t')->where("status",0)->get('patwal_permohonan')->result());
 			$data['dasargiat'] = comboopts($this->db->select('dg_id as v,dg_nam as t')->get('dasargiat')->result());
 			$data['formulir'] = comboopts($this->db->select('view_laporan as v,nama_laporan as t')->where("unit",$user['unit'])->or_where("unit",$user["subdinas"])->get('formulir')->result());
 			$data['title'] = "Formulir";
@@ -24,7 +26,24 @@ class Laporan extends CI_Controller {
 			$data['retval']=$retval;
 			$this->load->view('login',$data);
 		}
-	}
+    }
+
+    //Éntry Laporan Gatur Lalin
+    public function dt_lap_gat_lin()
+    {
+        echo ($this->ml->dt_lap_gat_lin());
+    }
+
+    public function lap_gat_lin()
+    {
+        $data = [
+            'title' => 'Laporan Giat Lalin',
+            'js_local' => 'laporan/lap_gat_lin.js',
+        ];
+        $this->template->load('page/laporan/lap_gat_lin', $data);
+    }
+    
+
 	
 	public function get_form()
 	{

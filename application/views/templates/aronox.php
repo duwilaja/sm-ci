@@ -142,7 +142,7 @@ if(count($farr)>0&&$session['nrp']!=''){
 									</div>
 								</div><!-- MESSAGE-BOX -->
 
-								<!--div class="dropdown header-notify">
+								<!-- <div class="dropdown header-notify">
 									<a class="nav-link icon" data-toggle="dropdown">
 										<i class="mdi mdi-bell-outline"></i>
 										<span class="pulse bg-danger hidden"></span>
@@ -152,8 +152,34 @@ if(count($farr)>0&&$session['nrp']!=''){
 									
 									</div>
 									</div>
-								</div-->
+								</div> -->
+										   <?php
+											
+										    if ($session['unit'] == "TMC" && $this->uri->segment(1) == "laporan") {
+											$i = 0;
+											foreach ($jumlah as $value) {
+												$i++;	
+											}
+											?>
+											<div class="dropdown header-notify">
+											<a class="nav-link icon" data-toggle="dropdown">
+												<i class="mdi mdi-bell-outline"></i>
+												<span class="pulse bg-danger "></span>
+											</a>
+											<div id="lonceng" class="">
+												<div id="isilonceng" class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+													<div class="h4">
+														<a class="dropdown-item" onclick="ambil_isi('tmc_patwal')">
+															<i class="dropdown-icon mdi  mdi-car"></i> <span style="color: red;"><?php echo $i ?> </span> Permohonan Pengawalan
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									<?php
+								}
 								
+								?>
 								<div class="dropdown ">
 									<a class="nav-link pr-0 leading-none" href="#" data-toggle="dropdown" aria-expanded="false">
 									    <div class="profile-details mt-2">
@@ -232,11 +258,50 @@ if(count($farr)>0&&$session['nrp']!=''){
 										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/prasarana_public">Prasarana Public</a></li>
 										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/potensi_masyarakat">Potensi Masyarakat</a></li>
 										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kegiatan">Kegiatan</a></li>
-										<!-- <li aria-haspopup="true"><a href="<?php echo $base_url?>unit">Unit</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>pangkat">Kepangkatan</a></li>
-										<li aria-haspopup="true"><a href="<?php echo $base_url?>dasargiat">Dasar Giat</a></li> -->
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/penyebab">Penyebab</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/kejadian_ditemukan">Kejadian Ditemukan</a></li>
+										<li aria-haspopup="true"><a href="<?php echo $base_url?>MasterData/parameter_antrian">Parameter Antrian</a></li>
 									</ul>
 								</li>
+								<li aria-haspopup="true"><a href="#" class="sub-icon "><i class="fa fa-cogs"></i> Setup <i class="fa fa-angle-down horizontal-icon"></i></a>
+									<div class="horizontal-megamenu clearfix">
+										<div class="container">
+											<div class="mega-menubg">
+												<div class="row">
+													<div class="col-lg-3 col-md-12 col-xs-12 link-list">
+														<ul>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/polda">Polda</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/polres">Polres</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/direktorat">Direktorat</a></li>
+														</ul>
+													</div>
+													<div class="col-lg-3 col-md-12 col-xs-12 link-list">
+														<ul>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/subdit">Subdit</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/bagian">Bagian</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/subbag">Sub Bagian</a></li>
+														</ul>
+													</div>
+													<div class="col-lg-3 col-md-12 col-xs-12 link-list">
+														<ul>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/unit">Unit</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/pangkat">Kepangkatan</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/sie">Sie</a></li>
+														</ul>
+													</div>
+													<div class="col-lg-3 col-md-12 col-xs-12 link-list">
+														<ul>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/ro">Ro</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/formulir">Formulir</a></li>
+															<li aria-haspopup="true"><a href="<?php echo $base_url?>setup/dasar_giat">Dasar Giat</a></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+						
 						<?php } ?>
 							</ul>
 						</nav>
@@ -272,7 +337,7 @@ if(count($farr)>0&&$session['nrp']!=''){
 				<div class="container">
 					<div class="row align-items-center flex-row-reverse">
 						<div class="col-md-12 col-sm-12 mt-3 mt-lg-0 text-center">
-							Copyright ©2020 <a target="_blank" href="http://www.matrik.co.id">Matrik</a>. All rights reserved.
+							Copyright Â©2020 <a target="_blank" href="http://www.matrik.co.id">Matrik</a>. All rights reserved.
 						</div>
 					</div>
 				</div>

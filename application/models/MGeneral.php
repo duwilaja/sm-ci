@@ -7,6 +7,7 @@ class MGeneral extends CI_Model {
     {
         parent::__construct();
         $this->load->helper('dt');
+        $this->load->library('_dt');
     }
     
     public function crud($arr=[])
@@ -30,13 +31,13 @@ class MGeneral extends CI_Model {
             $x = $this->get_data_id($tabel,array_keys($field_up));
             echo json_encode($x);
         }else if($ax == "in"){
-            $x = $this->in($tabel,$field_in);
+            $x = $this->in_dm($tabel,$field_in);
             echo json_encode(['msg' => 'Sukses','status' => true]);
         }else if($ax == "up"){
-            $x = $this->up($tabel,array_keys($field_up));
+            $x = $this->up_dm($tabel,array_keys($field_up));
             echo json_encode(['msg' => 'Sukses','status' => true]);
         }else if($ax == "de"){
-            $x = $this->de($tabel,array_keys($field_up));
+            $x = $this->de_dm($tabel,array_keys($field_up));
             echo json_encode(['msg' => 'Sukses','status' => true]);
         }else{
             $data = [
@@ -50,27 +51,6 @@ class MGeneral extends CI_Model {
             ];
             $this->template->load('page/master_data/master_data', $data);
         }
-    }
-
-    // Digunakan untuk mengambil data berdasarkan id
-    public function get_data_id($tabel,$obj)
-    {
-        $x = implode(',',$obj);
-        $this->db->select($x);
-        $q = $this->db->get_where($tabel,[$obj[0] => $this->input->get('u_'.$obj[0])]);
-        return $q->row();
-    }
-
-    // Digunakan untuk mengambil semua data
-    public function get($tabel,$where='',$x='*')
-    {
-        $this->db->select($x);
-        if ($where != '') {
-            $q = $this->db->get_where($tabel,$where);
-        }else{
-            $q = $this->db->get($tabel);
-        }
-        return $q;
     }
 
     // DataTable general tidak dperuntukan untuk tabel join
@@ -110,7 +90,7 @@ class MGeneral extends CI_Model {
             foreach ($view as $x) {
                array_push($field,$arr[$x]);
             }
-            $f = select_dt($table,$field,$dt);
+            $f = $this->_dt->select_dt($table,$field,$dt);
             array_push($data,$f);
         }
         // echo json_encode($data);
@@ -187,7 +167,7 @@ class MGeneral extends CI_Model {
         return json_encode($output);
     }
 
-    public function in($tabel,$object)
+    public function in_dm($tabel,$object)
     {
         $data_tmp = [];
         if($tabel == '') return [false];
@@ -207,7 +187,7 @@ class MGeneral extends CI_Model {
         return [false];
     }
 
-    public function up($tabel,$object)
+    public function up_dm($tabel,$object)
     {
         $data_tmp = [];
         if($tabel == '') return [false];
@@ -229,7 +209,7 @@ class MGeneral extends CI_Model {
         return [false];
     }
 
-    public function de($tabel,$object)
+    public function de_dm($tabel,$object)
     {
         $where = [
             $object[0] => $this->input->post('u_'.$object[0])
@@ -242,6 +222,57 @@ class MGeneral extends CI_Model {
 
         return [false];
     }
+
+    // General Insert, Edit, Delete dll
+
+     // Digunakan untuk mengambil data berdasarkan id
+     public function get_data_id($tabel,$obj)
+     {
+         $x = implode(',',$obj);
+         $this->db->select($x);
+         $q = $this->db->get_where($tabel,[$obj[0] => $this->input->get('u_'.$obj[0])]);
+         return $q->row();
+     }
+ 
+     // Digunakan untuk mengambil semua data
+     public function get($tabel,$where='',$select='*')
+     {
+         $this->db->select($select);
+         if ($where != '') {
+             $q = $this->db->get_where($tabel,$where);
+         }else{
+             $q = $this->db->get($tabel);
+         }
+         return $q;
+     }
+
+     public function in($tabel='',$object=[])
+     {
+         if($tabel == '') return [false];
+         if(empty($object)) return [false];
+
+         $q = $this->db->insert($tabel, $object);
+         if ($this->db->affected_rows() > 0) {
+             $id = $this->db->insert_id();
+             return [true,$id];
+         }
+         
+        return [false];
+     }
+ 
+     public function up($tabel='',$object=[],$where=[])
+     {
+        if($tabel == '') return [false];
+         if(empty($object)) return [false];
+         if(empty($where)) return [false];
+
+        $q = $this->db->update($tabel, $object,$where);
+        if ($this->db->affected_rows() > 0) {
+            return [true];
+        }
+ 
+        return [false];
+     }
 
 }
 

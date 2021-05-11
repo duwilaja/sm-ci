@@ -43,13 +43,12 @@ class DataTable extends CI_Model{
          if ($kondisi == "join") {
              $query = $this->db->$kondisi($condition[$i][1], $condition[$i][2], $condition[$i][3]);
          }else if($kondisi == "where" || "or_where" || "where_not_in" || "where_in"){
-             $query = $this->db->$kondisi($condition[$i][1], @$condition[$i][2]);
+             $query = $this->db->$kondisi($condition[$i][1], $condition[$i][2]);
          }else if($kondisi == "like"){
              $query = $this->db->$kondisi($condition[$i][1], $condition[$i][2], $condition[$i][3]);
-         }else if($kondisi == "group_by"){
-             $query = $this->db->$kondisi($condition[$i][1]);
          }
          return $query;
+         
     }
     
     /*
