@@ -88,6 +88,17 @@ class Laporan extends CI_Controller {
 				$data['pospjr']=$this->db->select("nama,lat,lng")->where("pos","Pos PJR")->get('ssc_jalan')->result();
 				$data['koordinasi']=$this->db->select("giat,lat,lng")->get('tmc_koordinasi')->result();
 			}
+			if($id=='tar_data'){
+				$data['pelanggaran']=array(
+				"Kamtibmas"=>"Kamtibmas",
+				"Lampu Utama"=>"Lampu Utama",
+				"Jalur/lajur lalu lintas"=>"Jalur/lajur lalu lintas",
+				"Belokan/simpangan"=>"Belokan/simpangan",
+				"Kecepatan"=>"Kecepatan",
+				"Berhenti"=>"Berhenti",
+				"Parkir"=>"Parkir",
+				"Kendaraan Tidak Bermotor"=>"Kendaraan Tidak Bermotor");
+			}
 			
 			$this->load->view("formulir/$id",$data); //load the view
 			
