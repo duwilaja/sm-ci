@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols.="sim,pelanggaran,penindakan,tanggal,jml";
+$cols.="sim,pelanggaran,penindakan,tanggal,jml,usia";
 ?>
 
 <input type="hidden" name="tablename" value="tar_data">
@@ -42,6 +42,21 @@ echo form_dropdown('sim', array_reverse($sim,true), '',$opt);
 	</div>
 	<div class="col-sm-6 col-md-2">
 		<div class="form-group">
+			<label class="form-label">Usia</label>
+	<?php
+$usia=array(
+	"<18"=>"<18 th",
+	"18-25"=>"18-25 th",
+	"25-40"=>"25-40 th",
+	">40"=>">40 th"
+	);
+$opt=array('class'=>'form-control','id'=>'usia');
+echo form_dropdown('usia', array_reverse($usia,true), '',$opt);
+?>
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-2">
+		<div class="form-group">
 			<label class="form-label">Jumlah</label>
 			<input type="text" name="jml" class="form-control">
 		</div>
@@ -74,11 +89,13 @@ jvalidate = $("#myf").validate({
 		"nomor" : {
 			required : true
 		},
-		"media" : {
-			required : true
+		"penindakan" : {
+			required : true,
+			number : true
 		},
-		"jenis" : {
-			required : true
+		"jml" : {
+			required : true,
+			number : true
 		}
     }});
 
