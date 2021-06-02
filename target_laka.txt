@@ -1,0 +1,29 @@
+
+CREATE TABLE `target_laka` (
+  `rowid` int(11) NOT NULL,
+  `thn` varchar(4) NOT NULL,
+  `da` varchar(20) NOT NULL,
+  `res` varchar(20) NOT NULL,
+  `jml` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `target_laka`
+--
+ALTER TABLE `target_laka`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `target_laka`
+--
+ALTER TABLE `target_laka`
+  MODIFY `rowid` int(11) NOT NULL AUTO_INCREMENT;
+

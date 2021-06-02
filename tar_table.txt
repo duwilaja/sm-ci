@@ -38,8 +38,9 @@ ALTER TABLE `tar_data`
 ALTER TABLE `tar_data`
   MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE `tar_data` ADD `usia` VARCHAR(20) NOT NULL AFTER `jml`;
+
 INSERT INTO formulir (unit,nama_laporan,view_laporan) VALUES ('TAR','TAR Data','tar_data');
 
-
-ALTER TABLE `ais_laka` ADD `tanggal` DATE NOT NULL AFTER `thn`, ADD `jam` TIME NOT NULL AFTER `tanggal`, ADD `penyebab` VARCHAR(100) NOT NULL AFTER `jam`, ADD `lokasi` VARCHAR(100) NOT NULL AFTER `penyebab`, ADD `kendaraan` VARCHAR(75) NOT NULL AFTER `lokasi`;
+INSERT INTO unit (unit_id,unit_nam) VALUES ('TAR','TAR');
 
