@@ -11,7 +11,6 @@ class Api_indicar extends CI_Controller {
         $this->load->model('Mindicar','mic');
 		// Your own constructor code
 	}
-
     function cek_token(){ // cek exp date
         echo $this->mic->cek_token();
     }
@@ -43,7 +42,7 @@ class Api_indicar extends CI_Controller {
         //     ));
         // }
         $this->db->insert_batch('indicar_data_kendaraan', $insert);
-    //   echo $this->mic->dt_kendaraan();
+        // echo $this->mic->dt_kendaraan();
     }
     function detail_kendaraan()
     {
@@ -54,7 +53,6 @@ class Api_indicar extends CI_Controller {
     {
         echo $this->mic->refresh_pengaduan();
     }
-
     function tambah_kendaraan()
     {
         $dt = $this->mic->get_token();
@@ -78,7 +76,6 @@ class Api_indicar extends CI_Controller {
         );
         echo $this->mic->tambah($url,$token,$table,$insert_api,$insert_db);
     }
-
     function edit_kendaraan()
     {
         $dt = $this->mic->get_token();
