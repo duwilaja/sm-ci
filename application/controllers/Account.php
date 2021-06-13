@@ -103,7 +103,7 @@ class Account extends CI_Controller {
 			$pwd=random_string();
 			$usr=$this->db->where("uid",$nrp)->get("core_user")->result();
 			if(count($usr)>0){
-				$this->db->where("uid",$nrp)->update("core_user",array("pwd"=>md5($pwd)));
+				$this->db->where("uid",$nrp)->update("core_user",array("upwd"=>md5($pwd)));
 			}else{
 				$akun=array('uid'=>$nrp,'upwd'=>md5($pwd));
 				$this->db->insert("core_user",$akun);
