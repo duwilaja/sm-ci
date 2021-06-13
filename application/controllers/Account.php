@@ -31,11 +31,12 @@ class Account extends CI_Controller {
 	
 	public function sendmail($to,$sub,$msg){
 		$config = Array(
-			'protocol' => 'smtp',
+			'protocol' => 'mail',
 			'smtp_host' => 'mail.matrik.co.id',
 			'smtp_port' => 465,
 			'smtp_user' => 'info@matrik.co.id',
 			'smtp_pass' => 'InfoMatrik312',
+			'smtp_crypto'   => 'ssl',
 			'mailtype'  => 'html', 
 			'charset'   => 'iso-8859-1',
 			'priority'  => 1
