@@ -101,12 +101,12 @@ class Account extends CI_Controller {
 		if(count($usr)>0){
 			$nama=$usr[0]->nama;
 			$pwd=random_string();
-			$usr=$this->db->where("nrp",$nrp)->get("accounts")->result();
+			$usr=$this->db->where("nrp",$nrp)->get("core_usr")->result();
 			if(count($usr)>0){
-				$this->db->where("nrp",$nrp)->update("accounts",array("pwd"=>md5($pwd)));
+				$this->db->where("nrp",$nrp)->update("core_usr",array("pwd"=>md5($pwd)));
 			}else{
 				$akun=array('nrp'=>$nrp,'pwd'=>md5($pwd));
-				$this->db->insert("accounts",$akun);
+				$this->db->insert("core_user",$akun);
 			}
 			$ret=$this->db->affected_rows();
 			if($ret>0){
