@@ -22,12 +22,15 @@ class Welcome extends CI_Controller {
 	public function sendmail($to,$sub,$msg){
 		$config = Array(
 			'protocol' => 'smtp',
-			'smtp_host' => 'ssl://smtp.googlemail.com',
+			'smtp_host' => 'smtp.googlemail.com',
 			'smtp_port' => 465,
 			'smtp_user' => 'smart.mgmt.mmt@gmail.com',
 			'smtp_pass' => 'Bismillah3x!.',
+			'smtp_crypto'  => 'ssl', 
 			'mailtype'  => 'html', 
-			'charset'   => 'iso-8859-1'
+			'charset'   => 'iso-8859-1',
+			'newline'   => "\r\n",
+			'wordwrap'  => TRUE
 		);
 		$this->load->library('email', $config);
 		$this->email->set_newline("\r\n");
@@ -37,7 +40,11 @@ class Welcome extends CI_Controller {
 		$this->email->subject("Smart Management : $sub");
 		$this->email->message($msg);
 		
-		return $this->email->send();
+		$ok = [
+			'rsp' => $this->email->send(),
+			'error' => $this->email->print_debugger()
+		];
+		return $ok;
 	}
 
 	public function cek_mail()
