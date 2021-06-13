@@ -68,8 +68,8 @@ class Account extends CI_Controller {
 				$pwd=random_string();
 				$nama=$this->input->post('nama');
 				$email=$this->input->post('email');
-				$akun=array('nrp'=>$nrp,'pwd'=>md5($pwd));
-				$this->db->insert("accounts",$akun);
+				$akun=array('nrp'=>$nrp,'upwd'=>md5($pwd),'usts' => 1,'ulvl' => 1);
+				$this->db->insert("core_usr",$akun);
 				$ret=$this->db->affected_rows();
 				if($ret>0){
 					$msgs="Account successfully created. ";
