@@ -31,20 +31,18 @@ class Account extends CI_Controller {
 	
 	public function sendmail($to,$sub,$msg){
 		$config = Array(
-			'protocol' => 'mail',
-			'smtp_host' => 'mail.matrik.co.id',
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://smtp.googlemail.com',
 			'smtp_port' => 465,
-			'smtp_user' => 'info@matrik.co.id',
-			'smtp_pass' => 'InfoMatrik312',
-			'smtp_crypto'   => 'ssl',
+			'smtp_user' => 'smart.mgmt.mmt@gmail.com',
+			'smtp_pass' => 'Bismillah3x!.',
 			'mailtype'  => 'html', 
-			'charset'   => 'iso-8859-1',
-			'priority'  => 1
+			'charset'   => 'iso-8859-1'
 		);
 		$this->load->library('email', $config);
 		$this->email->set_newline("\r\n");
 		
-		$this->email->from('info@matrik.co.id', 'Smart Management App');
+		$this->email->from('smart.mgmt.mmt@gmail.com', 'Smart Management App');
 		$this->email->to($to);
 		$this->email->subject("Smart Management : $sub");
 		$this->email->message($msg);
