@@ -68,7 +68,7 @@ class Account extends CI_Controller {
 				$pwd=random_string();
 				$nama=$this->input->post('nama');
 				$email=$this->input->post('email');
-				$akun=array('nrp'=>$nrp,'upwd'=>md5($pwd),'usts' => 1,'ulvl' => 1);
+				$akun=array('uid'=>$nrp,'upwd'=>md5($pwd),'usts' => 1,'ulvl' => 1);
 				$this->db->insert("core_user",$akun);
 				$ret=$this->db->affected_rows();
 				if($ret>0){
@@ -101,11 +101,11 @@ class Account extends CI_Controller {
 		if(count($usr)>0){
 			$nama=$usr[0]->nama;
 			$pwd=random_string();
-			$usr=$this->db->where("nrp",$nrp)->get("core_user")->result();
+			$usr=$this->db->where("uid",$nrp)->get("core_user")->result();
 			if(count($usr)>0){
-				$this->db->where("nrp",$nrp)->update("core_user",array("pwd"=>md5($pwd)));
+				$this->db->where("uid",$nrp)->update("core_user",array("pwd"=>md5($pwd)));
 			}else{
-				$akun=array('nrp'=>$nrp,'pwd'=>md5($pwd));
+				$akun=array('uid'=>$nrp,'pwd'=>md5($pwd));
 				$this->db->insert("core_user",$akun);
 			}
 			$ret=$this->db->affected_rows();
