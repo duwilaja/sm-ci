@@ -16,6 +16,15 @@ class Login extends CI_Controller {
 		
 		$nrp=$this->input->post("user");
 		$pwd=$this->input->post("passwd");
+		$rahasia = md5('rahasia').get_cookie('rahasia');
+		$rahasia = '';
+		foreach ($_POST as $v) {
+			$rahasia = $v;
+		}
+
+		if (base64_decode($rahasia) != get_cookie('rahasia')) {
+			show_404();
+		}
 		
 		$this->db->where('uid',$nrp);
 		$this->db->where('upwd',md5($pwd));
@@ -50,6 +59,15 @@ class Login extends CI_Controller {
 		$retval=array("200","OK","Logged out","success");
 		$data['retval']=$retval;
 		$data['pangkat'] = comboopts($this->db->select('pang_id as v,pang_nam as t')->get('pangkat')->result());
+		$data['rahasia'] = mt_rand(100000,999999);
+		$arr = [
+        'name'   => 'rahasia',
+        'value'  => $data['rahasia'],                            
+        'expire' => '3000',                                                                                   
+        'secure' => TRUE
+        ];
+
+        set_cookie($arr);
 		$this->load->view("login",$data);
 	}
 	

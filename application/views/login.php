@@ -89,6 +89,7 @@ $base_url = base_url();
 											<span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
 											<input type="password" name="passwd" class="form-control" placeholder="Password" value="">
 										</div>
+										<input type="hidden" name="<?= md5('rahasia').@base64_encode($rahasia);?>" value="<?= @base64_encode($rahasia);?>">
 										<div class="row mb-0">
 											<div class="col-12">
 												<button type="submit" class="btn btn-primary btn-block">Login</button>
