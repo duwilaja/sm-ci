@@ -24,6 +24,7 @@ class Api_indicar extends CI_Controller {
     {   
         echo $this->mic->dt_list_petugas();
     }
+
     function dt_kendaraan()
     {
 
@@ -42,8 +43,8 @@ class Api_indicar extends CI_Controller {
 
         //     ));
         // }
-        $this->db->insert_batch('indicar_data_kendaraan', $insert);
-    //   echo $this->mic->dt_kendaraan();
+        // $this->db->insert_batch('indicar_data_kendaraan', $insert);
+        //  echo $this->mic->dt_kendaraan();
     }
     function detail_kendaraan()
     {
