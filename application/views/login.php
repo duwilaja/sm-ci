@@ -112,7 +112,7 @@ $base_url = base_url();
 					</div>
 				</div>
 
-	  <div class="modal fade" id="modal_register">
+	  <div class="modal fade modal_form" id="modal_register">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
@@ -167,7 +167,7 @@ $base_url = base_url();
         <!-- /.modal-dialog -->
       </div>
       <!-- /.modal -->
-	  <div class="modal fade" id="modal_reset">
+	  <div class="modal fade modal_form" id="modal_reset">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
