@@ -3,9 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 	
-	public function __construct()
+	public function __construct($language = "")
 	{
 		parent::__construct();
+		$language = ($language != "") ? $language : "indo";
+        $this->session->set_userdata('site_lang', $language);
 		// Your own constructor code
 	}
 

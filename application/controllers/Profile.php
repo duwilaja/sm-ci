@@ -8,6 +8,23 @@ class Profile extends CI_Controller {
 		parent::__construct();
 		// Your own constructor code
 	}
+	function switchLang($language = "") {
+       
+        // $language = ($language != "") ? $language : "indo";
+        // $this->session->set_userdata('site_lang', $language);
+		if ($language != "") {
+			$this->session->set_userdata('site_lang',$language);
+			redirect('Profile/index');
+
+		}else{
+			$language = "indo";
+			$this->session->set_userdata('site_lang',$language);
+			redirect('Profile/index');
+		}
+		// echo $this->session->userdata('site_lang');
+       
+       
+    }
 	
 	public function index()
 	{
