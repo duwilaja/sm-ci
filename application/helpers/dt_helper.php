@@ -8,7 +8,7 @@ function cari_arr($arr=[],$nilai='')
     }
 }
 
-function select_dt($t='',$field,$dt=''){
+function select_dt($t='',$field='',$dt=''){
     
     // atur If disini bos
     if ($t == 'kondisi_jalan') {
