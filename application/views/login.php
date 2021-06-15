@@ -156,6 +156,7 @@ $base_url = base_url();
 					</div>
 
 				  </div>
+				  <input type="hidden" name="<?= md5('rahasia').@base64_encode($rahasia);?>" value="<?= @base64_encode($rahasia);?>">
 				  
 				</form>
             </div>

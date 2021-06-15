@@ -58,9 +58,22 @@ class Account extends CI_Controller {
 		//$fname=$this->input->post('fieldnames');
 		
 		$nrp=$this->input->post('nrp');
+		$email=$this->input->post('email');
+
+		$rahasia = md5('rahasia').get_cookie('rahasia');
+		$rahasia = '';
+		foreach ($_POST as $v) {
+			$rahasia = $v;
+		}
+
+		if (base64_decode($rahasia) != get_cookie('rahasia')) {
+			show_404();
+		}
+
 		$tname='persons';
 		$usr=$this->db->where("nrp",$nrp)->get($tname)->result();
-		if(count($usr)<1){
+		$eml=$this->db->where("email",$email)->get($tname)->result();
+		if(count($usr) || count($eml) <1){
 			$data=$this->input->post(array('nama','email','nrp','telp','pangkat'));//(explode(",",$fname));
 			$this->db->insert($tname,$data);
 			$ret=$this->db->affected_rows();
