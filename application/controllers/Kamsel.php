@@ -22,6 +22,15 @@ class Kamsel extends CI_Controller {
 		}else{
 			$retval=array("403","Failed","Please login","error");
 			$data['retval']=$retval;
+			$data['rahasia'] = mt_rand(100000,999999);
+			$arr = [
+			'name'   => 'rahasia',
+			'value'  => $data['rahasia'],                            
+			'expire' => '3000',                                                                                   
+			'secure' => TRUE
+			];
+
+			set_cookie($arr);
 			$this->load->view('login',$data);
 		}
 	}
