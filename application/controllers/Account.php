@@ -58,9 +58,22 @@ class Account extends CI_Controller {
 		//$fname=$this->input->post('fieldnames');
 		
 		$nrp=$this->input->post('nrp');
+		$email=$this->input->post('email');
+
+		$rahasia = md5('rahasia').get_cookie('rahasia');
+		$rahasia = '';
+		foreach ($_POST as $v) {
+			$rahasia = $v;
+		}
+
+		if (base64_decode($rahasia) != get_cookie('rahasia')) {
+			show_404();
+		}
+
 		$tname='persons';
 		$usr=$this->db->where("nrp",$nrp)->get($tname)->result();
-		if(count($usr)<1){
+		$eml=$this->db->where("email",$email)->get($tname)->result();
+		if(count($usr) || count($eml) <1){
 			$data=$this->input->post(array('nama','email','nrp','telp','pangkat'));//(explode(",",$fname));
 			$this->db->insert($tname,$data);
 			$ret=$this->db->affected_rows();
@@ -68,8 +81,8 @@ class Account extends CI_Controller {
 				$pwd=random_string();
 				$nama=$this->input->post('nama');
 				$email=$this->input->post('email');
-				$akun=array('nrp'=>$nrp,'pwd'=>md5($pwd));
-				$this->db->insert("accounts",$akun);
+				$akun=array('uid'=>$nrp,'upwd'=>md5($pwd),'usts' => 1,'ulvl' => 1);
+				$this->db->insert("core_user",$akun);
 				$ret=$this->db->affected_rows();
 				if($ret>0){
 					$msgs="Account successfully created. ";
@@ -101,12 +114,12 @@ class Account extends CI_Controller {
 		if(count($usr)>0){
 			$nama=$usr[0]->nama;
 			$pwd=random_string();
-			$usr=$this->db->where("nrp",$nrp)->get("accounts")->result();
+			$usr=$this->db->where("uid",$nrp)->get("core_user")->result();
 			if(count($usr)>0){
-				$this->db->where("nrp",$nrp)->update("accounts",array("pwd"=>md5($pwd)));
+				$this->db->where("uid",$nrp)->update("core_user",array("upwd"=>md5($pwd)));
 			}else{
-				$akun=array('nrp'=>$nrp,'pwd'=>md5($pwd));
-				$this->db->insert("accounts",$akun);
+				$akun=array('uid'=>$nrp,'upwd'=>md5($pwd));
+				$this->db->insert("core_user",$akun);
 			}
 			$ret=$this->db->affected_rows();
 			if($ret>0){

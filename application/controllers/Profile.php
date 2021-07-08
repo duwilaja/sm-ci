@@ -8,6 +8,23 @@ class Profile extends CI_Controller {
 		parent::__construct();
 		// Your own constructor code
 	}
+	function switchLang($language = "") {
+       
+        // $language = ($language != "") ? $language : "indo";
+        // $this->session->set_userdata('site_lang', $language);
+		if ($language != "") {
+			$this->session->set_userdata('site_lang',$language);
+			redirect('Profile/index');
+
+		}else{
+			$language = "indo";
+			$this->session->set_userdata('site_lang',$language);
+			redirect('Profile/index');
+		}
+		// echo $this->session->userdata('site_lang');
+       
+       
+    }
 	
 	public function index()
 	{
@@ -29,6 +46,15 @@ class Profile extends CI_Controller {
 		}else{
 			$retval=array("403","Failed","Please login","error");
 			$data['retval']=$retval;
+			$data['rahasia'] = mt_rand(100000,999999);
+			$arr = [
+			'name'   => 'rahasia',
+			'value'  => $data['rahasia'],                            
+			'expire' => '3000',                                                                                   
+			'secure' => TRUE
+			];
+
+			set_cookie($arr);
 			$this->load->view('login',$data);
 		}
 	}

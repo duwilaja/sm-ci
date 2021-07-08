@@ -21,6 +21,15 @@ class Rekap extends CI_Controller {
 		}else{
 			$retval=array("403","Failed","Please login","error");
 			$data['retval']=$retval;
+			$data['rahasia'] = mt_rand(100000,999999);
+			$arr = [
+			'name'   => 'rahasia',
+			'value'  => $data['rahasia'],                            
+			'expire' => '3000',                                                                                   
+			'secure' => TRUE
+			];
+
+			set_cookie($arr);
 			$this->load->view('login',$data);
 		}
 	}
@@ -67,7 +76,9 @@ class Rekap extends CI_Controller {
 			$cols=base64_decode($this->input->post('cols')); //tablename
 			
 			//build where polda/polres
-			$where['tgl'] = $this->input->post('tgl'); //date('Y-m-d');
+			if ($this->input->post('tgl') != '') {
+				$where['tgl'] = $this->input->post('tgl'); //date('Y-m-d');
+			}
 			$d=$user['polres'];
 			//if($d!='')
 				$where[$tname.'.polres']=$d;

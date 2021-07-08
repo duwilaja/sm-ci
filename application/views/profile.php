@@ -17,7 +17,7 @@ if(isset($incomplete_profile)){
 
 		<div class="card">
 			<div class="card-header">
-				<h3 class="card-title">My Profile</h3>
+				<h3 class="card-title"><?php echo $this->lang->line('lang_my_profile'); ?></h3>
 				<div class="card-options ">
 					<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
 					<!--a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a-->
@@ -41,9 +41,9 @@ if(isset($incomplete_profile)){
 					</form>
 					<div class="form-footer row">
 					<div class="col-6">
-						<button type="button" class="btn btn-danger btn-block" onclick="$('#preset').val('Y');sendData('#myfxx','profile/avatar');">Reset</button>
+						<button type="button" class="btn btn-danger btn-block" onclick="$('#preset').val('Y');sendData('#myfxx','profile/avatar');"><?php echo $this->lang->line('lang_reset'); ?></button>
 					</div><div class="col-6">
-					<button type="button" class="btn btn-primary btn-block" onclick="$('#preset').val('N');sendData('#myfxx','profile/avatar');">Save</button>
+					<button type="button" class="btn btn-primary btn-block" onclick="$('#preset').val('N');sendData('#myfxx','profile/avatar');"><?php echo $this->lang->line('lang_save'); ?></button>
 					</div>
 					</div>
 			</div>
@@ -53,7 +53,7 @@ if(isset($incomplete_profile)){
 	
 		<div class="card card-collapsed">
 			<div class="card-header">
-				<div class="card-title">Change Password</div>
+				<div class="card-title"><?php echo $this->lang->line('lang_change_password'); ?></div>
 				<div class="card-options ">
 					<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
 				</div>
@@ -62,15 +62,15 @@ if(isset($incomplete_profile)){
 				<form id="myfx" class="form-horizontal">										
 					<div class="row">
 						<div class="form-group">
-							<label class="form-label">Old Password</label>
+							<label class="form-label"><?php echo $this->lang->line('lang_old_password'); ?></label>
 							<input type="password" id="op" name="op" placeholder="..." class="form-control">
 						</div>
 						<div class="form-group">
-							<label class="form-label">New Password</label>
+							<label class="form-label"><?php echo $this->lang->line('lang_new_password'); ?></label>
 							<input type="password" id="np" name="np" placeholder="..." class="form-control">
 						</div>
 						<div class="form-group">
-							<label class="form-label">Retype New Password</label>
+							<label class="form-label"><?php echo $this->lang->line('lang_retype_password'); ?></label>
 							<input type="password" id="rp" name="rp" placeholder="..." class="form-control">
 						</div>
 					</div>
@@ -78,7 +78,7 @@ if(isset($incomplete_profile)){
 			</div>
 			<div class="card-footer">
 				<div class="pull-right">
-					<button type="button" class="btn btn-success" onclick="sendData('#myfx','profile/chgpwd');">Change Password</button>
+					<button type="button" class="btn btn-success" onclick="sendData('#myfx','profile/chgpwd');"><?php echo $this->lang->line('lang_change_password'); ?></button>
 				</div>
 			</div>
 		</div>
@@ -86,7 +86,7 @@ if(isset($incomplete_profile)){
 	<div class="col-lg-9">
 		<div class="card">
 			<div class="card-header">
-				<h3 class="card-title">Edit Profile</h3>
+				<h3 class="card-title"><?php echo $this->lang->line('lang_txt_edit'); ?> Profile</h3>
 				<div class="card-options ">
 					<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
 					<!--a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a-->
@@ -101,13 +101,13 @@ if(isset($incomplete_profile)){
 				<div class="row">
 					<div class="col-sm-6 col-md-4">
 						<div class="form-group">
-							<label class="form-label">Nama</label>
+							<label class="form-label"><?php echo $this->lang->line('lang_name'); ?></label>
 							<input type="text" id="nama" name="nama" class="form-control" placeholder="Nama" value="<?php echo $session['nama']?>">
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-4">
 						<div class="form-group">
-							<label class="form-label">Pangkat</label>
+							<label class="form-label"><?php echo $this->lang->line('lang_rank'); ?></label>
 							<?php
 							$pangkat['']='';
 							$opt=array('class'=>'form-control','id'=>'pangkat');
@@ -118,19 +118,19 @@ if(isset($incomplete_profile)){
 					</div>
 					<div class="col-sm-6 col-md-4">
 						<div class="form-group">
-							<label class="form-label">Telp.</label>
+							<label class="form-label"><?php echo $this->lang->line('lang_phone'); ?></label>
 							<input type="text" name="telp" id="telp" class="form-control" placeholder="Telp" value="<?php echo $session['telp']?>">
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-4">
 						<div class="form-group">
-							<label class="form-label">Email</label>
+							<label class="form-label"><?php echo $this->lang->line('lang_mail'); ?></label>
 							<input type="text" name="email" id="email" class="form-control" placeholder="Email" value="<?php echo $session['email']?>">
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-4">
 						<div class="form-group">
-							<label class="form-label">Dinas</label>
+							<label class="form-label"><?php echo $this->lang->line('lang_service'); ?></label>
 							<?php
 $dinas['']='';
 $opt=array('class'=>'form-control','id'=>'dinas','onchange'=>"mabesbukan(this.value);getSubQ('profile/get_subdin',this.value,'#subdinas','".$session['subdinas']."');");
@@ -140,7 +140,7 @@ echo form_dropdown('dinas', array_reverse($dinas,true), $session['dinas'],$opt);
 					</div>
 					<div class="col-sm-6 col-md-4">
 						<div class="form-group">
-							<label class="form-label">Subdinas</label>
+							<label class="form-label"><?php echo $this->lang->line('lang_subservice'); ?></label>
 							<select name="subdinas" id="subdinas" class="form-control">
 								<option value=""></option>
 							</select>
@@ -148,7 +148,7 @@ echo form_dropdown('dinas', array_reverse($dinas,true), $session['dinas'],$opt);
 					</div>
 					<div class="col-sm-6 col-md-4">
 						<div class="form-group">
-							<label class="form-label">Unit</label>
+							<label class="form-label"><?php echo $this->lang->line('lang_unit'); ?></label>
 							<?php
 							$unit['']='';
 							$opt=array('class'=>'form-control','id'=>'unit');
@@ -177,7 +177,7 @@ echo form_dropdown('polda', array_reverse($polda,true), $session['polda'],$opt);
 					</div>
 					<div class="col-sm-6 col-md-6">
 						<div class="form-group">
-							<label class="form-label">Spesialisasi</label>
+							<label class="form-label"><?php echo $this->lang->line('lang_specialization'); ?></label>
 							<?php
 //print_r(array_reverse($polda,true));
 $selected_specs=explode(";",$session['specs']);
@@ -187,11 +187,20 @@ echo form_hidden('specs',$session['specs']);
 							?>
 						</div>
 					</div>
+					<div class="col-sm-6 col-md-4 ">
+						<div class="form-group">
+							<label class="form-label"><?php echo $this->lang->line('lang_language'); ?></label>
+							<select class="form-control" onchange="javascript:window.location.href='<?php echo site_url('Profile/switchLang/'); ?>'+this.value;">
+								<option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
+								<option value="indo" <?php if($this->session->userdata('site_lang') == 'indo') echo 'selected="selected"'; ?>>Indonesia</option>
+							</select>
+						</div>
+					</div>
 					
 				</div>
 			</form></div>
 			<div class="card-footer text-right">
-				<button type="button" class="btn btn-primary" onclick="sendData('#myf','profile/save');">Update Profile</button>
+				<button type="button" class="btn btn-primary" onclick="sendData('#myf','profile/save');"><?php echo $this->lang->line('lang_txt_edit'); ?> Profile</button>
 			</div>
 		</div>
 	</div>
