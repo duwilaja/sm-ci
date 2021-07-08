@@ -21,6 +21,15 @@ class Rekap extends CI_Controller {
 		}else{
 			$retval=array("403","Failed","Please login","error");
 			$data['retval']=$retval;
+			$data['rahasia'] = mt_rand(100000,999999);
+			$arr = [
+			'name'   => 'rahasia',
+			'value'  => $data['rahasia'],                            
+			'expire' => '3000',                                                                                   
+			'secure' => TRUE
+			];
+
+			set_cookie($arr);
 			$this->load->view('login',$data);
 		}
 	}
@@ -67,15 +76,25 @@ class Rekap extends CI_Controller {
 			$cols=base64_decode($this->input->post('cols')); //tablename
 			
 			//build where polda/polres
-			$where['tgl'] = $this->input->post('tgl'); //date('Y-m-d');
+			if ($this->input->post('tgl') != '') {
+				$where['tgl'] = $this->input->post('tgl'); //date('Y-m-d');
+			}
 			$d=$user['polres'];
 			//if($d!='')
-				$where['polres']=$d;
+				$where[$tname.'.polres']=$d;
 			$d=$user['polda'];
 			//if($d!='')
-				$where['polda']=$d;
+				$where[$tname.'.polda']=$d;
 			
-			$data_assoc=$this->db->select($cols)->where($where)->get($tname)->result_array();
+			$this->db->select($cols);
+			$this->db->from($tname);
+			if($tname=="ais_laka"||$tname=="eri_kendaraan"){
+				$this->db->join("polda","polda.da_id=$tname.da","left");
+				$this->db->join("polres","polres.res_id=$tname.res","left");
+			}
+			$this->db->where($where);
+			$data_assoc=$this->db->get()->result_array();
+			
 			for($i=0;$i<count($data_assoc);$i++){
 				$data[]=array_values($data_assoc[$i]);
 			}

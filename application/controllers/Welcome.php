@@ -18,9 +18,52 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	public function sendmail($to,$sub,$msg){
+		$config = Array(
+			'protocol' => 'smtp',
+			'smtp_host' => 'smtp.googlemail.com',
+			'smtp_port' => 465,
+			'smtp_user' => 'smart.mgmt.mmt@gmail.com',
+			'smtp_pass' => 'Bismillah3x!.',
+			'smtp_crypto'  => 'ssl', 
+			'mailtype'  => 'html', 
+			'charset'   => 'iso-8859-1',
+			'newline'   => "\r\n",
+			'wordwrap'  => TRUE
+		);
+		$this->load->library('email', $config);
+		$this->email->set_newline("\r\n");
+		
+		$this->email->from('smart.mgmt.mmt@gmail.com', 'Smart Management App');
+		$this->email->to($to);
+		$this->email->subject("Smart Management : $sub");
+		$this->email->message($msg);
+		
+		$ok = [
+			'rsp' => $this->email->send(),
+			'error' => $this->email->print_debugger()
+		];
+		return $ok;
+	}
+
+	public function cek_mail()
+	{
+		var_dump($this->sendmail('sahrulrizal22@gmail.com','Test','Gua cuman test aja ya'));
+	}
+
 	public function index()
 	{
 		$data['pangkat'] = comboopts($this->db->select('pang_id as v,pang_nam as t')->get('pangkat')->result());
+		$data['rahasia'] = mt_rand(100000,999999);
+		$arr = [
+        'name'   => 'rahasia',
+        'value'  => $data['rahasia'],                            
+        'expire' => '3000',                                                                                   
+        'secure' => TRUE
+        ];
+
+        set_cookie($arr);
 		$this->load->view('login',$data);
 	}
 	

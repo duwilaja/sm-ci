@@ -193,9 +193,21 @@ if($mn=='penduduk'){
 	$res=crud($conn);
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
+if($mn=='targetlaka'){
+	$res=crud($conn);
+	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+}
 
 /*tmc*/
 if($mn=='tmcmonlalin'){
+	$res=crud($conn);
+	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+}
+if($mn=='pmacet'){
+	$res=crud($conn);
+	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+}
+if($mn=='pmacetd'){
 	$res=crud($conn);
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }

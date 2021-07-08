@@ -15,6 +15,7 @@ class Laporan extends CI_Controller {
 		$user=$this->session->userdata('user_data');
 		if(isset($user)){
 			$data['session'] = $user;
+			$data['jumlah'] = comboopts($this->db->select('id as v, status as t')->where("status",0)->get('patwal_permohonan')->result());
 			$data['dasargiat'] = comboopts($this->db->select('dg_id as v,dg_nam as t')->get('dasargiat')->result());
 			$data['formulir'] = comboopts($this->db->select('view_laporan as v,nama_laporan as t')->where("unit",$user['unit'])->or_where("unit",$user["subdinas"])->get('formulir')->result());
 			$data['title'] = "Formulir";
@@ -23,6 +24,15 @@ class Laporan extends CI_Controller {
 		}else{
 			$retval=array("403","Failed","Please login","error");
 			$data['retval']=$retval;
+			$data['rahasia'] = mt_rand(100000,999999);
+			$arr = [
+			'name'   => 'rahasia',
+			'value'  => $data['rahasia'],                            
+			'expire' => '3000',                                                                                   
+			'secure' => TRUE
+			];
+
+			set_cookie($arr);
 			$this->load->view('login',$data);
 		}
     }
@@ -66,12 +76,13 @@ class Laporan extends CI_Controller {
 	{
 		$user=$this->session->userdata('user_data');
 		if(isset($user)){
+			$data['session'] = $user;
 			$id=$this->input->post('id');//this is the view
 			
 			//put all masterdatas needed here
 			$data['dummy']="this is dummy data";
 			
-			if($id=='tmc_info_lalin'){  //tmc info lalin
+			if($id=='tmc_info_lalin' || $id=='ais_laka'){  //tmc info lalin
 				$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
 			}
 			if($id=='eri_kendaraan'||$id=='ais_laka'){  //eri kendaraan
@@ -85,6 +96,17 @@ class Laporan extends CI_Controller {
 				$data['pospol']=$this->db->select("nama,lat,lng")->where("pos","Pos Polisi")->get('ssc_jalan')->result();
 				$data['pospjr']=$this->db->select("nama,lat,lng")->where("pos","Pos PJR")->get('ssc_jalan')->result();
 				$data['koordinasi']=$this->db->select("giat,lat,lng")->get('tmc_koordinasi')->result();
+			}
+			if($id=='tar_data'){
+				$data['pelanggaran']=array(
+				"Kamtibmas"=>"Kamtibmas",
+				"Lampu Utama"=>"Lampu Utama",
+				"Jalur/lajur lalu lintas"=>"Jalur/lajur lalu lintas",
+				"Belokan/simpangan"=>"Belokan/simpangan",
+				"Kecepatan"=>"Kecepatan",
+				"Berhenti"=>"Berhenti",
+				"Parkir"=>"Parkir",
+				"Kendaraan Tidak Bermotor"=>"Kendaraan Tidak Bermotor");
 			}
 			
 			$this->load->view("formulir/$id",$data); //load the view

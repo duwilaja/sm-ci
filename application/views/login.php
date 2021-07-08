@@ -89,6 +89,7 @@ $base_url = base_url();
 											<span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
 											<input type="password" name="passwd" class="form-control" placeholder="Password" value="">
 										</div>
+										<input type="hidden" name="<?= md5('rahasia').@base64_encode($rahasia);?>" value="<?= @base64_encode($rahasia);?>">
 										<div class="row mb-0">
 											<div class="col-12">
 												<button type="submit" class="btn btn-primary btn-block">Login</button>
@@ -112,7 +113,7 @@ $base_url = base_url();
 					</div>
 				</div>
 
-	  <div class="modal fade" id="modal_register">
+	  <div class="modal fade modal_form" id="modal_register">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
@@ -155,6 +156,7 @@ $base_url = base_url();
 					</div>
 
 				  </div>
+				  <input type="hidden" name="<?= md5('rahasia').@base64_encode($rahasia);?>" value="<?= @base64_encode($rahasia);?>">
 				  
 				</form>
             </div>
@@ -167,7 +169,7 @@ $base_url = base_url();
         <!-- /.modal-dialog -->
       </div>
       <!-- /.modal -->
-	  <div class="modal fade" id="modal_reset">
+	  <div class="modal fade modal_form" id="modal_reset">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">

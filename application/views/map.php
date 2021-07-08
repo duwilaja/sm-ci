@@ -27,6 +27,8 @@ if($lat==""||$lng==""){$z="12";$latlng="-6.175540717418276,106.82719230651857";}
 
 	<script>
 
+	var latfld="<?php echo $latfld?>";
+	var lngfld="<?php echo $lngfld?>";
 		var map = L.map('map').setView([<?php echo $latlng;?>], <?php echo $z;?>);
 
 		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -61,16 +63,18 @@ if($lat==""||$lng==""){$z="12";$latlng="-6.175540717418276,106.82719230651857";}
 		map.on('click', onMapClick);
 
 	function okclick(){
-		window.opener.document.myf.lat.value=document.mapfrm.lat.value;
-		window.opener.document.myf.lng.value=document.mapfrm.lng.value;
-		window.close();
+		latfld=latfld==""?"lat":latfld;
+		lngfld=lngfld==""?"lng":lngfld;
+		parent.window.opener.document.getElementsByName(latfld)[0].value=document.mapfrm.lat.value;
+		parent.window.opener.document.getElementsByName(lngfld)[0].value=document.mapfrm.lng.value;
+		parent.window.close();
 	}
 	</script>
 	<form name="mapfrm">
 	<input type="text" name="lat" value="<?php echo $lat;?>">
 	<input type="text" name="lng" value="<?php echo $lng;?>">
 	<input type="button" onclick="okclick();" value="OK">
-	<input type="button" onclick="window.close();" value="Close">
+	<input type="button" onclick="parent.window.close();" value="Close">
 	</form>
 	
 </body>
