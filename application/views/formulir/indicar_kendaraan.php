@@ -24,12 +24,12 @@
 			<table id="mytbl" class="table table-striped table-bordered w-100">
 				<thead>
 					<tr>
-                        <th>Id</th>
+            <th>Id</th>
 						<th>Kendaraan</th>
 						<th>Nopol</th>
 						<th>Latitude</th>
 						<th>longitude</th>
-                        <th>Action</th>
+            <th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
