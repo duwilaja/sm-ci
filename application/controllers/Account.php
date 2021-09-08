@@ -110,9 +110,11 @@ class Account extends CI_Controller {
 		$nrp=$this->input->post('rnip');
 		$email=$this->input->post('remail');
 		$tname='persons';
-		$usr=$this->db->where(array('nrp'=>$nrp,'email'=>$email))->get($tname)->result();
+		//$usr=$this->db->where(array('nrp'=>$nrp,'email'=>$email))->get($tname)->result();
+		$usr=$this->db->where(array('nrp'=>$nrp))->get($tname)->result();
 		if(count($usr)>0){
 			$nama=$usr[0]->nama;
+			$email=$usr[0]->email;
 			$pwd=random_string();
 			$usr=$this->db->where("uid",$nrp)->get("core_user")->result();
 			if(count($usr)>0){

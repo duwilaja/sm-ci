@@ -186,12 +186,12 @@ $base_url = base_url();
 					<input type="text" name="rnip" placeholder="..." class="form-control">
 				</div>
 			  </div>
-			  <div class="row">
+			  <!--div class="row">
 				<div class="form-group col-md-12">
 					<label>Email</label>
 					<input type="text" name="remail" placeholder="..." class="form-control">
 				</div>
-			  </div>
+			  </div-->
 			</form>
             </div>
 			<div class="modal-footer">
@@ -352,11 +352,11 @@ $(document).ready(function (){
     rules :{
         "rnip" : {
             required : true
-        },
+        }/*,
 		"remail" : {
 			required : true,
 			email: true
-		}
+		}*/
     }});
 	
 	jvalidate3 = $("#register_form").validate({
