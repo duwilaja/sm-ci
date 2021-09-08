@@ -12,7 +12,7 @@ $conn=connect();
 $grp="";
 $hom="";
 if($user!=''&&$passwd!=''){
-	$sql="select a.uid, nama, dinas, subdinas, unit, '', polda, polres from core_user a join persons p on a.uid=p.nrp where isactive='Y' and adm='Y' and (a.nrp='$user') and pwd=MD5('$passwd')";
+	$sql="select a.uid, nama, dinas, subdinas, unit, '', polda, polres from core_user a join persons p on a.uid=p.nrp where isactive='Y' and adm='Y' and (a.uid='$user') and upwd=MD5('$passwd')";
 	//echo $sql;
 	$rs = exec_qry($conn,$sql);
 	if ($row = fetch_row($rs)) {
