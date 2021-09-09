@@ -88,7 +88,7 @@ class Account extends CI_Controller {
 					$msgs="Account successfully created. ";
 					$code="200";
 					$ttl="Success";
-					$content="Hi $nama, terima kasih sudah mendaftar.<br /><br />Akun anda adalah $nrp<br />Password anda adalah $pwd <br /><br /><br />rgds<br />admin";
+					$content="Hi $nama, terima kasih sudah mendaftar.<br /><br />Akun anda adalah $nrp  <br /> Dan $pwd adalah Password anda adalah <br /><br /><br />rgds<br />admin";
 					$sen=$this->sendmail($email,"New Account",$content);
 					if($sen) { $msgs.="Password sent to $email"; }else{ $msgs.="Failed sending mail to $email"; }
 				}else{
@@ -111,7 +111,7 @@ class Account extends CI_Controller {
 		$email=$this->input->post('remail');
 		$tname='persons';
 		//$usr=$this->db->where(array('nrp'=>$nrp,'email'=>$email))->get($tname)->result();
-		$usr=$this->db->where(array('nrp'=>$nrp))->get($tname)->result();
+		$usr=$this->db->where('nrp',$nrp)->get($tname)->result();
 		if(count($usr)>0){
 			$nama=$usr[0]->nama;
 			$email=$usr[0]->email;
@@ -126,7 +126,7 @@ class Account extends CI_Controller {
 			$ret=$this->db->affected_rows();
 			if($ret>0){
 				$msgs="New password sent to $email";
-				$content="Hi $nama, <br /><br />Password baru anda adalah $pwd <br /><br /><br />rgds<br />admin";
+				$content="Hi $nama, <br /><br />$pwd adalah Password baru anda <br /><br /><br />rgds<br />admin";
 				$sen=$this->sendmail($email,"Reset Password",$content);
 				if(!$sen){ $msgs="Failed sending mail to $email , please try again."; }
 				

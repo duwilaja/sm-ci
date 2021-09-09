@@ -3,7 +3,7 @@
 //$lng=$_GET['lng'];
 $z="15";
 $latlng=$lat.",".$lng;
-if($lat==""||$lng==""){$z="12";$latlng="-6.175540717418276,106.82719230651857";} //monas
+if($lat==""||$lng==""){$z="12";$latlng="-7.566139228199951,110.82310438156128";}//$latlng="-6.175540717418276,106.82719230651857";} //monas
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,14 +12,11 @@ if($lat==""||$lng==""){$z="12";$latlng="-6.175540717418276,106.82719230651857";}
 	<meta charset="utf-8" />
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<link rel="stylesheet" href="<?php echo base_url();?>my/vendor/leaflet/leaflet.css" />
-	<!--[if lte IE 8]><link rel="stylesheet" href="leaflet/leaflet.ie.css" /><![endif]-->
 	
-	<script src="<?php echo base_url();?>my/vendor/leaflet/leaflet.js"></script>
-	<!--script src="leaflet/geo/l.control.geosearch.js"></script>
-	<script src="leaflet/geo/l.geosearch.provider.openstreetmap.js"></script>
-	<link rel="stylesheet" href="leaflet/geo/l.geosearch.css" /-->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.css"/>
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+	<script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/bundle.min.js"></script>
 		
 </head>
 <body>
@@ -47,6 +44,18 @@ if($lat==""||$lng==""){$z="12";$latlng="-6.175540717418276,106.82719230651857";}
 			//popup.setLatLng(latlon).setContent("Here.").openOn(map);
 			marker.setLatLng(latlon).addTo(map);
 <?php } ?>
+
+		const provider = new window.GeoSearch.OpenStreetMapProvider();
+		const search = new GeoSearch.GeoSearchControl({
+		  provider: provider,
+		  style: 'bar',
+		  updateMap: true,
+		  autoClose: true,
+		}); // Include the search box with usefull params. Autoclose and updateMap in my case. Provider is a compulsory parameter.
+
+		map.addControl(search);
+		
+		
 		function onMapClick(e) {
 			/*popup
 				.setLatLng(e.latlng)
