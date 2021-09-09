@@ -17,7 +17,7 @@ class Login extends CI_Controller {
 		$loggedin=false;
 		
 		$nrp=$this->input->post("user");
-		$pwd=$this->input->post("passwd");
+		$pwd=trim($this->input->post("passwd"));
 		$rahasia = md5('rahasia').get_cookie('rahasia');
 		$rahasia = '';
 		foreach ($_POST as $v) {
