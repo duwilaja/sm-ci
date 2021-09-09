@@ -88,8 +88,8 @@ class Profile extends CI_Controller {
 		if(isset($user)){
 			$msgs="Invalid old password";
 			$code="404";
-			$where=array('nrp'=>$user['nrp'],'pwd'=>md5($this->input->post('op')));
-			$this->db->where($where)->update('accounts',array("pwd"=>md5($this->input->post('np'))));
+			$where=array('nrp'=>$user['nrp'],'pwd'=>md5(trim($this->input->post('op'))));
+			$this->db->where($where)->update('core_user',array("pwd"=>md5(trim($this->input->post('np')))));
 			if($this->db->affected_rows()>0){
 				$msgs="Password changed"; $code="200";
 			}
