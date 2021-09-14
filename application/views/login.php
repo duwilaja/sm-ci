@@ -83,7 +83,7 @@ $base_url = base_url();
 										<p class="mb-6">Sign In to your account</p>
 										<div class="input-group mb-3">
 											<span class="input-group-addon"><i class="fa fa-user"></i></span>
-											<input type="text" name="user" class="form-control" placeholder="NRP" value="">
+											<input type="text" name="user" class="form-control" placeholder="UserID/NRP" value="">
 										</div>
 										<div class="input-group mb-4">
 											<span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
@@ -130,7 +130,7 @@ $base_url = base_url();
 						<input type="text" name="nama" placeholder="..." class="form-control">
 					</div>
 					<div class="form-group col-md-6">
-						<label>NRP</label>
+						<label>UserID/NRP</label>
 						<input type="text" name="nrp" placeholder="..." class="form-control">
 					</div>
 				  </div>
@@ -182,7 +182,7 @@ $base_url = base_url();
 			<form id="reset_form">
 			  <div class="row">
 				<div class="form-group col-md-12">
-					<label>NRP</label>
+					<label>UserID/NRP</label>
 					<input type="text" name="rnip" placeholder="..." class="form-control">
 				</div>
 			  </div>
