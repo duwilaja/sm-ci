@@ -15,7 +15,7 @@ class Laporan extends CI_Controller {
 		$user=$this->session->userdata('user_data');
 		if(isset($user)){
 			$data['session'] = $user;
-			$data['jumlah'] = comboopts($this->db->select('id as v, status as t')->where("status",0)->get('patwal_permohonan')->result());
+			//$data['jumlah'] = comboopts($this->db->select('id as v, status as t')->where("status",0)->get('patwal_permohonan')->result());
 			$data['dasargiat'] = comboopts($this->db->select('dg_id as v,dg_nam as t')->get('dasargiat')->result());
 			$data['formulir'] = comboopts($this->db->select('view_laporan as v,nama_laporan as t')->where("unit",$user['unit'])->or_where("unit",$user["subdinas"])->get('formulir')->result());
 			$data['title'] = "Formulir";
@@ -72,6 +72,13 @@ class Laporan extends CI_Controller {
 			echo json_encode($retval);
 		}
 	}
+	private function takeout($str,$arr){
+		$ret=array();
+		foreach($arr as $key=>$val){
+			if($key!=$str)	$ret=array_merge($ret,array($key=>$val));
+		}
+		return $ret;
+	}
 	public function get_content()
 	{
 		$user=$this->session->userdata('user_data');
@@ -82,6 +89,11 @@ class Laporan extends CI_Controller {
 			//put all masterdatas needed here
 			$data['dummy']="this is dummy data";
 			
+			if(substr($id,0,8)=='tmc_cctv'){
+				$cctv=array("tmc_cctv"=>"Jalan","tmc_cctv_toll"=>"Toll","tmc_cctv_public"=>"Fasilitas Publik","tmc_cctv_critical"=>"Wilayah Critical","tmc_cctv_object"=>"Object");
+				$data['cctv']=$this->takeout($id,$cctv);
+				$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
+			}
 			if($id=='tmc_info_lalin' || $id=='ais_laka'){  //tmc info lalin
 				$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
 			}
@@ -132,7 +144,7 @@ class Laporan extends CI_Controller {
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs);
 			echo json_encode($retval);
 		}else{
-			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>array());
+			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>"Please login");
 			echo json_encode($retval);
 		}
 	}
