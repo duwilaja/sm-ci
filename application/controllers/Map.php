@@ -17,4 +17,9 @@ class Map extends CI_Controller {
 		$data['lngfld'] = $this->input->get("lngfld");
 		$this->load->view('map',$data);
 	}
+	public function route()
+	{
+		$data['route'] = $this->input->get("route");
+		$this->load->view('maproute',$data);
+	}
 }
