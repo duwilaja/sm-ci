@@ -94,6 +94,13 @@ class Laporan extends CI_Controller {
 				$data['cctv']=$this->takeout($id,$cctv);
 				$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
 			}
+			if(substr($id,0,8)=='tmc_data'){
+				$cctv=array("tmc_data_giatpublik"=>"Giat Publik","tmc_data_vip"=>"Route VIP","tmc_data_fas_public"=>"Fasilitas Publik",
+				"tmc_data_jalan"=>"Data Jalan","tmc_data_gangguan"=>"Gangguan","tmc_data_statusjalan"=>"Status Jalan","tmc_data_gangguan"=>"Gangguan",
+				"tmc_data_rawan"=>"Titik Rawan","tmc_data_darurat"=>"Layanan Darurat");
+				$data['cctv']=$this->takeout($id,$cctv);
+				//$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
+			}
 			if($id=='tmc_info_lalin' || $id=='ais_laka'){  //tmc info lalin
 				$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
 			}
