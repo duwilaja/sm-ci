@@ -26,7 +26,7 @@ $z="12";$latlng="-7.566139228199951,110.82310438156128";//$latlng="-6.1755407174
 		var map = L.map('map').setView([<?php echo $latlng;?>], <?php echo $z;?>);
 		
 		var route=[];
-		var poly;
+		var poly=null;
 		<?php
 		if($route!=''){?>
 			route=<?php echo $route.';';?>
@@ -65,7 +65,7 @@ $z="12";$latlng="-7.566139228199951,110.82310438156128";//$latlng="-6.1755407174
 				
 			L.marker(e.latlng).addTo(routes);
 			route.push(e.latlng);
-			map.removeLayer(poly);
+			if(poly!=null) map.removeLayer(poly);
 			poly=L.polyline(route,{color:"red"});
 			poly.addTo(map);
 			
