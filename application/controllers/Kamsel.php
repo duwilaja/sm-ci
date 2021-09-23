@@ -73,7 +73,7 @@ class Kamsel extends CI_Controller {
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs.$m);
 			echo json_encode($retval);
 		}else{
-			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>array());
+			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>"Please login");
 			echo json_encode($retval);
 		}
 	}
@@ -113,7 +113,7 @@ class Kamsel extends CI_Controller {
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs.$m);
 			echo json_encode($retval);
 		}else{
-			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>array());
+			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>"Please login");
 			echo json_encode($retval);
 		}
 	}
@@ -153,7 +153,7 @@ class Kamsel extends CI_Controller {
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs.$m);
 			echo json_encode($retval);
 		}else{
-			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>array());
+			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>"Please login");
 			echo json_encode($retval);
 		}
 	}
@@ -193,7 +193,7 @@ class Kamsel extends CI_Controller {
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs.$m);
 			echo json_encode($retval);
 		}else{
-			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>array());
+			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>"Please login");
 			echo json_encode($retval);
 		}
 	}
