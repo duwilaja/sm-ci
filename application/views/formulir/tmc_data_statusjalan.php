@@ -23,8 +23,8 @@ $cols.="jalan,lat,lng,jenis,status";
 <div class="col-lg-12">
 	<div class="btn-list">
 		<?php 
-		$keys=array_keys($cctv);
-		$values=array_values($cctv);
+		$keys=array_keys($subm);
+		$values=array_values($subm);
 		for($i=0;$i<count($keys);$i++){
 		?>
 		<button type="button" class="btn btn-warning btn-pill <?php echo $keys[$i]?>" onclick="ambil_isi('<?php echo $keys[$i]?>');"><i class="fa fa-list-alt"></i> <?php echo $values[$i]?></button>
@@ -236,4 +236,6 @@ jvalidate = $("#myf").validate({
 			required : true
 		}
     }});
+	
+	$(".<?php echo $frid?>").attr("disabled",true);
 </script>
