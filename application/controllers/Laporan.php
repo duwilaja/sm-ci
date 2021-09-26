@@ -90,15 +90,24 @@ class Laporan extends CI_Controller {
 			$data['dummy']="this is dummy data";
 			
 			if(substr($id,0,8)=='tmc_cctv'){
-				$cctv=array("tmc_cctv"=>"Jalan","tmc_cctv_toll"=>"Toll","tmc_cctv_public"=>"Fasilitas Publik","tmc_cctv_critical"=>"Wilayah Critical","tmc_cctv_object"=>"Object");
-				$data['cctv']=$this->takeout($id,$cctv);
+				$subm=array("tmc_cctv_jalan"=>"Jalan","tmc_cctv_toll"=>"Toll","tmc_cctv_public"=>"Fasilitas Publik","tmc_cctv_critical"=>"Wilayah Critical","tmc_cctv_object"=>"Object");
+				$data['subm']=$subm;//$this->takeout($id,$subm);
+				$data['frid']=$id;
 				$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
 			}
 			if(substr($id,0,8)=='tmc_data'){
-				$cctv=array("tmc_data_giatpublik"=>"Giat Publik","tmc_data_vip"=>"Route VIP","tmc_data_fas_public"=>"Fasilitas Publik",
+				$subm=array("tmc_data_giatpublik"=>"Giat Publik","tmc_data_vip"=>"Route VIP","tmc_data_fas_public"=>"Fasilitas Publik",
 				"tmc_data_jalan"=>"Data Jalan","tmc_data_statusjalan"=>"Status Jalan","tmc_data_gangguan"=>"Gangguan",
 				"tmc_data_rawan"=>"Titik Rawan","tmc_data_darurat"=>"Layanan Darurat");
-				$data['cctv']=$this->takeout($id,$cctv);
+				$data['subm']=$subm;//$this->takeout($id,$subm);
+				$data['frid']=$id;
+				//$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
+			}
+			if(substr($id,0,8)=='tmc_reng'){
+				$subm=array("tmc_rengiat_rutin"=>"Giat Rutin","tmc_rengiat_khusus"=>"Giat Khusus","tmc_rengiat_kawal"=>"Giat Pengawalan",
+				"tmc_rengiat_pengamanan"=>"Giat Pengamanan");
+				$data['subm']=$subm;//$this->takeout($id,$subm);
+				$data['frid']=$id;
 				//$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
 			}
 			if($id=='tmc_info_lalin' || $id=='ais_laka'){  //tmc info lalin
