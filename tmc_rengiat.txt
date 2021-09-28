@@ -1,0 +1,44 @@
+
+CREATE TABLE `tmc_rengiat` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `jenis` varchar(30) NOT NULL,
+  `jamdari` time NOT NULL,
+  `jamsampai` time NOT NULL,
+  `tgldari` date NOT NULL,
+  `tglsampai` date NOT NULL,
+  `sasaran` text NOT NULL,
+  `rincian` text NOT NULL,
+  `kuatpers` int(11) NOT NULL,
+  `lokasi` varchar(50) NOT NULL,
+  `pic` varchar(50) NOT NULL,
+  `target` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tmc_rengiat`
+--
+ALTER TABLE `tmc_rengiat`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tmc_rengiat`
+--
+ALTER TABLE `tmc_rengiat`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT;
+
