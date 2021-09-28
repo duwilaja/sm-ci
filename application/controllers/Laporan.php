@@ -15,7 +15,7 @@ class Laporan extends CI_Controller {
 		$user=$this->session->userdata('user_data');
 		if(isset($user)){
 			$data['session'] = $user;
-			$data['jumlah'] = comboopts($this->db->select('id as v, status as t')->where("status",0)->get('patwal_permohonan')->result());
+			//$data['jumlah'] = comboopts($this->db->select('id as v, status as t')->where("status",0)->get('patwal_permohonan')->result());
 			$data['dasargiat'] = comboopts($this->db->select('dg_id as v,dg_nam as t')->get('dasargiat')->result());
 			$data['formulir'] = comboopts($this->db->select('view_laporan as v,nama_laporan as t')->where("unit",$user['unit'])->or_where("unit",$user["subdinas"])->get('formulir')->result());
 			$data['title'] = "Formulir";
@@ -72,6 +72,13 @@ class Laporan extends CI_Controller {
 			echo json_encode($retval);
 		}
 	}
+	private function takeout($str,$arr){
+		$ret=array();
+		foreach($arr as $key=>$val){
+			if($key!=$str)	$ret=array_merge($ret,array($key=>$val));
+		}
+		return $ret;
+	}
 	public function get_content()
 	{
 		$user=$this->session->userdata('user_data');
@@ -82,6 +89,26 @@ class Laporan extends CI_Controller {
 			//put all masterdatas needed here
 			$data['dummy']="this is dummy data";
 			
+			if(substr($id,0,8)=='tmc_cctv'){
+				$subm=array("tmc_cctv_jalan"=>"Jalan","tmc_cctv_toll"=>"Toll","tmc_cctv_public"=>"Fasilitas Publik","tmc_cctv_critical"=>"Wilayah Critical","tmc_cctv_object"=>"Object");
+				$data['subm']=$subm;//$this->takeout($id,$subm);
+				$data['frid']=$id;
+				$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
+			}
+			if(substr($id,0,8)=='tmc_data'){
+				$subm=array("tmc_data_giatpublik"=>"Giat Publik","tmc_data_vip"=>"Route VIP","tmc_data_fas_public"=>"Fasilitas Publik",
+				"tmc_data_jalan"=>"Data Jalan","tmc_data_statusjalan"=>"Status Jalan","tmc_data_gangguan"=>"Gangguan",
+				"tmc_data_rawan"=>"Titik Rawan","tmc_data_darurat"=>"Layanan Darurat");
+				$data['subm']=$subm;//$this->takeout($id,$subm);
+				$data['frid']=$id;
+				//$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
+			}
+			if(substr($id,0,8)=='tmc_reng'){
+				$subm=array("tmc_rengiat"=>"Giat Umum","tmc_rengiat_vip"=>"PAM VIP");
+				$data['subm']=$subm;//$this->takeout($id,$subm);
+				$data['frid']=$id;
+				//$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
+			}
 			if($id=='tmc_info_lalin' || $id=='ais_laka'){  //tmc info lalin
 				$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
 			}
@@ -121,10 +148,15 @@ class Laporan extends CI_Controller {
 		$user=$this->session->userdata('user_data');
 		if(isset($user)){
 			$msgs="No data has been saved";
+			$rowid=$this->input->post("rowid");
 			$tname=$this->input->post('tablename');
 			$fname=$this->input->post('fieldnames');
 			$data=$this->input->post(explode(",",$fname));
-			$this->db->insert($tname,$data);
+			if($rowid==""||$rowid=="0"){
+				$this->db->insert($tname,$data);
+			}else{
+				$this->db->update($tname,$data,"rowid=$rowid");
+			}
 			$ret=$this->db->affected_rows();
 			if($ret>0){
 				$msgs="$ret record(s) saved";
@@ -132,7 +164,30 @@ class Laporan extends CI_Controller {
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs);
 			echo json_encode($retval);
 		}else{
-			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>array());
+			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>"Please login");
+			echo json_encode($retval);
+		}
+	}
+	public function dele()
+	{
+		$user=$this->session->userdata('user_data');
+		if(isset($user)){
+			$msgs="No data has been deleted";
+			$rowid=$this->input->post("rowid");
+			$tname=$this->input->post('tablename');
+			$fname=$this->input->post('fieldnames');
+			$data=$this->input->post(explode(",",$fname));
+			if($rowid!=""){
+				$this->db->delete($tname,array('rowid' => $rowid));
+			}
+			$ret=$this->db->affected_rows();
+			if($ret>0){
+				$msgs="$ret record(s) deleted";
+			}
+			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs);
+			echo json_encode($retval);
+		}else{
+			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>"Please login");
 			echo json_encode($retval);
 		}
 	}
@@ -145,7 +200,10 @@ class Laporan extends CI_Controller {
 			$cols=$this->input->post('cols');
 			$tname=$this->input->post('tname');
 			$where=$this->input->post('where');
-			$ret=$this->db->select($cols)->where(array($where=>$id))->get($tname)->result();
+			if($where!=""){
+				$this->db->where(array($where=>$id));
+			}
+			$ret=$this->db->select($cols)->get($tname)->result();
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$ret);
 			echo json_encode($retval);
 		}else{
@@ -153,4 +211,56 @@ class Laporan extends CI_Controller {
 			echo json_encode($retval);
 		}
 	}
+	
+	public function dttbl(){
+		$q=$this->input->post("q");
+		$draw=$this->input->post("draw");
+		
+		$data=array();
+		
+		$query=$this->db->query(base64_decode($q));
+		foreach ($query->result_array() as $row)
+		{
+			$data[]=array_values($row);
+		}
+		
+		$iTotal=count($data);
+		
+		$output = array(
+          "draw"=>$draw,
+          "recordsTotal"=>$iTotal, // total number of records 
+          "recordsFiltered"=>$iTotal, // if filtered data used then tot after filter
+          "data"=>$data
+        );
+
+		echo json_encode($output);
+	}
+	public function datas(){
+		$q=$this->input->post("q");
+		$id=$this->input->post("id");
+		$sql="";
+		switch($q){
+			case "statusjalan": $sql="select lat,lng,concat(jalan,'-',status) as ttl,rowid from tmc_data_statusjalan"; 
+			if($id!="") $sql="select * from tmc_data_statusjalan where rowid=$id";
+			break;
+			case "rawan": $sql="select lat,lng,concat(jalan,'-',status) as ttl,rowid from tmc_data_rawan"; 
+			if($id!="") $sql="select * from tmc_data_rawan where rowid=$id";
+			break;
+			case "darurat": $sql="select lat,lng,concat(jalan,'-',jenis) as ttl,rowid from tmc_data_darurat"; 
+			if($id!="") $sql="select * from tmc_data_darurat where rowid=$id";
+			break;
+			case "gangguan": $sql="select lat,lng,concat(jalan,'-',status,'-',penyebab,'-',penyebabd) as ttl,rowid from tmc_data_gangguan"; 
+			if($id!="") $sql="select * from tmc_data_gangguan where rowid=$id";
+			break;
+			case "jalan": $sql="select * from tmc_data_jalan"; 
+			if($id!="") $sql="select * from tmc_data_jalan where rowid=$id";
+			break;
+		}
+		
+		$query=$this->db->query($sql);
+		$output=$query->result();
+		
+		echo json_encode($output);
+	}
+	
 }

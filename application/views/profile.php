@@ -30,7 +30,7 @@ if(isset($incomplete_profile)){
 						</div>
 						<div class="col">
 							<h3 class="mb-1 "><?php echo $session["nama"]?></h3>
-							<p class="mb-4 ">NRP : <?php echo $session["nrp"]?></p>
+							<p class="mb-4 ">UserID/NRP : <?php echo $session["nrp"]?></p>
 						</div>
 					</div>
 					<form id="myfxx">

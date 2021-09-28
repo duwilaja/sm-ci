@@ -16,8 +16,8 @@ class Login extends CI_Controller {
 		$retval=array("404","Failed","Wrong user/password","error");
 		$loggedin=false;
 		
-		$nrp=$this->input->post("user");
-		$pwd=$this->input->post("passwd");
+		$nrp=trim($this->input->post("user"));
+		$pwd=trim($this->input->post("passwd"));
 		$rahasia = md5('rahasia').get_cookie('rahasia');
 		$rahasia = '';
 		foreach ($_POST as $v) {

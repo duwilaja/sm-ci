@@ -31,7 +31,6 @@
 					<?php } ?>
 				</div>
 			</div></div>
-			<br />
 			
 <!--hidden-->
 <input type="hidden" name="rowid" id="rowid" value="0" />
@@ -41,8 +40,9 @@
 <input type="hidden" name="dinas" value="<?php echo $session['dinas']?>">
 <input type="hidden" name="subdinas" value="<?php echo $session['subdinas']?>">
 <input type="hidden" name="unit" value="<?php echo $session['unit']?>">
+<input type="hidden" name="tgl" value="<?php echo date('Y-m-d')?>">
 
-				<div class="row">
+				<!--div class="row">
 					<div class="col-sm-6 col-md-4 hidden">
 						<div class="form-group">
 							<label class="form-label">Formulir</label>
@@ -67,11 +67,9 @@ echo form_dropdown('formulir', array_reverse($formulir,true), '',$opt);
 						<div class="form-group">
 							<label class="form-label">Nomor</label>
 							<input type="text" id="nomor" name="nomor" class="form-control" placeholder="" >
-							<input type="hidden" name="tgl" value="<?php echo date('Y-m-d')?>">
 						</div>
-					</div>
-					
-				</div>
+					</div>					
+				</div-->
 				<hr />
 				<div class="dimmer active ldr hidden">
 					<div class="sk-cube-grid">

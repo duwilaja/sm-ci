@@ -1,0 +1,212 @@
+
+CREATE TABLE `tmc_data_darurat` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `jalan` varchar(50) NOT NULL,
+  `jenis` varchar(40) NOT NULL,
+  `deviceid` varchar(20) NOT NULL,
+  `lat` varchar(20) NOT NULL,
+  `lng` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_data_fas_public`
+--
+
+CREATE TABLE `tmc_data_fas_public` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `fasilitas` varchar(30) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `jalan` varchar(50) NOT NULL,
+  `lat` varchar(20) NOT NULL,
+  `lng` varchar(20) NOT NULL,
+  `kedatangan_k` int(11) NOT NULL,
+  `keberangkatan_k` int(11) NOT NULL,
+  `kedatangan_p` int(11) NOT NULL,
+  `keberangkatan_p` int(11) NOT NULL,
+  `parkir` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_data_gangguan`
+--
+
+CREATE TABLE `tmc_data_gangguan` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `jalan` varchar(50) NOT NULL,
+  `jenis` varchar(40) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `lat` varchar(20) NOT NULL,
+  `lng` varchar(20) NOT NULL,
+  `penyebab` varchar(50) NOT NULL,
+  `penyebabd` varchar(70) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_data_jalan`
+--
+
+CREATE TABLE `tmc_data_jalan` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `jenis` varchar(40) NOT NULL,
+  `panjang` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_data_rawan`
+--
+
+CREATE TABLE `tmc_data_rawan` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `jalan` varchar(50) NOT NULL,
+  `jenis` varchar(40) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `lat` varchar(20) NOT NULL,
+  `lng` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_data_statusjalan`
+--
+
+CREATE TABLE `tmc_data_statusjalan` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `jalan` varchar(50) NOT NULL,
+  `jenis` varchar(40) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `lat` varchar(20) NOT NULL,
+  `lng` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tmc_data_darurat`
+--
+ALTER TABLE `tmc_data_darurat`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- Indexes for table `tmc_data_fas_public`
+--
+ALTER TABLE `tmc_data_fas_public`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- Indexes for table `tmc_data_gangguan`
+--
+ALTER TABLE `tmc_data_gangguan`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- Indexes for table `tmc_data_jalan`
+--
+ALTER TABLE `tmc_data_jalan`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- Indexes for table `tmc_data_rawan`
+--
+ALTER TABLE `tmc_data_rawan`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- Indexes for table `tmc_data_statusjalan`
+--
+ALTER TABLE `tmc_data_statusjalan`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tmc_data_darurat`
+--
+ALTER TABLE `tmc_data_darurat`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `tmc_data_fas_public`
+--
+ALTER TABLE `tmc_data_fas_public`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tmc_data_gangguan`
+--
+ALTER TABLE `tmc_data_gangguan`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `tmc_data_jalan`
+--
+ALTER TABLE `tmc_data_jalan`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `tmc_data_rawan`
+--
+ALTER TABLE `tmc_data_rawan`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `tmc_data_statusjalan`
+--
+ALTER TABLE `tmc_data_statusjalan`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+

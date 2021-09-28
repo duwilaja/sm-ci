@@ -2,8 +2,8 @@
 //$lat=$_GET['lat'];
 //$lng=$_GET['lng'];
 $z="15";
-$latlng=$lat.",".$lng;
-if($lat==""||$lng==""){$z="12";$latlng="-7.566139228199951,110.82310438156128";}//$latlng="-6.175540717418276,106.82719230651857";} //monas
+//$latlng=$lat.",".$lng;
+$z="12";$latlng="-7.566139228199951,110.82310438156128";//$latlng="-6.175540717418276,106.82719230651857";} //monas
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,31 +20,26 @@ if($lat==""||$lng==""){$z="12";$latlng="-7.566139228199951,110.82310438156128";}
 	
 </head>
 <body>
-	<div id="map" style="position: absolute; top: 40px; left: 0; width: 100%; height: 91%;"></div>
+	<div id="map" style="position: absolute; top: 35px; left: 0; width: 100%; height: 93%;"></div>
 
 	<script>
-
-	var latfld="<?php echo $latfld?>";
-	var lngfld="<?php echo $lngfld?>";
 		var map = L.map('map').setView([<?php echo $latlng;?>], <?php echo $z;?>);
-
+		
+		var route=[];
+		var poly=null;
+		<?php
+		if($route!=''){?>
+			route=<?php echo $route.';';?>
+			poly=L.polyline(route,{color:"red"});
+			poly.addTo(map);
+		<?php
+		}
+		?>
+		
 		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 		attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(map);
 		
-		/*new L.Control.GeoSearch({
-			provider: new L.GeoSearch.Provider.OpenStreetMap()
-		}).addTo(map);*/
-
-		var popup = L.popup();
-		var marker = L.marker();
-		
-<?php if($z=="15"){?>
-			var latlon=L.latLng(<?php echo $latlng;?>);
-			//popup.setLatLng(latlon).setContent("Here.").openOn(map);
-			marker.setLatLng(latlon).addTo(map);
-<?php } ?>
-
 		const provider = new window.GeoSearch.OpenStreetMapProvider();
 		const search = new GeoSearch.GeoSearchControl({
 		  provider: provider,
@@ -53,8 +48,14 @@ if($lat==""||$lng==""){$z="12";$latlng="-7.566139228199951,110.82310438156128";}
 		  autoClose: true,
 		}); // Include the search box with usefull params. Autoclose and updateMap in my case. Provider is a compulsory parameter.
 
-		map.addControl(search);
+		var routes = L.layerGroup();
 		
+		map.addControl(search);
+		map.addLayer(routes);
+		
+		for(var i=0;i<route.length;i++){
+			L.marker(route[i]).addTo(routes);
+		}
 		
 		function onMapClick(e) {
 			/*popup
@@ -62,26 +63,36 @@ if($lat==""||$lng==""){$z="12";$latlng="-7.566139228199951,110.82310438156128";}
 				.setContent("You clicked the map at " + e.latlng.toString())
 				.openOn(map);*/
 				
-			marker.setLatLng(e.latlng).addTo(map);
+			L.marker(e.latlng).addTo(routes);
+			route.push(e.latlng);
+			if(poly!=null) map.removeLayer(poly);
+			poly=L.polyline(route,{color:"red"});
+			poly.addTo(map);
 			
-			document.mapfrm.lat.value=e.latlng.lat;
-			document.mapfrm.lng.value=e.latlng.lng;
-			map.panTo([e.latlng.lat,e.latlng.lng]);
+			//document.mapfrm.lat.value=e.latlng.lat;
+			document.mapfrm.route.value=JSON.stringify(route);
+			//map.panTo([e.latlng.lat,e.latlng.lng]);
 		}
 
 		map.on('click', onMapClick);
 
 	function okclick(){
-		latfld=latfld==""?"lat":latfld;
-		lngfld=lngfld==""?"lng":lngfld;
-		parent.window.opener.document.getElementsByName(latfld)[0].value=document.mapfrm.lat.value;
-		parent.window.opener.document.getElementsByName(lngfld)[0].value=document.mapfrm.lng.value;
+		parent.window.opener.document.getElementsByName('route')[0].value=document.mapfrm.route.value;
 		parent.window.close();
+	}
+	function clearmap(){
+		route=[];
+		document.mapfrm.route.value="";
+		map.removeLayer(routes);
+		console.log(route);
+		routes=L.layerGroup();
+		map.addLayer(routes);
+		map.removeLayer(poly);
 	}
 	</script>
 	<form name="mapfrm">
-	<input type="text" name="lat" value="<?php echo $lat;?>">
-	<input type="text" name="lng" value="<?php echo $lng;?>">
+	<textarea style="display:none;" name="route"><?php echo $route;?></textarea>
+	<input type="button" onclick="clearmap();" value="Clear">
 	<input type="button" onclick="okclick();" value="OK">
 	<input type="button" onclick="parent.window.close();" value="Close">
 	</form>

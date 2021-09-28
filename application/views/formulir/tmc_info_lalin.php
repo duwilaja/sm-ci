@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols.="namajalan,lat,lng,status,jammulai,jamsampai,penyebab,penyebabd,lainnya,statuspenggaljalan,sumber,petugas";
+$cols.="namajalan,lat,lng,status,jammulai,jamsampai,penyebab,penyebabd,lainnya,statuspenggaljalan,sumber,petugas,tindakan";
 ?>
 
 <input type="hidden" name="tablename" value="tmc_info_lalin">
@@ -57,8 +57,8 @@ $cols.="namajalan,lat,lng,status,jammulai,jamsampai,penyebab,penyebabd,lainnya,s
 		</div>
 	</div>
 </div>
-<div class="row macet">
-	<div class="col-sm-6 col-md-4">
+<div class="row">
+	<div class="col-sm-6 col-md-4 macet">
 		<div class="form-group">
 			<label class="form-label">Penyebab</label>
 	<?php
@@ -68,7 +68,7 @@ echo form_dropdown('penyebab', array_reverse($penyebab,true), '',$opt);
 ?>
 		</div>
 	</div>
-	<div class="col-sm-6 col-md-4">
+	<div class="col-sm-6 col-md-4 macet">
 		<div class="form-group">
 			<label class="form-label">Detil</label>
 			<select name="penyebabd" id="penyebabd" class="form-control" placeholder="" onchange="lainnyabukan(this.value);">
@@ -82,8 +82,13 @@ echo form_dropdown('penyebab', array_reverse($penyebab,true), '',$opt);
 			<input type="text" name="lainnya" class="form-control" placeholder="" >
 		</div>
 	</div>
-</div>
-<div class="row">
+	<div class="col-sm-6 col-md-4">
+		<div class="form-group">
+			<label class="form-label">Petugas Lapangan</label>
+			<input type="text" name="petugas" class="form-control" placeholder="" >
+		</div>
+	</div>
+
 	<div class="col-sm-6 col-md-4">
 		<div class="form-group">
 			<label class="form-label">Status Penggal Jalan</label>
@@ -106,8 +111,8 @@ echo form_dropdown('penyebab', array_reverse($penyebab,true), '',$opt);
 	</div>
 	<div class="col-sm-6 col-md-4">
 		<div class="form-group">
-			<label class="form-label">Petugas Lapangan</label>
-			<input type="text" name="petugas" class="form-control" placeholder="" >
+			<label class="form-label">Tindakan</label>
+			<textarea name="tindakan" class="form-control" placeholder="" ></textarea>
 		</div>
 	</div>
 </div>
@@ -132,6 +137,7 @@ function macetgak(tv){
 		$("#penyebab").val("");
 		$("#penyebabd").val("");
 		$("#lainnya").val("");
+		$(".lainnya").hide();
 		$(".macet").hide();
 	}
 }

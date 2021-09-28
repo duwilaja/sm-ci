@@ -18,4 +18,5 @@ application/logs/*
 
 #templates
 aronox/*
+application/config/database.php
 uploads/

@@ -1,0 +1,77 @@
+
+CREATE TABLE `tmc_data_giatpublik` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `giat` varchar(30) NOT NULL,
+  `tgldari` date NOT NULL,
+  `tglsampai` date NOT NULL,
+  `jamdari` time NOT NULL,
+  `jamsampai` time NOT NULL,
+  `jalan` varchar(50) NOT NULL,
+  `lat` varchar(30) NOT NULL,
+  `lng` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_data_vip`
+--
+
+CREATE TABLE `tmc_data_vip` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `giat` varchar(30) NOT NULL,
+  `tgldari` date NOT NULL,
+  `tglsampai` date NOT NULL,
+  `jamdari` time NOT NULL,
+  `jamsampai` time NOT NULL,
+  `jalan` text NOT NULL,
+  `route` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tmc_data_giatpublik`
+--
+ALTER TABLE `tmc_data_giatpublik`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- Indexes for table `tmc_data_vip`
+--
+ALTER TABLE `tmc_data_vip`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tmc_data_giatpublik`
+--
+ALTER TABLE `tmc_data_giatpublik`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tmc_data_vip`
+--
+ALTER TABLE `tmc_data_vip`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+

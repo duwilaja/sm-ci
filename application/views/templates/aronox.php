@@ -154,14 +154,14 @@ if(count($farr)>0&&$session['nrp']!=''){
 									</div>
 								</div> -->
 										   <?php
-											
+											/*
 										    if ($session['unit'] == "TMC" && $this->uri->segment(1) == "laporan") {
 											$i = 0;
 											foreach ($jumlah as $value) {
 												$i++;	
-											}
+											}*/
 											?>
-											<div class="dropdown header-notify">
+											<!--div class="dropdown header-notify">
 											<a class="nav-link icon" data-toggle="dropdown">
 												<i class="mdi mdi-bell-outline"></i>
 												<span class="pulse bg-danger "></span>
@@ -175,9 +175,9 @@ if(count($farr)>0&&$session['nrp']!=''){
 													</div>
 												</div>
 											</div>
-										</div>
+										</div-->
 									<?php
-								}
+								//}
 								
 								?>
 								<div class="dropdown ">
@@ -337,7 +337,7 @@ if(count($farr)>0&&$session['nrp']!=''){
 				<div class="container">
 					<div class="row align-items-center flex-row-reverse">
 						<div class="col-md-12 col-sm-12 mt-3 mt-lg-0 text-center">
-							Copyright Â©2020 <a target="_blank" href="http://www.matrik.co.id">Matrik</a>. All rights reserved.
+							Copyright ©2020 <a target="_blank" href="http://www._.co.id">_</a>. All rights reserved.
 						</div>
 					</div>
 				</div>
