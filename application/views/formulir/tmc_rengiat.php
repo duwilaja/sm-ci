@@ -23,7 +23,7 @@ $cols.="jenis,tgldari,tglsampai,jamdari,jamsampai,lokasi,sasaran,rincian,kuatper
 <hr />
 
 <div class="row">
-	<div class="col-sm-6 col-md-3">
+	<div class="col-sm-6 col-md-4">
 		<div class="form-group">
 			<label class="form-label">Jenis</label>
 			<select name="jenis" class="form-control" placeholder="">
