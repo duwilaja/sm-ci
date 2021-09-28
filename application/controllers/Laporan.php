@@ -104,8 +104,7 @@ class Laporan extends CI_Controller {
 				//$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
 			}
 			if(substr($id,0,8)=='tmc_reng'){
-				$subm=array("tmc_rengiat_rutin"=>"Giat Rutin","tmc_rengiat_khusus"=>"Giat Khusus","tmc_rengiat_kawal"=>"Giat Pengawalan",
-				"tmc_rengiat_pengamanan"=>"Giat Pengamanan");
+				$subm=array("tmc_rengiat"=>"Giat Umum","tmc_rengiat_kawal"=>"Giat Pengawalan");
 				$data['subm']=$subm;//$this->takeout($id,$subm);
 				$data['frid']=$id;
 				//$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());

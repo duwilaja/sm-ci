@@ -110,6 +110,14 @@ function datepicker(){
 					showClose: true
                 });
 }
+function datetimepicker(){
+	$('.datetimepicker').datetimepicker({
+                    format: 'YYYY-MM-DD HH:mm:ss',
+					showTodayButton: true,
+					showClear: true,
+					showClose: true
+                });
+}
 function selectpicker(init=false){
 	$(".selectpicker").selectpicker("refresh");
 	if(init){
