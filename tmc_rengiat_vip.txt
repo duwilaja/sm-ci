@@ -1,0 +1,76 @@
+
+CREATE TABLE `tmc_rengiat_vip` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `rengiatid` int(11) NOT NULL,
+  `obyek` varchar(30) NOT NULL,
+  `obyeklain` varchar(50) NOT NULL,
+  `pejabat` varchar(50) NOT NULL,
+  `tanggal` date NOT NULL,
+  `jam` time NOT NULL,
+  `dari` varchar(40) NOT NULL,
+  `darinama` varchar(50) NOT NULL,
+  `ke` varchar(40) NOT NULL,
+  `kenama` varchar(50) NOT NULL,
+  `wasdal` varchar(50) NOT NULL,
+  `anggota1` varchar(50) NOT NULL,
+  `anggota2` varchar(50) NOT NULL,
+  `anggota3` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_rengiat_vip_route`
+--
+
+CREATE TABLE `tmc_rengiat_vip_route` (
+  `rowid` bigint(20) NOT NULL,
+  `rengiatid` bigint(20) DEFAULT '0',
+  `nour` smallint(6) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `gangguan` text NOT NULL,
+  `ejarak` varchar(20) NOT NULL,
+  `ewaktu` varchar(20) NOT NULL,
+  `transit` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tmc_rengiat_vip`
+--
+ALTER TABLE `tmc_rengiat_vip`
+  ADD PRIMARY KEY (`rowid`),
+  ADD UNIQUE KEY `rengiatid` (`rengiatid`) USING BTREE;
+
+--
+-- Indexes for table `tmc_rengiat_vip_route`
+--
+ALTER TABLE `tmc_rengiat_vip_route`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tmc_rengiat_vip`
+--
+ALTER TABLE `tmc_rengiat_vip`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tmc_rengiat_vip_route`
+--
+ALTER TABLE `tmc_rengiat_vip_route`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
