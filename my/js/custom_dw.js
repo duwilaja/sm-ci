@@ -113,9 +113,7 @@ function datepicker(){
 function datetimepicker(){
 	$('.datetimepicker').datetimepicker({
                     format: 'YYYY-MM-DD HH:mm:ss',
-					showTodayButton: true,
-					showClear: true,
-					showClose: true
+					sideBySide: true
                 });
 }
 function selectpicker(init=false){
