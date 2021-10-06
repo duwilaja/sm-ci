@@ -7,7 +7,7 @@ $cols.="objek,terdeteksi,nopol,posisik,waktuk,nama,jk,posisio,waktuo";
 <input type="hidden" name="tablename" value="tmc_cctv_object">
 <input type="hidden" name="fieldnames" value="<?php echo $cols?>">
 
-<div class="row">
+<!--div class="row">
 <div class="col-lg-12">
 	<div class="btn-list">
 		<?php 
@@ -20,7 +20,8 @@ $cols.="objek,terdeteksi,nopol,posisik,waktuk,nama,jk,posisio,waktuo";
 	</div>
 </div>
 </div>
-<hr />
+<hr /-->
+
 <div class="row">
 	<div class="col-sm-6 col-md-4">
 		<div class="form-group">

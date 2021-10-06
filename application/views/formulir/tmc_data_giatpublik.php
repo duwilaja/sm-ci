@@ -7,7 +7,7 @@ $cols.="giat,tgldari,tglsampai,jamdari,jamsampai,jalan,lat,lng";
 <input type="hidden" name="tablename" value="tmc_data_giatpublik">
 <input type="hidden" name="fieldnames" value="<?php echo $cols?>">
 
-<div class="row">
+<!--div class="row">
 <div class="col-lg-12">
 	<div class="btn-list">
 		<?php 
@@ -20,7 +20,7 @@ $cols.="giat,tgldari,tglsampai,jamdari,jamsampai,jalan,lat,lng";
 	</div>
 </div>
 </div>
-<hr />
+<hr /-->
 
 <div class="row">
 	<div class="col-sm-6 col-md-3">
