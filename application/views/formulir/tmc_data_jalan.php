@@ -16,7 +16,7 @@ $cols.="panjang,jenis";
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
-<div class="row">
+<!--div class="row">
 <div class="col-lg-12">
 	<div class="btn-list">
 		<?php 
@@ -29,8 +29,9 @@ $cols.="panjang,jenis";
 	</div>
 </div>
 </div>
-<hr />
-<button type="button" class="btn btn-primary" onclick="showModal(0);"><i class="fa fa-plus"></i></button>
+<hr /-->
+
+<button type="button" class="btn btn-primary pull-right" onclick="showModal(0);"><i class="fa fa-plus"></i></button>
 <div class="row">
 	<div class="col-md-12">
 		<div class="table-responsive">

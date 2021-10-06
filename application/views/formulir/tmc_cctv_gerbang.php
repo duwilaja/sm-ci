@@ -1,13 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,";
-$cols.="in_a,out_a,in_b,out_b,in_c,out_c,in_d,out_d,dominasi";
+$cols.="in_a,out_a,in_b,out_b,in_c,out_c,in_d,out_d,dominasi_a,dominasi_b,dominasi_c,dominasi_d";
 ?>
 
-<input type="hidden" name="tablename" value="tmc_cctv_toll">
+<input type="hidden" name="tablename" value="tmc_cctv_gerbang">
 <input type="hidden" name="fieldnames" value="<?php echo $cols?>">
 
-<div class="row">
+<!--div class="row">
 <div class="col-lg-12">
 	<div class="btn-list">
 		<?php 
@@ -20,7 +20,8 @@ $cols.="in_a,out_a,in_b,out_b,in_c,out_c,in_d,out_d,dominasi";
 	</div>
 </div>
 </div>
-<hr />
+<hr /-->
+
 <div class="row">
 	<div class="col-sm-6 col-md-4">
 		<div class="form-group">
@@ -32,6 +33,16 @@ $cols.="in_a,out_a,in_b,out_b,in_c,out_c,in_d,out_d,dominasi";
 		<div class="form-group">
 			<label class="form-label">Gerbang Keluar A</label>
 			<input type="text" id="lat" name="out_a" class="form-control" placeholder="" >
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-4">
+		<div class="form-group">
+			<label class="form-label">Dominasi Kendaraan</label>
+			<select name="dominasi_a" class="form-control" placeholder="">
+				<option value="Truk">Truk</option>
+				<option value="Bus">Bus</option>
+				<option value="Pribadi">Pribadi</option>
+			</select>
 		</div>
 	</div>
 </div>
@@ -48,6 +59,16 @@ $cols.="in_a,out_a,in_b,out_b,in_c,out_c,in_d,out_d,dominasi";
 			<input type="text" id="lat" name="out_b" class="form-control" placeholder="" >
 		</div>
 	</div>
+		<div class="col-sm-6 col-md-4">
+		<div class="form-group">
+			<label class="form-label">Dominasi Kendaraan</label>
+			<select name="dominasi_b" class="form-control" placeholder="">
+				<option value="Truk">Truk</option>
+				<option value="Bus">Bus</option>
+				<option value="Pribadi">Pribadi</option>
+			</select>
+		</div>
+	</div>
 </div>
 <div class="row">
 	<div class="col-sm-6 col-md-4">
@@ -60,6 +81,16 @@ $cols.="in_a,out_a,in_b,out_b,in_c,out_c,in_d,out_d,dominasi";
 		<div class="form-group">
 			<label class="form-label">Gerbang Keluar C</label>
 			<input type="text" id="lat" name="out_c" class="form-control" placeholder="" >
+		</div>
+	</div>
+		<div class="col-sm-6 col-md-4">
+		<div class="form-group">
+			<label class="form-label">Dominasi Kendaraan</label>
+			<select name="dominasi_c" class="form-control" placeholder="">
+				<option value="Truk">Truk</option>
+				<option value="Bus">Bus</option>
+				<option value="Pribadi">Pribadi</option>
+			</select>
 		</div>
 	</div>
 </div>
@@ -76,12 +107,10 @@ $cols.="in_a,out_a,in_b,out_b,in_c,out_c,in_d,out_d,dominasi";
 			<input type="text" id="lat" name="out_d" class="form-control" placeholder="" >
 		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-sm-6 col-md-4">
+		<div class="col-sm-6 col-md-4">
 		<div class="form-group">
 			<label class="form-label">Dominasi Kendaraan</label>
-			<select name="dominasi" class="form-control" placeholder="">
+			<select name="dominasi_d" class="form-control" placeholder="">
 				<option value="Truk">Truk</option>
 				<option value="Bus">Bus</option>
 				<option value="Pribadi">Pribadi</option>
