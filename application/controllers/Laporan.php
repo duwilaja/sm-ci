@@ -67,7 +67,7 @@ class Laporan extends CI_Controller {
 			if($d!='')$where['sie']=$d;
 			$d=$this->input->post('subdit');
 			if($d!='')$where['subdit']=$d;
-			$ret=$this->db->select('view_laporan as v,nama_laporan as t')->where($where)->get('formulir')->result();
+			$ret=$this->db->select('view_laporan as v,nama_laporan as t')->where($where)->order_by("nama_laporan")->get('formulir')->result();
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$ret);
 			echo json_encode($retval);
 		}else{
