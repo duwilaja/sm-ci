@@ -7,7 +7,7 @@ $cols.="obyek,obyeklain,pejabat,tanggal,jam,dari,darinama,ke,kenama,wasdal,anggo
 <input type="hidden" name="tablename" value="tmc_rengiat_vip">
 <input type="hidden" name="fieldnames" value="<?php echo $cols?>">
 
-<div class="row">
+<!--div class="row">
 <div class="col-lg-12">
 	<div class="btn-list">
 		<?php 
@@ -20,7 +20,7 @@ $cols.="obyek,obyeklain,pejabat,tanggal,jam,dari,darinama,ke,kenama,wasdal,anggo
 	</div>
 </div>
 </div>
-<hr />
+<hr /-->
 
 <div class="row">
 	<div class="col-sm-6 col-md-2">

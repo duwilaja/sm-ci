@@ -7,7 +7,7 @@ $cols.="jenis,tgldari,tglsampai,jamdari,jamsampai,lokasi,sasaran,rincian,kuatper
 <input type="hidden" name="tablename" value="tmc_rengiat">
 <input type="hidden" name="fieldnames" value="<?php echo $cols?>">
 
-<div class="row">
+<!--div class="row">
 <div class="col-lg-12">
 	<div class="btn-list">
 		<?php 
@@ -20,7 +20,7 @@ $cols.="jenis,tgldari,tglsampai,jamdari,jamsampai,lokasi,sasaran,rincian,kuatper
 	</div>
 </div>
 </div>
-<hr />
+<hr /-->
 
 <div class="row">
 	<div class="col-sm-6 col-md-4">
