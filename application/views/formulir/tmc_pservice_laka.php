@@ -122,7 +122,7 @@ $cols.="saluran,sumber,jam,jalan,lat,lng,jenis,jmlkorban,korbanmd,kebutuhan,uplo
 	<div class="col-sm-6 col-md-6">
 		<div class="form-group">
 			<label class="form-label">Foto/Video</label>
-			<input type="file" name="uploadedfile" class="form-control" placeholder="" >
+			<input type="file" name="uploadedfile[]" multiple class="form-control" placeholder="" >
 		</div>
 	</div>
 </div>
