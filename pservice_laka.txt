@@ -1,4 +1,5 @@
 
+DROP TABLE IF EXISTS `tmc_pservice_laka`;
 CREATE TABLE `tmc_pservice_laka` (
   `rowid` bigint(20) NOT NULL,
   `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -17,10 +18,13 @@ CREATE TABLE `tmc_pservice_laka` (
   `jmlkorban` varchar(20) NOT NULL,
   `korbanmd` varchar(25) NOT NULL,
   `kebutuhan` varchar(50) NOT NULL,
-  `uploadedfile` varchar(100) NOT NULL,
+  `uploadedfile` text NOT NULL,
   `pelapor` varchar(40) NOT NULL,
   `telp` varchar(40) NOT NULL,
-  `verifikasi` varchar(1) NOT NULL DEFAULT '-'
+  `verifikasi` varchar(1) NOT NULL DEFAULT '-',
+  `saluran` varchar(30) NOT NULL DEFAULT 'Mobile Apps',
+  `sumber` varchar(30) NOT NULL DEFAULT 'Individu',
+  `masyarakat_id` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
