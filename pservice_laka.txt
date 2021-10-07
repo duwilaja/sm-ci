@@ -1,0 +1,45 @@
+
+CREATE TABLE `tmc_pservice_laka` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL DEFAULT '',
+  `subdinas` varchar(20) NOT NULL DEFAULT '',
+  `polda` varchar(20) NOT NULL DEFAULT '',
+  `polres` varchar(20) NOT NULL DEFAULT '',
+  `unit` varchar(20) NOT NULL DEFAULT '',
+  `nrp` varchar(30) NOT NULL DEFAULT '',
+  `tgl` date DEFAULT NULL,
+  `jam` time NOT NULL,
+  `jalan` varchar(50) NOT NULL,
+  `lat` varchar(30) NOT NULL,
+  `lng` varchar(30) NOT NULL,
+  `jenis` varchar(40) NOT NULL,
+  `jmlkorban` varchar(20) NOT NULL,
+  `korbanmd` varchar(25) NOT NULL,
+  `kebutuhan` varchar(50) NOT NULL,
+  `uploadedfile` varchar(100) NOT NULL,
+  `pelapor` varchar(40) NOT NULL,
+  `telp` varchar(40) NOT NULL,
+  `verifikasi` varchar(1) NOT NULL DEFAULT '-'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tmc_pservice_laka`
+--
+ALTER TABLE `tmc_pservice_laka`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tmc_pservice_laka`
+--
+ALTER TABLE `tmc_pservice_laka`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT;
+
