@@ -36,11 +36,26 @@ class PublicService extends CI_Controller {
 	}
 	
 	private function uplot($fld,$path){
-		if ( $this->upload->do_upload($fld)){
-				return $path.$this->upload->data('file_name');
-			}else{
-		return '';
+		$ret=array();
+		// Count total files
+        $countfiles = count($_FILES[$fld]['name']);
+		// Looping all files
+        for($i=0;$i<$countfiles;$i++){
+			if(!empty($_FILES[$fld]['name'][$i])){
+				// Define new $_FILES array - $_FILES['file']
+				  $_FILES['file']['name'] = $_FILES[$fld]['name'][$i];
+				  $_FILES['file']['type'] = $_FILES[$fld]['type'][$i];
+				  $_FILES['file']['tmp_name'] = $_FILES[$fld]['tmp_name'][$i];
+				  $_FILES['file']['error'] = $_FILES[$fld]['error'][$i];
+				  $_FILES['file']['size'] = $_FILES[$fld]['size'][$i];
+				
+				if ( $this->upload->do_upload('file')){
+						$ret[]= $path.$this->upload->data('file_name');
+					}
 			}
+		}
+		
+		return implode(";",$ret);
 	}
 	
 	public function save()
