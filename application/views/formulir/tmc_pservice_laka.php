@@ -120,10 +120,14 @@ $cols.="saluran,sumber,jam,jalan,lat,lng,jenis,jmlkorban,korbanmd,kebutuhan,uplo
 		</div>
 	</div>
 	<div class="col-sm-6 col-md-6">
-		<div class="form-group">
+		<div class="form-group files">
 			<label class="form-label">Foto/Video</label>
-			<input type="file" name="uploadedfile[]" multiple class="form-control" placeholder="" >
+			<input type="file" name="uploadedfile[]" class="form-control file" placeholder="" >
 		</div>
+	</div>
+	<div class="col-sm-6 col-md-1">
+		<label class="form-label">&nbsp;</label>
+		<button type="button" class="btn btn-icon btn-facebook" onclick="$('.files').append($('.file').clone().removeClass('file'));"><i class="fa fa-copy"></i></button>
 	</div>
 </div>
 
