@@ -104,6 +104,10 @@ $cols.="jam,jalan,lat,lng,jenis,jmlkorban,korbanmd,kebutuhan,uploadedfile,pelapo
 
 
 <script>
+function mappicker(lat,lng){
+	window.open(base_url+"map?lat="+$(lat).val()+"&lng="+$(lng).val(),"MapWindow","width=830,height=500,location=no").focus();
+}
+
 jvalidate = $("#myf").validate({
     rules :{
         "formulir" : {
