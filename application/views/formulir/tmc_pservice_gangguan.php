@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,";
-$cols.="saluran,sumber,jam,jalan,lat,lng,jenis,dampak,uploadedfile,pelapor,telp";
+$cols.="saluran,sumber,jam,jalan,lat,lng,jenis,dampak,uploadedfile,pelapor,telp,lainnya";
 ?>
 
 <input type="hidden" name="tablename" value="tmc_pservice_gangguan">
@@ -80,7 +80,7 @@ $cols.="saluran,sumber,jam,jalan,lat,lng,jenis,dampak,uploadedfile,pelapor,telp"
 	<div class="col-sm-6 col-md-3">
 		<div class="form-group">
 			<label class="form-label">Jenis Gangguan</label>
-			<select name="jenis" class="form-control" placeholder="">
+			<select name="jenis" class="form-control" placeholder="" onclick="lainnyabukan(this.value);">
 				<option value="Banjir">Banjir</option>
 				<option value="Tanah Longsor">Tanah Longsor</option>
 				<option value="Pohon Tumbang">Pohon Tumbang</option>
@@ -92,6 +92,12 @@ $cols.="saluran,sumber,jam,jalan,lat,lng,jenis,dampak,uploadedfile,pelapor,telp"
 				<option value="Kegiatan Keagamaan">Kegiatan Keagamaan</option>
 				<option value="Lainnya">Lainnya</option>
 			</select>
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-4 lainnya hidden">
+		<div class="form-group">
+			<label class="form-label">Lainnya</label>
+			<input type="text" id="lainnya" name="lainnya" class="form-control" placeholder="" >
 		</div>
 	</div>
 	<div class="col-sm-6 col-md-3">
@@ -153,5 +159,13 @@ $(".is-valid").removeClass("is-valid");
 
 function safeform(thef){
 	sendData('#myf','PublicService/save');
+}
+function lainnyabukan(tv){
+	if(tv=='Lainnya'){
+		$(".lainnya").show();
+	}else{
+		$("#lainnya").val("");
+		$(".lainnya").hide();
+	}
 }
 </script>
