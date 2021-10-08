@@ -85,8 +85,8 @@ $cols.="saluran,sumber,jam,jalan,lat,lng,jenis,uploadedfile,pelapor,telp";
 				<option value="Penerangan Jalan Mati">Penerangan Jalan Mati</option>
 				<option value="Penunjuk Arah Tidak Jelas">Penunjuk Arah Tidak Jelas</option>
 				<option value="Jalan Berlubang">Jalan Berlubang</option>
-				<option value="Jalan Bergelombang">Jalan Berlubang</option>
-				<option value="Jalan Licin">Jalan Berlubang</option>
+				<option value="Jalan Bergelombang">Jalan Bergelombang</option>
+				<option value="Jalan Licin">Jalan Licin</option>
 			</select>
 		</div>
 	</div>
@@ -139,6 +139,6 @@ $(".is-invalid").removeClass("is-invalid");
 $(".is-valid").removeClass("is-valid");
 
 function safeform(thef){
-	sendData('#myf','publicservice/save');
+	sendData('#myf','PublicService/save');
 }
 </script>
