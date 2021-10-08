@@ -137,6 +137,6 @@ $(".is-invalid").removeClass("is-invalid");
 $(".is-valid").removeClass("is-valid");
 
 function safeform(thef){
-	sendData('#myf','publicservice/save');
+	sendData('#myf','PublicService/save');
 }
 </script>
