@@ -21,7 +21,8 @@ CREATE TABLE `tmc_pservice_gangguan` (
   `saluran` varchar(30) NOT NULL DEFAULT 'Mobile Apps',
   `sumber` varchar(30) NOT NULL DEFAULT 'Individu',
   `masyarakat_id` int(11) NOT NULL DEFAULT '0',
-  `dampak` varchar(40) NOT NULL
+  `dampak` varchar(40) NOT NULL,
+  `lainnya` VARCHAR(50) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
