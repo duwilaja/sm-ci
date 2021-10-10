@@ -313,4 +313,49 @@ class Laporan extends CI_Controller {
 			echo json_encode($retval);
 		}
 	}
+	public function save_giat_vip()
+	{
+		$user=$this->session->userdata('user_data');
+		if(isset($user)){
+			$msgs="No data has been saved";
+			$rowid=$this->input->post("rowid");
+			$tname=$this->input->post('tablename');
+			$fname=$this->input->post('fieldnames');
+			
+			$data=$this->input->post(explode(",",$fname));
+			if($rowid==""||$rowid=="0"){
+				$rengiatid=time();
+				$data=array_merge($data,array("giatid"=>$rengiatid));
+				$this->db->insert($tname,$data);
+			}else{
+				//$this->db->update($tname,$data,"rowid=$rowid");
+			}
+			$ret=$this->db->affected_rows();
+			if($ret>0){
+				$msgs="$ret record(s) saved";
+				//input detail here
+				$nama=$this->input->post('nama'); $ejarak=$this->input->post('ejarak'); 
+				$ewaktu=$this->input->post('ewaktu'); $transit=$this->input->post('transit');
+				$dats=array();
+				for($i=0;$i<count($nama);$i++){
+					if($nama[$i]!=''){
+						$dats[]=array("giatid"=>$rengiatid,"nour"=>$i+1,"nama"=>$nama[$i],
+							"ejarak"=>$ejarak[$i],"ewaktu"=>$ewaktu[$i],"transit"=>$transit[$i]);
+					}
+				}
+				if(count($dats)>0){
+					$this->db->insert_batch("tmc_giat_vip_route",$dats);
+					$ret=$this->db->affected_rows();
+					if($ret>0){
+						$msgs.=" / $ret detail(s) saved";
+					}
+				}
+			}
+			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs);
+			echo json_encode($retval);
+		}else{
+			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>"Please login");
+			echo json_encode($retval);
+		}
+	}
 }

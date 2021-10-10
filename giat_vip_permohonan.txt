@@ -1,0 +1,160 @@
+
+CREATE TABLE `tmc_giat_vip` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `giatid` int(11) NOT NULL DEFAULT '0',
+  `obyek` varchar(30) NOT NULL,
+  `obyeklain` varchar(50) NOT NULL,
+  `pejabat` varchar(50) NOT NULL,
+  `tanggal` date NOT NULL,
+  `jam` time NOT NULL,
+  `dari` varchar(40) NOT NULL,
+  `darinama` varchar(50) NOT NULL,
+  `ke` varchar(40) NOT NULL,
+  `kenama` varchar(50) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `tersendat` text NOT NULL,
+  `ringkasan` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_giat_vip_route`
+--
+
+CREATE TABLE `tmc_giat_vip_route` (
+  `rowid` bigint(20) NOT NULL,
+  `giatid` bigint(20) DEFAULT '0',
+  `nour` smallint(6) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `ejarak` varchar(20) NOT NULL,
+  `ewaktu` varchar(20) NOT NULL,
+  `transit` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_pservice_sim`
+--
+
+CREATE TABLE `tmc_pservice_sim` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL DEFAULT '',
+  `subdinas` varchar(20) NOT NULL DEFAULT '',
+  `polda` varchar(20) NOT NULL DEFAULT '',
+  `polres` varchar(20) NOT NULL DEFAULT '',
+  `unit` varchar(20) NOT NULL DEFAULT '',
+  `nrp` varchar(30) NOT NULL DEFAULT '',
+  `tgl` date DEFAULT NULL,
+  `verifikasi` varchar(1) NOT NULL DEFAULT '-',
+  `saluran` varchar(30) NOT NULL DEFAULT 'Mobile Apps',
+  `sumber` varchar(30) NOT NULL DEFAULT 'Individu',
+  `masyarakat_id` int(11) NOT NULL DEFAULT '0',
+  `nama` varchar(50) NOT NULL,
+  `telp` varchar(40) NOT NULL,
+  `email` varchar(70) NOT NULL,
+  `jenis` varchar(30) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `ktp` varchar(100) NOT NULL,
+  `sim` varchar(100) NOT NULL,
+  `sertifikat` varchar(100) NOT NULL,
+  `kesehatan` varchar(100) NOT NULL,
+  `lunas` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_pservice_wal`
+--
+
+CREATE TABLE `tmc_pservice_wal` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL DEFAULT '',
+  `subdinas` varchar(20) NOT NULL DEFAULT '',
+  `polda` varchar(20) NOT NULL DEFAULT '',
+  `polres` varchar(20) NOT NULL DEFAULT '',
+  `unit` varchar(20) NOT NULL DEFAULT '',
+  `nrp` varchar(30) NOT NULL DEFAULT '',
+  `tgl` date DEFAULT NULL,
+  `verifikasi` varchar(1) NOT NULL DEFAULT '-',
+  `saluran` varchar(30) NOT NULL DEFAULT 'Mobile Apps',
+  `sumber` varchar(30) NOT NULL DEFAULT 'Individu',
+  `masyarakat_id` int(11) NOT NULL DEFAULT '0',
+  `nama` varchar(50) NOT NULL,
+  `telp` varchar(40) NOT NULL,
+  `email` varchar(70) NOT NULL,
+  `jenis` varchar(30) NOT NULL,
+  `kegiatan` varchar(50) NOT NULL,
+  `ktp` varchar(100) NOT NULL,
+  `sim` varchar(100) NOT NULL,
+  `sertifikat` varchar(100) NOT NULL,
+  `kesehatan` varchar(100) NOT NULL,
+  `lunas` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tmc_giat_vip`
+--
+ALTER TABLE `tmc_giat_vip`
+  ADD PRIMARY KEY (`rowid`),
+  ADD UNIQUE KEY `rengiatid` (`giatid`) USING BTREE;
+
+--
+-- Indexes for table `tmc_giat_vip_route`
+--
+ALTER TABLE `tmc_giat_vip_route`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- Indexes for table `tmc_pservice_sim`
+--
+ALTER TABLE `tmc_pservice_sim`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- Indexes for table `tmc_pservice_wal`
+--
+ALTER TABLE `tmc_pservice_wal`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tmc_giat_vip`
+--
+ALTER TABLE `tmc_giat_vip`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `tmc_giat_vip_route`
+--
+ALTER TABLE `tmc_giat_vip_route`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `tmc_pservice_sim`
+--
+ALTER TABLE `tmc_pservice_sim`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `tmc_pservice_wal`
+--
+ALTER TABLE `tmc_pservice_wal`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+

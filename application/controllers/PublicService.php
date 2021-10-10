@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class PublicService extends CI_Controller {
 	
+	private $token = '45fd595dcb1cdb51293fee28335c43487f4eaa2e940db4f589bec08cfae723a2';
+	
 	public function __construct()
 	{
 		parent::__construct();
@@ -35,7 +37,7 @@ class PublicService extends CI_Controller {
 		}
 	}
 	
-	private function uplot($fld,$path){
+	private function uplots($fld,$path){
 		$ret=array();
 		// Count total files
         $countfiles = count($_FILES[$fld]['name']);
@@ -62,7 +64,7 @@ class PublicService extends CI_Controller {
 	{
 		$user=$this->session->userdata('user_data');
 		$auth=$this->input->get_request_header('X-token', TRUE);
-		if(isset($user)||$auth=='45fd595dcb1cdb51293fee28335c43487f4eaa2e940db4f589bec08cfae723a2'){
+		if(isset($user)||$auth==$this->token){
 			$msgs="No data has been saved";
 			$kategori=$this->input->post('kategori');
 			$tname=$this->input->post('tablename');
@@ -78,7 +80,7 @@ class PublicService extends CI_Controller {
 			$m="";
 			$this->load->library('upload', $config);
 			
-			$data['uploadedfile'] =  $this->uplot('uploadedfile',$path);
+			$data['uploadedfile'] =  $this->uplots('uploadedfile',$path);
 			
 			$this->db->insert($tname,$data);
 			$ret=$this->db->affected_rows();
@@ -92,4 +94,53 @@ class PublicService extends CI_Controller {
 			echo json_encode($retval);
 		}
 	}
+	
+	private function uplot($fld,$path){
+		if ( $this->upload->do_upload($fld)){
+				return $path.$this->upload->data('file_name');
+			}else{
+		return '';
+			}
+	}
+	
+	public function save_permohonan()
+	{
+		$user=$this->session->userdata('user_data');
+		$auth=$this->input->get_request_header('X-token', TRUE);
+		if(isset($user)||$auth==$this->token){
+			$msgs="No data has been saved";
+			$tname=$this->input->post('tablename');
+			$fname=$this->input->post('fieldnames');
+			$data=$this->input->post(explode(",",$fname));
+			$kategori=$this->input->post('kategori');
+			
+			$filenames=explode(",",$this->input->post('filenames'));
+			
+			//upload here
+			$path="./uploads/publicservice/$kategori/";
+			$config['upload_path'] = $path;
+			$config['allowed_types'] = '*';//'gif|jpg|jpeg|png';//all
+			//$config['file_name'] = $user['nrp'];
+			$config['file_ext_tolower'] = true;
+			//$config['overwrite'] = false;
+			$m="";
+			$this->load->library('upload', $config);
+			
+			for($i=0;$i<count($filenames);$i++){
+				$data[$filenames[$i]] =  $this->uplot($filenames[$i],$path);
+			}
+			
+			$this->db->insert($tname,$data);
+			$ret=$this->db->affected_rows();
+			if($ret>0){
+				$msgs="$ret record(s) saved";
+			}
+			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs.$m);
+			echo json_encode($retval);
+		}else{
+			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>"Please login");
+			echo json_encode($retval);
+		}
+	}
+	
 }
