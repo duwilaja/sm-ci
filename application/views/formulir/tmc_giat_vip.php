@@ -122,7 +122,7 @@ $cols.="obyek,obyeklain,pejabat,tanggal,jam,dari,darinama,ke,kenama,status,terse
 						<th>Lokasi/Jalan</th>
 						<th>Estimasi Jarak</th>
 						<th>Estimasi Waktu Tempuh</th>
-						<th>Rencana Transit</th>
+						<th>Transit</th>
 					</tr>
 				</thead>
 				<tbody>
