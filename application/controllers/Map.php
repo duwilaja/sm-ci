@@ -22,4 +22,10 @@ class Map extends CI_Controller {
 		$data['route'] = $this->input->get("route");
 		$this->load->view('maproute',$data);
 	}
+	public function view()
+	{
+		$data['lat'] = $this->input->get("lat");
+		$data['lng'] = $this->input->get("lng");
+		$this->load->view('mapview',$data);
+	}
 }
