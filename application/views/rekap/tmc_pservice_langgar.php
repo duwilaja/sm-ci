@@ -1,23 +1,36 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols="nrp,tgl,media,jenis,jenisd,ket,lat,lng";
-$tname="tmc_interaksi";
+$cols="nrp,saluran,sumber,tgl,jam,jalan,jenis,pelapor,telp,verifikasi,'' as btnset,lat,lng,uploadedfile,rowid";
+$tname="tmc_pservice_langgar";
 ?>
 
 <div class="card">
 	<div class="card-header">
-		<div class="card-title judul">Interaksi 
-		
-											<div class="input-group">
-												<div class="input-group-prepend">
-													<div class="input-group-text">
-														<i class="fa fa-calendar"></i>
-													</div>
-												</div>
-												<input type="text" class="form-control datepicker" id="tgl">
-											</div>
-										
+		<div class="card-title judul">Laporan Pelanggaran 
+			<div class="row">
+				<div class="col">
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<div class="input-group-text">
+								<i class="fa fa-calendar"></i>
+							</div>
+						</div>
+						<input type="text" class="form-control datepicker" id="tgl">
+					</div>
+				</div>
+				<!--div>-</div>
+				<div class="col">
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<div class="input-group-text">
+								<i class="fa fa-calendar"></i>
+							</div>
+						</div>
+						<input type="text" class="form-control datepicker" id="tgl">
+					</div>
+				</div-->
+			</div>
 		</div>
 		<div class="card-options ">
 			<!--a href="#" title="Batch" class=""><i class="fe fe-upload"></i></a>
@@ -32,14 +45,17 @@ $tname="tmc_interaksi";
 			<table id="mytbl" class="table table-striped table-bordered w-100">
 				<thead>
 					<tr>
-						<th>ID/NRP</th>
+						<th>NRP</th>
+						<th>Saluran</th>
+						<th>Sumber</th>
 						<th>Tanggal</th>
-						<th>Media</th>
+						<th>Jam</th>
+						<th>Jalan</th>
 						<th>Jenis</th>
-						<th>Detil</th>
-						<th>Keterangan</th>
-						<th>Latitude</th>
-						<th>Longitude</th>
+						<th>Pelapor</th>
+						<th>Telp</th>
+						<th>TerVerifikasi?</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -63,6 +79,8 @@ function load_table(){
 			data: function (d) {
 				d.cols= '<?php echo base64_encode($cols); ?>',
 				d.tname= '<?php echo base64_encode($tname); ?>',
+				d.ismap=true,
+				d.isverify=true,
 				d.tgl= $('#tgl').val();
 			}
 		},
@@ -79,5 +97,9 @@ function contentcallback(){
 
 function reload_table(){
 	mytbl.ajax.reload();
+}
+
+function mapview(lat,lng){
+	window.open(base_url+"map/view?lat="+lat+"&lng="+lng,"MapWindow","width=830,height=500,location=no").focus();
 }
 </script>

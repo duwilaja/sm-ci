@@ -1,13 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols="nrp,tgl,media,jenis,jenisd,ket,lat,lng";
-$tname="tmc_interaksi";
+$cols="nrp,tgl,in_a,out_a,dominasi_a,in_b,out_b,dominasi_b,in_c,out_c,dominasi_c,in_d,out_d,dominasi_d";
+$tname="tmc_cctv_gerbang";
 ?>
 
 <div class="card">
 	<div class="card-header">
-		<div class="card-title judul">Interaksi 
+		<div class="card-title judul">Pantauan CCTV Wilayah Perbatasan
 		
 											<div class="input-group">
 												<div class="input-group-prepend">
@@ -34,12 +34,18 @@ $tname="tmc_interaksi";
 					<tr>
 						<th>ID/NRP</th>
 						<th>Tanggal</th>
-						<th>Media</th>
-						<th>Jenis</th>
-						<th>Detil</th>
-						<th>Keterangan</th>
-						<th>Latitude</th>
-						<th>Longitude</th>
+						<th>Gerbang Masuk A</th>
+						<th>Gerbang Keluar A</th>
+						<th>Dominasi</th>
+						<th>Gerbang Masuk B</th>
+						<th>Gerbang Keluar B</th>
+						<th>Dominasi</th>
+						<th>Gerbang Masuk C</th>
+						<th>Gerbang Keluar C</th>
+						<th>Dominasi</th>
+						<th>Gerbang Masuk D</th>
+						<th>Gerbang Keluar D</th>
+						<th>Dominasi</th>
 					</tr>
 				</thead>
 				<tbody>

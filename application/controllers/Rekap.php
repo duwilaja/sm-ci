@@ -15,7 +15,7 @@ class Rekap extends CI_Controller {
 		if(isset($user)){
 			$data['session'] = $user;
 			$data['title'] = "Rekap";
-			$data['formulir'] = comboopts($this->db->select('view_laporan as v,nama_laporan as t')->where("unit",$user['unit'])->or_where("unit",$user["subdinas"])->get('formulir')->result());
+			$data['formulir'] = comboopts($this->db->select('view_laporan as v,nama_laporan as t')->where(array("unit"=>$user['unit'],"isactive"=>"Y"))->or_where("unit",$user["subdinas"])->order_by("nama_laporan")->get('formulir')->result());
 			
 			$this->template->load('rekap',$data);
 		}else{
@@ -73,7 +73,9 @@ class Rekap extends CI_Controller {
 		$data=array();
 		if(isset($user)){
 			$tname=base64_decode($this->input->post('tname')); //tablename
-			$cols=base64_decode($this->input->post('cols')); //tablename
+			$cols=base64_decode($this->input->post('cols')); //column
+			$ismap=base64_decode($this->input->post('ismap')); //is map button active?
+			$isverify=base64_decode($this->input->post('isverify')); //is map button active?
 			
 			//build where polda/polres
 			if ($this->input->post('tgl') != '') {
@@ -96,14 +98,26 @@ class Rekap extends CI_Controller {
 			$data_assoc=$this->db->get()->result_array();
 			
 			for($i=0;$i<count($data_assoc);$i++){
+				$lnk='';
+				if($ismap){
+					$lnk.='<button type="button" class="btn btn-icon btn-info" onclick="mapview('.$data_assoc[$i]['lat'].','.$data_assoc[$i]['lng'].
+					');"><i class="fa fa-map-marker"></i></button>';
+				}
+				if($isverify){
+					$lnk.=' <button type="button" class="btn btn-icon btn-warning" onclick="openmodal('.$data_assoc[$i]['rowid'].');"><i class="fa fa-check"></i></button>';
+				}
+				if($lnk!=''){
+					$data_assoc[$i]['btnset']=$lnk;
+				}
 				$data[]=array_values($data_assoc[$i]);
 			}
 		}
 		$output = array(
-                        "draw" => 0,
+                        "draw" => $this->input->post('draw'),
                         "recordsTotal" => count($data),
                         "recordsFiltered" => count($data),
-                        "data" => $data
+                        "data" => $data,
+						"assoc" => $data_assoc
                 );
         //output to json format
         echo json_encode($output);

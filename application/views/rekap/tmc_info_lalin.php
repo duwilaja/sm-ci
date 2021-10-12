@@ -32,7 +32,7 @@ $tname="tmc_info_lalin";
 			<table id="mytbl" class="table table-striped table-bordered w-100">
 				<thead>
 					<tr>
-						<th>NRP</th>
+						<th>ID/NRP</th>
 						<th>Tanggal</th>
 						<th>Jalan</th>
 						<th>Latitude</th>
