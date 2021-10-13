@@ -34,7 +34,7 @@ CREATE TABLE `tmc_cctv` (
 -- Table structure for table `tmc_cctv_ctritical`
 --
 
-CREATE TABLE `tmc_cctv_ctritical` (
+CREATE TABLE `tmc_cctv_critical` (
   `rowid` bigint(20) NOT NULL,
   `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `dinas` varchar(20) NOT NULL,
