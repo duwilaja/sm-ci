@@ -1,13 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols="nrp,tgl,namajalan,lat,lng,status,jammulai,jamsampai,penyebab,penyebabd,lainnya,statuspenggaljalan,sumber,petugas";
-$tname="tmc_info_lalin";
+$cols="nrp,tgl,jenis,tgldari,tglsampai,jamdari,jamsampai,lokasi,sasaran,rincian,kuatpers,pic,target";
+$tname="tmc_rengiat";
 ?>
 
 <div class="card">
 	<div class="card-header">
-		<div class="card-title judul">Laporan Situasi
+		<div class="card-title judul">RenGiat
 		
 											<div class="input-group">
 												<div class="input-group-prepend">
@@ -34,18 +34,17 @@ $tname="tmc_info_lalin";
 					<tr>
 						<th>ID/NRP</th>
 						<th>Tanggal</th>
-						<th>Jalan</th>
-						<th>Latitude</th>
-						<th>Longitude</th>
-						<th>Status</th>
-						<th>Mulai</th>
-						<th>Sampai</th>
-						<th>Penyebab</th>
-						<th>Detil</th>
-						<th>Lainnya</th>
-						<th>Status Penggal Jalan</th>
-						<th>Sumber</th>
-						<th>Petugas</th>
+						<th>Jenis</th>
+						<th>Dari Tgl</th>
+						<th>Sampai Tgl</th>
+						<th>Dari Jam</th>
+						<th>Sampai Jam</th>
+						<th>Lokasi</th>
+						<th>Sasaran</th>
+						<th>Rincian Kegiatan</th>
+						<th>Kuat Personil</th>
+						<th>Penanggung Jawab</th>
+						<th>Target</th>
 					</tr>
 				</thead>
 				<tbody>

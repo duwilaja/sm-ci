@@ -74,8 +74,10 @@ class Rekap extends CI_Controller {
 		if(isset($user)){
 			$tname=base64_decode($this->input->post('tname')); //tablename
 			$cols=base64_decode($this->input->post('cols')); //column
+			
 			$ismap=base64_decode($this->input->post('ismap')); //is map button active?
-			$isverify=base64_decode($this->input->post('isverify')); //is map button active?
+			$isverify=base64_decode($this->input->post('isverify')); //is verify button active?
+			$isdispatch=base64_decode($this->input->post('isdispatch')); //is dispatch button active?
 			
 			//build where polda/polres
 			if ($this->input->post('tgl') != '') {
