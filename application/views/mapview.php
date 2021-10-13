@@ -8,7 +8,7 @@ if($lat==""||$lng==""){$z="12";$latlng="-7.566139228199951,110.82310438156128";}
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Please Choose Your Location</title>
+	<title>Map View</title>
 	<meta charset="utf-8" />
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
