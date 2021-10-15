@@ -142,6 +142,7 @@ $cols.="obyek,obyeklain,pejabat,tanggal,jam,dari,darinama,ke,kenama,wasdal,anggo
 						<th>Estimasi Jarak</th>
 						<th>Estimasi Waktu Tempuh</th>
 						<th>Rencana Transit</th>
+						<th>Lat/Lng</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -158,6 +159,10 @@ echo form_hidden('gangguan[]','');
 						<td><input type="text" name="ejarak[]" class="form-control" placeholder="" ></td>
 						<td><input type="text" name="ewaktu[]" class="form-control" placeholder="" ></td>
 						<td><input type="text" name="transit[]" class="form-control" placeholder="" ></td>
+						<td><input type="text" name="lat[]" id="lat_0" class="form-control lat" placeholder="" >
+						<input type="text" name="lng[]" id="lng_0" class="form-control lng" placeholder="" >
+			<button type="button" class="btn btn-icon btn-facebook btn-map" onclick="mappicker('lat_0','lng_0');"><i class="fa fa-map-marker"></i></button>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -184,7 +189,7 @@ echo form_hidden('gangguan[]','');
 
 <script>
 function mappicker(lat,lng){
-	window.open(base_url+"map?lat="+$(lat).val()+"&lng="+$(lng).val(),"MapWindow","width=830,height=500,location=no").focus();
+	window.open(base_url+"map?lat=&lng=&latfld="+lat+"&lngfld="+lng,"MapWindow","width=830,height=500,location=no").focus();
 }
 function lainnya(tv){
 	if(tv=='Lainnya'){
@@ -208,10 +213,16 @@ function klon(){
 	
     var newrow = row.clone();
 	newrow.removeClass("route").find('#gangguan_0').attr("id","gangguan_"+cntr);
+	newrow.find('#lat_0').attr("id","lat_"+cntr);
+	newrow.find('#lng_0').attr("id","lng_"+cntr);
 	newrow.find("input").val("");
 	newrow.find("select.select2").on("change",function(){
 		//console.log("i="+cntr+$(this).val());
 		$("#gangguan_"+cntr).val($(this).val());
+	});
+	newrow.find("button.btn-map").on("click",function(){
+		//console.log("i="+cntr+$(this).val());
+		mappicker("lat_"+cntr,"lng_"+cntr);
 	});
 	
 	$("tbody").append(newrow);

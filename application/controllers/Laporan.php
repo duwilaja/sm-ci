@@ -290,12 +290,12 @@ class Laporan extends CI_Controller {
 				//input detail here
 				$nama=$this->input->post('nama'); $gangguan=$this->input->post('gangguan');
 				$ejarak=$this->input->post('ejarak'); $ewaktu=$this->input->post('ewaktu');
-				$transit=$this->input->post('transit');
+				$transit=$this->input->post('transit'); $lat=$this->input->post('lat'); $lng=$this->input->post('lng');
 				$dats=array();
 				for($i=0;$i<count($nama);$i++){
 					if($nama[$i]!=''){
 						$dats[]=array("rengiatid"=>$rengiatid,"nour"=>$i+1,"nama"=>$nama[$i],"gangguan"=>$gangguan[$i],
-							"ejarak"=>$ejarak[$i],"ewaktu"=>$ewaktu[$i],"transit"=>$transit[$i]);
+							"ejarak"=>$ejarak[$i],"ewaktu"=>$ewaktu[$i],"transit"=>$transit[$i],"lat"=>$lat[$i],"lng"=>$lng[$i]);
 					}
 				}
 				if(count($dats)>0){
