@@ -35,7 +35,7 @@ class Account extends CI_Controller {
 			'smtp_host' => 'ssl://smtp.googlemail.com',
 			'smtp_port' => 465,
 			'smtp_user' => 'smart.mgmt.mmt@gmail.com',
-			'smtp_pass' => 'Bismillah3x!.',
+			'smtp_pass' => 'Bismillah10x',
 			'mailtype'  => 'html', 
 			'charset'   => 'iso-8859-1'
 		);
