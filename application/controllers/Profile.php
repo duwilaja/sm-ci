@@ -189,7 +189,7 @@ class Profile extends CI_Controller {
 			if(count($farr)>0){
 				$img=$farr[0];
 			}else{
-				$img=base_url().'my/images/'.$user['unit'].'.png';
+				//$img=base_url().'my/images/'.$user['unit'].'.png';
 			}
 		}
 		echo '<img src="'.$img.'?id='.time().'" class="avatar brround avatar-xl" alt="img">';
