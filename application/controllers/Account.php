@@ -72,8 +72,8 @@ class Account extends CI_Controller {
 
 		$tname='persons';
 		$usr=$this->db->where("nrp",$nrp)->get($tname)->result();
-		$eml=$this->db->where("email",$email)->get($tname)->result();
-		if(count($usr) || count($eml) <1){
+		//$eml=$this->db->where("email",$email)->get($tname)->result();
+		if(count($usr)<1){
 			$data=$this->input->post(array('nama','email','nrp','telp','pangkat'));//(explode(",",$fname));
 			$this->db->insert($tname,$data);
 			$ret=$this->db->affected_rows();
@@ -88,7 +88,7 @@ class Account extends CI_Controller {
 					$msgs="Account successfully created. ";
 					$code="200";
 					$ttl="Success";
-					$content="Hi $nama, terima kasih sudah mendaftar.<br /><br />Akun anda adalah $nrp  <br /> Dan $pwd adalah Password anda adalah <br /><br /><br />rgds<br />admin";
+					$content="Hi $nama, terima kasih sudah mendaftar.<br /><br />Akun anda adalah $nrp  <br /> Dan $pwd adalah Password anda <br /><br /><br />rgds<br />admin";
 					$sen=$this->sendmail($email,"New Account",$content);
 					if($sen) { $msgs.="Password sent to $email"; }else{ $msgs.="Failed sending mail to $email"; }
 				}else{
