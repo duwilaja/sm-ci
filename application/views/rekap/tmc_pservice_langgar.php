@@ -65,6 +65,30 @@ $tname="tmc_pservice_langgar";
 	</div>
 </div>
 
+<!-- Modal-->
+<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left modal_form">
+  <div role="document" class="modal-dialog">
+	<div class="modal-content">
+	  <div class="modal-header"><strong id="exampleModalLabel" class="modal-title">Verifikasi</strong>
+		<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">x</span></button>
+	  </div>
+	  <div class="modal-body">
+		<form id="myfx">
+		<input type="hidden" name="tablename" value="<?php echo $tname?>">
+		<input type="hidden" name="fieldnames" value="verifikasi">
+		<input type="hidden" name="rowid" id="rowid" value="">
+		<input type="hidden" name="dispatch" value="yes">
+		Data Valid? <select name="verifikasi" class="form-control"><option value="Y">Y</option><option value="N">N</option></select>
+		</form>
+	  </div>
+	  <div class="modal-footer">
+		<button type="button" class="btn btn-success" onclick="simpanlah();">Simpan</button>
+		<button type="button" data-dismiss="modal" class="btn btn-default">Tutup</button>
+	  </div>
+	</div>
+  </div>
+</div>
+
 <script>
 var  mytbl;
 function load_table(){
@@ -101,5 +125,15 @@ function reload_table(){
 
 function mapview(lat,lng){
 	window.open(base_url+"map/view?lat="+lat+"&lng="+lng,"MapWindow","width=830,height=500,location=no").focus();
+}
+function openmodal(rowid){
+	$("#rowid").val(rowid);
+	$("#myModal").modal("show");
+}
+function safeform(thef){
+	sendData('#myfx',"rekap/save");
+}
+function senddatacallback(thef){
+	reload_table();
 }
 </script>
