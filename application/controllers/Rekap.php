@@ -77,17 +77,17 @@ class Rekap extends CI_Controller {
 			
 			$ismap=base64_decode($this->input->post('ismap')); //is map button active?
 			$isverify=base64_decode($this->input->post('isverify')); //is verify button active?
-			$isdispatch=base64_decode($this->input->post('isdispatch')); //is dispatch button active?
 			
+			$where=array();
 			//build where polda/polres
 			if ($this->input->post('tgl') != '') {
 				$where['tgl'] = $this->input->post('tgl'); //date('Y-m-d');
 			}
 			$d=$user['polres'];
-			//if($d!='')
+			if($d!='')
 				$where[$tname.'.polres']=$d;
 			$d=$user['polda'];
-			//if($d!='')
+			if($d!='')
 				$where[$tname.'.polda']=$d;
 			
 			$this->db->select($cols);
@@ -132,11 +132,23 @@ class Rekap extends CI_Controller {
 			$msgs="No data has been saved";
 			$tname=$this->input->post('tablename');
 			$fname=$this->input->post('fieldnames');
+			$rowid=$this->input->post('rowid');
+			$dispatch=$this->input->post('dispatch');
+			
 			$data=$this->input->post(explode(",",$fname));
-			$this->db->insert($tname,$data);
+			
+			$this->db->update($tname,$data,"rowid=$rowid");
 			$ret=$this->db->affected_rows();
 			if($ret>0){
 				$msgs="$ret record(s) saved";
+				if($dispatch=='yes' && $this->input->post("verifikasi")=='Y'){
+					$select="tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,telp,
+					masyarakat_id as pelapor_id,jenis as keterangan,'pelanggaran' as judul,'1' as status";
+					$datadis=$this->db->select($select)->where(array("rowid"=>$rowid))->get($tname)->result_array();
+					$otherdb = $this->load->database('db_intan', TRUE);
+					$otherdb->insert_batch('pengaduan',$datadis);
+					$msgs.=" & DIPATCHED";
+				}
 			}
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs);
 			echo json_encode($retval);
