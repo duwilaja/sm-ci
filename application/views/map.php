@@ -74,8 +74,8 @@ if($lat==""||$lng==""){$z="12";$latlng="-7.566139228199951,110.82310438156128";}
 	function okclick(){
 		latfld=latfld==""?"lat":latfld;
 		lngfld=lngfld==""?"lng":lngfld;
-		parent.window.opener.document.getElementsByName(latfld)[0].value=document.mapfrm.lat.value;
-		parent.window.opener.document.getElementsByName(lngfld)[0].value=document.mapfrm.lng.value;
+		parent.window.opener.document.getElementById(latfld).value=document.mapfrm.lat.value;
+		parent.window.opener.document.getElementById(lngfld).value=document.mapfrm.lng.value;
 		parent.window.close();
 	}
 	</script>

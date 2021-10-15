@@ -39,7 +39,9 @@ CREATE TABLE `tmc_rengiat_vip_route` (
   `gangguan` text NOT NULL,
   `ejarak` varchar(20) NOT NULL,
   `ewaktu` varchar(20) NOT NULL,
-  `transit` varchar(50) NOT NULL
+  `transit` varchar(50) NOT NULL,
+  `lat` VARCHAR(30) NOT NULL DEFAULT '',
+  `lng` VARCHAR(30) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
