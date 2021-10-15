@@ -31,6 +31,7 @@ $cols.="jenis,tgldari,tglsampai,jamdari,jamsampai,lokasi,sasaran,rincian,kuatper
 				<option value="Road Savety Campaign">Road Savety Campaign</option>
 				<option value="Sosialisasi">Sosialisasi</option>
 				<option value="Publikasi">Publikasi</option>
+				<option value="Survey">Survey</option>
 				<option value="Lainnya">Lainnya</option>
 			</select>
 		</div>
