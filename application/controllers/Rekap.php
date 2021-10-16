@@ -70,13 +70,14 @@ class Rekap extends CI_Controller {
 	
 	public function datatable_all(){
 		$user=$this->session->userdata('user_data');
-		$data=array();
+		$data=array(); $data_assoc=array();
 		if(isset($user)){
 			$tname=base64_decode($this->input->post('tname')); //tablename
 			$cols=base64_decode($this->input->post('cols')); //column
 			
 			$ismap=base64_decode($this->input->post('ismap')); //is map button active?
 			$isverify=base64_decode($this->input->post('isverify')); //is verify button active?
+			$isfile=base64_decode($this->input->post('isfile')); //is files active?
 			
 			$where=array();
 			//build where polda/polres
@@ -108,6 +109,12 @@ class Rekap extends CI_Controller {
 				if($isverify){
 					$lnk.=' <button type="button" class="btn btn-icon btn-warning" onclick="openmodal('.$data_assoc[$i]['rowid'].');"><i class="fa fa-check"></i></button>';
 				}
+				if($isfile){
+					$myfiles=explode(",",$this->input->post('filefields'));
+					for($z=0;$z<count($myfiles);$z++){
+						$data_assoc[$i][$myfiles[$z]]=$this->make_link($data_assoc[$i][$myfiles[$z]]);
+					}
+				}
 				if($lnk!=''){
 					$data_assoc[$i]['btnset']=$lnk;
 				}
@@ -115,7 +122,7 @@ class Rekap extends CI_Controller {
 			}
 		}
 		$output = array(
-                        "draw" => $this->input->post('draw'),
+                        "draw" => 0,//$this->input->post('draw'),
                         "recordsTotal" => count($data),
                         "recordsFiltered" => count($data),
                         "data" => $data,
@@ -123,6 +130,16 @@ class Rekap extends CI_Controller {
                 );
         //output to json format
         echo json_encode($output);
+	}
+	
+	private function make_link($links){
+		$ret="";
+		$alink=explode(";",$links);
+		for($j=0;$j<count($alink);$j++){
+			//$ret.='<a target="_blank" href="'.$alink[$j].'">Attachment '.($j+1).'</a>';
+			$ret.='<a href="JavaScript:;" data-fancybox="" data-type="iframe" data-src="'.$alink[$j].'">Attachment '.($j+1).'</a><br />';
+		}
+		return $ret;
 	}
 	
 	public function save()
@@ -142,8 +159,7 @@ class Rekap extends CI_Controller {
 			if($ret>0){
 				$msgs="$ret record(s) saved";
 				if($dispatch=='yes' && $this->input->post("verifikasi")=='Y'){
-					$select="tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,telp,
-					masyarakat_id as pelapor_id,jenis as keterangan,'pelanggaran' as judul,'1' as status";
+					$select=base64_decode($this->input->post('dispatched'));
 					$datadis=$this->db->select($select)->where(array("rowid"=>$rowid))->get($tname)->result_array();
 					$otherdb = $this->load->database('db_intan', TRUE);
 					$otherdb->insert_batch('pengaduan',$datadis);
