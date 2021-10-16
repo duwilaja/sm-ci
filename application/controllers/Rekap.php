@@ -137,7 +137,9 @@ class Rekap extends CI_Controller {
 		$alink=explode(";",$links);
 		for($j=0;$j<count($alink);$j++){
 			//$ret.='<a target="_blank" href="'.$alink[$j].'">Attachment '.($j+1).'</a>';
-			$ret.='<a href="JavaScript:;" data-fancybox="" data-type="iframe" data-src="'.$alink[$j].'">Attachment '.($j+1).'</a><br />';
+			if(trim($alink[$j])!=""){
+				$ret.='<a href="JavaScript:;" data-fancybox="" data-type="iframe" data-src="'.$alink[$j].'">Attachment '.($j+1).'</a><br />';
+			}
 		}
 		return $ret;
 	}
