@@ -1,16 +1,16 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols="nrp,saluran,sumber,tgl,jam,jalan,jenis,pelapor,telp,verifikasi,'' as btnset,uploadedfile,lat,lng,rowid";
-$tname="tmc_pservice_langgar";
+$cols="nrp,saluran,sumber,tgl,jam,jalan,jenis,lainnya,dampak,pelapor,telp,verifikasi,'' as btnset,uploadedfile,lat,lng,rowid";
+$tname="tmc_pservice_gangguan";
 $dispatched="tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
-telp,masyarakat_id as pelapor_id,jenis as keterangan,'pelanggaran' as judul,'1' as status";
+telp,masyarakat_id as pelapor_id,concat(jenis,' ',lainnya,' berdampak ',dampak) as keterangan,'gangguan' as judul,'1' as status";
 
 ?>
 
 <div class="card">
 	<div class="card-header">
-		<div class="card-title judul">Laporan Pelanggaran 
+		<div class="card-title judul">Laporan Gangguan
 			<div class="row">
 				<div class="col">
 					<div class="input-group">
@@ -55,6 +55,8 @@ telp,masyarakat_id as pelapor_id,jenis as keterangan,'pelanggaran' as judul,'1' 
 						<th>Jam</th>
 						<th>Jalan</th>
 						<th>Jenis</th>
+						<th>Lainnya</th>
+						<th>Dampak</th>
 						<th>Pelapor</th>
 						<th>Telp</th>
 						<th>TerVerifikasi?</th>
@@ -122,7 +124,7 @@ function load_table(){
 		columnDefs: [
 			{
 				orderable: false,
-				targets: [10,11]
+				targets: [12,13]
 			}
 		]
 	});

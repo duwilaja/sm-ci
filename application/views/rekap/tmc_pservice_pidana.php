@@ -118,7 +118,13 @@ function load_table(){
 		},
 		initComplete: function(){
 			dttbl_buttons(); //for ajax call
-		}
+		},
+		columnDefs: [
+			{
+				orderable: false,
+				targets: [10,11]
+			}
+		]
 	});
 	datepicker();
 }

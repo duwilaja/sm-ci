@@ -1,16 +1,16 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols="nrp,saluran,sumber,tgl,jam,jalan,jenis,pelapor,telp,verifikasi,'' as btnset,uploadedfile,lat,lng,rowid";
-$tname="tmc_pservice_langgar";
+$cols="nrp,saluran,sumber,tgl,nama,telp,email,jenis,status,verifikasi,'' as btnset,ktp,sim,sertifikat,kesehatan,lunas,rowid";
+$tname="tmc_pservice_sim";
 $dispatched="tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
-telp,masyarakat_id as pelapor_id,jenis as keterangan,'pelanggaran' as judul,'1' as status";
+telp,masyarakat_id as pelapor_id,concat(petugas,' petugas') as keterangan,'kemacetan' as judul,'1' as status";
 
 ?>
 
 <div class="card">
 	<div class="card-header">
-		<div class="card-title judul">Laporan Pelanggaran 
+		<div class="card-title judul">Permohonan SIM
 			<div class="row">
 				<div class="col">
 					<div class="input-group">
@@ -52,14 +52,18 @@ telp,masyarakat_id as pelapor_id,jenis as keterangan,'pelanggaran' as judul,'1' 
 						<th>Saluran</th>
 						<th>Sumber</th>
 						<th>Tanggal</th>
-						<th>Jam</th>
-						<th>Jalan</th>
-						<th>Jenis</th>
-						<th>Pelapor</th>
+						<th>Nama</th>
 						<th>Telp</th>
+						<th>Email</th>
+						<th>Kategori</th>
+						<th>Status</th>
 						<th>TerVerifikasi?</th>
 						<th></th>
-						<th>FileUpload</th>
+						<th>KTP</th>
+						<th>SIM Lama</th>
+						<th>Sertifikat Sekolah Mengemudi</th>
+						<th>Cek Kesehatan</th>
+						<th>Bukti Lunas Adm.</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -81,7 +85,7 @@ telp,masyarakat_id as pelapor_id,jenis as keterangan,'pelanggaran' as judul,'1' 
 		<input type="hidden" name="tablename" value="<?php echo $tname?>">
 		<input type="hidden" name="fieldnames" value="verifikasi">
 		<input type="hidden" name="rowid" id="rowid" value="">
-		<input type="hidden" name="dispatch" value="yes">
+		<input type="hidden" name="dispatch" value="no">
 		<input type="hidden" name="dispatched" value="<?php echo base64_encode($dispatched)?>">
 		
 		Data Valid? <select name="verifikasi" class="form-control"><option value="Y">Y</option><option value="N">N</option></select>
@@ -109,10 +113,10 @@ function load_table(){
 			data: function (d) {
 				d.cols= '<?php echo base64_encode($cols); ?>',
 				d.tname= '<?php echo base64_encode($tname); ?>',
-				d.ismap=true,
+				//d.ismap=true,
 				d.isverify=true,
 				d.isfile=true,
-				d.filefields="uploadedfile",
+				d.filefields="sim,ktp,sertifikat,kesehatan,lunas",
 				d.tgl= $('#tgl').val();
 			}
 		},
@@ -122,7 +126,7 @@ function load_table(){
 		columnDefs: [
 			{
 				orderable: false,
-				targets: [10,11]
+				targets: [10,11,12,13,14,15]
 			}
 		]
 	});
