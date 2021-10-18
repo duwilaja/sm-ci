@@ -46,7 +46,8 @@ CREATE TABLE `tmc_cctv_critical` (
   `tgl` date NOT NULL,
   `objek` varchar(50) NOT NULL,
   `kejadian` varchar(10) NOT NULL,
-  `ket` text NOT NULL
+  `ket` text NOT NULL,
+  `status` VARCHAR(30)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -96,7 +97,8 @@ CREATE TABLE `tmc_cctv_public` (
   `kejadian` varchar(10) NOT NULL,
   `ket` text NOT NULL,
   `pengunjung` int(11) NOT NULL,
-  `kendaraan` int(11) NOT NULL
+  `kendaraan_in` int(11) NOT NULL,
+  `kendaraan_out` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

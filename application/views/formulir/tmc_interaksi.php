@@ -14,6 +14,9 @@ $cols.="media,jenis,jenisd,ket,lat,lng";
 			<select name="media" class="form-control" placeholder="">
 				<option value="Facebook">Facebook</option>
 				<option value="Tweeter">Tweeter</option>
+				<option value="Youtube">Youtube</option>
+				<option value="Instagram">Instagram</option>
+				<option value="Tiktok">Tiktok</option>
 				<option value="Website">Website</option>
 				<option value="Center">Center</option>
 			</select>

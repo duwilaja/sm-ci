@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols="nrp,tgl,objek,kejadian,ket,pengunjung,kendaraan";
+$cols="nrp,tgl,objek,pengunjung,kendaraan_in,kendaraan_out,kejadian,ket";
 $tname="tmc_cctv_public";
 ?>
 
@@ -35,10 +35,11 @@ $tname="tmc_cctv_public";
 						<th>ID/NRP</th>
 						<th>Tanggal</th>
 						<th>Objek</th>
+						<th>Jml.Pengunjung</th>
+						<th>Jml.Kendaraan Masuk</th>
+						<th>Jml.Kendaraan Keluar</th>
 						<th>Kejadian</th>
 						<th>Keterangan</th>
-						<th>Jml.Pengunjung</th>
-						<th>Jml.Kendaraan</th>
 					</tr>
 				</thead>
 				<tbody>
