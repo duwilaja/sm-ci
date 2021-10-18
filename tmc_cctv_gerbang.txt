@@ -20,7 +20,8 @@ CREATE TABLE `tmc_cctv_gerbang` (
   `dominasi_c` varchar(40) NOT NULL,
   `in_d` int(11) NOT NULL DEFAULT '0',
   `out_d` int(11) NOT NULL DEFAULT '0',
-  `dominasi_d` varchar(40) NOT NULL
+  `dominasi_d` varchar(40) NOT NULL,
+  `klasifikasi` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
