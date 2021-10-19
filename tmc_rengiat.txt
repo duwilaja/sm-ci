@@ -19,7 +19,9 @@ CREATE TABLE `tmc_rengiat` (
   `kuatpers` int(11) NOT NULL,
   `lokasi` varchar(50) NOT NULL,
   `pic` varchar(50) NOT NULL,
-  `target` text NOT NULL
+  `target` text NOT NULL,
+  `lat` varchar(30),
+  `lng` varchar(30)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
