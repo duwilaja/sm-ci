@@ -1,0 +1,75 @@
+
+CREATE TABLE `tmc_cctv_enforcement` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL DEFAULT '',
+  `subdinas` varchar(20) NOT NULL DEFAULT '',
+  `polda` varchar(20) NOT NULL DEFAULT '',
+  `polres` varchar(20) NOT NULL DEFAULT '',
+  `unit` varchar(20) NOT NULL DEFAULT '',
+  `nrp` varchar(30) NOT NULL DEFAULT '',
+  `tgl` date DEFAULT NULL,
+  `jam` time NOT NULL,
+  `jalan` varchar(50) NOT NULL,
+  `lat` varchar(30) NOT NULL,
+  `lng` varchar(30) NOT NULL,
+  `jenis` varchar(60) NOT NULL,
+  `uploadedfile` text NOT NULL,
+  `pelanggaran` varchar(40) NOT NULL,
+  `nopol` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_cctv_rekaman`
+--
+
+CREATE TABLE `tmc_cctv_rekaman` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `organisasi` varchar(50) NOT NULL,
+  `tanggal` date NOT NULL,
+  `lokasi` text NOT NULL,
+  `keperluan` varchar(40) NOT NULL,
+  `lainnya` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tmc_cctv_enforcement`
+--
+ALTER TABLE `tmc_cctv_enforcement`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- Indexes for table `tmc_cctv_rekaman`
+--
+ALTER TABLE `tmc_cctv_rekaman`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tmc_cctv_enforcement`
+--
+ALTER TABLE `tmc_cctv_enforcement`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `tmc_cctv_rekaman`
+--
+ALTER TABLE `tmc_cctv_rekaman`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
