@@ -313,7 +313,7 @@ class Laporan extends CI_Controller {
 			echo json_encode($retval);
 		}
 	}
-	public function save_giat_vip()
+	public function save_ops_wal()
 	{
 		$user=$this->session->userdata('user_data');
 		if(isset($user)){
@@ -334,17 +334,17 @@ class Laporan extends CI_Controller {
 			if($ret>0){
 				$msgs="$ret record(s) saved";
 				//input detail here
-				$nama=$this->input->post('nama'); $ejarak=$this->input->post('ejarak'); 
-				$ewaktu=$this->input->post('ewaktu'); $transit=$this->input->post('transit');
+				$nama=$this->input->post('nama'); $ejarak=$this->input->post('ejarak'); $jarak=$this->input->post('jarak'); 
+				$ewaktu=$this->input->post('ewaktu'); $waktu=$this->input->post('waktu'); $transit=$this->input->post('transit');
 				$dats=array();
 				for($i=0;$i<count($nama);$i++){
 					if($nama[$i]!=''){
-						$dats[]=array("giatid"=>$rengiatid,"nour"=>$i+1,"nama"=>$nama[$i],
+						$dats[]=array("giatid"=>$rengiatid,"nour"=>$i+1,"nama"=>$nama[$i],"jarak"=>$jarak[$i],"waktu"=>$waktu[$i],
 							"ejarak"=>$ejarak[$i],"ewaktu"=>$ewaktu[$i],"transit"=>$transit[$i]);
 					}
 				}
 				if(count($dats)>0){
-					$this->db->insert_batch("tmc_giat_vip_route",$dats);
+					$this->db->insert_batch($tname."_route",$dats);
 					$ret=$this->db->affected_rows();
 					if($ret>0){
 						$msgs.=" / $ret detail(s) saved";

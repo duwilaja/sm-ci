@@ -81,7 +81,7 @@ telp,masyarakat_id as pelapor_id,jenis as keterangan,'pelanggaran' as judul,'1' 
 		<input type="hidden" name="tablename" value="<?php echo $tname?>">
 		<input type="hidden" name="fieldnames" value="verifikasi">
 		<input type="hidden" name="rowid" id="rowid" value="">
-		<input type="hidden" name="dispatch" value="yes">
+		<input type="hidden" name="dispatch" value="no">
 		<input type="hidden" name="dispatched" value="<?php echo base64_encode($dispatched)?>">
 		
 		Data Valid? <select name="verifikasi" class="form-control"><option value="Y">Y</option><option value="N">N</option></select>
