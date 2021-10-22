@@ -1,0 +1,82 @@
+
+CREATE TABLE `tmc_ops_wal` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `giatid` int(11) NOT NULL DEFAULT '0',
+  `obyek` varchar(30) NOT NULL,
+  `obyeklain` varchar(50) NOT NULL,
+  `namaob` varchar(50) NOT NULL,
+  `tanggal` date NOT NULL,
+  `jam` time NOT NULL,
+  `dari` varchar(40) NOT NULL,
+  `ke` varchar(40) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `ringkasan` text NOT NULL,
+  `kategori` varchar(40) NOT NULL,
+  `darilat` varchar(30) NOT NULL,
+  `darilng` varchar(30) NOT NULL,
+  `kelat` varchar(30) NOT NULL,
+  `kelng` varchar(30) NOT NULL,
+  `identifikasiag` varchar(15) NOT NULL,
+  `ag` text NOT NULL,
+  `identifikasigm` varchar(15) NOT NULL,
+  `gm` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_ops_wal_route`
+--
+
+CREATE TABLE `tmc_ops_wal_route` (
+  `rowid` bigint(20) NOT NULL,
+  `giatid` bigint(20) DEFAULT '0',
+  `nour` smallint(6) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `ejarak` varchar(20) NOT NULL,
+  `ewaktu` varchar(20) NOT NULL,
+  `transit` varchar(50) NOT NULL,
+  `jarak` varchar(20) NOT NULL,
+  `waktu` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tmc_ops_wal`
+--
+ALTER TABLE `tmc_ops_wal`
+  ADD PRIMARY KEY (`rowid`),
+  ADD UNIQUE KEY `rengiatid` (`giatid`) USING BTREE;
+
+--
+-- Indexes for table `tmc_ops_wal_route`
+--
+ALTER TABLE `tmc_ops_wal_route`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tmc_ops_wal`
+--
+ALTER TABLE `tmc_ops_wal`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tmc_ops_wal_route`
+--
+ALTER TABLE `tmc_ops_wal_route`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+

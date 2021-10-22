@@ -105,6 +105,8 @@ function simpanlah(){
 	}
 }
 function ambil_isi(v){
+	safeform=null;
+	
 	$(".btn-pill").attr("disabled",false);
 	reset_isi();
 	if(v==''){
