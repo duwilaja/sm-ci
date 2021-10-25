@@ -176,5 +176,35 @@ class Rekap extends CI_Controller {
 		}
 	}
 	
+	private $token = '45fd595dcb1cdb51293fee28335c43487f4eaa2e940db4f589bec08cfae723a2';
+	
+	public function take(){
+		$auth=$this->input->get_request_header('X-token', TRUE);
+		$res=array();
+		if($auth==$this->token){
+			$tname=$this->input->post('tablename');
+			$fname=$this->input->post('fieldnames');
+			$filtereqs=$this->input->post('filtereqs'); //separated by ,
+			$filterlikes=$this->input->post('filterlikes'); //separated by ,
+			$where=array(); $like=array();
+			if($filtereqs){
+				$where=$this->input->post(explode(",",$filtereqs));
+			}
+			if($filterlikes){
+				$like=array_merge($where,$this->input->post(explode(",",$filterlikes)));
+			}
+			
+			$this->db->select($fname);
+			if(count($where)>0){
+				$this->db->where($where);
+			}
+			if(count($like)>0){
+				$this->db->like($like);
+			}
+			$res=$this->db->get($tname)->result();
+		}
+		
+		echo json_encode($res);
+	}
 
 }
