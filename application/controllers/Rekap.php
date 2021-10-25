@@ -86,10 +86,10 @@ class Rekap extends CI_Controller {
 			}
 			$d=$user['polres'];
 			if($d!='')
-				$where[$tname.'.polres']=$d;
+				//$where[$tname.'.polres']=$d;
 			$d=$user['polda'];
 			if($d!='')
-				$where[$tname.'.polda']=$d;
+				//$where[$tname.'.polda']=$d;
 			
 			$this->db->select($cols);
 			$this->db->from($tname);
@@ -192,6 +192,34 @@ class Rekap extends CI_Controller {
 			}
 			if($filterlikes){
 				$like=array_merge($where,$this->input->post(explode(",",$filterlikes)));
+			}
+			
+			$this->db->select($fname);
+			if(count($where)>0){
+				$this->db->where($where);
+			}
+			if(count($like)>0){
+				$this->db->like($like);
+			}
+			$res=$this->db->get($tname)->result();
+		}
+		
+		echo json_encode($res);
+	}
+	public function take2(){
+		$auth=$this->input->get_request_header('X-token', TRUE);
+		$res=array();
+		if(true){
+			$tname=$this->input->get('tablename');
+			$fname=$this->input->get('fieldnames');
+			$filtereqs=$this->input->get('filtereqs'); //separated by ,
+			$filterlikes=$this->input->get('filterlikes'); //separated by ,
+			$where=array(); $like=array();
+			if($filtereqs){
+				$where=$this->input->get(explode(",",$filtereqs));
+			}
+			if($filterlikes){
+				$like=array_merge($where,$this->input->get(explode(",",$filterlikes)));
 			}
 			
 			$this->db->select($fname);
