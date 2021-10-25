@@ -1,0 +1,211 @@
+
+CREATE TABLE `tmc_pservice_gangguan` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL DEFAULT '',
+  `subdinas` varchar(20) NOT NULL DEFAULT '',
+  `polda` varchar(20) NOT NULL DEFAULT '',
+  `polres` varchar(20) NOT NULL DEFAULT '',
+  `unit` varchar(20) NOT NULL DEFAULT '',
+  `nrp` varchar(30) NOT NULL DEFAULT '',
+  `tgl` date DEFAULT NULL,
+  `jam` time NOT NULL,
+  `jalan` varchar(50) NOT NULL,
+  `lat` varchar(30) NOT NULL,
+  `lng` varchar(30) NOT NULL,
+  `jenis` varchar(40) NOT NULL,
+  `uploadedfile` text NOT NULL,
+  `pelapor` varchar(40) NOT NULL,
+  `telp` varchar(40) NOT NULL,
+  `verifikasi` varchar(1) NOT NULL DEFAULT '-',
+  `saluran` varchar(30) NOT NULL DEFAULT 'Mobile Apps',
+  `sumber` varchar(30) NOT NULL DEFAULT 'Individu',
+  `masyarakat_id` int(11) NOT NULL DEFAULT '0',
+  `dampak` varchar(40) NOT NULL,
+  `lainnya` VARCHAR(50) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_pservice_infra`
+--
+
+CREATE TABLE `tmc_pservice_infra` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL DEFAULT '',
+  `subdinas` varchar(20) NOT NULL DEFAULT '',
+  `polda` varchar(20) NOT NULL DEFAULT '',
+  `polres` varchar(20) NOT NULL DEFAULT '',
+  `unit` varchar(20) NOT NULL DEFAULT '',
+  `nrp` varchar(30) NOT NULL DEFAULT '',
+  `tgl` date DEFAULT NULL,
+  `jam` time NOT NULL,
+  `jalan` varchar(50) NOT NULL,
+  `lat` varchar(30) NOT NULL,
+  `lng` varchar(30) NOT NULL,
+  `jenis` varchar(40) NOT NULL,
+  `uploadedfile` text NOT NULL,
+  `pelapor` varchar(40) NOT NULL,
+  `telp` varchar(40) NOT NULL,
+  `verifikasi` varchar(1) NOT NULL DEFAULT '-',
+  `saluran` varchar(30) NOT NULL DEFAULT 'Mobile Apps',
+  `sumber` varchar(30) NOT NULL DEFAULT 'Individu',
+  `masyarakat_id` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_pservice_langgar`
+--
+
+CREATE TABLE `tmc_pservice_langgar` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL DEFAULT '',
+  `subdinas` varchar(20) NOT NULL DEFAULT '',
+  `polda` varchar(20) NOT NULL DEFAULT '',
+  `polres` varchar(20) NOT NULL DEFAULT '',
+  `unit` varchar(20) NOT NULL DEFAULT '',
+  `nrp` varchar(30) NOT NULL DEFAULT '',
+  `tgl` date DEFAULT NULL,
+  `jam` time NOT NULL,
+  `jalan` varchar(50) NOT NULL,
+  `lat` varchar(30) NOT NULL,
+  `lng` varchar(30) NOT NULL,
+  `jenis` varchar(40) NOT NULL,
+  `uploadedfile` text NOT NULL,
+  `pelapor` varchar(40) NOT NULL,
+  `telp` varchar(40) NOT NULL,
+  `verifikasi` varchar(1) NOT NULL DEFAULT '-',
+  `saluran` varchar(30) NOT NULL DEFAULT 'Mobile Apps',
+  `sumber` varchar(30) NOT NULL DEFAULT 'Individu',
+  `masyarakat_id` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_pservice_macet`
+--
+
+CREATE TABLE `tmc_pservice_macet` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL DEFAULT '',
+  `subdinas` varchar(20) NOT NULL DEFAULT '',
+  `polda` varchar(20) NOT NULL DEFAULT '',
+  `polres` varchar(20) NOT NULL DEFAULT '',
+  `unit` varchar(20) NOT NULL DEFAULT '',
+  `nrp` varchar(30) NOT NULL DEFAULT '',
+  `tgl` date DEFAULT NULL,
+  `jam` time NOT NULL,
+  `jalan` varchar(50) NOT NULL,
+  `lat` varchar(30) NOT NULL,
+  `lng` varchar(30) NOT NULL,
+  `petugas` varchar(25) NOT NULL,
+  `uploadedfile` text NOT NULL,
+  `pelapor` varchar(40) NOT NULL,
+  `telp` varchar(40) NOT NULL,
+  `verifikasi` varchar(1) NOT NULL DEFAULT '-',
+  `saluran` varchar(30) NOT NULL DEFAULT 'Mobile Apps',
+  `sumber` varchar(30) NOT NULL DEFAULT 'Individu',
+  `masyarakat_id` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_pservice_pidana`
+--
+
+CREATE TABLE `tmc_pservice_pidana` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL DEFAULT '',
+  `subdinas` varchar(20) NOT NULL DEFAULT '',
+  `polda` varchar(20) NOT NULL DEFAULT '',
+  `polres` varchar(20) NOT NULL DEFAULT '',
+  `unit` varchar(20) NOT NULL DEFAULT '',
+  `nrp` varchar(30) NOT NULL DEFAULT '',
+  `tgl` date DEFAULT NULL,
+  `jam` time NOT NULL,
+  `jalan` varchar(50) NOT NULL,
+  `lat` varchar(30) NOT NULL,
+  `lng` varchar(30) NOT NULL,
+  `jenis` varchar(40) NOT NULL,
+  `uploadedfile` text NOT NULL,
+  `pelapor` varchar(40) NOT NULL,
+  `telp` varchar(40) NOT NULL,
+  `verifikasi` varchar(1) NOT NULL DEFAULT '-',
+  `saluran` varchar(30) NOT NULL DEFAULT 'Mobile Apps',
+  `sumber` varchar(30) NOT NULL DEFAULT 'Individu',
+  `masyarakat_id` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tmc_pservice_gangguan`
+--
+ALTER TABLE `tmc_pservice_gangguan`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- Indexes for table `tmc_pservice_infra`
+--
+ALTER TABLE `tmc_pservice_infra`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- Indexes for table `tmc_pservice_langgar`
+--
+ALTER TABLE `tmc_pservice_langgar`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- Indexes for table `tmc_pservice_macet`
+--
+ALTER TABLE `tmc_pservice_macet`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- Indexes for table `tmc_pservice_pidana`
+--
+ALTER TABLE `tmc_pservice_pidana`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tmc_pservice_gangguan`
+--
+ALTER TABLE `tmc_pservice_gangguan`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tmc_pservice_infra`
+--
+ALTER TABLE `tmc_pservice_infra`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tmc_pservice_langgar`
+--
+ALTER TABLE `tmc_pservice_langgar`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tmc_pservice_macet`
+--
+ALTER TABLE `tmc_pservice_macet`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tmc_pservice_pidana`
+--
+ALTER TABLE `tmc_pservice_pidana`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+

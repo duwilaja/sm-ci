@@ -25,7 +25,8 @@ class Login extends CI_Controller {
 		}
 
 		if (base64_decode($rahasia) != get_cookie('rahasia')) {
-			show_404();
+			//show_404();
+			redirect('login/out/1');
 		}
 		
 		$this->db->where('uid',$nrp);
@@ -64,10 +65,11 @@ class Login extends CI_Controller {
 		}
 	}
 	
-	public function out()
+	public function out($re=0)
 	{
 		session_destroy();
-		$retval=array("200","OK","Logged out","success");
+		$msg=$re==0?"Logged out":"Session reloaded, please re enter your credential";
+		$retval=array("200","OK",$msg,"success");
 		$data['retval']=$retval;
 		$data['pangkat'] = comboopts($this->db->select('pang_id as v,pang_nam as t')->get('pangkat')->result());
 		$data['rahasia'] = mt_rand(100000,999999);

@@ -7,7 +7,7 @@ $tname="tmc_info_lalin";
 
 <div class="card">
 	<div class="card-header">
-		<div class="card-title judul">Informasi Lalin 
+		<div class="card-title judul">Laporan Situasi
 		
 											<div class="input-group">
 												<div class="input-group-prepend">
@@ -32,7 +32,7 @@ $tname="tmc_info_lalin";
 			<table id="mytbl" class="table table-striped table-bordered w-100">
 				<thead>
 					<tr>
-						<th>NRP</th>
+						<th>ID/NRP</th>
 						<th>Tanggal</th>
 						<th>Jalan</th>
 						<th>Latitude</th>

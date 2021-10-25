@@ -1,0 +1,47 @@
+
+CREATE TABLE `tmc_ops_macet` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `dasar` varchar(30) DEFAULT NULL,
+  `nomor` varchar(30) DEFAULT NULL,
+  `namajalan` varchar(50) NOT NULL,
+  `lat` varchar(25) NOT NULL,
+  `lng` varchar(25) NOT NULL,
+  `jammulai` time NOT NULL,
+  `jamsampai` time NOT NULL,
+  `penyebab` varchar(40) NOT NULL DEFAULT '',
+  `penyebabd` varchar(50) DEFAULT '',
+  `lainnya` varchar(100) NOT NULL,
+  `statuspenggaljalan` varchar(20) NOT NULL,
+  `tindakan` varchar(20) NOT NULL,
+  `petugas` varchar(50) NOT NULL,
+  `ket` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tmc_ops_macet`
+--
+ALTER TABLE `tmc_ops_macet`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tmc_ops_macet`
+--
+ALTER TABLE `tmc_ops_macet`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT;
+

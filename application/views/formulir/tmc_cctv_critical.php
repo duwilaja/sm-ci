@@ -1,13 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,";
-$cols.="objek,kejadian,ket";
+$cols.="objek,kejadian,ket,status";
 ?>
 
 <input type="hidden" name="tablename" value="tmc_cctv_critical">
 <input type="hidden" name="fieldnames" value="<?php echo $cols?>">
 
-<div class="row">
+<!--div class="row">
 <div class="col-lg-12">
 	<div class="btn-list">
 		<?php 
@@ -20,22 +20,30 @@ $cols.="objek,kejadian,ket";
 	</div>
 </div>
 </div>
-<hr />
+<hr /-->
+
 <div class="row">
-	<div class="col-sm-6 col-md-4">
+	<div class="col-sm-6 col-md-3">
 		<div class="form-group">
 			<label class="form-label">Objek</label>
 			<select name="objek" class="form-control" placeholder="">
 				<option value="Rawan Laka">Rawan Laka</option>
-				<option value="Rawan Banjir">Rawan Banjir</option>
-				<option value="Gunung Berapi">Gunung Berapi</option>
-				<option value="Gelombang Laut">Gelombang Laut</option>
-				<option value="DAS">DAS</option>
+				<option value="Rawan Langgar">Rawan Langgar</option>
+				<option value="Rawan Bencana">Rawan Bencana</option>
 				<option value="Rawan Kriminal">Rawan Kriminal</option>
 			</select>
 		</div>
 	</div>
-	<div class="col-sm-6 col-md-4">
+	<div class="col-sm-6 col-md-3">
+		<div class="form-group">
+			<label class="form-label">Status Wilayah</label>
+			<select name="status" class="form-control" placeholder="">
+				<option value="Aman">Aman</option>
+				<option value="Waspada">Waspada</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-3">
 		<div class="form-group">
 			<label class="form-label">Kejadian Terpantau</label>
 			<select name="kejadian" class="form-control" placeholder="">
@@ -44,7 +52,7 @@ $cols.="objek,kejadian,ket";
 			</select>
 		</div>
 	</div>
-	<div class="col-sm-6 col-md-4">
+	<div class="col-sm-6 col-md-3">
 		<div class="form-group">
 			<label class="form-label">Keterangan</label>
 			<textarea name="ket" class="form-control" placeholder="" ></textarea>

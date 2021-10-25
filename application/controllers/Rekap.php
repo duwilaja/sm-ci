@@ -15,7 +15,7 @@ class Rekap extends CI_Controller {
 		if(isset($user)){
 			$data['session'] = $user;
 			$data['title'] = "Rekap";
-			$data['formulir'] = comboopts($this->db->select('view_laporan as v,nama_laporan as t')->where("unit",$user['unit'])->or_where("unit",$user["subdinas"])->get('formulir')->result());
+			$data['formulir'] = comboopts($this->db->select('view_laporan as v,nama_laporan as t')->where(array("unit"=>$user['unit'],"isactive"=>"Y"))->or_where("unit",$user["subdinas"])->order_by("nama_laporan")->get('formulir')->result());
 			
 			$this->template->load('rekap',$data);
 		}else{
@@ -70,20 +70,25 @@ class Rekap extends CI_Controller {
 	
 	public function datatable_all(){
 		$user=$this->session->userdata('user_data');
-		$data=array();
+		$data=array(); $data_assoc=array();
 		if(isset($user)){
 			$tname=base64_decode($this->input->post('tname')); //tablename
-			$cols=base64_decode($this->input->post('cols')); //tablename
+			$cols=base64_decode($this->input->post('cols')); //column
 			
+			$ismap=base64_decode($this->input->post('ismap')); //is map button active?
+			$isverify=base64_decode($this->input->post('isverify')); //is verify button active?
+			$isfile=base64_decode($this->input->post('isfile')); //is files active?
+			
+			$where=array();
 			//build where polda/polres
 			if ($this->input->post('tgl') != '') {
 				$where['tgl'] = $this->input->post('tgl'); //date('Y-m-d');
 			}
 			$d=$user['polres'];
-			//if($d!='')
+			if($d!='')
 				$where[$tname.'.polres']=$d;
 			$d=$user['polda'];
-			//if($d!='')
+			if($d!='')
 				$where[$tname.'.polda']=$d;
 			
 			$this->db->select($cols);
@@ -96,17 +101,47 @@ class Rekap extends CI_Controller {
 			$data_assoc=$this->db->get()->result_array();
 			
 			for($i=0;$i<count($data_assoc);$i++){
+				$lnk='';
+				if($ismap){
+					$lnk.='<button type="button" class="btn btn-icon btn-info" onclick="mapview('.$data_assoc[$i]['lat'].','.$data_assoc[$i]['lng'].
+					');"><i class="fa fa-map-marker"></i></button>';
+				}
+				if($isverify){
+					$lnk.=' <button type="button" class="btn btn-icon btn-warning" onclick="openmodal('.$data_assoc[$i]['rowid'].');"><i class="fa fa-check"></i></button>';
+				}
+				if($isfile){
+					$myfiles=explode(",",$this->input->post('filefields'));
+					for($z=0;$z<count($myfiles);$z++){
+						$data_assoc[$i][$myfiles[$z]]=$this->make_link($data_assoc[$i][$myfiles[$z]]);
+					}
+				}
+				if($lnk!=''){
+					$data_assoc[$i]['btnset']=$lnk;
+				}
 				$data[]=array_values($data_assoc[$i]);
 			}
 		}
 		$output = array(
-                        "draw" => 0,
+                        "draw" => 0,//$this->input->post('draw'),
                         "recordsTotal" => count($data),
                         "recordsFiltered" => count($data),
-                        "data" => $data
+                        "data" => $data,
+						"assoc" => $data_assoc
                 );
         //output to json format
         echo json_encode($output);
+	}
+	
+	private function make_link($links){
+		$ret="";
+		$alink=explode(";",$links);
+		for($j=0;$j<count($alink);$j++){
+			//$ret.='<a target="_blank" href="'.$alink[$j].'">Attachment '.($j+1).'</a>';
+			if(trim($alink[$j])!=""){
+				$ret.='<a href="JavaScript:;" data-fancybox="" data-type="iframe" data-src="'.$alink[$j].'">Attachment '.($j+1).'</a><br />';
+			}
+		}
+		return $ret;
 	}
 	
 	public function save()
@@ -116,11 +151,22 @@ class Rekap extends CI_Controller {
 			$msgs="No data has been saved";
 			$tname=$this->input->post('tablename');
 			$fname=$this->input->post('fieldnames');
+			$rowid=$this->input->post('rowid');
+			$dispatch=$this->input->post('dispatch');
+			
 			$data=$this->input->post(explode(",",$fname));
-			$this->db->insert($tname,$data);
+			
+			$this->db->update($tname,$data,"rowid=$rowid");
 			$ret=$this->db->affected_rows();
 			if($ret>0){
 				$msgs="$ret record(s) saved";
+				if($dispatch=='yes' && $this->input->post("verifikasi")=='Y'){
+					$select=base64_decode($this->input->post('dispatched'));
+					$datadis=$this->db->select($select)->where(array("rowid"=>$rowid))->get($tname)->result_array();
+					$otherdb = $this->load->database('db_intan', TRUE);
+					$otherdb->insert_batch('pengaduan',$datadis);
+					$msgs.=" & DIPATCHED";
+				}
 			}
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs);
 			echo json_encode($retval);
@@ -130,5 +176,35 @@ class Rekap extends CI_Controller {
 		}
 	}
 	
+	private $token = '45fd595dcb1cdb51293fee28335c43487f4eaa2e940db4f589bec08cfae723a2';
+	
+	public function take(){
+		$auth=$this->input->get_request_header('X-token', TRUE);
+		$res=array();
+		if($auth==$this->token){
+			$tname=$this->input->post('tablename');
+			$fname=$this->input->post('fieldnames');
+			$filtereqs=$this->input->post('filtereqs'); //separated by ,
+			$filterlikes=$this->input->post('filterlikes'); //separated by ,
+			$where=array(); $like=array();
+			if($filtereqs){
+				$where=$this->input->post(explode(",",$filtereqs));
+			}
+			if($filterlikes){
+				$like=array_merge($where,$this->input->post(explode(",",$filterlikes)));
+			}
+			
+			$this->db->select($fname);
+			if(count($where)>0){
+				$this->db->where($where);
+			}
+			if(count($like)>0){
+				$this->db->like($like);
+			}
+			$res=$this->db->get($tname)->result();
+		}
+		
+		echo json_encode($res);
+	}
 
 }

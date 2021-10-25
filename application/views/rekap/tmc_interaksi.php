@@ -32,7 +32,7 @@ $tname="tmc_interaksi";
 			<table id="mytbl" class="table table-striped table-bordered w-100">
 				<thead>
 					<tr>
-						<th>NRP</th>
+						<th>ID/NRP</th>
 						<th>Tanggal</th>
 						<th>Media</th>
 						<th>Jenis</th>

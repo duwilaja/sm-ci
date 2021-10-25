@@ -1,13 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,";
-$cols.="objek,kejadian,ket,pengunjung,kendaraan";
+$cols.="objek,kejadian,ket,pengunjung,kendaraan_in,kendaraan_out";
 ?>
 
 <input type="hidden" name="tablename" value="tmc_cctv_public">
 <input type="hidden" name="fieldnames" value="<?php echo $cols?>">
 
-<div class="row">
+<!--div class="row">
 <div class="col-lg-12">
 	<div class="btn-list">
 		<?php 
@@ -20,14 +20,15 @@ $cols.="objek,kejadian,ket,pengunjung,kendaraan";
 	</div>
 </div>
 </div>
-<hr />
+<hr /-->
+
 <div class="row">
-	<div class="col-sm-6 col-md-4">
+	<div class="col-sm-6 col-md-3">
 		<div class="form-group">
 			<label class="form-label">Objek</label>
 			<select name="objek" class="form-control" placeholder="">
-				<option value="Terminal AKAP">Terminal AKAP</option>
-				<option value="Stasiun Kereta">Stasiun Kereta</option>
+				<option value="Terminal">Terminal</option>
+				<option value="Stasiun">Stasiun</option>
 				<option value="Bandara">Bandara</option>
 				<option value="Tempat Wisata">Tempat Wisata</option>
 				<option value="Mall">Mall</option>
@@ -35,6 +36,26 @@ $cols.="objek,kejadian,ket,pengunjung,kendaraan";
 			</select>
 		</div>
 	</div>
+	<div class="col-sm-6 col-md-3">
+		<div class="form-group">
+			<label class="form-label">Jml Pengunjung</label>
+			<input type="text" name="pengunjung" class="form-control" placeholder="" >
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-3">
+		<div class="form-group">
+			<label class="form-label">Jml Kendaraan Masuk</label>
+			<input type="text" name="kendaraan_in" class="form-control" placeholder="" >
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-3">
+		<div class="form-group">
+			<label class="form-label">Jml Kendaraan Keluar</label>
+			<input type="text" name="kendaraan_out" class="form-control" placeholder="" >
+		</div>
+	</div>
+</div>
+<div class="row">
 	<div class="col-sm-6 col-md-4">
 		<div class="form-group">
 			<label class="form-label">Kejadian Terpantau</label>
@@ -48,20 +69,6 @@ $cols.="objek,kejadian,ket,pengunjung,kendaraan";
 		<div class="form-group">
 			<label class="form-label">Keterangan</label>
 			<textarea name="ket" class="form-control" placeholder="" ></textarea>
-		</div>
-	</div>
-</div>
-<div class="row">
-	<div class="col-sm-6 col-md-4">
-		<div class="form-group">
-			<label class="form-label">Jml Pengunjung</label>
-			<input type="text" id="lat" name="pengunjung" class="form-control" placeholder="" >
-		</div>
-	</div>
-	<div class="col-sm-6 col-md-4">
-		<div class="form-group">
-			<label class="form-label">Jml Kendaraan</label>
-			<input type="text" id="lng" name="kendaraan" class="form-control" placeholder="" >
 		</div>
 	</div>
 </div>

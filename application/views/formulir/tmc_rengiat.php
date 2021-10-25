@@ -1,13 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,";
-$cols.="jenis,tgldari,tglsampai,jamdari,jamsampai,lokasi,sasaran,rincian,kuatpers,pic,target";
+$cols.="jenis,tgldari,tglsampai,jamdari,jamsampai,lokasi,sasaran,rincian,kuatpers,pic,target,lat,lng";
 ?>
 
 <input type="hidden" name="tablename" value="tmc_rengiat">
 <input type="hidden" name="fieldnames" value="<?php echo $cols?>">
 
-<div class="row">
+<!--div class="row">
 <div class="col-lg-12">
 	<div class="btn-list">
 		<?php 
@@ -20,7 +20,7 @@ $cols.="jenis,tgldari,tglsampai,jamdari,jamsampai,lokasi,sasaran,rincian,kuatper
 	</div>
 </div>
 </div>
-<hr />
+<hr /-->
 
 <div class="row">
 	<div class="col-sm-6 col-md-4">
@@ -31,6 +31,7 @@ $cols.="jenis,tgldari,tglsampai,jamdari,jamsampai,lokasi,sasaran,rincian,kuatper
 				<option value="Road Savety Campaign">Road Savety Campaign</option>
 				<option value="Sosialisasi">Sosialisasi</option>
 				<option value="Publikasi">Publikasi</option>
+				<option value="Survey">Survey</option>
 				<option value="Lainnya">Lainnya</option>
 			</select>
 		</div>
@@ -67,16 +68,36 @@ $cols.="jenis,tgldari,tglsampai,jamdari,jamsampai,lokasi,sasaran,rincian,kuatper
 			<input type="text" id="sasaran" name="sasaran" class="form-control" placeholder="" >
 		</div>
 	</div>
-	<div class="col-sm-6 col-md-4">
+	<div class="col-sm-6 col-md-6">
 		<div class="form-group">
 			<label class="form-label">Rincian Kegiatan</label>
 			<textarea id="rincian" name="rincian" class="form-control" placeholder="" ></textarea>
 		</div>
 	</div>
+</div>
+<div class="row">
 	<div class="col-sm-6 col-md-4">
 		<div class="form-group">
 			<label class="form-label">Lokasi</label>
 			<input type="text" id="lokasi" name="lokasi" class="form-control" placeholder="" >
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-2">
+		<div class="form-group">
+			<label class="form-label">Latitude</label>
+			<input type="text" id="lat" name="lat" class="form-control" placeholder="" >
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-2">
+		<div class="form-group">
+			<label class="form-label">Longitude</label>
+			<input type="text" id="lng" name="lng" class="form-control" placeholder="" >
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-1">
+		<div class="form-group">
+			<label class="form-label">&nbsp;</label>
+			<button type="button" class="btn btn-icon btn-facebook" onclick="mappicker('#lat','#lng');"><i class="fa fa-map-marker"></i></button>
 		</div>
 	</div>
 </div>
@@ -100,27 +121,6 @@ $cols.="jenis,tgldari,tglsampai,jamdari,jamsampai,lokasi,sasaran,rincian,kuatper
 		</div>
 	</div>
 </div>
-<div class="hidden">
-	<div class="col-sm-6 col-md-2">
-		<div class="form-group">
-			<label class="form-label">Latitude</label>
-			<input type="text" id="lat" name="lat" class="form-control" placeholder="" >
-		</div>
-	</div>
-	<div class="col-sm-6 col-md-2">
-		<div class="form-group">
-			<label class="form-label">Longitude</label>
-			<input type="text" id="lng" name="lng" class="form-control" placeholder="" >
-		</div>
-	</div>
-	<div class="col-sm-6 col-md-1">
-		<div class="form-group">
-			<label class="form-label">&nbsp;</label>
-			<button type="button" class="btn btn-icon btn-facebook" onclick="mappicker('#lat','#lng');"><i class="fa fa-map-marker"></i></button>
-		</div>
-	</div>
-</div>
-
 
 <script>
 function mappicker(lat,lng){

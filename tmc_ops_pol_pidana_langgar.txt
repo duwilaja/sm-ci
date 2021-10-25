@@ -1,0 +1,151 @@
+
+CREATE TABLE `tmc_ops_langgar` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `dasar` varchar(30) DEFAULT NULL,
+  `nomor` varchar(30) DEFAULT NULL,
+  `namajalan` varchar(50) NOT NULL,
+  `lat` varchar(25) NOT NULL,
+  `lng` varchar(25) NOT NULL,
+  `dominasi` varchar(30) NOT NULL DEFAULT '',
+  `langgarlalin` varchar(50) DEFAULT '',
+  `lainnya` varchar(100) NOT NULL,
+  `tindakan` varchar(20) NOT NULL,
+  `ket` text NOT NULL,
+  `kategori` varchar(30) NOT NULL,
+  `langgarperda` varchar(50) NOT NULL,
+  `penindakan` varchar(40) NOT NULL,
+  `instansi1` varchar(40) NOT NULL,
+  `petugas1` varchar(40) NOT NULL,
+  `instansi2` varchar(40) NOT NULL,
+  `petugas2` varchar(40) NOT NULL,
+  `instansi3` varchar(40) NOT NULL,
+  `petugas3` varchar(40) NOT NULL,
+  `instansi4` varchar(40) NOT NULL,
+  `petugas4` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_ops_pidana`
+--
+
+CREATE TABLE `tmc_ops_pidana` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `dasar` varchar(30) DEFAULT NULL,
+  `nomor` varchar(30) DEFAULT NULL,
+  `namajalan` varchar(50) NOT NULL,
+  `lat` varchar(25) NOT NULL,
+  `lng` varchar(25) NOT NULL,
+  `tindakan` varchar(20) NOT NULL,
+  `ket` text NOT NULL,
+  `jenis` varchar(30) NOT NULL,
+  `korban` varchar(50) NOT NULL,
+  `penindakan` varchar(40) NOT NULL,
+  `instansi1` varchar(40) NOT NULL,
+  `petugas1` varchar(40) NOT NULL,
+  `instansi2` varchar(40) NOT NULL,
+  `petugas2` varchar(40) NOT NULL,
+  `instansi3` varchar(40) NOT NULL,
+  `petugas3` varchar(40) NOT NULL,
+  `instansi4` varchar(40) NOT NULL,
+  `petugas4` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_ops_pol`
+--
+
+CREATE TABLE `tmc_ops_pol` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `dasar` varchar(30) DEFAULT NULL,
+  `nomor` varchar(30) DEFAULT NULL,
+  `namajalan` varchar(50) NOT NULL,
+  `lat` varchar(25) NOT NULL,
+  `lng` varchar(25) NOT NULL,
+  `penyebab` varchar(40) NOT NULL DEFAULT '',
+  `penyebabd` varchar(50) DEFAULT '',
+  `lainnya` varchar(100) NOT NULL,
+  `tindakan` varchar(20) NOT NULL,
+  `ket` text NOT NULL,
+  `kategori` varchar(30) NOT NULL,
+  `kejadian` varchar(40) NOT NULL,
+  `penindakan` varchar(40) NOT NULL,
+  `instansi1` varchar(40) NOT NULL,
+  `petugas1` varchar(40) NOT NULL,
+  `instansi2` varchar(40) NOT NULL,
+  `petugas2` varchar(40) NOT NULL,
+  `instansi3` varchar(40) NOT NULL,
+  `petugas3` varchar(40) NOT NULL,
+  `instansi4` varchar(40) NOT NULL,
+  `petugas4` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tmc_ops_langgar`
+--
+ALTER TABLE `tmc_ops_langgar`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- Indexes for table `tmc_ops_pidana`
+--
+ALTER TABLE `tmc_ops_pidana`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- Indexes for table `tmc_ops_pol`
+--
+ALTER TABLE `tmc_ops_pol`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tmc_ops_langgar`
+--
+ALTER TABLE `tmc_ops_langgar`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tmc_ops_pidana`
+--
+ALTER TABLE `tmc_ops_pidana`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tmc_ops_pol`
+--
+ALTER TABLE `tmc_ops_pol`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+

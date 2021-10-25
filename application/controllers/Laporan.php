@@ -9,7 +9,10 @@ class Laporan extends CI_Controller {
         $this->load->model('MLaporan','ml');
 		// Your own constructor code
 	}
-	
+	public function tes(){
+			$retval=array('code'=>"403",'ttl'=>"Horee",'msgs'=>json_encode($this->input->post("gangguan")));
+			echo json_encode($retval);
+	}
 	public function index()
 	{
 		$user=$this->session->userdata('user_data');
@@ -17,7 +20,7 @@ class Laporan extends CI_Controller {
 			$data['session'] = $user;
 			//$data['jumlah'] = comboopts($this->db->select('id as v, status as t')->where("status",0)->get('patwal_permohonan')->result());
 			$data['dasargiat'] = comboopts($this->db->select('dg_id as v,dg_nam as t')->get('dasargiat')->result());
-			$data['formulir'] = comboopts($this->db->select('view_laporan as v,nama_laporan as t')->where("unit",$user['unit'])->or_where("unit",$user["subdinas"])->get('formulir')->result());
+			$data['formulir'] = comboopts($this->db->select('view_laporan as v,nama_laporan as t')->where(array("unit"=>$user['unit'],"isactive"=>"Y"))->or_where("unit",$user["subdinas"])->order_by("nama_laporan")->get('formulir')->result());
 			$data['title'] = "Formulir";
 			
 			$this->template->load('laporan',$data);
@@ -64,7 +67,7 @@ class Laporan extends CI_Controller {
 			if($d!='')$where['sie']=$d;
 			$d=$this->input->post('subdit');
 			if($d!='')$where['subdit']=$d;
-			$ret=$this->db->select('view_laporan as v,nama_laporan as t')->where($where)->get('formulir')->result();
+			$ret=$this->db->select('view_laporan as v,nama_laporan as t')->where($where)->order_by("nama_laporan")->get('formulir')->result();
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$ret);
 			echo json_encode($retval);
 		}else{
@@ -104,12 +107,14 @@ class Laporan extends CI_Controller {
 				//$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
 			}
 			if(substr($id,0,8)=='tmc_reng'){
-				$subm=array("tmc_rengiat"=>"Giat Umum","tmc_rengiat_vip"=>"PAM VIP");
+				$subm=array("tmc_rengiat"=>"Giat Umum","tmc_rengiat_vip"=>"RenGiat PAM VIP","tmc_rengiat_lak_vip"=>"Pelaksanaan PAM VIP");
 				$data['subm']=$subm;//$this->takeout($id,$subm);
 				$data['frid']=$id;
-				//$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
+				if($id=='tmc_rengiat_vip'){
+					$data['gangguan'] = comboopts($this->db->select("concat(status,'-',penyebab,'-',penyebabd) as v, concat(jalan,'-',penyebab,'-',penyebabd,'-',status) as t")->order_by('jalan','ASC')->get('tmc_data_gangguan')->result());
+				}
 			}
-			if($id=='tmc_info_lalin' || $id=='ais_laka'){  //tmc info lalin
+			if($id=='tmc_info_lalin' || $id=='ais_laka' || $id=='tmc_ops_macet' || $id=='tmc_ops_pol'){  //tmc info lalin
 				$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
 			}
 			if($id=='eri_kendaraan'||$id=='ais_laka'){  //eri kendaraan
@@ -262,5 +267,95 @@ class Laporan extends CI_Controller {
 		
 		echo json_encode($output);
 	}
-	
+	public function save_rengiat_vip()
+	{
+		$user=$this->session->userdata('user_data');
+		if(isset($user)){
+			$msgs="No data has been saved";
+			$rowid=$this->input->post("rowid");
+			$tname=$this->input->post('tablename');
+			$fname=$this->input->post('fieldnames');
+			
+			$data=$this->input->post(explode(",",$fname));
+			if($rowid==""||$rowid=="0"){
+				$rengiatid=time();
+				$data=array_merge($data,array("rengiatid"=>$rengiatid));
+				$this->db->insert($tname,$data);
+			}else{
+				//$this->db->update($tname,$data,"rowid=$rowid");
+			}
+			$ret=$this->db->affected_rows();
+			if($ret>0){
+				$msgs="$ret record(s) saved";
+				//input detail here
+				$nama=$this->input->post('nama'); $gangguan=$this->input->post('gangguan');
+				$ejarak=$this->input->post('ejarak'); $ewaktu=$this->input->post('ewaktu');
+				$transit=$this->input->post('transit'); $lat=$this->input->post('lat'); $lng=$this->input->post('lng');
+				$dats=array();
+				for($i=0;$i<count($nama);$i++){
+					if($nama[$i]!=''){
+						$dats[]=array("rengiatid"=>$rengiatid,"nour"=>$i+1,"nama"=>$nama[$i],"gangguan"=>$gangguan[$i],
+							"ejarak"=>$ejarak[$i],"ewaktu"=>$ewaktu[$i],"transit"=>$transit[$i],"lat"=>$lat[$i],"lng"=>$lng[$i]);
+					}
+				}
+				if(count($dats)>0){
+					$this->db->insert_batch("tmc_rengiat_vip_route",$dats);
+					$ret=$this->db->affected_rows();
+					if($ret>0){
+						$msgs.=" / $ret detail(s) saved";
+					}
+				}
+			}
+			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs);
+			echo json_encode($retval);
+		}else{
+			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>"Please login");
+			echo json_encode($retval);
+		}
+	}
+	public function save_ops_wal()
+	{
+		$user=$this->session->userdata('user_data');
+		if(isset($user)){
+			$msgs="No data has been saved";
+			$rowid=$this->input->post("rowid");
+			$tname=$this->input->post('tablename');
+			$fname=$this->input->post('fieldnames');
+			
+			$data=$this->input->post(explode(",",$fname));
+			if($rowid==""||$rowid=="0"){
+				$rengiatid=time();
+				$data=array_merge($data,array("giatid"=>$rengiatid));
+				$this->db->insert($tname,$data);
+			}else{
+				//$this->db->update($tname,$data,"rowid=$rowid");
+			}
+			$ret=$this->db->affected_rows();
+			if($ret>0){
+				$msgs="$ret record(s) saved";
+				//input detail here
+				$nama=$this->input->post('nama'); $ejarak=$this->input->post('ejarak'); $jarak=$this->input->post('jarak'); 
+				$ewaktu=$this->input->post('ewaktu'); $waktu=$this->input->post('waktu'); $transit=$this->input->post('transit');
+				$dats=array();
+				for($i=0;$i<count($nama);$i++){
+					if($nama[$i]!=''){
+						$dats[]=array("giatid"=>$rengiatid,"nour"=>$i+1,"nama"=>$nama[$i],"jarak"=>$jarak[$i],"waktu"=>$waktu[$i],
+							"ejarak"=>$ejarak[$i],"ewaktu"=>$ewaktu[$i],"transit"=>$transit[$i]);
+					}
+				}
+				if(count($dats)>0){
+					$this->db->insert_batch($tname."_route",$dats);
+					$ret=$this->db->affected_rows();
+					if($ret>0){
+						$msgs.=" / $ret detail(s) saved";
+					}
+				}
+			}
+			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs);
+			echo json_encode($retval);
+		}else{
+			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>"Please login");
+			echo json_encode($retval);
+		}
+	}
 }

@@ -1,0 +1,42 @@
+
+CREATE TABLE `tmc_cctv_lalin` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `situasi` varchar(30) NOT NULL,
+  `kejadian` varchar(30) NOT NULL,
+  `jalan` varchar(50) NOT NULL,
+  `status` varchar(30) NOT NULL,
+  `mulai` time NOT NULL,
+  `sampai` time NOT NULL,
+  `sebab` varchar(40) NOT NULL,
+  `callsign` varchar(40) NOT NULL,
+  `petugas` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tmc_cctv_lalin`
+--
+ALTER TABLE `tmc_cctv_lalin`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tmc_cctv_lalin`
+--
+ALTER TABLE `tmc_cctv_lalin`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT;
+
