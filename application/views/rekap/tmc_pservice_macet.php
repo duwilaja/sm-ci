@@ -3,7 +3,7 @@
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
 $cols="nrp,saluran,sumber,tgl,jam,jalan,petugas,pelapor,telp,verifikasi,'' as btnset,uploadedfile,lat,lng,rowid";
 $tname="tmc_pservice_macet";
-$dispatched="tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
+$dispatched="'1019' as kategori_peng_id,tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
 telp,masyarakat_id as pelapor_id,concat(petugas,' petugas') as keterangan,'kemacetan' as judul,'1' as status";
 
 ?>

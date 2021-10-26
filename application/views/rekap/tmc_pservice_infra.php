@@ -3,7 +3,7 @@
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
 $cols="nrp,saluran,sumber,tgl,jam,jalan,jenis,pelapor,telp,verifikasi,'' as btnset,uploadedfile,lat,lng,rowid";
 $tname="tmc_pservice_infra";
-$dispatched="tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
+$dispatched="'1021' as kategori_peng_id,tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
 telp,masyarakat_id as pelapor_id,jenis as keterangan,'infrastruktur' as judul,'1' as status";
 
 ?>
