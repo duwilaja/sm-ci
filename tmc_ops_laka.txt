@@ -1,0 +1,61 @@
+CREATE TABLE `tmc_ops_laka` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `dasar` varchar(30) DEFAULT NULL,
+  `nomor` varchar(30) DEFAULT NULL,
+  `namajalan` varchar(50) NOT NULL,
+  `lat` varchar(25) NOT NULL,
+  `lng` varchar(25) NOT NULL,
+  `jam` varchar(15) NOT NULL,
+  `tindakan` varchar(20) NOT NULL,
+  `ket` text NOT NULL,
+  `kategori` varchar(30) NOT NULL,
+  `keterlibatan` varchar(50) NOT NULL,
+  `penindakan` varchar(40) NOT NULL,
+  `instansi1` varchar(40) NOT NULL,
+  `petugas1` varchar(40) NOT NULL,
+  `instansi2` varchar(40) NOT NULL,
+  `petugas2` varchar(40) NOT NULL,
+  `instansi3` varchar(40) NOT NULL,
+  `petugas3` varchar(40) NOT NULL,
+  `instansi4` varchar(40) NOT NULL,
+  `petugas4` varchar(40) NOT NULL,
+  `md` int(11) NOT NULL DEFAULT '0',
+  `lb` int(11) NOT NULL DEFAULT '0',
+  `lr` int(11) NOT NULL DEFAULT '0',
+  `nopol1` varchar(30) NOT NULL,
+  `nopol2` varchar(30) NOT NULL,
+  `rs` varchar(40) NOT NULL,
+  `rsalm` varchar(100) NOT NULL,
+  `rslat` varchar(30) NOT NULL,
+  `rslng` varchar(30) NOT NULL,
+  `rscc` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tmc_ops_laka`
+--
+ALTER TABLE `tmc_ops_laka`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tmc_ops_laka`
+--
+ALTER TABLE `tmc_ops_laka`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT;
+
