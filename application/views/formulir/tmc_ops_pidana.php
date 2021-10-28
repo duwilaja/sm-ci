@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols.="namajalan,lat,lng,jenis,korban,penindakan,ket,tindakan,";
+$cols.="namajalan,lat,lng,jenis,korban,penindakan,ket,tindakan,jam,";
 $cols.="instansi1,petugas1,instansi2,petugas2,instansi3,petugas3,instansi4,petugas4";
 ?>
 
@@ -15,22 +15,28 @@ $cols.="instansi1,petugas1,instansi2,petugas2,instansi3,petugas3,instansi4,petug
 			<input type="text" name="namajalan" class="form-control" placeholder="" >
 		</div>
 	</div>
-	<div class="col-sm-6 col-md-3">
+	<div class="col-sm-6 col-md-2">
 		<div class="form-group">
 			<label class="form-label">Latitude</label>
 			<input type="text" id="lat" name="lat" class="form-control" placeholder="" >
 		</div>
 	</div>
-	<div class="col-sm-6 col-md-3">
+	<div class="col-sm-6 col-md-2">
 		<div class="form-group">
 			<label class="form-label">Longitude</label>
 			<input type="text" id="lng" name="lng" class="form-control" placeholder="" >
 		</div>
 	</div>
-	<div class="col-sm-6 col-md-2">
+	<div class="col-sm-6 col-md-1">
 		<div class="form-group">
 			<label class="form-label">&nbsp;</label>
 			<button type="button" class="btn btn-icon btn-facebook" onclick="mappicker('#lat','#lng');"><i class="fa fa-map-marker"></i></button>
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-2">
+		<div class="form-group">
+			<label class="form-label">Jam</label>
+			<input type="text" name="jam" class="form-control timepicker" placeholder="" >
 		</div>
 	</div>
 </div>

@@ -1,15 +1,15 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols="nrp,tgl,jam,namajalan,lat,lng,kategori,dominasi,langgarlalin,lainnya,langgarperda,tindakan,penindakan,ket,";
+$cols="nrp,tgl,jam,namajalan,lat,lng,kategori,keterlibatan,nopol1,nopol2,md,lb,lr,rs,rsalm,rslat,rslng,rscc,tindakan,penindakan,ket,";
 $cols.="instansi1,petugas1,instansi2,petugas2,instansi3,petugas3,instansi4,petugas4";
 
-$tname="tmc_ops_langgar";
+$tname="tmc_ops_laka";
 ?>
 
 <div class="card">
 	<div class="card-header">
-		<div class="card-title judul">Lapsit Pelanggaran
+		<div class="card-title judul">Lapsit Kecelakaan
 		
 											<div class="input-group">
 												<div class="input-group-prepend">
@@ -40,11 +40,18 @@ $tname="tmc_ops_langgar";
 						<th>Jalan</th>
 						<th>Latitude</th>
 						<th>Longitude</th>
-						<th>Kategori Langgar</th>
-						<th>Dominasi Pelanggar</th>
-						<th>Pelanggaran Lalin</th>
-						<th>Lainnya</th>
-						<th>Pelanggaran Perda</th>
+						<th>Kategori Laka</th>
+						<th>Kendaraan Terlibat</th>
+						<th>Nopol 1</th>
+						<th>Nopol 2</th>
+						<th>MD</th>
+						<th>Luka Berat</th>
+						<th>Luka Ringan</th>
+						<th>Faskes Rujukan</th>
+						<th>Alamat</th>
+						<th>Lat</th>
+						<th>Lng</th>
+						<th>Call Center</th>
 						<th>Cara Bertindak</th>
 						<th>Kategori Penindakan</th>
 						<th>Keterangan CB</th>
