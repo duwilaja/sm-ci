@@ -10,34 +10,34 @@ $about=array(base64_encode("SM"), base64_encode("Licensed to $company"));
 
 /*common values*/
 $array_nologin=array("reset","register");
-$o_ugrp=[
-	["","All"]
-];
-$o_ulvl=[
-	["0","Super"],
-	["1","Admin"],
-	["9","User"]
-];
-$o_uprof=[
-	["","Welcome page"],
-	["laporan","Form Giat"],
-	["dashboard","Dashboard"]
-];
+$o_ugrp=array(
+	array("","All")
+);
+$o_ulvl=array(
+	array("0","Super"),
+	array("1","Admin"),
+	array("9","User")
+);
+$o_uprof=array(
+	array("","Welcome page"),
+	array("laporan","Form Giat"),
+	array("dashboard","Dashboard")
+);
 
-$o_days=[
-	["","-"],
-	["0","Mon"],
-	["1","Tue"],
-	["2","Wed"],
-	["3","Thu"],
-	["4","Fri"],
-	["5","Sat"],
-	["6","Sun"]
-];
-$o_yn=[
-	["Y","Y"],
-	["N","N"]
-];
+$o_days=array(
+	array("","-"),
+	array("0","Mon"),
+	array("1","Tue"),
+	array("2","Wed"),
+	array("3","Thu"),
+	array("4","Fri"),
+	array("5","Sat"),
+	array("6","Sun")
+);
+$o_yn=array(
+	array("Y","Y"),
+	array("N","N")
+);
 
 
 /*common php functions*/
