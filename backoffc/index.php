@@ -40,6 +40,7 @@ if($loggedin){
 
 include "inc.head.php";
 $menu="";
+$pangkats=[]; $satwils=[]; $units=[];
 ?>
 				<div class="container text-center single-page single-pageimage construction-body">
 				    <div class="row justify-content-center">
