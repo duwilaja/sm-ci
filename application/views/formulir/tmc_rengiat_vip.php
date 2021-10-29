@@ -235,7 +235,7 @@ function delet(){
         //alert('last is the only one')
     }else {
         $last.remove();
-		$cntr--;
+		cntr--;
     }
 }
 
