@@ -1,0 +1,63 @@
+
+CREATE TABLE `tmc_ops_ec` (
+  `rowid` bigint(20) NOT NULL,
+  `dtm` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `dinas` varchar(20) NOT NULL,
+  `subdinas` varchar(20) NOT NULL,
+  `polda` varchar(20) NOT NULL,
+  `polres` varchar(20) NOT NULL,
+  `unit` varchar(20) NOT NULL,
+  `nrp` varchar(30) NOT NULL,
+  `tgl` date NOT NULL,
+  `lokasi` varchar(50) NOT NULL,
+  `lat` varchar(25) NOT NULL,
+  `lng` varchar(25) NOT NULL,
+  `jam` varchar(15) NOT NULL,
+  `kejadian` varchar(30) NOT NULL,
+  `dampak` varchar(50) NOT NULL,
+  `radius` varchar(20) NOT NULL,
+  `kebutuhan` text NOT NULL,
+  `ket` text NOT NULL,
+  `md` int(11) NOT NULL,
+  `lb` int(11) NOT NULL,
+  `pengungsi` int(11) NOT NULL,
+  `giatid` bigint(20) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmc_ops_ec_fas`
+--
+
+CREATE TABLE `tmc_ops_ec_fas` (
+  `rowid` bigint(20) NOT NULL,
+  `giatid` bigint(20) DEFAULT '0',
+  `nama` varchar(50) NOT NULL,
+  `jenis` varchar(20) NOT NULL,
+  `alamat` varchar(50) NOT NULL,
+  `lat` varchar(30) NOT NULL,
+  `lng` varchar(30) NOT NULL,
+  `cc` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tmc_ops_ec_fas`
+--
+ALTER TABLE `tmc_ops_ec_fas`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tmc_ops_ec_fas`
+--
+ALTER TABLE `tmc_ops_ec_fas`
+  MODIFY `rowid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
