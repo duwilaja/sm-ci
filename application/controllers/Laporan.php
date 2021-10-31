@@ -260,6 +260,9 @@ class Laporan extends CI_Controller {
 			case "jalan": $sql="select * from tmc_data_jalan"; 
 			if($id!="") $sql="select * from tmc_data_jalan where rowid=$id";
 			break;
+			case "ec": $sql="select * from tmc_ops_ec"; 
+			if($id!="") $sql="select * from tmc_ops_ec where rowid=$id";
+			break;
 		}
 		
 		$query=$this->db->query($sql);
@@ -345,6 +348,53 @@ class Laporan extends CI_Controller {
 				}
 				if(count($dats)>0){
 					$this->db->insert_batch($tname."_route",$dats);
+					$ret=$this->db->affected_rows();
+					if($ret>0){
+						$msgs.=" / $ret detail(s) saved";
+					}
+				}
+			}
+			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs);
+			echo json_encode($retval);
+		}else{
+			$retval=array('code'=>"403",'ttl'=>"Session closed",'msgs'=>"Please login");
+			echo json_encode($retval);
+		}
+	}
+	public function save_ops_ec()
+	{
+		$user=$this->session->userdata('user_data');
+		if(isset($user)){
+			$msgs="No data has been saved";
+			$rowid=$this->input->post("rowid");
+			$tname=$this->input->post('tablename');
+			$fname=$this->input->post('fieldnames');
+			
+			$data=$this->input->post(explode(",",$fname));
+			if($rowid==""||$rowid=="0"){
+				$rengiatid=time();
+				$data=array_merge($data,array("giatid"=>$rengiatid));
+				$data["dampak"]=implode(", ",$this->input->post('dampak'));
+				$data["kebutuhan"]=implode(", ",$this->input->post('kebutuhan'));
+				$this->db->insert($tname,$data);
+			}else{
+				//$this->db->update($tname,$data,"rowid=$rowid");
+			}
+			$ret=$this->db->affected_rows();
+			if($ret>0){
+				$msgs="$ret record(s) saved";
+				//input detail here
+				$nama=$this->input->post('nama'); $jenis=$this->input->post('jenis'); $alamat=$this->input->post('alamat'); 
+				$cc=$this->input->post('cc'); $lat=$this->input->post('latx'); $lng=$this->input->post('lngx');
+				$dats=array();
+				for($i=0;$i<count($nama);$i++){
+					if($nama[$i]!=''){
+						$dats[]=array("giatid"=>$rengiatid,"nama"=>$nama[$i],"jenis"=>$jenis[$i],"alamat"=>$alamat[$i],
+							"cc"=>$cc[$i],"lat"=>$lat[$i],"lng"=>$lng[$i]);
+					}
+				}
+				if(count($dats)>0){
+					$this->db->insert_batch($tname."_fas",$dats);
 					$ret=$this->db->affected_rows();
 					if($ret>0){
 						$msgs.=" / $ret detail(s) saved";
