@@ -165,7 +165,8 @@ class Rekap extends CI_Controller {
 					$datadis=$this->db->select($select)->where(array("rowid"=>$rowid))->get($tname)->result_array();
 					$otherdb = $this->load->database('db_intan', TRUE);
 					$otherdb->insert_batch('pengaduan',$datadis);
-					$msgs.=" & DIPATCHED";
+					$ret=$otherdb->affected_rows();
+					$msgs.=" & $ret DIPATCHED";
 				}
 			}
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs);
