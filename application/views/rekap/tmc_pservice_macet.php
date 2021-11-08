@@ -6,6 +6,8 @@ $tname="tmc_pservice_macet";
 $dispatched="'1019' as kategori_peng_id,tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
 telp,masyarakat_id as pelapor_id,concat(petugas,' petugas') as keterangan,'kemacetan' as judul,'1' as status";
 
+$dispatched="'1019' as kategori_peng_id,tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
+telp,masyarakat_id as input_peng,concat(petugas,' petugas') as keterangan,'kemacetan' as judul,'1' as status,rowid as mobile_uniqueid";
 ?>
 
 <div class="card">

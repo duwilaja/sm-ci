@@ -6,6 +6,8 @@ $tname="tmc_pservice_pidana";
 $dispatched="'1023' as kategori_peng_id,tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
 telp,masyarakat_id as pelapor_id,jenis as keterangan,'tindak pidana' as judul,'1' as status";
 
+$dispatched="'1023' as kategori_peng_id,tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
+telp,masyarakat_id as input_peng,jenis as keterangan,'tindak pidana' as judul,'1' as status,rowid as mobile_uniqueid";
 ?>
 
 <div class="card">
