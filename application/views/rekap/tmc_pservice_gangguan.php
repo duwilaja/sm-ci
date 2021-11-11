@@ -7,7 +7,7 @@ $dispatched="'1022' as kategori_peng_id,tgl as ctddate,jam as ctdtime,lat,lng,pe
 telp,masyarakat_id as pelapor_id,concat(jenis,' ',lainnya,' berdampak ',dampak) as keterangan,'gangguan' as judul,'1' as status";
 
 $dispatched="'1022' as kategori_peng_id,tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
-telp,masyarakat_id as input_peng,concat(jenis,' ',lainnya,' berdampak ',dampak) as keterangan,'gangguan' as judul,'1' as status,rowid as mobile_uniqueid";
+telp,masyarakat_id as input_peng,concat(jenis,' ',lainnya,' berdampak ',dampak) as keterangan,'gangguan' as judul,'0' as status,rowid as mobile_uniqueid";
 
 ?>
 

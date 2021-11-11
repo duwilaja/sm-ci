@@ -20,9 +20,12 @@ if(count($farr)>0&&$session['nrp']!=''){
 		<!-- Title -->
 		<title>Smart Manajemen : <?php echo $page_title?></title>
 
+		<!--Favicon --
+		<link rel="icon" href="<?php echo $base_url;?>aronox/assets/images/brand/favicon.ico" type="image/x-icon"/-->
+		
 		<!--Favicon -->
-		<link rel="icon" href="<?php echo $base_url;?>aronox/assets/images/brand/favicon.ico" type="image/x-icon"/>
-
+		<link rel="icon" href="<?php echo $base_url;?>my/images/sm.png" type="image/png"/>
+		
 		<!-- Style css -->
 		<link href="<?php echo $base_url;?>aronox/assets/css/style.css" rel="stylesheet" />
 
