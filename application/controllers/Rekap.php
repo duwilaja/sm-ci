@@ -166,7 +166,11 @@ class Rekap extends CI_Controller {
 					$otherdb = $this->load->database('db_intan', TRUE);
 					$otherdb->insert_batch('pengaduan',$datadis);
 					$ret=$otherdb->affected_rows();
-					$msgs.=" & $ret DIPATCHED";
+					$msgs.=" & $ret DIPATCHED. ";
+					
+					$fid=$datadis[0]['input_peng'];
+					$judul=$datadis[0]['judul'];
+					$msgs.=$this->notip($fid,$judul);
 				}
 			}
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs);
@@ -177,6 +181,31 @@ class Rekap extends CI_Controller {
 		}
 	}
 	
+	private function notip($id,$title){
+		$judul="Laporan $title";
+		$mess="Laporan terverifikasi";
+		
+		$url="http://36.66.191.181/satupeta/API/intan/API/send_notif";
+		$payload = array("id"=>$id, "title"=> $judul, "msg"=>$mess);
+		
+		$ch = curl_init($url);
+		
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+		
+		// grab URL and pass it to the res
+		$res=curl_exec($ch);
+
+		// close cURL resource, and free up system resources
+		curl_close($ch);
+		
+		//$ret=json_decode('{"error":false,"msg":"Hore"}');
+		$ret = json_decode($res);
+		
+		return $ret->msg;
+	}
 	private $token = '45fd595dcb1cdb51293fee28335c43487f4eaa2e940db4f589bec08cfae723a2';
 	
 	public function take(){
