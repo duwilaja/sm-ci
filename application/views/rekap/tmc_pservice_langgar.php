@@ -81,12 +81,26 @@ telp,masyarakat_id as input_peng,jenis as keterangan,'pelanggaran' as judul,'0' 
 	  <div class="modal-body">
 		<form id="myfx">
 		<input type="hidden" name="tablename" value="<?php echo $tname?>">
-		<input type="hidden" name="fieldnames" value="verifikasi">
+		<input type="hidden" name="fieldnames" value="verifikasi,nopol,sumber_data">
 		<input type="hidden" name="rowid" id="rowid" value="">
 		<input type="hidden" name="dispatch" value="no">
 		<input type="hidden" name="dispatched" value="<?php echo base64_encode($dispatched)?>">
-		
-		Data Valid? <select name="verifikasi" class="form-control"><option value="Y">Y</option><option value="N">N</option></select>
+		<div class="form-group">
+			<label for="nopol">NO PLAT</label>
+			<input type="text" name="nopol" class="form-control" id="nopol">
+		</div>
+		<div class="form-group">
+			<label for="verifikasi">Data Valid ?</label>
+			<select name="verifikasi" class="form-control"><option value="Y">Y</option><option value="N">N</option></select>
+		</div>
+		<div class="form-group">
+			<label for="sumber">Sumber Data</label>
+			<select class="form-control" name="sumber_data" id="sumber">
+			<option value="Sumber dari pantauan CCTV">Sumber dari pantauan CCTV</option>
+			<option value="Sumber dari masyarakat">Sumber dari masyarakat</option>
+			<option value="Sumber dari analytic camera">Sumber dari analytic camera</option>
+			</select>
+		</div>
 		</form>
 	  </div>
 	  <div class="modal-footer">
