@@ -153,11 +153,11 @@ class Rekap extends CI_Controller {
 			$fname=$this->input->post('fieldnames');
 			$rowid=$this->input->post('rowid');
 			$dispatch=$this->input->post('dispatch');
-			
-			$data=$this->input->post(explode(",",$fname));
-			
+			$data=$this->input->post(explode(",",$fname));	
 			$this->db->update($tname,$data,"rowid=$rowid");
 			$ret=$this->db->affected_rows();
+			// echo $ret;
+			// die;
 			if($ret>0){
 				$msgs="$ret record(s) saved";
 				if($dispatch=='yes' && $this->input->post("verifikasi")=='Y'){
@@ -171,6 +171,14 @@ class Rekap extends CI_Controller {
 					$fid=$datadis[0]['input_peng'];
 					$judul=$datadis[0]['judul'];
 					$msgs.=$this->notip($fid,$judul);
+				}
+				if ($tname == "tmc_pservice_langgar" && $this->input->post("verifikasi")=='Y') {
+					$etle =  $this->save_etle($tname,$rowid);
+					if ($etle == true) {
+						$msgs ="berhasil insert etle";
+					}else{
+						$msgs ="Gagal insert etle";
+					}
 				}
 			}
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs);
@@ -235,6 +243,48 @@ class Rekap extends CI_Controller {
 		}
 		
 		echo json_encode($res);
+	}
+
+	public function save_etle($tname='',$rowid='')
+	{
+		$data = [];
+		$get_pelanggaran = $this->db->get_where('tmc_pservice_langgar',array('rowid'=>$rowid))->result();
+		foreach ($get_pelanggaran as $key) {
+			$nopol = $key->nopol;
+			$data = [
+				'gambar' => $key->uploadedfile,
+				'img_no_plat' => $key->uploadedfile,
+				'no_plat' => $key->nopol,
+				'status' => 1,
+				'ctddate' => date('Y-m-d'),
+				'tgl_pelang' => $key->tgl,
+				'waktu_pelang' => $key->jam,
+				'sumber_inp' => 'backoffice',
+				'sumber_data' => $key->sumber_data
+			];
+		}
+		$db2 = $this->load->database('etle', TRUE);
+		$db2->insert('pelang_kend',$data);
+		$ids = $db2->insert_id();
+		$ret=$db2->affected_rows();
+		if ($ret > 0) {
+			$dt = [
+				'pelang_kend_id' => $ids,
+				'regident_id' => 24,
+				'no_referensi' => date('his'),
+				'status_k_pelang' => 0,
+				'aktif' => 1,
+				'activity' => 1,
+				'ctddate' => date('Y-m-d'),
+				'no_plat' => $nopol,
+
+			];
+			$db2->insert('data_pelang',$dt);
+			return true;
+		}else{
+			return false;
+		}
+		
 	}
 
 }
