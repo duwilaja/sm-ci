@@ -193,7 +193,7 @@ class Rekap extends CI_Controller {
 		$judul="Laporan $title";
 		$mess="Laporan terverifikasi";
 		
-		$url="http://36.66.191.181/satupeta/API/intan/API/send_notif";
+		$url="https://backoffice.elingsolo.com/satupeta/API/intan/API/send_notif";
 		$payload = array("id"=>$id, "title"=> $judul, "msg"=>$mess);
 		
 		$ch = curl_init($url);
