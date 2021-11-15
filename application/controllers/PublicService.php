@@ -105,7 +105,7 @@ class PublicService extends CI_Controller {
 			$cat = "Pelanggaran";
 		}else if($kategori=="infra"){
 			$cat = "Infrastruktur Jalan";
-		}else if($kategori=="lalin"){
+		}else if($kategori=="gangguan"){
 			$cat = "Gangguan Lalin";
 		}else if($kategori=="pidana"){
 			$cat = "Tindak Pidana di Jalan";
