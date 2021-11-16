@@ -170,7 +170,8 @@ class Rekap extends CI_Controller {
 					
 					$fid=$datadis[0]['input_peng'];
 					$judul=$datadis[0]['judul'];
-					$msgs.=$this->notip($fid,$judul);
+					$this->notip($fid,$judul);
+					$this->notip_sme($judul);
 				}
 				if ($tname == "tmc_pservice_langgar" && $this->input->post("verifikasi")=='Y') {
 					$etle =  $this->save_etle($tname,$rowid);
@@ -188,7 +189,34 @@ class Rekap extends CI_Controller {
 			echo json_encode($retval);
 		}
 	}
-	
+	private function notip_sme($title){
+		$judul="Laporan $title";
+		$mess="Laporan terverifikasi";
+		
+		$url="https://backoffice.elingsolo.com/satupeta/API/intan/API/send_notif_web";
+		// $url="http://localhost/intan/API/intan/API/send_notif_web";
+		$payload = array("title"=> $judul, "msg"=>$mess);
+		
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => $url,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => '',
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => 'POST',
+		CURLOPT_POSTFIELDS => $payload,
+		CURLOPT_SSL_VERIFYPEER => true 
+		));
+		
+		$res = curl_exec($curl);  
+		//$ret=json_decode('{"error":false,"msg":"Hore"}');
+		$ret = json_decode($res);
+		// print_r($ret->msg);
+		return $ret->msg;
+	}
 	private function notip($id,$title){
 		$judul="Laporan $title";
 		$mess="Laporan terverifikasi";
