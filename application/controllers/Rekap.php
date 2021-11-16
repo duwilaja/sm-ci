@@ -396,7 +396,7 @@ class Rekap extends CI_Controller {
 				'read' => 0,
 				'link' => 'https://backoffice.elingsolo.com/new_etle/min/BackOffice/detail_pelanggaran/'.$idp,
 				'data_pelang_id' => $idp,
-			]
+			];
 			$db2->insert('notifikasi',$dt);
 			// $idp = $db2->insert_id();
 			// $dt = [
