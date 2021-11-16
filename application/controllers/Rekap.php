@@ -301,7 +301,7 @@ class Rekap extends CI_Controller {
 
 			$dt = [
 				'data_pelang_id' => $idp,
-				'data_tipe_pelang_id' => $idtp,
+				'data_tipe_pelang_id' => 1,
 				'ctddate' => date('Y-m-d') 
 
 			];
