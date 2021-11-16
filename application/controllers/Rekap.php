@@ -251,6 +251,8 @@ class Rekap extends CI_Controller {
 		$get_pelanggaran = $this->db->get_where('tmc_pservice_langgar',array('rowid'=>$rowid))->result();
 		foreach ($get_pelanggaran as $key) {
 			$nopol = $key->nopol;
+			$sumber_data = $key->sumber_data;
+			$jenis = $key->jenis;
 			$data = [
 				'gambar' => $key->uploadedfile,
 				'img_no_plat' => $key->uploadedfile,
@@ -277,9 +279,34 @@ class Rekap extends CI_Controller {
 				'activity' => 1,
 				'ctddate' => date('Y-m-d'),
 				'no_plat' => $nopol,
+				'sumber_inp' => 'backoffice',
+				'sumber_data' => $sumber_data
 
 			];
 			$db2->insert('data_pelang',$dt);
+
+			$dt = [
+				'pelang_kend_id' => $ids,
+				'regident_id' => 24,
+				'no_referensi' => date('his'),
+				'status_k_pelang' => 0,
+				'aktif' => 1,
+				'activity' => 1,
+				'ctddate' => date('Y-m-d'),
+				'no_plat' => $nopol,
+				'sumber_inp' => 'backoffice',
+				'sumber_data' => $sumber_data
+
+			];
+			$db2->insert('data_pelang',$dt);
+
+			// $dt = [
+			// 	'id' => ,
+			// 	'tipe_pelang' => $jenis
+
+			// ];
+			// $db2->insert('data_tipe_pelang',$dt);
+
 			return true;
 		}else{
 			return false;
