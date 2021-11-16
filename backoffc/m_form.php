@@ -54,6 +54,7 @@ include "inc.menutop.php";
 										<th>Nama</th>
 										<th>View</th>
 										<th>IsActive</th>
+										<th>Tipe</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -80,7 +81,7 @@ include "inc.menutop.php";
 <input type="hidden" name="rowid" id="rowid" value="0">
 <input type="hidden" name="mnu" value="<?php echo $menu?>">
 <input type="hidden" id="sv" name="sv" />
-<input type="hidden" name="cols" value="unit,nama_laporan,view_laporan,isactive" />
+<input type="hidden" name="cols" value="unit,nama_laporan,view_laporan,isactive,tipe" />
 <input type="hidden" name="tname" value="formulir" />
 		
 		  <div class="row">
@@ -110,7 +111,16 @@ include "inc.menutop.php";
 				</select>
 			</div>
 		  </div>
-		  
+		  <div class="row">
+			<div class="form-group col-md-12">
+				<label>Tipe</label>
+				<select id="tipe" name="tipe" class="form-control">
+					<option value="FR">FR</option>
+					<option value="F">F</option>
+					<option value="R">R</option>
+				</select>
+			</div>
+		  </div>
 		</form>
 	  </div>
 	  <div class="modal-footer">
@@ -128,8 +138,8 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="formulir";
-$cols="unit,nama_laporan,view_laporan,isactive,rowid";
-$csrc="unit,nama_laporan";
+$cols="unit,nama_laporan,view_laporan,isactive,tipe,rowid";
+$csrc="unit,nama_laporan,view_laporan";
 
 ?>
 
