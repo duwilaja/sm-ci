@@ -253,9 +253,10 @@ class Rekap extends CI_Controller {
 			$nopol = $key->nopol;
 			$sumber_data = $key->sumber_data;
 			$jenis = $key->jenis;
+			$file = substr($key->uploadedfile, 2);
 			$data = [
-				'gambar' => $key->uploadedfile,
-				'img_no_plat' => $key->uploadedfile,
+				'gambar' => base_url().$file,
+				'img_no_plat' => base_url().$file,
 				'no_plat' => $key->nopol,
 				'status' => 1,
 				'ctddate' => date('Y-m-d'),
@@ -284,28 +285,28 @@ class Rekap extends CI_Controller {
 
 			];
 			$db2->insert('data_pelang',$dt);
-			$idp = $db2->insert_id();
-			$dt = [
-				'id' => $idp,
-				'tipe_pelang' => $jenis
+			// $idp = $db2->insert_id();
+			// $dt = [
+			// 	'id' => $idp,
+			// 	'tipe_pelang' => $jenis
 
-			];
-			$db2->insert('data_tipe_pelang',$dt);
-			$idtp = $db2->insert_id();
-			$dt = [
-				'data_tipe_pelang_id' => $idtp,
-				'pasal_id' => 5
+			// ];
+			// $db2->insert('data_tipe_pelang',$dt);
+			// $idtp = $db2->insert_id();
+			// $dt = [
+			// 	'data_tipe_pelang_id' => $idtp,
+			// 	'pasal_id' => 5
 
-			];
-			$db2->insert('pasal_pelang',$dt);
+			// ];
+			// $db2->insert('pasal_pelang',$dt);
 
-			$dt = [
-				'data_pelang_id' => $idp,
-				'data_tipe_pelang_id' => 1,
-				'ctddate' => date('Y-m-d') 
+			// $dt = [
+			// 	'data_pelang_id' => $idp,
+			// 	'data_tipe_pelang_id' => 1,
+			// 	'ctddate' => date('Y-m-d') 
 
-			];
-			$db2->insert('tipe_pelang',$dt);
+			// ];
+			// $db2->insert('tipe_pelang',$dt);
 
 			return true;
 		}else{
