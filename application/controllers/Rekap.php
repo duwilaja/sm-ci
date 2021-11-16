@@ -284,23 +284,7 @@ class Rekap extends CI_Controller {
 
 			];
 			$db2->insert('data_pelang',$dt);
-
-			$dt = [
-				'pelang_kend_id' => $ids,
-				'regident_id' => 24,
-				'no_referensi' => date('his'),
-				'status_k_pelang' => 0,
-				'aktif' => 1,
-				'activity' => 1,
-				'ctddate' => date('Y-m-d'),
-				'no_plat' => $nopol,
-				'sumber_inp' => 'backoffice',
-				'sumber_data' => $sumber_data
-
-			];
-			$db2->insert('data_pelang',$dt);
 			$idp = $db2->insert_id();
-
 			$dt = [
 				'id' => $idp,
 				'tipe_pelang' => $jenis
