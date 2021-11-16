@@ -20,7 +20,7 @@ class Laporan extends CI_Controller {
 			$data['session'] = $user;
 			//$data['jumlah'] = comboopts($this->db->select('id as v, status as t')->where("status",0)->get('patwal_permohonan')->result());
 			$data['dasargiat'] = comboopts($this->db->select('dg_id as v,dg_nam as t')->get('dasargiat')->result());
-			$data['formulir'] = comboopts($this->db->select('view_laporan as v,nama_laporan as t')->where(array("unit"=>$user['unit'],"isactive"=>"Y"))->or_where("unit",$user["subdinas"])->order_by("nama_laporan")->get('formulir')->result());
+			$data['formulir'] = comboopts($this->db->select('view_laporan as v,nama_laporan as t')->like('tipe','F')->where(array("unit"=>$user['unit'],"isactive"=>"Y"))->or_where("unit",$user["subdinas"])->order_by("nama_laporan")->get('formulir')->result());
 			$data['title'] = "Formulir";
 			
 			$this->template->load('laporan',$data);
