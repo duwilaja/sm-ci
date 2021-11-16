@@ -78,7 +78,11 @@ class Rekap extends CI_Controller {
 			$ismap=base64_decode($this->input->post('ismap')); //is map button active?
 			$isverify=base64_decode($this->input->post('isverify')); //is verify button active?
 			$isfile=base64_decode($this->input->post('isfile')); //is files active?
-			
+			$order_p = $this->input->post('orders');
+            $ord = "";
+            if($order_p!=""){
+                $ord = base64_decode($order_p);
+            }
 			$where=array();
 			//build where polda/polres
 			if ($this->input->post('tgl') != '') {
@@ -99,6 +103,9 @@ class Rekap extends CI_Controller {
 				$this->db->join("polres","polres.res_id=$tname.res","left");
 			}
 			$this->db->where($where);
+			if($ord!=""){
+                $this->db->order_by($ord);
+            }
 			$data_assoc=$this->db->get()->result_array();
 			
 			for($i=0;$i<count($data_assoc);$i++){
