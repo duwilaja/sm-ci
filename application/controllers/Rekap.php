@@ -15,7 +15,7 @@ class Rekap extends CI_Controller {
 		if(isset($user)){
 			$data['session'] = $user;
 			$data['title'] = "Rekap";
-			$data['formulir'] = comboopts($this->db->select('view_laporan as v,nama_laporan as t')->where(array("unit"=>$user['unit'],"isactive"=>"Y"))->or_where("unit",$user["subdinas"])->order_by("nama_laporan")->get('formulir')->result());
+			$data['formulir'] = comboopts($this->db->select('view_laporan as v,nama_laporan as t')->like('tipe','R')->where(array("unit"=>$user['unit'],"isactive"=>"Y"))->or_where("unit",$user["subdinas"])->order_by("nama_laporan")->get('formulir')->result());
 			
 			$this->template->load('rekap',$data);
 		}else{
@@ -82,7 +82,8 @@ class Rekap extends CI_Controller {
 			$where=array();
 			//build where polda/polres
 			if ($this->input->post('tgl') != '') {
-				$where['tgl'] = $this->input->post('tgl'); //date('Y-m-d');
+				$ftgl=$this->input->post('ftgl')?$this->input->post('ftgl'):'tgl';
+				$where[$ftgl] = $this->input->post('tgl'); //date('Y-m-d');
 			}
 			//$d=$user['polres'];
 			///if($d!='')
@@ -132,6 +133,77 @@ class Rekap extends CI_Controller {
         echo json_encode($output);
 	}
 	
+	public function datatable(){
+		$user=$this->session->userdata('user_data');
+		$data=array(); $data_assoc=array();
+		if(isset($user)){
+			$tname=base64_decode($this->input->post('tname')); //tablename
+			$cols=base64_decode($this->input->post('cols')); //column
+			
+			$ismap=base64_decode($this->input->post('ismap')); //is map button active?
+			$isverify=base64_decode($this->input->post('isverify')); //is verify button active?
+			$isfile=base64_decode($this->input->post('isfile')); //is files active?
+			
+			$where=array();
+			$acol=explode(",",$cols);
+			
+			//build where polda/polres
+			if ($this->input->post('tgl') != '') {
+				$ftgl=$this->input->post('ftgl')?$this->input->post('ftgl'):'tgl';
+				$where[$ftgl] = $this->input->post('tgl'); //date('Y-m-d');
+			}
+			//$d=$user['polres'];
+			///if($d!='')
+				//$where[$tname.'.polres']=$d;
+			//$d=$user['polda'];
+			//if($d!='')
+				//$where[$tname.'.polda']=$d;
+			
+			$this->db->select($cols);
+			//$this->db->from($tname);
+			if($tname=="ais_laka"||$tname=="eri_kendaraan"){
+				$this->db->join("polda","polda.da_id=$tname.da","left");
+				$this->db->join("polres","polres.res_id=$tname.res","left");
+			}
+			$this->db->where($where);
+			$semua=$this->db->count_all_results($tname,FALSE);
+			
+			$this->db->order_by($acol[$this->input->post('order')[0]['column']], $this->input->post('order')[0]['dir']);
+			$this->db->limit($this->input->post('length'),$this->input->post('start'));
+			$data_assoc=$this->db->get()->result_array();
+			
+			for($i=0;$i<count($data_assoc);$i++){
+				$lnk='';
+				if($ismap){
+					$lnk.='<button type="button" class="btn btn-icon btn-info" onclick="mapview('.$data_assoc[$i]['lat'].','.$data_assoc[$i]['lng'].
+					');"><i class="fa fa-map-marker"></i></button>';
+				}
+				if($isverify){
+					$lnk.=' <button type="button" class="btn btn-icon btn-warning" onclick="openmodal('.$data_assoc[$i]['rowid'].');"><i class="fa fa-check"></i></button>';
+				}
+				if($isfile){
+					$myfiles=explode(",",$this->input->post('filefields'));
+					for($z=0;$z<count($myfiles);$z++){
+						$data_assoc[$i][$myfiles[$z]]=$this->make_link($data_assoc[$i][$myfiles[$z]]);
+					}
+				}
+				if($lnk!=''){
+					$data_assoc[$i]['btnset']=$lnk;
+				}
+				$data[]=array_values($data_assoc[$i]);
+			}
+		}
+		$output = array(
+                        "draw" => $this->input->post('draw'),
+                        "recordsTotal" => $semua,
+                        "recordsFiltered" => $semua,
+                        "data" => $data,
+						"assoc" => $data_assoc
+                );
+        //output to json format
+        echo json_encode($output);
+	}
+	
 	private function make_link($links){
 		$ret="";
 		$alink=explode(";",$links);
@@ -170,7 +242,8 @@ class Rekap extends CI_Controller {
 					
 					$fid=$datadis[0]['input_peng'];
 					$judul=$datadis[0]['judul'];
-					$msgs.=$this->notip($fid,$judul);
+					$this->notip($fid,$judul);
+					$this->notip_sme($judul);
 				}
 				if ($tname == "tmc_pservice_langgar" && $this->input->post("verifikasi")=='Y') {
 					$etle =  $this->save_etle($tname,$rowid);
@@ -188,7 +261,34 @@ class Rekap extends CI_Controller {
 			echo json_encode($retval);
 		}
 	}
-	
+	private function notip_sme($title){
+		$judul="Laporan $title";
+		$mess="Laporan terverifikasi";
+		
+		$url="https://backoffice.elingsolo.com/satupeta/API/intan/API/send_notif_web";
+		// $url="http://localhost/intan/API/intan/API/send_notif_web";
+		$payload = array("title"=> $judul, "msg"=>$mess);
+		
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => $url,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => '',
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => 'POST',
+		CURLOPT_POSTFIELDS => $payload,
+		CURLOPT_SSL_VERIFYPEER => true 
+		));
+		
+		$res = curl_exec($curl);  
+		//$ret=json_decode('{"error":false,"msg":"Hore"}');
+		$ret = json_decode($res);
+		// print_r($ret->msg);
+		return $ret->msg;
+	}
 	private function notip($id,$title){
 		$judul="Laporan $title";
 		$mess="Laporan terverifikasi";
