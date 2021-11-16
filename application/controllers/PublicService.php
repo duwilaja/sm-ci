@@ -86,6 +86,7 @@ class PublicService extends CI_Controller {
 			$ret=$this->db->affected_rows();
 			if($ret>0){
 				$msgs="$ret record(s) saved";
+				$this->send_notif_web($kategori);
 			}
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs.$m);
 			echo json_encode($retval);
@@ -94,7 +95,37 @@ class PublicService extends CI_Controller {
 			echo json_encode($retval);
 		}
 	}
-	
+	private function send_notif_web($kategori){
+		$cat = "Kecelakaan";
+		if($kategori=="laka"){
+			$cat = "Kecelakaan";
+		}else if($kategori=="macet"){
+			$cat = "Kemacetan";
+		}else if($kategori=="langgar"){
+			$cat = "Pelanggaran";
+		}else if($kategori=="infra"){
+			$cat = "Infrastruktur Jalan";
+		}else if($kategori=="gangguan"){
+			$cat = "Gangguan Lalin";
+		}else if($kategori=="pidana"){
+			$cat = "Tindak Pidana di Jalan";
+		}
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => 'https://backoffice.elingsolo.com/satupeta/API/intan/API/send_notif_smci',
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => '',
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => 'POST',
+		CURLOPT_POSTFIELDS => array("title"=>"Laporan ".$cat." Masuk" ,"msg"=>"Terdapat laporan baru"),
+		CURLOPT_SSL_VERIFYPEER => true 
+		));
+		$response = curl_exec($curl);    
+		curl_close($curl);
+	}
 	private function uplot($fld,$path){
 		if ( $this->upload->do_upload($fld)){
 				return $path.$this->upload->data('file_name');
