@@ -299,13 +299,21 @@ class Rekap extends CI_Controller {
 
 			];
 			$db2->insert('data_pelang',$dt);
+			$idp = $db2->insert_id();
 
-			// $dt = [
-			// 	'id' => ,
-			// 	'tipe_pelang' => $jenis
+			$dt = [
+				'id' => $idp,
+				'tipe_pelang' => $jenis
 
-			// ];
-			// $db2->insert('data_tipe_pelang',$dt);
+			];
+			$db2->insert('data_tipe_pelang',$dt);
+			$idtp = $db2->insert_id();
+			$dt = [
+				'data_tipe_pelang_id' => $idtp,
+				'pasal_id' => 5
+
+			];
+			$db2->insert('pasal_pelang',$dt);
 
 			return true;
 		}else{
