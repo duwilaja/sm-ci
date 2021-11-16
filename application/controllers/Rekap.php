@@ -375,11 +375,11 @@ class Rekap extends CI_Controller {
 		}
 		$db2 = $this->load->database('etle', TRUE);
 		$db2->insert('pelang_kend',$data);
-		$ids = $db2->insert_id();
+		$ipk = $db2->insert_id();
 		$ret=$db2->affected_rows();
 		if ($ret > 0) {
 			$dt = [
-				'pelang_kend_id' => $ids,
+				'pelang_kend_id' => $ipk,
 				'regident_id' => 24,
 				'no_referensi' => date('his'),
 				'status_k_pelang' => 0,
@@ -392,6 +392,19 @@ class Rekap extends CI_Controller {
 
 			];
 			$db2->insert('data_pelang',$dt);
+			$idp = $db2->insert_id();
+			$dt_notif = [
+				'keterangan' => 'New Konfirmasi',
+				'no_plat' => $nopol,
+				'status' => 2,
+				'no_referensi' => date('his'),
+				'ctddate'  => date('Y-m-d'),
+				'ctdtime' => date('h:i:s'),
+				'read' => 0,
+				'link' => 'https://backoffice.elingsolo.com/new_etle/min/BackOffice/detail_pelanggaran/'.$idp,
+				'data_pelang_id' => $idp,
+			];
+			$db2->insert('notifikasi',$dt);
 			// $idp = $db2->insert_id();
 			// $dt = [
 			// 	'id' => $idp,
