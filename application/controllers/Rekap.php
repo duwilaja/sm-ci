@@ -365,6 +365,7 @@ class Rekap extends CI_Controller {
 				'gambar' => base_url().$file,
 				'img_no_plat' => base_url().$file,
 				'no_plat' => $key->nopol,
+				'pelang_kend' => $this->tipe_pelang($key->jenis),
 				'status' => 1,
 				'ctddate' => date('Y-m-d'),
 				'tgl_pelang' => $key->tgl,
@@ -433,6 +434,19 @@ class Rekap extends CI_Controller {
 			return false;
 		}
 		
+	}
+	public function tipe_pelang($id='')
+	{
+		$db2 = $this->load->database('etle', TRUE);
+		$db2->select('*');
+		$db2->from('data_tipe_pelang');
+		$db2->like('tipe_pelang',$id);
+		$dt = $db2->get()->row();
+		if (isset($dt)) {
+			return $dt->id;
+		}else{
+			return 99;
+		}
 	}
 
 }
