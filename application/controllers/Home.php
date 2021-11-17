@@ -31,4 +31,44 @@ class Home extends CI_Controller {
 		}
 	}
 	
+	public function dttbl(){
+		$data=array(); $data_assoc=array();
+		//if(isset($user)){
+			$tname=base64_decode($this->input->post('tname')); //tablename
+			$cols=base64_decode($this->input->post('cols')); //column
+			
+			$where=array();
+			$acol=explode(",",$cols);
+			
+			//build where polda/polres
+			if ($this->input->post('tgl') != '') {
+				$ftgl=$this->input->post('ftgl')?$this->input->post('ftgl'):'tgl';
+				$where[$ftgl] = $this->input->post('tgl'); //date('Y-m-d');
+			}
+			
+			$this->db->select($cols);
+			//$this->db->from($tname);
+			$this->db->where($where);
+			$semua=$this->db->count_all_results($tname,FALSE);
+			
+			//$this->db->order_by($acol[$this->input->post('order')[0]['column']], $this->input->post('order')[0]['dir']);
+			$this->db->order_by('tgl DESC, jam DESC');
+			$this->db->limit($this->input->post('length'),$this->input->post('start'));
+			$data_assoc=$this->db->get()->result_array();
+			
+			for($i=0;$i<count($data_assoc);$i++){
+				$data[]=array_values($data_assoc[$i]);
+			}
+		//}
+		$output = array(
+                        "draw" => $this->input->post('draw'),
+                        "recordsTotal" => $semua,
+                        "recordsFiltered" => $semua,
+                        "data" => $data,
+						"assoc" => $data_assoc
+                );
+        //output to json format
+        echo json_encode($output);
+	}
+	
 }
