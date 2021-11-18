@@ -113,6 +113,9 @@ class Rekap extends CI_Controller {
 				if($ismap){
 					$lnk.='<button type="button" class="btn btn-icon btn-info" onclick="mapview('.$data_assoc[$i]['lat'].','.$data_assoc[$i]['lng'].
 					');"><i class="fa fa-map-marker"></i></button>';
+					$nm=isset($data_assoc[$i]['tit'])?$data_assoc[$i]['tit']:'';
+					$src='http://36.66.191.181/satupeta?lokasi='.$data_assoc[$i]['lat'].','.$data_assoc[$i]['lng'].'&nama='.$nm;
+					$lnk='<a type="button" class="btn btn-icon btn-info" href="JavaScript:;" data-fancybox="" data-type="iframe" data-src="'.$src.'"><i class="fa fa-map-marker"></i></a><br />';
 				}
 				if($isverify){
 					$lnk.=' <button type="button" class="btn btn-icon btn-warning" onclick="openmodal('.$data_assoc[$i]['rowid'].');"><i class="fa fa-check"></i></button>';
@@ -184,6 +187,9 @@ class Rekap extends CI_Controller {
 				if($ismap){
 					$lnk.='<button type="button" class="btn btn-icon btn-info" onclick="mapview('.$data_assoc[$i]['lat'].','.$data_assoc[$i]['lng'].
 					');"><i class="fa fa-map-marker"></i></button>';
+					$nm=isset($data_assoc[$i]['tit'])?$data_assoc[$i]['tit']:'';
+					$src='http://36.66.191.181/satupeta?lokasi='.$data_assoc[$i]['lat'].','.$data_assoc[$i]['lng'].'&nama='.$nm;
+					$lnk='<a type="button" class="btn btn-icon btn-info" href="JavaScript:;" data-fancybox="" data-type="iframe" data-src="'.$src.'"><i class="fa fa-map-marker"></i></a><br />';
 				}
 				if($isverify){
 					$lnk.=' <button type="button" class="btn btn-icon btn-warning" onclick="openmodal('.$data_assoc[$i]['rowid'].');"><i class="fa fa-check"></i></button>';

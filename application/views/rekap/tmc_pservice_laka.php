@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols="nrp,saluran,sumber,tgl,jam,jalan,jenis,jmlkorban,korbanmd,kebutuhan,pelapor,telp,verifikasi,'' as btnset,uploadedfile,lat,lng,rowid";
+$cols="nrp,saluran,sumber,tgl,jam,jalan,jenis,jmlkorban,korbanmd,kebutuhan,pelapor,telp,verifikasi,'' as btnset,uploadedfile,lat,lng,rowid,concat('Kecelakaan (',jenis,')') as tit";
 $tname="tmc_pservice_laka";
 $orders = "dtm desc";
 $dispatched="'1' as kategori_peng_id,tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
@@ -105,13 +105,13 @@ telp,masyarakat_id as input_peng,concat(jenis,' korban:',jmlkorban,' MD:',korban
 var  mytbl;
 function load_table(){
 	mytbl = $("#mytbl").DataTable({
-		serverSide: false,
+		serverSide: true,
 		processing: true,
 		searching: false,
 		buttons: ['copy', {extend : 'excelHtml5', messageTop: $(".judul").text()}],
 		ajax: {
 			type: 'POST',
-			url: '<?php echo base_url()?>rekap/datatable_all',
+			url: '<?php echo base_url()?>rekap/datatable',
 			data: function (d) {
 				d.cols= '<?php echo base64_encode($cols); ?>',
 				d.tname= '<?php echo base64_encode($tname); ?>',
