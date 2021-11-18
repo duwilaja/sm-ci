@@ -31,6 +31,7 @@ switch($q){
 	case 'formulir': $sql="select * from formulir where rowid='$id'"; break;
 	case 'penduduk': $sql="select * from data_penduduk where rowid='$id'"; break;
 	case 'targetlaka': $sql="select * from target_laka where rowid='$id'"; break;
+	case 'lov': $sql="select * from lov where rowid='$id'"; break;
 	
 	case 'pmacet': $sql="select * from penyebab_macet where rowid='$id'"; break;
 	case 'pmacetd': $sql="select * from penyebab_macet_d where rowid='$id'"; break;

@@ -114,6 +114,9 @@ class Laporan extends CI_Controller {
 					$data['gangguan'] = comboopts($this->db->select("concat(status,'-',penyebab,'-',penyebabd) as v, concat(jalan,'-',penyebab,'-',penyebabd,'-',status) as t")->order_by('jalan','ASC')->get('tmc_data_gangguan')->result());
 				}
 			}
+			if($id=='tmc_data_rawan'){  //
+				$data['rawan'] = ($this->db->select('val,txt')->where('grp','rawan')->get('lov')->result_array());
+			}
 			if($id=='tmc_info_lalin' || $id=='ais_laka' || $id=='tmc_ops_macet' || $id=='tmc_ops_pol'){  //tmc info lalin
 				$data['penyebab'] = comboopts($this->db->select('sebab as v,sebab as t')->get('penyebab_macet')->result());
 			}

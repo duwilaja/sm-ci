@@ -1,0 +1,40 @@
+
+CREATE TABLE `lov` (
+  `rowid` int(11) NOT NULL,
+  `grp` varchar(15) NOT NULL,
+  `val` varchar(50) NOT NULL,
+  `txt` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `lov`
+--
+
+INSERT INTO `lov` (`rowid`, `grp`, `val`, `txt`) VALUES
+(1, 'rawan', 'Rawan Laka', 'Rawan Laka'),
+(2, 'rawan', 'Rawan Macet', 'Rawan Macet'),
+(3, 'rawan', 'Rawan Longsor', 'Rawan Longsor'),
+(4, 'rawan', 'Rawan Banjir', 'Rawan Banjir'),
+(5, 'rawan', 'Rawan Pohon Tumbang', 'Rawan Pohon Tumbang'),
+(6, 'rawan', 'Rawan Tindak Pidana', 'Rawan Tindak Pidana');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `lov`
+--
+ALTER TABLE `lov`
+  ADD PRIMARY KEY (`rowid`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `lov`
+--
+ALTER TABLE `lov`
+  MODIFY `rowid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+

@@ -197,6 +197,10 @@ if($mn=='targetlaka'){
 	$res=crud($conn);
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
+if($mn=='lov'){
+	$res=crud($conn);
+	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+}
 
 /*tmc*/
 if($mn=='tmcmonlalin'){
