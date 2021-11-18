@@ -91,12 +91,15 @@ $cols.="jalan,lat,lng,jenis,status";
 			<div class="form-group col-md-12">
 				<label>Status</label>
 				<select id="status" name="status" class="form-control" placeholder="">
-					<option value="Rawan Laka">Rawan Laka</option>
+<?php for($i=0;$i<count($rawan);$i++){?>
+<option value="<?php echo $rawan[$i]['val']?>"><?php echo $rawan[$i]['txt']?></option>
+<?php }?>
+					<!--option value="Rawan Laka">Rawan Laka</option>
 					<option value="Rawan Macet">Rawan Macet</option>
 					<option value="Rawan Longsor">Rawan Longsor</option>
 					<option value="Rawan Banjir">Rawan Banjir</option>
 					<option value="Rawan Pohon Tumbang">Rawan Pohon Tumbang</option>
-					<option value="Rawan Tindak Pidana">Rawan Tindak Pidana</option>
+					<option value="Rawan Tindak Pidana">Rawan Tindak Pidana</option-->
 				</select>
 			</div>
 		  </div>
