@@ -3,8 +3,12 @@
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
 $cols="nrp,saluran,sumber,tgl,jam,jalan,jenis,lainnya,dampak,pelapor,telp,verifikasi,'' as btnset,uploadedfile,lat,lng,rowid";
 $tname="tmc_pservice_gangguan";
-$dispatched="tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
+$orders = "dtm desc";
+$dispatched="'1022' as kategori_peng_id,tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
 telp,masyarakat_id as pelapor_id,concat(jenis,' ',lainnya,' berdampak ',dampak) as keterangan,'gangguan' as judul,'1' as status";
+
+$dispatched="'1022' as kategori_peng_id,tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
+telp,masyarakat_id as input_peng,concat(jenis,' ',lainnya,' berdampak ',dampak) as keterangan,'gangguan' as judul,'0' as status,rowid as mobile_uniqueid";
 
 ?>
 
@@ -115,6 +119,7 @@ function load_table(){
 				d.isverify=true,
 				d.isfile=true,
 				d.filefields="uploadedfile",
+				d.orders = '<?php echo base64_encode($orders); ?>',
 				d.tgl= $('#tgl').val();
 			}
 		},

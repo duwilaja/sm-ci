@@ -20,9 +20,12 @@ if(count($farr)>0&&$session['nrp']!=''){
 		<!-- Title -->
 		<title>Smart Manajemen : <?php echo $page_title?></title>
 
+		<!--Favicon --
+		<link rel="icon" href="<?php echo $base_url;?>aronox/assets/images/brand/favicon.ico" type="image/x-icon"/-->
+		
 		<!--Favicon -->
-		<link rel="icon" href="<?php echo $base_url;?>aronox/assets/images/brand/favicon.ico" type="image/x-icon"/>
-
+		<link rel="icon" href="<?php echo $base_url;?>my/images/sm.png" type="image/png"/>
+		
 		<!-- Style css -->
 		<link href="<?php echo $base_url;?>aronox/assets/css/style.css" rel="stylesheet" />
 
@@ -381,6 +384,12 @@ if(count($farr)>0&&$session['nrp']!=''){
 		<!--Select2 js -->
 		<script src="<?php echo $base_url;?>aronox/assets/plugins/select2/select2.full.min.js"></script>
 			
+		<!-- FIREBASE -->
+		<script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+
+		<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-messaging.js"></script>
+		<script src="<?= base_url('my/js_local/local.js');?>"></script>
+
 	<script src="<?php echo $base_url;?>my/vendor/bootstrap/js/moment.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/bootstrap/js/bootstrap-select.min.js"></script>
     <script src="<?php echo $base_url;?>my/vendor/bootstrap/js/bootstrap-datetimepicker.min.js"></script>

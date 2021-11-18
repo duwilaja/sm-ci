@@ -187,7 +187,7 @@ echo form_hidden('specs',$session['specs']);
 							?>
 						</div>
 					</div>
-					<div class="col-sm-6 col-md-4 ">
+					<div class="col-sm-6 col-md-4 hidden">
 						<div class="form-group">
 							<label class="form-label"><?php echo $this->lang->line('lang_language'); ?></label>
 							<select class="form-control" onchange="javascript:window.location.href='<?php echo site_url('Profile/switchLang/'); ?>'+this.value;">

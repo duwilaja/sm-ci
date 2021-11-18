@@ -10,6 +10,7 @@ class Api extends CI_Controller {
         header('Access-Control-Allow-Origin: *');
         header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+        $this->load->library('session');
     } 
 
     //  ini get input type select di form laporan gatur lalin
@@ -256,5 +257,18 @@ class Api extends CI_Controller {
         echo json_encode($rsp);
     }
 
+    public function save_uidfcm(){
+        $rowid = $this->session->userdata("user_data")["rowid"];
+        $token = $this->input->post("token");
+        $obj["uid_fcm"]=$token;
+        $where["rowid"]=$rowid;
+        $up = $this->mg->up('persons',$obj,$where);
+        $rsp = [
+            'msg' => "OK",
+            'status' => $up[0]
+        ];
+
+        echo json_encode($rsp);
+    }
     // end get input type select di form laporan gatur 
 }

@@ -59,7 +59,7 @@ class Account extends CI_Controller {
 		
 		$nrp=$this->input->post('nrp');
 		$email=$this->input->post('email');
-
+/*
 		$rahasia = md5('rahasia').get_cookie('rahasia');
 		$rahasia = '';
 		foreach ($_POST as $v) {
@@ -69,7 +69,7 @@ class Account extends CI_Controller {
 		if (base64_decode($rahasia) != get_cookie('rahasia')) {
 			show_404();
 		}
-
+*/
 		$tname='persons';
 		$usr=$this->db->where("nrp",$nrp)->get($tname)->result();
 		//$eml=$this->db->where("email",$email)->get($tname)->result();

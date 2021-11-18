@@ -3,7 +3,8 @@
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
 $cols="nrp,saluran,sumber,tgl,nama,telp,email,jenis,kegiatan,verifikasi,'' as btnset,ktp,sim,sertifikat,kesehatan,lunas,rowid";
 $tname="tmc_pservice_wal";
-$dispatched="tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
+$orders = "dtm desc";
+$dispatched="'1024' as kategori_peng_id,tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
 telp,masyarakat_id as pelapor_id,concat(petugas,' petugas') as keterangan,'kemacetan' as judul,'1' as status";
 
 ?>
@@ -113,6 +114,7 @@ function load_table(){
 				d.isverify=true,
 				d.isfile=true,
 				d.filefields="ktp",
+				d.orders = '<?php echo base64_encode($orders); ?>',
 				d.tgl= $('#tgl').val();
 			}
 		},

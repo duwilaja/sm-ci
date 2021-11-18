@@ -26,7 +26,7 @@ class Login extends CI_Controller {
 
 		if (base64_decode($rahasia) != get_cookie('rahasia')) {
 			//show_404();
-			redirect('login/out/1');
+			//redirect('login/out/1');
 		}
 		
 		$this->db->where('uid',$nrp);

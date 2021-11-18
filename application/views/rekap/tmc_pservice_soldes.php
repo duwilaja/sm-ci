@@ -1,19 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols="nrp,saluran,sumber,tgl,jam,jalan,jenis,pelapor,telp,verifikasi,'' as btnset,uploadedfile,lat,lng,rowid";
-$tname="tmc_pservice_infra";
-$orders = "dtm desc";
-$dispatched="'1021' as kategori_peng_id,tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
-telp,masyarakat_id as pelapor_id,jenis as keterangan,'infrastruktur' as judul,'1' as status";
+$cols="ctddate,ctdtime,judul,nama_pelapor,mail,telp,keterangan,unit_del,via,status_static,kategori_peng_static";
+$tname="pengaduan";
 
-$dispatched="'1021' as kategori_peng_id,tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
-telp,masyarakat_id as input_peng,jenis as keterangan,'infrastruktur' as judul,'0' as status,rowid as mobile_uniqueid";
 ?>
 
 <div class="card">
 	<div class="card-header">
-		<div class="card-title judul">Laporan Infrastruktur Jalan 
+		<div class="card-title judul">Pengaduan SoloDestination
 			<div class="row">
 				<div class="col">
 					<div class="input-group">
@@ -51,18 +46,17 @@ telp,masyarakat_id as input_peng,jenis as keterangan,'infrastruktur' as judul,'0
 			<table id="mytbl" class="table table-striped table-bordered w-100">
 				<thead>
 					<tr>
-						<th>NRP</th>
-						<th>Saluran</th>
-						<th>Sumber</th>
 						<th>Tanggal</th>
 						<th>Jam</th>
-						<th>Jalan</th>
-						<th>Jenis</th>
-						<th>Pelapor</th>
+						<th>Judul</th>
+						<th>Nama</th>
+						<th>Email</th>
 						<th>Telp</th>
-						<th>TerVerifikasi?</th>
-						<th></th>
-						<th>FileUpload</th>
+						<th>Keterangan</th>
+						<th>Unit</th>
+						<th>Via</th>
+						<th>Status</th>
+						<th>Kategori</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -84,7 +78,7 @@ telp,masyarakat_id as input_peng,jenis as keterangan,'infrastruktur' as judul,'0
 		<input type="hidden" name="tablename" value="<?php echo $tname?>">
 		<input type="hidden" name="fieldnames" value="verifikasi">
 		<input type="hidden" name="rowid" id="rowid" value="">
-		<input type="hidden" name="dispatch" value="yes">
+		<input type="hidden" name="dispatch" value="no">
 		<input type="hidden" name="dispatched" value="<?php echo base64_encode($dispatched)?>">
 		
 		Data Valid? <select name="verifikasi" class="form-control"><option value="Y">Y</option><option value="N">N</option></select>
@@ -102,21 +96,21 @@ telp,masyarakat_id as input_peng,jenis as keterangan,'infrastruktur' as judul,'0
 var  mytbl;
 function load_table(){
 	mytbl = $("#mytbl").DataTable({
-		serverSide: false,
+		serverSide: true,
 		processing: true,
 		searching: false,
 		buttons: ['copy', {extend : 'excelHtml5', messageTop: $(".judul").text()}],
 		ajax: {
 			type: 'POST',
-			url: '<?php echo base_url()?>rekap/datatable_all',
+			url: '<?php echo base_url()?>rekap/datatable',
 			data: function (d) {
 				d.cols= '<?php echo base64_encode($cols); ?>',
 				d.tname= '<?php echo base64_encode($tname); ?>',
-				d.ismap=true,
-				d.isverify=true,
-				d.isfile=true,
-				d.filefields="uploadedfile",
-				d.orders = '<?php echo base64_encode($orders); ?>',
+				//d.ismap=true,
+				//d.isverify=true,
+				//d.isfile=true,
+				//d.filefields="sim,ktp,sertifikat,kesehatan,lunas",
+				d.ftgl='ctddate',
 				d.tgl= $('#tgl').val();
 			}
 		},
@@ -125,8 +119,8 @@ function load_table(){
 		},
 		columnDefs: [
 			{
-				orderable: false,
-				targets: [10,11]
+				//orderable: false,
+				//targets: [10,11,12,13,14,15]
 			}
 		]
 	});

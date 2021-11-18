@@ -1,11 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols.="namajalan,lat,lng,kategori,dominasi,langgarlalin,langgarperda,lainnya,penindakan,ket,tindakan,jam,";
+$cols.="namajalan,lat,lng,kategori,keterlibatan,penindakan,ket,tindakan,md,lb,lr,nopol1,nopol2,rs,rsalm,rslat,rslng,rscc,jam,";
 $cols.="instansi1,petugas1,instansi2,petugas2,instansi3,petugas3,instansi4,petugas4";
 ?>
 
-<input type="hidden" name="tablename" value="tmc_ops_langgar">
+<input type="hidden" name="tablename" value="tmc_ops_laka">
 <input type="hidden" name="fieldnames" value="<?php echo $cols?>">
 
 <div class="row">
@@ -30,7 +30,7 @@ $cols.="instansi1,petugas1,instansi2,petugas2,instansi3,petugas3,instansi4,petug
 	<div class="col-sm-6 col-md-1">
 		<div class="form-group">
 			<label class="form-label">&nbsp;</label>
-			<button type="button" class="btn btn-icon btn-facebook" onclick="mappicker('#lat','#lng');"><i class="fa fa-map-marker"></i></button>
+			<button type="button" class="btn btn-icon btn-facebook" onclick="mappicker('lat','lng');"><i class="fa fa-map-marker"></i></button>
 		</div>
 	</div>
 	<div class="col-sm-6 col-md-2">
@@ -43,53 +43,102 @@ $cols.="instansi1,petugas1,instansi2,petugas2,instansi3,petugas3,instansi4,petug
 <div class="row">
 	<div class="col-sm-6 col-md-4">
 		<div class="form-group">
-			<label class="form-label">Kategori Pelanggaran</label>
+			<label class="form-label">Kategori Laka</label>
 			<select name="kategori" class="form-control" placeholder="">
-				<option value="Berat">Berat</option>
-				<option value="Sedang">Sedang</option>
-				<option value="Ringan">Ringan</option>
-				<option value="Perda">Perda</option>
+				<option value="Laka Tunggal">Laka Tunggal</option>
+				<option value="Laka 2 Kendaraan">Laka 2 Kendaraan</option>
+				<option value="Laka Jol">Laka Jol</option>
+				<option value="Laka Beruntun">Laka Beruntun</option>
+				<option value="Tabrak Lari">Tabrak Lari</option>
 			</select>
 		</div> 
 	</div>
 	<div class="col-sm-6 col-md-4">
 		<div class="form-group">
-			<label class="form-label">Dominasi Pelanggar</label>
-			<select name="dominasi" class="form-control" placeholder="">
+			<label class="form-label">Kendaraan Terlibat</label>
+			<select name="keterlibatan" class="form-control" placeholder="">
 				<option value="R2">R2</option>
 				<option value="R4">R4</option>
-				<option value="Campuran">Campuran</option>
+				<option value="R2 VS R2">R2 VS R2</option>
+				<option value="R2 VS R4">R2 VS R4</option>
+				<option value="R4 VS R4">R4 VS R4</option>
+				<option value="R2 Menabrak Pejalan Kaki">R2 Menabrak Pejalan Kaki</option>
+				<option value="R4 Menabrak Pejalan Kaki">R4 Menabrak Pejalan Kaki</option>
 			</select>
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-2">
+		<div class="form-group">
+			<label class="form-label">Nopol 1</label>
+			<input type="text" name="nopol1" class="form-control" placeholder="" >
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-2">
+		<div class="form-group">
+			<label class="form-label">Nopol 2</label>
+			<input type="text" name="nopol2" class="form-control" placeholder="" >
 		</div>
 	</div>
 </div>
 <div class="row">
-	<div class="col-sm-6 col-md-4">
+	<div class="col-sm-6 col-md-3">
 		<div class="form-group">
-			<label class="form-label">Pelanggaran Lalin</label>
-			<select name="langgarlalin" class="form-control" placeholder="">
-				<option value="APLL">APLL</option>
-				<option value="Balap Liar">Balap Liar</option>
-				<option value="Putar Arah">Putar Arah</option>
-				<option value="Lawan Arah">Lawan Arah</option>
-				<option value="Lainnya">Lainnya</option>
-			</select>
+			<label class="form-label">Faskes Rujukan</label>
+			<input type="text" name="rs" class="form-control" placeholder="" >
 		</div>
 	</div>
 	<div class="col-sm-6 col-md-4">
 		<div class="form-group">
-			<label class="form-label">Lainnya</label>
-			<input type="text" name="lainnya" class="form-control" placeholder="" >
+			<label class="form-label">Alamat</label>
+			<input type="text" name="rsalm" class="form-control" placeholder="" >
 		</div>
 	</div>
-
-	<div class="col-sm-6 col-md-4">
+	<div class="col-sm-6 col-md-2">
 		<div class="form-group">
-			<label class="form-label">Pelanggaran Perda</label>
-			<input type="text" name="langgarperda" class="form-control" placeholder="" >
+			<label class="form-label">Latitude</label>
+			<input type="text" id="rslat" name="rslat" class="form-control" placeholder="" >
 		</div>
 	</div>
-	
+	<div class="col-sm-6 col-md-2">
+		<div class="form-group">
+			<label class="form-label">Longitude</label>
+			<input type="text" id="rslng" name="rslng" class="form-control" placeholder="" >
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-1">
+		<div class="form-group">
+			<label class="form-label">&nbsp;</label>
+			<button type="button" class="btn btn-icon btn-facebook" onclick="mappicker('rslat','rslng');"><i class="fa fa-map-marker"></i></button>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-6 col-md-3">
+		<div class="form-group">
+			<label class="form-label">Call Center</label>
+			<input type="text" name="rscc" class="form-control" placeholder="" >
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-3">
+		<div class="form-group">
+			<label class="form-label">Jml Korban MD</label>
+			<input type="text" name="md" class="form-control" placeholder="" >
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-3">
+		<div class="form-group">
+			<label class="form-label">Jml Luka Berat</label>
+			<input type="text" name="lb" class="form-control" placeholder="" >
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-3">
+		<div class="form-group">
+			<label class="form-label">Jml Luka Ringan</label>
+			<input type="text" name="lr" class="form-control" placeholder="" >
+		</div>
+	</div>
+</div>
+<div class="row">
 	<div class="col-sm-6 col-md-4">
 		<div class="form-group">
 			<label class="form-label">Cara Bertindak</label>
@@ -213,7 +262,9 @@ $cols.="instansi1,petugas1,instansi2,petugas2,instansi3,petugas3,instansi4,petug
 
 <script>
 function mappicker(lat,lng){
-	window.open(base_url+"map?lat="+$(lat).val()+"&lng="+$(lng).val(),"MapWindow","width=830,height=500,location=no").focus();
+	var latv=$('#'+lat).val();
+	var lngv=$('#'+lng).val();
+	window.open(base_url+"map?latfld="+lat+"&lngfld="+lng+"&lat="+latv+"&lng="+lngv,"MapWindow","width=830,height=500,location=no").focus();
 }
 function lainnyabukan(tv){
 	if(tv=='Lainnya'){

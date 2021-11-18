@@ -3,9 +3,12 @@
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
 $cols="nrp,saluran,sumber,tgl,jam,jalan,petugas,pelapor,telp,verifikasi,'' as btnset,uploadedfile,lat,lng,rowid";
 $tname="tmc_pservice_macet";
-$dispatched="tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
+$orders = "dtm desc";
+$dispatched="'1019' as kategori_peng_id,tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
 telp,masyarakat_id as pelapor_id,concat(petugas,' petugas') as keterangan,'kemacetan' as judul,'1' as status";
 
+$dispatched="'1019' as kategori_peng_id,tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
+telp,masyarakat_id as input_peng,concat(petugas,' petugas') as keterangan,'kemacetan' as judul,'0' as status,rowid as mobile_uniqueid";
 ?>
 
 <div class="card">
@@ -113,6 +116,7 @@ function load_table(){
 				d.isverify=true,
 				d.isfile=true,
 				d.filefields="uploadedfile",
+				d.orders = '<?php echo base64_encode($orders); ?>',
 				d.tgl= $('#tgl').val();
 			}
 		},
