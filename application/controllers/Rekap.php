@@ -175,9 +175,16 @@ class Rekap extends CI_Controller {
 				$this->db->join("polda","polda.da_id=$tname.da","left");
 				$this->db->join("polres","polres.res_id=$tname.res","left");
 			}
+			$order_p = $this->input->post('orders');
+            $ord = "";
+            if($order_p!=""){
+                $ord = base64_decode($order_p);
+            }
 			$this->db->where($where);
 			$semua=$this->db->count_all_results($tname,FALSE);
-			
+			if($ord!=""){
+                $this->db->order_by($ord);
+            }
 			$this->db->order_by($acol[$this->input->post('order')[0]['column']], $this->input->post('order')[0]['dir']);
 			$this->db->limit($this->input->post('length'),$this->input->post('start'));
 			$data_assoc=$this->db->get()->result_array();
