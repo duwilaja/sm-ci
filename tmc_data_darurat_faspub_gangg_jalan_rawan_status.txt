@@ -107,7 +107,8 @@ CREATE TABLE `tmc_data_rawan` (
   `tgl` date NOT NULL,
   `jalan` varchar(50) NOT NULL,
   `jenis` varchar(40) NOT NULL,
-  `status` varchar(20) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `detil` varchar(50) NOT NULL,
   `lat` varchar(20) NOT NULL,
   `lng` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols="nrp,tgl,jam,namajalan,lat,lng,kategori,keterlibatan,nopol1,nopol2,md,lb,lr,rs,rsalm,rslat,rslng,rscc,tindakan,penindakan,ket,";
+$cols="nrp,tgl,jam,namajalan,penggal,lat,lng,kategori,keterlibatan,nopol1,nopol2,md,lb,lr,rs,rsalm,rslat,rslng,rscc,tindakan,penindakan,ket,";
 $cols.="instansi1,petugas1,instansi2,petugas2,instansi3,petugas3,instansi4,petugas4";
 
 $tname="tmc_ops_laka";
@@ -38,6 +38,7 @@ $tname="tmc_ops_laka";
 						<th>Tanggal</th>
 						<th>Jam</th>
 						<th>Jalan</th>
+						<th>Status Penggal</th>
 						<th>Latitude</th>
 						<th>Longitude</th>
 						<th>Kategori Laka</th>
