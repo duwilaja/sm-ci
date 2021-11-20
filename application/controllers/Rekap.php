@@ -78,7 +78,11 @@ class Rekap extends CI_Controller {
 			$ismap=base64_decode($this->input->post('ismap')); //is map button active?
 			$isverify=base64_decode($this->input->post('isverify')); //is verify button active?
 			$isfile=base64_decode($this->input->post('isfile')); //is files active?
-			
+			$order_p = $this->input->post('orders');
+            $ord = "";
+            if($order_p!=""){
+                $ord = base64_decode($order_p);
+            }
 			$where=array();
 			//build where polda/polres
 			if ($this->input->post('tgl') != '') {
@@ -99,6 +103,9 @@ class Rekap extends CI_Controller {
 				$this->db->join("polres","polres.res_id=$tname.res","left");
 			}
 			$this->db->where($where);
+			if($ord!=""){
+                $this->db->order_by($ord);
+            }
 			$data_assoc=$this->db->get()->result_array();
 			
 			for($i=0;$i<count($data_assoc);$i++){
@@ -168,9 +175,14 @@ class Rekap extends CI_Controller {
 				$this->db->join("polda","polda.da_id=$tname.da","left");
 				$this->db->join("polres","polres.res_id=$tname.res","left");
 			}
+			$order_p = $this->input->post('orders');
+            $ord = "";
+            if($order_p!=""){
+                $ord = base64_decode($order_p);
+            }
 			$this->db->where($where);
 			$semua=$this->db->count_all_results($tname,FALSE);
-			
+      
 			if($tname=='tmc_pservice_langgar'){
 				$this->db->order_by('tgl desc, jam desc');
 			}else{
@@ -235,11 +247,11 @@ class Rekap extends CI_Controller {
 			$fname=$this->input->post('fieldnames');
 			$rowid=$this->input->post('rowid');
 			$dispatch=$this->input->post('dispatch');
-			
-			$data=$this->input->post(explode(",",$fname));
-			
+			$data=$this->input->post(explode(",",$fname));	
 			$this->db->update($tname,$data,"rowid=$rowid");
 			$ret=$this->db->affected_rows();
+			// echo $ret;
+			// die;
 			if($ret>0){
 				$msgs="$ret record(s) saved";
 				if($dispatch=='yes' && $this->input->post("verifikasi")=='Y'){
@@ -252,7 +264,16 @@ class Rekap extends CI_Controller {
 					
 					$fid=$datadis[0]['input_peng'];
 					$judul=$datadis[0]['judul'];
-					$msgs.=$this->notip($fid,$judul);
+					$this->notip($fid,$judul);
+					$this->notip_sme($judul);
+				}
+				if ($tname == "tmc_pservice_langgar" && $this->input->post("verifikasi")=='Y') {
+					$etle =  $this->save_etle($tname,$rowid);
+					if ($etle == true) {
+						$msgs ="berhasil insert etle";
+					}else{
+						$msgs ="Gagal insert etle";
+					}
 				}
 			}
 			$retval=array('code'=>"200",'ttl'=>"OK",'msgs'=>$msgs);
@@ -262,12 +283,39 @@ class Rekap extends CI_Controller {
 			echo json_encode($retval);
 		}
 	}
-	
+	private function notip_sme($title){
+		$judul="Laporan $title";
+		$mess="Laporan terverifikasi";
+		
+		$url="https://backoffice.elingsolo.com/satupeta/API/intan/API/send_notif_web";
+		// $url="http://localhost/intan/API/intan/API/send_notif_web";
+		$payload = array("title"=> $judul, "msg"=>$mess);
+		
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => $url,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => '',
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => 'POST',
+		CURLOPT_POSTFIELDS => $payload,
+		CURLOPT_SSL_VERIFYPEER => true 
+		));
+		
+		$res = curl_exec($curl);  
+		//$ret=json_decode('{"error":false,"msg":"Hore"}');
+		$ret = json_decode($res);
+		// print_r($ret->msg);
+		return $ret->msg;
+	}
 	private function notip($id,$title){
 		$judul="Laporan $title";
 		$mess="Laporan terverifikasi";
 		
-		$url="http://36.66.191.181/satupeta/API/intan/API/send_notif";
+		$url="https://backoffice.elingsolo.com/satupeta/API/intan/API/send_notif";
 		$payload = array("id"=>$id, "title"=> $judul, "msg"=>$mess);
 		
 		$ch = curl_init($url);
@@ -317,6 +365,103 @@ class Rekap extends CI_Controller {
 		}
 		
 		echo json_encode($res);
+	}
+
+	public function save_etle($tname='',$rowid='')
+	{
+		$data = [];
+		$get_pelanggaran = $this->db->get_where('tmc_pservice_langgar',array('rowid'=>$rowid))->result();
+		foreach ($get_pelanggaran as $key) {
+			$nopol = $key->nopol;
+			$sumber_data = $key->sumber_data;
+			$jenis = $key->jenis;
+			$file = substr($key->uploadedfile, 2);
+			$data = [
+				'gambar' => base_url().$file,
+				'img_no_plat' => base_url().$file,
+				'no_plat' => $key->nopol,
+				'pelang_kend' => $this->tipe_pelang($key->jenis),
+				'status' => 1,
+				'ctddate' => date('Y-m-d'),
+				'tgl_pelang' => $key->tgl,
+				'waktu_pelang' => $key->jam,
+				'sumber_inp' => 'backoffice',
+				'sumber_data' => $key->sumber_data
+			];
+		}
+		$db2 = $this->load->database('etle', TRUE);
+		$db2->insert('pelang_kend',$data);
+		$ipk = $db2->insert_id();
+		$ret=$db2->affected_rows();
+		if ($ret > 0) {
+			$dt = [
+				'pelang_kend_id' => $ipk,
+				'regident_id' => 24,
+				'no_referensi' => date('his'),
+				'status_k_pelang' => 0,
+				'aktif' => 1,
+				'activity' => 1,
+				'ctddate' => date('Y-m-d'),
+				'no_plat' => $nopol,
+				'sumber_inp' => 'backoffice',
+				'sumber_data' => $sumber_data
+
+			];
+			$db2->insert('data_pelang',$dt);
+			$idp = $db2->insert_id();
+			$dt_notif = [
+				'keterangan' => 'New Konfirmasi',
+				'no_plat' => $nopol,
+				'status' => 2,
+				'no_referensi' => date('his'),
+				'ctddate'  => date('Y-m-d'),
+				'ctdtime' => date('h:i:s'),
+				'read' => 0,
+				'link' => 'https://backoffice.elingsolo.com/new_etle/min/BackOffice/detail_pelanggaran/'.$idp,
+				'data_pelang_id' => $idp,
+			];
+			$db2->insert('notifikasi',$dt_notif);
+			// $idp = $db2->insert_id();
+			// $dt = [
+			// 	'id' => $idp,
+			// 	'tipe_pelang' => $jenis
+
+			// ];
+			// $db2->insert('data_tipe_pelang',$dt);
+			// $idtp = $db2->insert_id();
+			// $dt = [
+			// 	'data_tipe_pelang_id' => $idtp,
+			// 	'pasal_id' => 5
+
+			// ];
+			// $db2->insert('pasal_pelang',$dt);
+
+			// $dt = [
+			// 	'data_pelang_id' => $idp,
+			// 	'data_tipe_pelang_id' => 1,
+			// 	'ctddate' => date('Y-m-d') 
+
+			// ];
+			// $db2->insert('tipe_pelang',$dt);
+
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
+	public function tipe_pelang($id='')
+	{
+		$db2 = $this->load->database('etle', TRUE);
+		$db2->select('*');
+		$db2->from('data_tipe_pelang');
+		$db2->like('tipe_pelang',$id);
+		$dt = $db2->get()->row();
+		if (isset($dt)) {
+			return $dt->id;
+		}else{
+			return 99;
+		}
 	}
 
 }
