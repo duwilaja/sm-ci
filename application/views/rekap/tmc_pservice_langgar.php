@@ -104,6 +104,7 @@ function load_table(){
 		serverSide: true,
 		processing: true,
 		searching: false,
+		ordering: false,
 		buttons: ['copy', {extend : 'excelHtml5', messageTop: $(".judul").text()}],
 		ajax: {
 			type: 'POST',
