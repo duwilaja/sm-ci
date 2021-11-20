@@ -45,9 +45,12 @@ $cols.="instansi1,petugas1,instansi2,petugas2,instansi3,petugas3,instansi4,petug
 		<div class="form-group">
 			<label class="form-label">Tindak Pidana</label>
 			<select name="jenis" class="form-control" placeholder="">
-				<option value="Jambret">Jambret</option>
+<?php for($i=0;$i<count($pidana);$i++){?>
+<option value="<?php echo $pidana[$i]['val']?>"><?php echo $pidana[$i]['txt']?></option>
+<?php }?>
+				<!--option value="Jambret">Jambret</option>
 				<option value="Bajing Loncat">Bajing Loncat</option>
-				<option value="Begal">Begal</option>
+				<option value="Begal">Begal</option-->
 			</select>
 		</div> 
 	</div>

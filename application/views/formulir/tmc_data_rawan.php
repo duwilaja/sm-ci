@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,";
-$cols.="jalan,lat,lng,jenis,status";
+$cols.="jalan,lat,lng,jenis,status,detil";
 ?>
 
 <input type="hidden" name="tablename" value="tmc_data_rawan">
@@ -90,7 +90,7 @@ $cols.="jalan,lat,lng,jenis,status";
 		  <div class="row">
 			<div class="form-group col-md-12">
 				<label>Status</label>
-				<select id="status" name="status" class="form-control" placeholder="">
+				<select id="status" name="status" class="form-control" placeholder="" onchange="getSubQ('laporan/get_subq',this.value,'#detil','','','lov','val as v,txt as t','grp');">
 <?php for($i=0;$i<count($rawan);$i++){?>
 <option value="<?php echo $rawan[$i]['val']?>"><?php echo $rawan[$i]['txt']?></option>
 <?php }?>
@@ -103,6 +103,14 @@ $cols.="jalan,lat,lng,jenis,status";
 				</select>
 			</div>
 		  </div>
+		  <div class="row">
+			<div class="form-group col-md-12">
+				<label>Detil</label>
+				<select id="detil" name="detil" class="form-control" placeholder="">
+				</select>
+			</div>
+		  </div>
+		  
 		<!--/form-->
 	  </div>
 	  <div class="modal-footer">
@@ -135,7 +143,8 @@ function showModal(id){
 				console.log(json);
 				$.each(json[0],function (key,val){
 					$('#'+key).val(val);
-				})
+				});
+				getSubQ('laporan/get_subq',json[0]['status'],'#detil',json[0]['detil'],'','lov','val as v,txt as t','grp');
 				$("#myModal").modal("show");
 			},
 			error: function(xhr){
