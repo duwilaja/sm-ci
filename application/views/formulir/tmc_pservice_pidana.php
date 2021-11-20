@@ -81,10 +81,13 @@ $cols.="saluran,sumber,jam,jalan,lat,lng,jenis,uploadedfile,pelapor,telp";
 		<div class="form-group">
 			<label class="form-label">Jenis Tindak Pidana</label>
 			<select name="jenis" class="form-control" placeholder="">
-				<option value="Perampokan">Perampokan</option>
+<?php for($i=0;$i<count($pidana);$i++){?>
+<option value="<?php echo $pidana[$i]['val']?>"><?php echo $pidana[$i]['txt']?></option>
+<?php }?>
+				<!--option value="Perampokan">Perampokan</option>
 				<option value="Jambret">Jambret</option>
 				<option value="Begal">Begal</option>
-				<option value="Tabrak Lari">Tabrak Lari</option>
+				<option value="Tabrak Lari">Tabrak Lari</option-->
 			</select>
 		</div>
 	</div>
