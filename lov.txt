@@ -1,7 +1,7 @@
 
 CREATE TABLE `lov` (
   `rowid` int(11) NOT NULL,
-  `grp` varchar(15) NOT NULL,
+  `grp` varchar(50) NOT NULL,
   `val` varchar(50) NOT NULL,
   `txt` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

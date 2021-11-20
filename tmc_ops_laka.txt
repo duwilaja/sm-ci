@@ -11,6 +11,7 @@ CREATE TABLE `tmc_ops_laka` (
   `dasar` varchar(30) DEFAULT NULL,
   `nomor` varchar(30) DEFAULT NULL,
   `namajalan` varchar(50) NOT NULL,
+  `penggal` varchar(50),
   `lat` varchar(25) NOT NULL,
   `lng` varchar(25) NOT NULL,
   `jam` varchar(15) NOT NULL,

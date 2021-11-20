@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols.="namajalan,lat,lng,kategori,keterlibatan,penindakan,ket,tindakan,md,lb,lr,nopol1,nopol2,rs,rsalm,rslat,rslng,rscc,jam,";
+$cols.="namajalan,lat,lng,kategori,keterlibatan,penindakan,ket,tindakan,md,lb,lr,nopol1,nopol2,rs,rsalm,rslat,rslng,rscc,jam,penggal,";
 $cols.="instansi1,petugas1,instansi2,petugas2,instansi3,petugas3,instansi4,petugas4";
 ?>
 
@@ -9,11 +9,21 @@ $cols.="instansi1,petugas1,instansi2,petugas2,instansi3,petugas3,instansi4,petug
 <input type="hidden" name="fieldnames" value="<?php echo $cols?>">
 
 <div class="row">
-	<div class="col-sm-6 col-md-4">
+	<div class="col-sm-6 col-md-3">
 		<div class="form-group">
 			<label class="form-label">Nama Jalan</label>
 			<input type="text" name="namajalan" class="form-control" placeholder="" >
 		</div>
+	</div>
+	<div class="col-sm-6 col-md-2">
+		<div class="form-group">
+			<label class="form-label">Status Penggal</label>
+			<select name="penggal" class="form-control" placeholder="">
+<?php for($i=0;$i<count($penggal);$i++){?>
+<option value="<?php echo $penggal[$i]['val']?>"><?php echo $penggal[$i]['txt']?></option>
+<?php }?>
+			</select>
+		</div> 
 	</div>
 	<div class="col-sm-6 col-md-2">
 		<div class="form-group">
