@@ -74,6 +74,7 @@ $cols.="jenis,tgldari,tglsampai,jamdari,jamsampai,lokasi,sasaran,rincian,kuatper
 			<textarea id="rincian" name="rincian" class="form-control" placeholder="" ></textarea>
 		</div>
 	</div>
+	
 </div>
 <div class="row">
 	<div class="col-sm-6 col-md-4">
