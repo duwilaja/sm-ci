@@ -272,6 +272,12 @@ class Laporan extends CI_Controller {
 			case "ec": $sql="select * from tmc_ops_ec"; 
 			if($id!="") $sql="select * from tmc_ops_ec where rowid=$id";
 			break;
+			case "kendaraan": $sql="select * from tmc_data_kendaraan"; 
+			if($id!="") $sql="select * from tmc_data_kendaraan where rowid=$id";
+			break;
+			case "pengemudi": $sql="select * from tmc_data_pengemudi"; 
+			if($id!="") $sql="select * from tmc_data_pengemudi where rowid=$id";
+			break;
 		}
 		
 		$query=$this->db->query($sql);
