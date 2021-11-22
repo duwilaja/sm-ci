@@ -183,8 +183,8 @@ class Rekap extends CI_Controller {
 			$this->db->where($where);
 			$semua=$this->db->count_all_results($tname,FALSE);
       
-			if($tname=='tmc_pservice_langgar'){
-				$this->db->order_by('tgl desc, jam desc');
+			if($ord!=''){
+				$this->db->order_by($ord);
 			}else{
 				$this->db->order_by($acol[$this->input->post('order')[0]['column']], $this->input->post('order')[0]['dir']);
 			}

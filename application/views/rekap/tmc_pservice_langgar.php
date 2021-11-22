@@ -126,6 +126,7 @@ function load_table(){
 			data: function (d) {
 				d.cols= '<?php echo base64_encode($cols); ?>',
 				d.tname= '<?php echo base64_encode($tname); ?>',
+				d.orders= '<?php echo base64_encode('tgl desc, jam desc')?>',
 				d.ismap=true,
 				d.isverify=true,
 				d.isfile=true,
