@@ -12,7 +12,7 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 async function play() {
-    let audio = new Audio("https://localhost/sm-ci/my/sirine.wav");
+    let audio = new Audio("https://backoffice.elingsolo.com/sm-ci/my/sirine.wav");
     return await audio.play();
 }
 register();
