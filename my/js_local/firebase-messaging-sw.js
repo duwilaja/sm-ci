@@ -15,23 +15,26 @@ firebase.initializeApp({
     projectId: "web-solo-59597",
     appId: "1:692559198635:web:2b46ab6699a6ae42d37aee",
 });
-
 // Retrieve an instance of Firebase Messaging so that it can handle background
 // messages.
 const messaging = firebase.messaging();
 
-messaging.setBackgroundMessageHandler(function(payload) {
+// self.addEventListener('notificationclick', function (event) {
+//     // console.log(event);
+//     if (event.close)
+//         event.close();
+// });
+messaging.setBackgroundMessageHandler(function (payload) {
     console.log(
         "[firebase-messaging-sw.js] Received background message ",
         payload,
     );
     // Customize notification here
-    const notificationTitle = "Background Message Title";
+    const notificationTitle = payload.data.mesgTitle;
     const notificationOptions = {
-        body: "Background Message body.",
+        body: payload.data.alert,
         // icon: "/itwonders-web-logo.png",
     };
-
     return self.registration.showNotification(
         notificationTitle,
         notificationOptions,

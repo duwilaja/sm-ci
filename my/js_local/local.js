@@ -11,56 +11,71 @@ var firebaseConfig = {
     measurementId: "G-F35VC41GCK"
 };
 firebase.initializeApp(firebaseConfig);
+async function play() {
+    let audio = new Audio("https://localhost/sm-ci/my/sirine.wav");
+    return await audio.play();
+}
+register();
+async function register() {
+    if (window.navigator && navigator.serviceWorker) {
+        let registrations = await navigator.serviceWorker.getRegistrations();
+        if (registrations) {
+            for (let registration of registrations) {
+                console.log("YUHU", registration);
+                registration.unregister();
+            }
+        }
+        navigator.serviceWorker.register('./my/js_local/firebase-messaging-sw.js')
+            .then((registration) => {
 
-navigator.serviceWorker.register('./my/js_local/firebase-messaging-sw.js')
-    .then((registration) => {
+                const messaging = firebase.messaging();
+                messaging.useServiceWorker(registration);
 
-        const messaging = firebase.messaging();
-        messaging.useServiceWorker(registration);
+                messaging
+                    .requestPermission()
+                    .then(function () {
+                        // MsgElem.innerHTML = 'Notification permission granted.';
+                        console.log('Notification permission granted.');
 
-        messaging
-            .requestPermission()
-            .then(function () {
-                // MsgElem.innerHTML = 'Notification permission granted.';
-                console.log('Notification permission granted.');
+                        // get the token in the form of promise
+                        return messaging.getToken();
+                    })
+                    .then(function (token) {
+                        // TokenElem.innerHTML = 'Device token is : <br>' + token;
+                        console.log("TOKEN", token);
+                        $.ajax({
+                            type: "post",
+                            url: "./Api/save_uidfcm",
+                            data: {
+                                'token': token
+                            },
+                            dataType: "json",
+                            success: function (response) {
+                                console.log('sending');
+                            }
+                        });
+                    })
+                    .catch(function (err) {
+                        // ErrElem.innerHTML = ErrElem.innerHTML + '; ' + err;
+                        console.log('Unable to get permission to notify.', err);
+                    });
 
-                // get the token in the form of promise
-                return messaging.getToken();
-            })
-            .then(function (token) {
-                // TokenElem.innerHTML = 'Device token is : <br>' + token;
-                console.log("TOKEN", token);
-                $.ajax({
-                    type: "post",
-                    url: "./Api/save_uidfcm",
-                    data: {
-                        'token' : token
-                    },
-                    dataType: "json",
-                    success: function (response) {
-                        console.log('sending');
+                let enableForegroundNotification = true;
+
+                messaging.onMessage(function (payload) {
+                    console.log('Message received. ', payload);
+                    play();
+                    if (enableForegroundNotification) {
+                        let notification = payload.data;
+                        navigator.serviceWorker
+                            .getRegistrations()
+                            .then((reg) => {
+                                console.log(reg, "======");
+                                reg[0].showNotification(notification.mesgTitle, { body: notification.alert});
+                            });
                     }
                 });
-            })
-            .catch(function (err) {
-                // ErrElem.innerHTML = ErrElem.innerHTML + '; ' + err;
-                console.log('Unable to get permission to notify.', err);
             });
+    }
+}
 
-        let enableForegroundNotification = true;
-        messaging.onMessage(function (payload) {
-            console.log('Message received. ', payload);
-            // NotisElem.innerHTML =
-            //     NotisElem.innerHTML + JSON.stringify(payload);
-
-            if (enableForegroundNotification) {
-                let notification = payload.data;
-                navigator.serviceWorker
-                    .getRegistrations()
-                    .then((registration) => {
-                        registration[0].showNotification(notification.mesgTitle);
-                        // registration[1].showNotification(notification.alert);
-                    });
-            }
-        });
-    });
