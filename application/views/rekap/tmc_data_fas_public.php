@@ -71,9 +71,10 @@ $tname="tmc_data_fas_public";
 var  mytbl;
 function load_table(){
 	mytbl = $("#mytbl").DataTable({
-		serverSide: false,
+		serverSide: true,
 		processing: true,
 		searching: false,
+		order: [[1,"desc"]],
 		buttons: ['copy', {extend : 'excelHtml5', messageTop: $(".judul").text()}],
 		ajax: {
 			type: 'POST',

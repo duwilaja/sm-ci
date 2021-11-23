@@ -52,16 +52,18 @@ $tname="tmc_cctv_rekaman";
 var  mytbl;
 function load_table(){
 	mytbl = $("#mytbl").DataTable({
-		serverSide: false,
+		serverSide: true,
+		ordering: false,
 		processing: true,
 		searching: false,
 		buttons: ['copy', {extend : 'excelHtml5', messageTop: $(".judul").text()}],
 		ajax: {
 			type: 'POST',
-			url: '<?php echo base_url()?>rekap/datatable_all',
+			url: '<?php echo base_url()?>rekap/datatable',
 			data: function (d) {
 				d.cols= '<?php echo base64_encode($cols); ?>',
 				d.tname= '<?php echo base64_encode($tname); ?>',
+				d.orders= '<?php echo base64_encode('tgl desc, rowid desc')?>',
 				d.tgl= $('#tgl').val();
 			}
 		},

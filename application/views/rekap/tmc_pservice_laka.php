@@ -106,6 +106,7 @@ var  mytbl;
 function load_table(){
 	mytbl = $("#mytbl").DataTable({
 		serverSide: true,
+		ordering: false,
 		processing: true,
 		searching: false,
 		buttons: ['copy', {extend : 'excelHtml5', messageTop: $(".judul").text()}],
