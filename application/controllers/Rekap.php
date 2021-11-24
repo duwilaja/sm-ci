@@ -237,7 +237,56 @@ class Rekap extends CI_Controller {
 		}
 		return $ret;
 	}
-	
+	private function save_notif($array){
+		if(count($array) > 0){
+			for ($i=0; $i < count($array); $i++) { 
+				$el = $array[$i];
+				if($el["input_peng"]!="0"){
+					$cat = "";
+					if($el["kategori_peng_id"]=="1")
+						$cat ="laka";
+					else if($el["kategori_peng_id"]=="1019")
+						$cat="macet";
+					else if($el["kategori_peng_id"]=="1020")
+						$cat="langgar";
+					else if($el["kategori_peng_id"]=="1022")
+						$cat="gangguan";
+					else if($el["kategori_peng_id"]=="1021")
+						$cat="infra";
+					else if($el["kategori_peng_id"]=="1023")
+						$cat="pidana";
+					else if($el["kategori_peng_id"]=="1024")
+						$cat="wal";
+					else if($el["kategori_peng_id"]=="1025")
+						$cat="sim";
+					$status = "";
+					if($el["status"]=="0")
+						$status="Menunggu Konfirmasi";
+					else if($el["status"]=="1")
+						$status="Sudah Dikonfirmasi";
+					else if($el["status"]=="2")
+						$status="Ditangani";
+					else if($el["status"]=="3")
+						$status="Selesai";
+					else if($el["status"]=="4")
+						$status="Batal";
+					$save = array(
+						'masyarakat_id' => $el["input_peng"],
+						'kategori_elapor' => $cat,
+						'kategori_peng_id' => $el["kategori_peng_id"],
+						'table_rowid' => $el['mobile_uniqueid'],
+						'judul' => $el['judul']." di ".$el["alamat"],
+						'status_name' => $status,
+						'pesan' => $el['keterangan'],
+						'read_status' => 0,
+						'ctddate' => date('Y-m-d'),
+						'ctdtime' => date('h:i:s'),
+					);
+					$this->db->insert("notifikasi_masyarakats",$save);
+				}
+			}
+		}
+	}
 	public function save()
 	{
 		$user=$this->session->userdata('user_data');
@@ -265,6 +314,7 @@ class Rekap extends CI_Controller {
 					$fid=$datadis[0]['input_peng'];
 					$judul=$datadis[0]['judul'];
 					$this->notip($fid,$judul);
+					$this->save_notif($datadis);
 					$this->notip_sme($judul);
 				}
 				if ($tname == "tmc_pservice_langgar" && $this->input->post("verifikasi")=='Y') {
