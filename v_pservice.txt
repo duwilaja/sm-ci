@@ -1,0 +1,29 @@
+ALTER TABLE `tmc_pservice_pidana` ADD `stts` VARCHAR(50) DEFAULT '';
+ALTER TABLE `tmc_pservice_gangguan` ADD `stts` VARCHAR(50) DEFAULT '';
+ALTER TABLE `tmc_pservice_infra` ADD `stts` VARCHAR(50) DEFAULT '';
+ALTER TABLE `tmc_pservice_laka` ADD `stts` VARCHAR(50) DEFAULT '';
+ALTER TABLE `tmc_pservice_langgar` ADD `stts` VARCHAR(50) DEFAULT '';
+ALTER TABLE `tmc_pservice_macet` ADD `stts` VARCHAR(50) DEFAULT '';
+
+
+DROP VIEW IF EXISTS v_pservice;
+
+CREATE VIEW v_pservice AS
+SELECT tgl,jam,'Gangguan' as j,jalan,pelapor,sumber,saluran,stts FROM `tmc_pservice_gangguan`
+UNION
+SELECT tgl,jam,'Infrastruktur' as j,jalan,pelapor,sumber,saluran,stts FROM `tmc_pservice_infra`
+UNION
+SELECT tgl,jam,'Kecelakaan' as j,jalan,pelapor,sumber,saluran,stts FROM `tmc_pservice_laka`
+UNION
+SELECT tgl,jam,'Pelanggaran' as j,jalan,pelapor,sumber,saluran,stts FROM `tmc_pservice_langgar`
+UNION
+SELECT tgl,jam,'Kemacetan' as j,jalan,pelapor,sumber,saluran,stts FROM `tmc_pservice_macet`
+UNION
+SELECT tgl,jam,'Tindak Pidana' as j,jalan,pelapor,sumber,saluran,stts FROM `tmc_pservice_pidana`
+;
+
+UNION
+SELECT tgl,time(dtm) as jam, 'Permohonan SIM' as j, '-' as jalan,nama as pelapor,sumber,saluran,'' as stts FROM `tmc_pservice_sim`
+UNION
+SELECT tgl,time(dtm) as jam, 'Permohonan Pengawalan' as j, '-' as jalan,nama as pelapor,sumber,saluran,'' as stts FROM `tmc_pservice_wal`
+
