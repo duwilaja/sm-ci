@@ -344,7 +344,7 @@ class Rekap extends CI_Controller {
 				
 					$datadis=$this->db->select($select)->where(array("rowid"=>$rowid))->get($tname)->result_array();
 					$otherdb = $this->load->database('db_intan', TRUE);
-					$img = explode(';',$datadis[0]['uploadedfile']);
+					$img = isset($datadis[0]['uploadedfile'])? explode(';',$datadis[0]['uploadedfile']):array[];
 
 					unset($datadis[0]['uploadedfile']);
 					$otherdb->insert('pengaduan',$datadis[0]);
