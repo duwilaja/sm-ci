@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols="nrp,tgl,media,jenis,isi";
+$cols="nrp,tgl,media,jenis,isi,link";
 $tname="tmc_publikasi";
 ?>
 
@@ -37,6 +37,7 @@ $tname="tmc_publikasi";
 						<th>Media</th>
 						<th>Jenis</th>
 						<th>Isi</th>
+						<th>Link</th>
 					</tr>
 				</thead>
 				<tbody>

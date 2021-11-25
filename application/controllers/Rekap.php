@@ -107,30 +107,58 @@ class Rekap extends CI_Controller {
                 $this->db->order_by($ord);
             }
 			$data_assoc=$this->db->get()->result_array();
-			
-			for($i=0;$i<count($data_assoc);$i++){
+
+			foreach ($data_assoc as $k => $v) {
 				$lnk='';
 				if($ismap){
-					$lnk.='<button type="button" class="btn btn-icon btn-info" onclick="mapview('.$data_assoc[$i]['lat'].','.$data_assoc[$i]['lng'].
+					$lnk.='<button type="button" class="btn btn-icon btn-info" onclick="mapview('.$v['lat'].','.$v['lng'].
 					');"><i class="fa fa-map-marker"></i></button>';
 					$nm=isset($data_assoc[$i]['tit'])?$data_assoc[$i]['tit']:'';
 					$src='https://satupeta.elingsolo.com/satupeta?lokasi='.$data_assoc[$i]['lat'].','.$data_assoc[$i]['lng'].'&nama='.$nm;
 					$lnk='<a type="button" class="btn btn-icon btn-info" href="JavaScript:;" data-fancybox="" data-type="iframe" data-src="'.$src.'"><i class="fa fa-map-marker"></i></a><br />';
 				}
 				if($isverify){
-					$lnk.=' <button type="button" class="btn btn-icon btn-warning" onclick="openmodal('.$data_assoc[$i]['rowid'].');"><i class="fa fa-check"></i></button>';
+					$lnk.=' <button type="button" class="btn btn-icon btn-warning" onclick="openmodal('.$v['rowid'].');"><i class="fa fa-check"></i></button>';
 				}
 				if($isfile){
 					$myfiles=explode(",",$this->input->post('filefields'));
 					for($z=0;$z<count($myfiles);$z++){
-						$data_assoc[$i][$myfiles[$z]]=$this->make_link($data_assoc[$i][$myfiles[$z]]);
+						$v[$myfiles[$z]]=$this->make_link($v[$myfiles[$z]]);
 					}
 				}
 				if($lnk!=''){
-					$data_assoc[$i]['btnset']=$lnk;
+					$v['btnset']=$lnk;
 				}
-				$data[]=array_values($data_assoc[$i]);
+				if(array_key_exists('link',$v)){
+					$v['link'] = '<a href="'.$v['link'].'"  target="__blank">Link Preview</a>';
+				}
+				$data[]=array_values($v);
 			}
+			// for($i=0;$i<count($data_assoc);$i++){
+			// 	$lnk='';
+			// 	if($ismap){
+			// 		$lnk.='<button type="button" class="btn btn-icon btn-info" onclick="mapview('.$data_assoc[$i]['lat'].','.$data_assoc[$i]['lng'].
+			// 		');"><i class="fa fa-map-marker"></i></button>';
+			// 	}
+			// 	if($isverify){
+			// 		$lnk.=' <button type="button" class="btn btn-icon btn-warning" onclick="openmodal('.$data_assoc[$i]['rowid'].');"><i class="fa fa-check"></i></button>';
+			// 	}
+			// 	if($isfile){
+			// 		$myfiles=explode(",",$this->input->post('filefields'));
+			// 		for($z=0;$z<count($myfiles);$z++){
+			// 			$data_assoc[$i][$myfiles[$z]]=$this->make_link($data_assoc[$i][$myfiles[$z]]);
+			// 		}
+			// 	}
+			// 	if($lnk!=''){
+			// 		$data_assoc[$i]['btnset']=$lnk;
+			// 	}
+			// 	if(key($data_assoc[$i]) == "link"){
+			// 		die;
+			// 		$lnk.='<a href="'.$data_assoc[$i]['link	'].'">Link Privew</a>';
+			// 	}
+
+			// 	$data[]=array_values($data_assoc[$i]);
+			// }
 		}
 		$output = array(
                         "draw" => 0,//$this->input->post('draw'),
@@ -299,15 +327,37 @@ class Rekap extends CI_Controller {
 			$data=$this->input->post(explode(",",$fname));	
 			$this->db->update($tname,$data,"rowid=$rowid");
 			$ret=$this->db->affected_rows();
+			$img=[];
 			// echo $ret;
 			// die;
 			if($ret>0){
 				$msgs="$ret record(s) saved";
 				if($dispatch=='yes' && $this->input->post("verifikasi")=='Y'){
 					$select=base64_decode($this->input->post('dispatched'));
+					if ($tname == 'tmc_pservice_laka' || $tname == 'tmc_pservice_pidana') {
+						$select .= ',uploadedfile';
+					}
+				
 					$datadis=$this->db->select($select)->where(array("rowid"=>$rowid))->get($tname)->result_array();
 					$otherdb = $this->load->database('db_intan', TRUE);
-					$otherdb->insert_batch('pengaduan',$datadis);
+					$img = explode(';',$datadis[0]['uploadedfile']);
+
+					unset($datadis[0]['uploadedfile']);
+					$otherdb->insert('pengaduan',$datadis[0]);
+					$pengaduan_id = $otherdb->insert_id();
+
+					if (count($img) > 0) {
+						foreach ($img as $v) {
+							$otherdb->insert('peng_img', [
+								'pengaduan_id' => $pengaduan_id,
+								'img' => base_url().substr($v, 2),
+								'ctddate'=> date('Y-m-d'),
+								'ctdtime' => date('H:i:s')
+							]);
+						}
+					}
+
+					
 					$ret=$otherdb->affected_rows();
 					$msgs.=" & $ret DIPATCHED. ";
 					
