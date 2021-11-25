@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,";
-$cols.="saluran,sumber,jam,jalan,lat,lng,jenis,uploadedfile,pelapor,telp";
+$cols.="saluran,sumber,jam,jalan,lat,lng,jenis,uploadedfile,pelapor,telp,langgar";
 ?>
 
 <input type="hidden" name="tablename" value="tmc_pservice_langgar">
@@ -79,17 +79,21 @@ $cols.="saluran,sumber,jam,jalan,lat,lng,jenis,uploadedfile,pelapor,telp";
 	</div>
 	<div class="col-sm-6 col-md-3">
 		<div class="form-group">
-			<label class="form-label">Jenis Pelanggaran</label>
-			<select name="jenis" class="form-control" placeholder="">
-				<option value="Terobos Lampu TL">Terobos Lampu TL</option>
-				<option value="Parkir Diluar Jalur">Parkir Diluar Jalur</option>
-				<option value="Balap Liar">Balap Liar</option>
-				<option value="Melebihi Kecepatan">Melebihi Kecepatan</option>
-				<option value="Melawan Arah">Melawan Arah</option>
+			<label class="form-label">Melanggar</label>
+			<select id="langgar" name="langgar" class="form-control" placeholder="" onchange="getSubQ('laporan/get_subq',this.value,'#jenis','','','lov','val as v,txt as t','grp');">
+				<option value="lalin">Lalu Lintas</option>
+				<option value="perda">Perda</option>
 			</select>
 		</div>
 	</div>
-	<div class="col-sm-6 col-md-6">
+	<div class="col-sm-6 col-md-3">
+		<div class="form-group">
+			<label class="form-label">Jenis</label>
+			<select id="jenis" name="jenis" class="form-control" placeholder="">
+			</select>
+		</div>
+	</div>
+	<div class="col-sm-6 col-md-5">
 		<div class="form-group files">
 			<label class="form-label">Foto/Video</label>
 			<input type="file" name="uploadedfile[]" class="form-control file" placeholder="" >
@@ -139,5 +143,9 @@ $(".is-valid").removeClass("is-valid");
 
 function safeform(thef){
 	sendData('#myf','PublicService/save');
+}
+function contentcallback(){
+	var v=$("#langgar").val();
+	getSubQ('laporan/get_subq',v,'#jenis','','','lov','val as v,txt as t','grp');
 }
 </script>

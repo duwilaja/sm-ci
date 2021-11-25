@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols="nrp,saluran,sumber,tgl,jam,jalan,jenis,pelapor,telp,verifikasi,'' as btnset,uploadedfile,lat,lng,rowid,concat('Pelanggaran (',jenis,')') as tit";
+$cols="nrp,saluran,sumber,tgl,jam,jalan,langgar,jenis,pelapor,telp,verifikasi,'' as btnset,uploadedfile,lat,lng,rowid,concat('Pelanggaran (',jenis,')') as tit";
 $tname="tmc_pservice_langgar";
 $dispatched="'1020' as kategori_peng_id,tgl as ctddate,jam as ctdtime,lat,lng,pelapor as nama_pelapor,jalan as alamat,
 telp,masyarakat_id as pelapor_id,jenis as keterangan,'pelanggaran' as judul,'1' as status";
@@ -56,6 +56,7 @@ telp,masyarakat_id as input_peng,jenis as keterangan,'pelanggaran' as judul,'0' 
 						<th>Tanggal</th>
 						<th>Jam</th>
 						<th>Jalan</th>
+						<th>Langgar</th>
 						<th>Jenis</th>
 						<th>Pelapor</th>
 						<th>Telp</th>
@@ -85,7 +86,7 @@ telp,masyarakat_id as input_peng,jenis as keterangan,'pelanggaran' as judul,'0' 
 		<input type="hidden" name="rowid" id="rowid" value="">
 		<input type="hidden" name="dispatch" value="no">
 		<input type="hidden" name="dispatched" value="<?php echo base64_encode($dispatched)?>">
-		<div class="form-group">
+		<div class="form-group lalin">
 			<label for="nopol">NO PLAT</label>
 			<input type="text" name="nopol" class="form-control" id="nopol">
 		</div>
@@ -158,8 +159,11 @@ function reload_table(){
 function mapview(lat,lng){
 	window.open(base_url+"map/view?lat="+lat+"&lng="+lng,"MapWindow","width=830,height=500,location=no").focus();
 }
-function openmodal(rowid){
+function openmodal(rowid,langgar){
+	$("#nopol").val('');
 	$("#rowid").val(rowid);
+	$("#langgar").val(langgar);
+	if(langgar=='lalin') {$(".lalin").show()} else {$(".lalin").hide();}
 	$("#myModal").modal("show");
 }
 function safeform(thef){
