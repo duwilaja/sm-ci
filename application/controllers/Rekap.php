@@ -229,7 +229,11 @@ class Rekap extends CI_Controller {
 					$lnk='<a type="button" class="btn btn-icon btn-info" href="JavaScript:;" data-fancybox="" data-type="iframe" data-src="'.$src.'"><i class="fa fa-map-marker"></i></a><br />';
 				}
 				if($isverify){
-					$lnk.=' <button type="button" class="btn btn-icon btn-warning" onclick="openmodal('.$data_assoc[$i]['rowid'].');"><i class="fa fa-check"></i></button>';
+					$lnkx=' <button type="button" class="btn btn-icon btn-warning" onclick="openmodal('.$data_assoc[$i]['rowid'].');"><i class="fa fa-check"></i></button>';
+					if($tname=='tmc_pservice_langgar'){
+						$lnkx=' <button type="button" class="btn btn-icon btn-warning" onclick="openmodal('.$data_assoc[$i]['rowid'].',\''.$data_assoc[$i]['langgar'].'\');"><i class="fa fa-check"></i></button>';
+					}
+					$lnk.=$lnkx;
 				}
 				if($isfile){
 					$myfiles=explode(",",$this->input->post('filefields'));
@@ -367,7 +371,7 @@ class Rekap extends CI_Controller {
 					$this->save_notif($datadis);
 					$this->notip_sme($judul);
 				}
-				if ($tname == "tmc_pservice_langgar" && $this->input->post("verifikasi")=='Y') {
+				if ($tname == "tmc_pservice_langgar" && $this->input->post("verifikasi")=='Y' && $this->input->post("lalin")=='Y') {
 					$etle =  $this->save_etle($tname,$rowid);
 					if ($etle == true) {
 						$msgs ="berhasil insert etle";
