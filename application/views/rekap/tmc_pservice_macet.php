@@ -82,7 +82,8 @@ telp,masyarakat_id as input_peng,concat(petugas,' petugas') as keterangan,'kemac
 	  <div class="modal-body">
 		<form id="myfx">
 		<input type="hidden" name="tablename" value="<?php echo $tname?>">
-		<input type="hidden" name="fieldnames" value="verifikasi">
+		<input type="hidden" name="fieldnames" value="verifikasi,stts">
+		<input type="hidden" name="stts" value="Processed">
 		<input type="hidden" name="rowid" id="rowid" value="">
 		<input type="hidden" name="dispatch" value="yes">
 		<input type="hidden" name="dispatched" value="<?php echo base64_encode($dispatched)?>">
