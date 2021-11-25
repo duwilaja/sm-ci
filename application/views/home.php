@@ -65,6 +65,7 @@
 						<th>Pelapor</th>
 						<th>Sumber</th>
 						<th>Saluran</th>
+						<th>Status</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -74,7 +75,7 @@
 	</div>
 </div>
 <?php
-$cols = "tgl,jam,j,jalan,pelapor,sumber,saluran";
+$cols = "tgl,jam,j,jalan,pelapor,sumber,saluran,stts";
 $tname="v_pservice";
 ?>
 <script>
