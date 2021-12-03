@@ -12,7 +12,7 @@
 	<div class="col-lg-12">
 		<div class="card">
 			<div class="card-header">
-				<h3 class="card-title">Rekap Kegiatan 
+				<h3 class="card-title">Rekap Kegiatan
 				<select class="form-control" name="u" id="u" onchange="ambil_formu(this.value);">
 				<?php for($i=0;$i<count($units);$i++){
 					$selected=""; if($units[$i]['unit']==$session["unit"]) $selected="selected";
