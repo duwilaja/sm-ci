@@ -17,7 +17,7 @@ class Rekap extends CI_Controller {
 			$data['title'] = "Rekap";
 			//$data['formulir'] = comboopts($this->db->select('view_laporan as v,nama_laporan as t')->like('tipe','R')->where(array("unit"=>$user['unit'],"isactive"=>"Y"))->or_where("unit",$user["subdinas"])->order_by("nama_laporan")->get('formulir')->result());
 			$data['formulir'] = $this->db->select('unit,view_laporan as v,nama_laporan as t')->like('tipe','R')->where(array("isactive"=>"Y"))->order_by("nama_laporan")->get('formulir')->result_array();
-			$data['units'] = $this->db->select('unit')->distinct()->like('tipe','R')->where(array("isactive"=>"Y"))->order_by("unit")->get('formulir')->result_array();
+			$data['units'] = $this->db->select('unit_id as unit')->distinct()->order_by("unit_id")->get('unit')->result_array();
 			$this->template->load('rekap',$data);
 		}else{
 			$retval=array("403","Failed","Please login","error");
