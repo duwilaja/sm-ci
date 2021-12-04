@@ -12,7 +12,15 @@
 	<div class="col-lg-12">
 		<div class="card">
 			<div class="card-header">
-				<h3 class="card-title">Rekap Kegiatan <?php echo $session['unit']?></h3>
+				<h3 class="card-title">Rekap Kegiatan
+				<select class="form-control" name="u" id="u" onchange="ambil_formu(this.value);">
+				<?php for($i=0;$i<count($units);$i++){
+					$selected=""; if($units[$i]['unit']==$session["unit"]) $selected="selected";
+					?>
+					<option <?php echo $selected?> value="<?php echo $units[$i]['unit']?>"><?php echo $units[$i]['unit']?></option>
+				<?php }?>
+				</select>
+				</h3>
 				<div class="card-options ">
 					<a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
 					<!--a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a-->
@@ -21,14 +29,14 @@
 			<div class="card-body"><form name="myf" id="myf">
 			
 			<div class="row"><div class="col-lg-12">
-				<div class="btn-list">
+				<div class="btn-list buto">
 					<?php 
-					$keys=array_keys($formulir);
-					$values=array_values($formulir);
 					for($i=0;$i<count($formulir);$i++){
+						$d=$formulir[$i];
+						if($session["unit"]==$d["unit"]){
 					?>
-					<button type="button" class="btn btn-twitter btn-pill <?php echo $keys[$i]?>" onclick="ambil_isi('<?php echo $keys[$i]?>');"><i class="fa fa-list-alt"></i> <?php echo $values[$i]?></button>
-					<?php } ?>
+					<button type="button" class="btn btn-twitter btn-pill <?php echo $d["v"]?>" onclick="ambil_isi('<?php echo $d["v"]?>');"><i class="fa fa-list-alt"></i> <?php echo $d["t"]?></button>
+					<?php }} ?>
 				</div>
 			</div></div>
 			
@@ -90,4 +98,15 @@ function reset_isi(){
 function thispage_ready(){
 	reset_isi();
 }
+function ambil_formu(u){
+	var but='';
+	for(var i=0;i<formulir.length;i++){
+		var formu=formulir[i];
+		if(formu['unit']==u){
+			but+='<button type="button" class="btn btn-twitter btn-pill '+formu["v"]+'" onclick="ambil_isi(\''+formu["v"]+'\');"><i class="fa fa-list-alt"></i> '+formu["t"]+'</button>';
+		}
+	}
+	$(".buto").html(but);
+}
+var formulir=<?php echo json_encode($formulir)?>;
 </script>
