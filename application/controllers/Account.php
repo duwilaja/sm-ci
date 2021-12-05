@@ -32,17 +32,17 @@ class Account extends CI_Controller {
 	public function sendmail($to,$sub,$msg){
 		$config = Array(
 			'protocol' => 'smtp',
-			'smtp_host' => 'ssl://smtp.googlemail.com',
-			'smtp_port' => 465,
-			'smtp_user' => 'smart.mgmt.mmt@gmail.com',
-			'smtp_pass' => 'Bismillah10x',
+			'smtp_host' => 'mail.polri.go.id', //'ssl://smtp.googlemail.com',
+			'smtp_port' => 587,//465,
+			'smtp_user' => 'smartcity.surakarta@polri.go.id', //'smart.mgmt.mmt@gmail.com',
+			'smtp_pass' => 'Korl@ntasPolri2021', //'Bismillah10x',
 			'mailtype'  => 'html', 
 			'charset'   => 'iso-8859-1'
 		);
 		$this->load->library('email', $config);
 		$this->email->set_newline("\r\n");
 		
-		$this->email->from('smart.mgmt.mmt@gmail.com', 'Smart Management App');
+		$this->email->from('smartcity.surakarta@polri.go.id', 'Smart Management App');
 		$this->email->to($to);
 		$this->email->subject("Smart Management : $sub");
 		$this->email->message($msg);
