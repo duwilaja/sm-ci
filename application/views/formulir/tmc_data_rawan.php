@@ -164,7 +164,7 @@ function onMapClick(e) {
 	//L.marker(e.latlng).addTo(map);
 	$("#lat").val(e.latlng.lat);
 	$("#lng").val(e.latlng.lng);
-	
+	log('map click');
 	showModal(0);
 }
 function markerClickFunction(id) {
@@ -180,6 +180,7 @@ function markerClickFunction(id) {
 	//}else{
 	//	location.href="device.php?id="+id;
 	//	}
+	log(id+' marker clicked');
 	showModal(id);
 }}
 function senddatacallback(f){

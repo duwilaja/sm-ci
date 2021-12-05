@@ -157,6 +157,29 @@ class Laporan extends CI_Controller {
 		}
 	}
 	
+	private function uplots($fld,$path){
+		$ret=array();
+		// Count total files
+        $countfiles = count($_FILES[$fld]['name']);
+		// Looping all files
+        for($i=0;$i<$countfiles;$i++){
+			if(!empty($_FILES[$fld]['name'][$i])){
+				// Define new $_FILES array - $_FILES['file']
+				  $_FILES['file']['name'] = $_FILES[$fld]['name'][$i];
+				  $_FILES['file']['type'] = $_FILES[$fld]['type'][$i];
+				  $_FILES['file']['tmp_name'] = $_FILES[$fld]['tmp_name'][$i];
+				  $_FILES['file']['error'] = $_FILES[$fld]['error'][$i];
+				  $_FILES['file']['size'] = $_FILES[$fld]['size'][$i];
+				
+				if ( $this->upload->do_upload('file')){
+						$ret[]= $path.$this->upload->data('file_name');
+					}
+			}
+		}
+		
+		return implode(";",$ret);
+	}
+	
 	public function save()
 	{
 		$user=$this->session->userdata('user_data');
@@ -166,6 +189,19 @@ class Laporan extends CI_Controller {
 			$tname=$this->input->post('tablename');
 			$fname=$this->input->post('fieldnames');
 			$data=$this->input->post(explode(",",$fname));
+			if(strpos($fname,"uploadedfile")){
+				//upload here
+				$path="./uploads/cctv/lalin/";
+				$config['upload_path'] = $path;
+				$config['allowed_types'] = '*';//'gif|jpg|jpeg|png';//all
+				//$config['file_name'] = $user['nrp'];
+				$config['file_ext_tolower'] = true;
+				//$config['overwrite'] = false;
+				$m="";
+				$this->load->library('upload', $config);
+				
+				$data['uploadedfile'] =  $this->uplots('uploadedfile',$path);
+			}
 			if($rowid==""||$rowid=="0"){
 				$this->db->insert($tname,$data);
 			}else{
