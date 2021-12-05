@@ -226,7 +226,12 @@ $(document).ready(function(){
 		attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(map);
 
-	map.on('click', onMapClick);
+	map.on('click', function(e){
+		$("#lat").val(e.latlng.lat);
+		$("#lng").val(e.latlng.lng);
+		log('map click');
+		showModal(0);
+	});
 	
 	loadMarker();
 	
