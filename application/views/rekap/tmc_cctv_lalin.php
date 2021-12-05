@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols="nrp,tgl,situasi,kejadian,jalan,status,mulai,sampai,sebab,petugas,callsign";
+$cols="nrp,tgl,situasi,kejadian,jalan,status,mulai,sampai,sebab,petugas,callsign,ket,'' as btnset,uploadedfile,lat,lng";
 $tname="tmc_cctv_lalin";
 ?>
 
@@ -43,6 +43,9 @@ $tname="tmc_cctv_lalin";
 						<th>Sebab</th>
 						<th>Petugas</th>
 						<th>Callsign</th>
+						<th>Ket</th>
+						<th>&nbsp;</th>
+						<th>FileUpload</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -68,6 +71,9 @@ function load_table(){
 				d.cols= '<?php echo base64_encode($cols); ?>',
 				d.tname= '<?php echo base64_encode($tname); ?>',
 				d.orders= '<?php echo base64_encode('tgl desc, rowid desc')?>',
+				d.ismap=true,
+				d.isfile=true,
+				d.filefields="uploadedfile",
 				d.tgl= $('#tgl').val();
 			}
 		},
