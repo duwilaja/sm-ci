@@ -178,6 +178,7 @@ class Rekap extends CI_Controller {
 		if(isset($user)){
 			$tname=base64_decode($this->input->post('tname')); //tablename
 			$cols=base64_decode($this->input->post('cols')); //column
+			$wheres=base64_decode($this->input->post('wheres')); //wheres
 			
 			$ismap=base64_decode($this->input->post('ismap')); //is map button active?
 			$isverify=base64_decode($this->input->post('isverify')); //is verify button active?
@@ -210,6 +211,7 @@ class Rekap extends CI_Controller {
                 $ord = base64_decode($order_p);
             }
 			$this->db->where($where);
+			if($wheres!='') $this->db->where($wheres);
 			$semua=$this->db->count_all_results($tname,FALSE);
       
 			if($ord!=''){

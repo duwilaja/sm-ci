@@ -32,8 +32,8 @@ class Account extends CI_Controller {
 	public function sendmail($to,$sub,$msg){
 		$config = Array(
 			'protocol' => 'smtp',
-			'smtp_host' => 'mail.polri.go.id', //'ssl://smtp.googlemail.com',
-			'smtp_port' => 587,//465,
+			'smtp_host' => 'ssl://mail.polri.go.id', //'ssl://smtp.googlemail.com',
+			'smtp_port' => 465,
 			'smtp_user' => 'smartcity.surakarta@polri.go.id', //'smart.mgmt.mmt@gmail.com',
 			'smtp_pass' => 'Korl@ntasPolri2021', //'Bismillah10x',
 			'mailtype'  => 'html', 
