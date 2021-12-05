@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols="nrp,obyek,obyeklain,pejabat,tanggal,jam,dari,darinama,ke,kenama,wasdal,anggota1,anggota2,anggota3";
+$cols="nrp,tgl,obyek,obyeklain,pejabat,tanggal,jam,dari,darinama,ke,kenama,wasdal,anggota1,anggota2,anggota3";
 $tname="tmc_rengiat_vip";
 ?>
 
@@ -33,10 +33,11 @@ $tname="tmc_rengiat_vip";
 				<thead>
 					<tr>
 						<th>ID/NRP</th>
+						<th>Tanggal</th>
 						<th>Obyek Pengawalan</th>
 						<th>Obyek Lain</th>
 						<th>Nama Pejabat</th>
-						<th>Tanggal</th>
+						<th>Tanggal Kegiatan</th>
 						<th>Jam</th>
 						<th>Dari</th>
 						<th>Nama</th>
