@@ -107,13 +107,16 @@ $cols.="instansi1,petugas1,instansi2,petugas2,instansi3,petugas3,instansi4,petug
 			<label class="form-label">Instansi 1</label>
 			<select name="instansi1" class="form-control" placeholder="">
 				<option value=""></option>
-				<option value="Lantas">Lantas</option>
+<?php for($i=0;$i<count($instansi);$i++){?>
+<option value="<?php echo $instansi[$i]['val']?>"><?php echo $instansi[$i]['txt']?></option>
+<?php }?>
+				<!--option value="Lantas">Lantas</option>
 				<option value="PSC">PSC</option>
 				<option value="Dishub">Dishub</option>
 				<option value="PU">PU</option>
 				<option value="BPJT">BPJT</option>
 				<option value="SatpolPP">SatpolPP</option>
-				<option value="TNI">TNI</option>
+				<option value="TNI">TNI</option-->
 			</select>
 		</div>
 	</div>
@@ -128,13 +131,9 @@ $cols.="instansi1,petugas1,instansi2,petugas2,instansi3,petugas3,instansi4,petug
 			<label class="form-label">Instansi 2</label>
 			<select name="instansi2" class="form-control" placeholder="">
 				<option value=""></option>
-				<option value="Lantas">Lantas</option>
-				<option value="PSC">PSC</option>
-				<option value="Dishub">Dishub</option>
-				<option value="PU">PU</option>
-				<option value="BPJT">BPJT</option>
-				<option value="SatpolPP">SatpolPP</option>
-				<option value="TNI">TNI</option>
+<?php for($i=0;$i<count($instansi);$i++){?>
+<option value="<?php echo $instansi[$i]['val']?>"><?php echo $instansi[$i]['txt']?></option>
+<?php }?>
 			</select>
 		</div>
 	</div>
@@ -149,13 +148,9 @@ $cols.="instansi1,petugas1,instansi2,petugas2,instansi3,petugas3,instansi4,petug
 			<label class="form-label">Instansi 3</label>
 			<select name="instansi3" class="form-control" placeholder="">
 				<option value=""></option>
-				<option value="Lantas">Lantas</option>
-				<option value="PSC">PSC</option>
-				<option value="Dishub">Dishub</option>
-				<option value="PU">PU</option>
-				<option value="BPJT">BPJT</option>
-				<option value="SatpolPP">SatpolPP</option>
-				<option value="TNI">TNI</option>
+<?php for($i=0;$i<count($instansi);$i++){?>
+<option value="<?php echo $instansi[$i]['val']?>"><?php echo $instansi[$i]['txt']?></option>
+<?php }?>
 			</select>
 		</div>
 	</div>
@@ -170,13 +165,9 @@ $cols.="instansi1,petugas1,instansi2,petugas2,instansi3,petugas3,instansi4,petug
 			<label class="form-label">Instansi 4</label>
 			<select name="instansi4" class="form-control" placeholder="">
 				<option value=""></option>
-				<option value="Lantas">Lantas</option>
-				<option value="PSC">PSC</option>
-				<option value="Dishub">Dishub</option>
-				<option value="PU">PU</option>
-				<option value="BPJT">BPJT</option>
-				<option value="SatpolPP">SatpolPP</option>
-				<option value="TNI">TNI</option>
+<?php for($i=0;$i<count($instansi);$i++){?>
+<option value="<?php echo $instansi[$i]['val']?>"><?php echo $instansi[$i]['txt']?></option>
+<?php }?>
 			</select>
 		</div>
 	</div>
