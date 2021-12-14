@@ -27,14 +27,17 @@ $cols.="giat,tgldari,tglsampai,jamdari,jamsampai,jalan,lat,lng";
 		<div class="form-group">
 			<label class="form-label">Giat</label>
 			<select name="giat" class="form-control" placeholder="">
-				<option value="SIMLing">SIMLing</option>
+<?php for($i=0;$i<count($giatpublik);$i++){?>
+<option value="<?php echo $giatpublik[$i]['val']?>"><?php echo $giatpublik[$i]['txt']?></option>
+<?php }?>
+				<!--option value="SIMLing">SIMLing</option>
 				<option value="SAMLing">SAMLing</option>
 				<option value="Unras">Unras</option>
 				<option value="Konser">Konser</option>
 				<option value="Pameran">Pameran</option>
 				<option value="Olahraga">Olahraga</option>
 				<option value="Keagamaan">Keagamaan</option>
-				<option value="Pembangunan Jalan">Pembangunan Jalan</option>
+				<option value="Pembangunan Jalan">Pembangunan Jalan</option-->
 			</select>
 		</div>
 	</div>
