@@ -129,6 +129,10 @@ class Laporan extends CI_Controller {
 			if($id=='eri_kendaraan'||$id=='ais_laka'){  //eri kendaraan
 				$data['polda'] = comboopts($this->db->select('da_id as v,da_nam as t')->get('polda')->result());
 			}
+			if($id=="tmc_ops_laka"||$id=="tmc_ops_langgar"||$id=="tmc_ops_pidana"||$id=="tmc_ops_pol"){
+				$otherdb = $this->load->database('db_intan', TRUE);
+				$data["instansi"]=$otherdb->select("nama_instansi as val, nama_instansi as txt")->get("instansi")->result_array();
+			}
 			if($id=='intan_analytic'){
 				if($user["polda"]!=""){ $this->db->where("polda",$user["polda"]); }
 				if($user["polres"]!=""){ $this->db->where("polres",$user["polres"]); }
