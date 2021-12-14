@@ -228,6 +228,10 @@ if(count($farr)>0&&$session['nrp']!=''){
 								<?php }?>
 								<li aria-haspopup="true"><a href="<?php echo $base_url?>rekap" class="sub-icon"><i class="fa fa-file-text-o"></i> Rekap</a>
 								</li>
+								<?php if($session['unit']=='SMART ENFORCEMENT'){?>
+								<li aria-haspopup="true"><a href="https://backoffice.elingsolo.com/new_etle/min/BackOffice/data_pelanggaran" class="sub-icon"><i class="fa fa-id-card-o"></i> Etle</a>
+								</li>
+								<?php }?>
 								<!--li aria-haspopup="true"><a href="<?php echo $base_url?>dashboard" class="sub-icon"><i class="fa fa-dashboard"></i> Dashboard</a>
 								</li>
 								<li aria-haspopup="true"><a href="#" class="sub-icon"><i class="fa fa-dashboard"></i> Overview <i class="fa fa-angle-down horizontal-icon"></i></a>
