@@ -275,7 +275,7 @@ class Rekap extends CI_Controller {
 	}
 	public function show($ln){
 		$lnx = base64_decode(urldecode($ln));
-		$content='<html><body><img width="100%" height="100%" src="'.base_url().substr($lnx,2).'" /></body></html>';
+		$content='<html><body><img style="max-width:600px;max-height:400px;width:auto;height:auto;" src="'.base_url().substr($lnx,2).'" /></body></html>';
 		if(strpos($lnx,".mp4")||strpos($lnx,".3gp")){
 			$content='<html><body> <video width="320" height="240" controls>
   <source src="'.base_url().substr($lnx,2).'" type="video/mp4">

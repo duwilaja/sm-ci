@@ -37,6 +37,7 @@ class Account extends CI_Controller {
 			'smtp_user' => 'smartcity.surakarta@polri.go.id', //'smart.mgmt.mmt@gmail.com',
 			'smtp_pass' => 'Korl@ntasPolri2021', //'Bismillah10x',
 			'mailtype'  => 'html', 
+			'smtp_timeout' => 15,
 			'charset'   => 'iso-8859-1'
 		);
 		$this->load->library('email', $config);
