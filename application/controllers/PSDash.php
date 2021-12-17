@@ -59,7 +59,7 @@ class PSDash extends CI_Controller {
 			}
 		}
 		$output = array(
-                        "draw" => $this->input->post('draw'),
+                        "draw" => 0, //$this->input->post('draw'),
                         "recordsTotal" => count($data),
                         "recordsFiltered" => count($data),
                         "data" => $data
