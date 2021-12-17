@@ -34,12 +34,13 @@ class PSDash extends CI_Controller {
 		if($auth==$this->token){
 			$df=$this->input->post('from');
 			$dt=$this->input->post('to');
-			//$s=$this->input->post('search');
-			$ss=isset($s['value'])?$s['value']:'';
 			$df=trim($df)==''?date('Y-m-d'):$df;
 			$dt=trim($dt)==''?date('Y-m-d'):$dt;
 			
-			$this->db->select("*");
+			//$s=$this->input->post('search');
+			//$ss=isset($s['value'])?$s['value']:'';
+			
+			$this->db->select("tgl,jam,j,saluran,stts");
 			$this->db->from($this->tname);
 			$this->db->where("tgl >=",$df);
 			$this->db->where("tgl <=",$dt);
