@@ -105,7 +105,7 @@ class SEDash extends CI_Controller {
 		
 		echo json_encode($data);
 	}
-	public function by_category_lantas(){
+	public function by_category_lalin(){
 		$auth=$this->input->get_request_header('X-token', TRUE);
 		$data=array();
 		if($auth==$this->token){
@@ -115,7 +115,7 @@ class SEDash extends CI_Controller {
 			$dt=trim($dt)==''?date('Y-m-d'):$dt;
 			$this->db->select("jenis,saluran,count(jenis) as cnt");
 			$this->db->from($this->tname);
-			$this->db->where("langgar","lantas");
+			$this->db->where("langgar","lalin");
 			$this->db->where("tgl >=",$df);
 			$this->db->where("tgl <=",$dt);
 			$this->db->group_by("jenis,saluran");
