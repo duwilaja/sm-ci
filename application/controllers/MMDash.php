@@ -135,6 +135,7 @@ class MMDash extends CI_Controller {
 			$this->db->from("tmc_publikasi");
 			$this->db->where("tgl >=",$df);
 			$this->db->where("tgl <=",$dt);
+			$this->db->group_by("jenis");
 			$data = $this->db->get()->result_array();
 		}
 		
