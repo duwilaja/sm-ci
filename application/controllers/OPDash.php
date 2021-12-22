@@ -87,6 +87,24 @@ class OPDash extends CI_Controller {
 		
 		echo json_encode($data);
 	}
+	public function by_category(){
+		$auth=$this->input->get_request_header('X-token', TRUE);
+		$data=array();
+		if($auth==$this->token){
+			$df=$this->input->post('from');
+			$dt=$this->input->post('to');
+			$df=trim($df)==''?date('Y-m-d'):$df;
+			$dt=trim($dt)==''?date('Y-m-d'):$dt;
+			$this->db->select("j,count(j) as cnt");
+			$this->db->from($this->tname);
+			$this->db->where("tgl >=",$df);
+			$this->db->where("tgl <=",$dt);
+			$this->db->group_by("j");
+			$data = $this->db->get()->result_array();
+		}
+		
+		echo json_encode($data);
+	}
 	public function opspol(){
 		$auth=$this->input->get_request_header('X-token', TRUE);
 		$data=array();
