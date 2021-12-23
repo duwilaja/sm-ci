@@ -87,6 +87,24 @@ class PSDash extends CI_Controller {
 		
 		echo json_encode($data);
 	}
+	public function by_datetime(){
+		$auth=$this->input->get_request_header('X-token', TRUE);
+		$data=array();
+		if($auth==$this->token){
+			$df=$this->input->post('from');
+			$dt=$this->input->post('to');
+			$df=trim($df)==''?date('Y-m-d'):$df;
+			$dt=trim($dt)==''?date('Y-m-d'):$dt;
+			$this->db->select("concat(tgl,' ',time_format(jam,'%H:00:00')) as tgljam,count(*) as cnt");
+			$this->db->from($this->tname);
+			$this->db->where("tgl >=",$df);
+			$this->db->where("tgl <=",$dt);
+			$this->db->group_by("tgljam");
+			$data = $this->db->get()->result_array();
+		}
+		
+		echo json_encode($data);
+	}
 	public function by_status(){
 		$auth=$this->input->get_request_header('X-token', TRUE);
 		$data=array();
