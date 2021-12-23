@@ -32,10 +32,10 @@ class Account extends CI_Controller {
 	public function sendmail($to,$sub,$msg){
 		$config = Array(
 			'protocol' => 'smtp',
-			'smtp_host' => 'ssl://mail.polri.go.id', //'ssl://smtp.googlemail.com',
+			'smtp_host' => 'ssl://smtp.titan.email', //'ssl://mail.polri.go.id', //'ssl://smtp.googlemail.com',
 			'smtp_port' => 465,
-			'smtp_user' => 'smartcity.surakarta@polri.go.id', //'smart.mgmt.mmt@gmail.com',
-			'smtp_pass' => 'Korl@ntasPolri2021', //'Bismillah10x',
+			'smtp_user' => 'support@elingsolo.com', //'smartcity.surakarta@polri.go.id', //'smart.mgmt.mmt@gmail.com',
+			'smtp_pass' => 'ElingSolo2k21!.', //'Korl@ntasPolri2021', //'Bismillah10x',
 			'smtp_timeout' => 15,
 			'mailtype'  => 'html', 
 			'charset'   => 'iso-8859-1'
