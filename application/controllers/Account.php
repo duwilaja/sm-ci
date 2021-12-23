@@ -43,7 +43,7 @@ class Account extends CI_Controller {
 		$this->load->library('email', $config);
 		$this->email->set_newline("\r\n");
 		
-		$this->email->from('smartcity.surakarta@polri.go.id', 'Smart Management App');
+		$this->email->from('support@elingsolo.com', 'Smart Management App');
 		$this->email->to($to);
 		$this->email->subject("Smart Management : $sub");
 		$this->email->message($msg);
