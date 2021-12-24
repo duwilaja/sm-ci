@@ -120,6 +120,9 @@ class Laporan extends CI_Controller {
 			if($id=='tmc_data_giatpublik'){  //
 				$data['giatpublik'] = ($this->db->select('val,txt')->where('grp','giatpublik')->get('lov')->result_array());
 			}
+			if($id=='tmc_rengiat'){  //
+				$data['giatpol'] = ($this->db->select('val,txt')->where('grp','giatpol')->get('lov')->result_array());
+			}
 			if($id=='tmc_ops_pidana'||$id=='tmc_pservice_pidana'){  //
 				$data['pidana'] = ($this->db->select('val,txt')->where('grp','pidana')->get('lov')->result_array());
 			}
