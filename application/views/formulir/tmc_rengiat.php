@@ -27,12 +27,15 @@ $cols.="jenis,tgldari,tglsampai,jamdari,jamsampai,lokasi,sasaran,rincian,kuatper
 		<div class="form-group">
 			<label class="form-label">Jenis</label>
 			<select name="jenis" class="form-control" placeholder="">
-				<option value="PAM Road Savety">PAM Road Savety</option>
+<?php for($i=0;$i<count($giatpol);$i++){?>
+<option value="<?php echo $giatpol[$i]['val']?>"><?php echo $giatpol[$i]['txt']?></option>
+<?php }?>
+				<!--option value="PAM Road Savety">PAM Road Savety</option>
 				<option value="Road Savety Campaign">Road Savety Campaign</option>
 				<option value="Sosialisasi">Sosialisasi</option>
 				<option value="Publikasi">Publikasi</option>
 				<option value="Survey">Survey</option>
-				<option value="Lainnya">Lainnya</option>
+				<option value="Lainnya">Lainnya</option-->
 			</select>
 		</div>
 	</div>
