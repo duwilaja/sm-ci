@@ -82,6 +82,7 @@ class OPDash extends CI_Controller {
 			$this->db->where("tgl >=",$df);
 			$this->db->where("tgl <=",$dt);
 			$this->db->group_by("tgl");
+			$this->db->order_by("tgl");
 			$data = $this->db->get()->result_array();
 		}
 		
@@ -100,6 +101,7 @@ class OPDash extends CI_Controller {
 			$this->db->where("tgl >=",$df);
 			$this->db->where("tgl <=",$dt);
 			$this->db->group_by("tgljam");
+			$this->db->order_by("tgljam");
 			$data = $this->db->get()->result_array();
 		}
 		
