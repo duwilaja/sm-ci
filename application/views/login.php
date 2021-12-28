@@ -89,7 +89,6 @@ $base_url = base_url();
 											<span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
 											<input type="password" name="passwd" class="form-control" placeholder="Password" value="">
 										</div>
-										<input type="hidden" name="<?= md5('rahasia').@base64_encode($rahasia);?>" value="<?= @base64_encode($rahasia);?>">
 										<div class="row mb-0">
 											<div class="col-12">
 												<button type="submit" class="btn btn-primary btn-block">Login</button>
@@ -154,9 +153,15 @@ $base_url = base_url();
 						<label>Email</label>
 						<input type="text" name="email" placeholder="..." class="form-control">
 					</div>
-
+					<div class="form-group col-md-3"><br />
+						<span id="captImg"><?php echo $captchaImg; ?></span><a href="#" class="refreshCaptcha"><i style="font-size:25px;" class="fa fa-refresh"></i></a>
+					</div>
+					<div class="form-group col-md-3">
+						<label>&nbsp;</label>
+						<input type="text" name="captcha" placeholder="Type Here" class="form-control">
+					</div>
 				  </div>
-				  <input type="hidden" name="<?= md5('rahasia').@base64_encode($rahasia);?>" value="<?= @base64_encode($rahasia);?>">
+				  
 				  
 				</form>
             </div>
@@ -376,6 +381,9 @@ $(document).ready(function (){
 		"unit" : {
             required : true
         },
+		"captcha" : {
+            required : true
+        },
 		"email" : {
 			required : true,
 			email: true
@@ -383,6 +391,12 @@ $(document).ready(function (){
     }});
 	
 	getSubQ('login/get_pangkat','','#pangkat');
+	
+	$('.refreshCaptcha').on('click', function(){
+            $.get('<?php echo base_url().'welcome/refresh'; ?>', function(data){
+                $('#captImg').html(data);
+            });
+        });
 });
 
 function showAlert(){
