@@ -55,47 +55,44 @@ class Account extends CI_Controller {
 		$code="403";
 		$ttl="Error";
 		$msgs="Account exist, please use reset password to gain your access";
-		//$tname=$this->input->post('tablename');
-		//$fname=$this->input->post('fieldnames');
 		
-		$nrp=$this->input->post('nrp');
-		$email=$this->input->post('email');
-/*
-		$rahasia = md5('rahasia').get_cookie('rahasia');
-		$rahasia = '';
-		foreach ($_POST as $v) {
-			$rahasia = $v;
-		}
-
-		if (base64_decode($rahasia) != get_cookie('rahasia')) {
-			show_404();
-		}
-*/
-		$tname='persons';
-		$usr=$this->db->where("nrp",$nrp)->get($tname)->result();
-		//$eml=$this->db->where("email",$email)->get($tname)->result();
-		if(count($usr)<1){
-			$data=$this->input->post(array('nama','email','nrp','telp','pangkat'));//(explode(",",$fname));
-			$this->db->insert($tname,$data);
-			$ret=$this->db->affected_rows();
-			if($ret>0){
-				$pwd=random_string();
-				$nama=$this->input->post('nama');
-				$email=$this->input->post('email');
-				$akun=array('uid'=>$nrp,'upwd'=>md5($pwd),'usts' => 1,'ulvl' => 1);
-				$this->db->insert("core_user",$akun);
+		$inputCaptcha = $this->input->post('captcha');
+		$sessCaptcha = $this->session->userdata('captchaCode');
+		if($inputCaptcha === $sessCaptcha){
+		
+			$nrp=$this->input->post('nrp');
+			$email=$this->input->post('email');
+			
+			$tname='persons';
+			$usr=$this->db->where("nrp",$nrp)->get($tname)->result();
+			//$eml=$this->db->where("email",$email)->get($tname)->result();
+			if(count($usr)<1){
+				$data=$this->input->post(array('nama','email','nrp','telp','pangkat'));//(explode(",",$fname));
+				$this->db->insert($tname,$data);
 				$ret=$this->db->affected_rows();
 				if($ret>0){
-					$msgs="Account successfully created. ";
-					$code="200";
-					$ttl="Success";
-					$content="Hi $nama, terima kasih sudah mendaftar.<br /><br />Akun anda adalah $nrp  <br /> Dan $pwd adalah Password anda <br /><br /><br />rgds<br />admin";
-					$sen=$this->sendmail($email,"New Account",$content);
-					if($sen) { $msgs.="Password sent to $email"; }else{ $msgs.="Failed sending mail to $email"; }
-				}else{
-					$msgs="Password creation failed. Please use reset password to gain your access.";
+					$pwd=random_string();
+					$nama=$this->input->post('nama');
+					$email=$this->input->post('email');
+					$akun=array('uid'=>$nrp,'upwd'=>md5($pwd),'usts' => 1,'ulvl' => 1);
+					$this->db->insert("core_user",$akun);
+					$ret=$this->db->affected_rows();
+					if($ret>0){
+						$msgs="Account successfully created. ";
+						$code="200";
+						$ttl="Success";
+						$content="Hi $nama, terima kasih sudah mendaftar.<br /><br />Akun anda adalah $nrp  <br /> Dan $pwd adalah Password anda <br /><br /><br />rgds<br />admin";
+						$sen=$this->sendmail($email,"New Account",$content);
+						if($sen) { $msgs.="Password sent to $email"; }else{ $msgs.="Failed sending mail to $email"; }
+					}else{
+						$msgs="Password creation failed. Please use reset password to gain your access.";
+					}
 				}
 			}
+		}else{
+			$code="403";
+			$ttl="Error";
+			$msgs="Invalid captcha word.";
 		}
 		$retval=array('code'=>$code,'ttl'=>$ttl,'msgs'=>$msgs);
 		echo json_encode($retval);

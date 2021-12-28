@@ -18,6 +18,12 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	
+	function __construct() {
+        parent::__construct();
+        // Load the captcha helper
+        $this->load->helper('captcha');
+    }
 
 	public function sendmail($to,$sub,$msg){
 		$config = Array(
@@ -55,17 +61,47 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$data['pangkat'] = comboopts($this->db->select('pang_id as v,pang_nam as t')->get('pangkat')->result());
-		$data['rahasia'] = mt_rand(100000,999999);
-		$arr = [
-        'name'   => 'rahasia',
-        'value'  => $data['rahasia'],                            
-        'expire' => '3000',                                                                                   
-        'secure' => TRUE
-        ];
-
-        set_cookie($arr);
+		
+		// Captcha configuration
+        $config = array(
+            'img_path'      => 'captcha_images/',
+            'img_url'       => base_url().'captcha_images/',
+            'img_width'     => 150,
+            'img_height'    => 50,
+            'word_length'   => 8,
+            'font_size'     => 16
+        );
+        $captcha = create_captcha($config);
+        
+        // Unset previous captcha and store new captcha word
+        $this->session->unset_userdata('captchaCode');
+        $this->session->set_userdata('captchaCode',$captcha['word']);
+        
+        // Send captcha image to view
+        $data['captchaImg'] = $captcha['image'];
+		
 		$this->load->view('login',$data);
 	}
+	
+	public function refresh(){
+        // Captcha configuration
+        $config = array(
+            'img_path'      => 'captcha_images/',
+            'img_url'       => base_url().'captcha_images/',
+            'img_width'     => 150,
+            'img_height'    => 50,
+            'word_length'   => 8,
+            'font_size'     => 16
+        );
+        $captcha = create_captcha($config);
+        
+        // Unset previous captcha and store new captcha word
+        $this->session->unset_userdata('captchaCode');
+        $this->session->set_userdata('captchaCode',$captcha['word']);
+        
+        // Display captcha image
+        echo $captcha['image'];
+    }
 	
 	public function blank()
 	{
