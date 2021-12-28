@@ -31,6 +31,8 @@ $cols.="media,jenis,jenisd,ket,lat,lng";
 				<option value="Apresiasi">Apresiasi</option>
 				<option value="Saran">Saran</option>
 				<option value="Yan Aduan">Yan Aduan</option>
+				<option value="Komentar">Komentar</option>
+				<option value="Pertanyaan">Pertanyaan</option>
 			</select>
 		</div>
 	</div>
