@@ -36,6 +36,7 @@ $cols.="fasilitas,nama,jalan,lat,lng,kedatangan_k,keberangkatan_k,kedatangan_p,k
 				<option value="Perbelanjaan">Perbelanjaan</option>
 				<option value="Sarana Olahraga">Sarana Olahraga</option>
 				<option value="Gerbang Tol">Gerbang Tol</option>
+				<option value="Wisata Kuliner">Wisata Kuliner</option>
 			</select>
 		</div>
 	</div>
