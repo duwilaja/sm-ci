@@ -116,6 +116,7 @@ class Laporan extends CI_Controller {
 			}
 			if($id=='tmc_cctv_gerbang'){  //
 				$data['gerbang'] = ($this->db->select('val,txt')->where('grp','gerbang')->get('lov')->result_array());
+				$data['kendaraan'] = ($this->db->select('val,txt')->where('grp','kendaraan')->get('lov')->result_array());
 			}
 			if($id=='tmc_data_rawan'){  //
 				$data['rawan'] = ($this->db->select('val,txt')->where('grp','rawan')->get('lov')->result_array());
