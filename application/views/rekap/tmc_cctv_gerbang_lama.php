@@ -3,7 +3,6 @@
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
 $cols="nrp,tgl,in_a,out_a,dominasi_a,in_b,out_b,dominasi_b,in_c,out_c,dominasi_c,in_d,out_d,dominasi_d";
 $cols="nrp,tgl,in_a,out_a,in_b,out_b,in_c,out_c,in_d,out_d,klasifikasi";
-$cols="nrp,tgl,jam,gerbang,gate_in,gate_out,klasifikasi";
 $tname="tmc_cctv_gerbang";
 ?>
 
@@ -36,10 +35,14 @@ $tname="tmc_cctv_gerbang";
 					<tr>
 						<th>ID/NRP</th>
 						<th>Tanggal</th>
-						<th>Jam</th>
-						<th>Gerbang</th>
-						<th>Masuk</th>
-						<th>Keluar</th>
+						<th>Gerbang Masuk A</th>
+						<th>Gerbang Keluar A</th>
+						<th>Gerbang Masuk B</th>
+						<th>Gerbang Keluar B</th>
+						<th>Gerbang Masuk C</th>
+						<th>Gerbang Keluar C</th>
+						<th>Gerbang Masuk D</th>
+						<th>Gerbang Keluar D</th>
 						<th>Klasifikasi Kendaraan</th>
 					</tr>
 				</thead>
