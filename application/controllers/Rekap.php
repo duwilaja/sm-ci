@@ -180,6 +180,7 @@ class Rekap extends CI_Controller {
 			$cols=base64_decode($this->input->post('cols')); //column
 			$wheres=base64_decode($this->input->post('wheres')); //wheres
 			
+			$isedit=base64_decode($this->input->post('isedit')); //is editable?
 			$ismap=base64_decode($this->input->post('ismap')); //is map button active?
 			$isverify=base64_decode($this->input->post('isverify')); //is verify button active?
 			$isfile=base64_decode($this->input->post('isfile')); //is files active?
@@ -229,7 +230,7 @@ class Rekap extends CI_Controller {
 					');"><i class="fa fa-map-marker"></i></button>';
 					$nm=isset($data_assoc[$i]['tit'])?$data_assoc[$i]['tit']:'';
 					$src='https://satupeta.elingsolo.com/satupeta?lokasi='.$data_assoc[$i]['lat'].','.$data_assoc[$i]['lng'].'&nama='.$nm;
-					$lnk='<a type="button" class="btn btn-icon btn-info" href="JavaScript:;" data-fancybox="" data-type="iframe" data-src="'.$src.'"><i class="fa fa-map-marker"></i></a><br />';
+					$lnk='<a class="btn btn-icon btn-info" href="JavaScript:;" data-fancybox="" data-type="iframe" data-src="'.$src.'"><i class="fa fa-map-marker"></i></a><br />';
 				}
 				if($isverify){
 					$lnkx=' <button type="button" class="btn btn-icon btn-warning" onclick="openmodal('.$data_assoc[$i]['rowid'].');"><i class="fa fa-check"></i></button>';
@@ -237,6 +238,10 @@ class Rekap extends CI_Controller {
 						$lnkx=' <button type="button" class="btn btn-icon btn-warning" onclick="openmodal('.$data_assoc[$i]['rowid'].',\''.$data_assoc[$i]['langgar'].'\');"><i class="fa fa-check"></i></button>';
 					}
 					$lnk.=$lnkx;
+				}
+				if($isedit){
+					$lnkx=base_url().'edit?i='.$data_assoc[$i]['rowid'].'&t='.$tname;
+					$data_assoc[$i]['tgl']='<a class="btn btn-icon btn-info" href="JavaScript:;" data-fancybox="" data-type="iframe" data-src="'.$lnkx.'">'.$data_assoc[$i]['tgl'].'<br />';
 				}
 				if($isfile){
 					$myfiles=explode(",",$this->input->post('filefields'));

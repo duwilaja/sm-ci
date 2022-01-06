@@ -38,6 +38,7 @@ $cols.="panjang,jenis";
 			<table id="mytbl" class="table table-striped table-bordered w-100">
 				<thead>
 					<tr>
+						<th>Tgl</th>
 						<th>Jenis</th>
 						<th>Panjang(km)</th>
 					</tr>
@@ -131,15 +132,16 @@ function senddatacallback(f){
 
 $(document).ready(function(){
 	mytbl = $("#mytbl").DataTable({
-		serverSide: true,
+		serverSide: false,
 		processing: true,
 		searching: true,
 		buttons: ['copy', 'csv'],
+		ordering: false,
 		ajax: {
 			type: 'POST',
 			url: base_url+'laporan/dttbl',
 			data: function (d) {
-				d.q= '<?php echo base64_encode("select concat('<a href=# onclick=showModal(',rowid,');>',jenis,'</a>') as jns,panjang from tmc_data_jalan"); ?>';
+				d.q= '<?php echo base64_encode("select tgl,concat('<a href=# onclick=showModal(',rowid,');>',jenis,'</a>') as jns,panjang from tmc_data_jalan order by tgl desc, rowid desc"); ?>';
 			}
 		},
 		initComplete: function(){

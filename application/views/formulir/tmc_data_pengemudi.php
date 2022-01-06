@@ -38,6 +38,7 @@ $cols.="jumlah,jenis";
 			<table id="mytbl" class="table table-striped table-bordered w-100">
 				<thead>
 					<tr>
+						<th>Tgl</th>
 						<th>Jenis</th>
 						<th>Jumlah</th>
 					</tr>
@@ -140,7 +141,7 @@ $(document).ready(function(){
 			type: 'POST',
 			url: base_url+'laporan/dttbl',
 			data: function (d) {
-				d.q= '<?php echo base64_encode("select concat('<a href=# onclick=showModal(',rowid,');>',jenis,'</a>') as jns,jumlah from tmc_data_pengemudi"); ?>';
+				d.q= '<?php echo base64_encode("select tgl,concat('<a href=# onclick=showModal(',rowid,');>',jenis,'</a>') as jns,jumlah from tmc_data_pengemudi order by tgl desc,rowid desc"); ?>';
 			}
 		},
 		initComplete: function(){

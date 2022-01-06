@@ -2,7 +2,7 @@
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
 $cols="nrp,tgl,jam,namajalan,lat,lng,jenis,korban,tindakan,penindakan,ket,";
-$cols.="instansi1,petugas1,instansi2,petugas2,instansi3,petugas3,instansi4,petugas4";
+$cols.="instansi1,petugas1,instansi2,petugas2,instansi3,petugas3,instansi4,petugas4,rowid";
 
 $tname="tmc_ops_pidana";
 ?>
@@ -78,6 +78,7 @@ function load_table(){
 				d.cols= '<?php echo base64_encode($cols); ?>',
 				d.tname= '<?php echo base64_encode($tname); ?>',
 				d.orders= '<?php echo base64_encode('tgl desc, jam desc, rowid desc')?>',
+				d.isedit=true,
 				d.tgl= $('#tgl').val();
 			}
 		},
