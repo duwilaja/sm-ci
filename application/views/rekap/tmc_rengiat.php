@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols="nrp,tgl,jenis,tgldari,tglsampai,jamdari,jamsampai,lokasi,sasaran,rincian,kuatpers,pic,target";
+$cols="nrp,tgl,jenis,tgldari,tglsampai,jamdari,jamsampai,lokasi,sasaran,rincian,kuatpers,pic,target,rowid";
 $tname="tmc_rengiat";
 ?>
 
@@ -70,6 +70,7 @@ function load_table(){
 				d.cols= '<?php echo base64_encode($cols); ?>',
 				d.tname= '<?php echo base64_encode($tname); ?>',
 				d.orders= '<?php echo base64_encode('tgl desc, rowid desc')?>',
+				d.isedit=true,
 				d.tgl= $('#tgl').val();
 			}
 		},
