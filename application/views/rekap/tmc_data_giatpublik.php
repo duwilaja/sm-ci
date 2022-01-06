@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols="nrp,tgl,giat,tgldari,tglsampai,jamdari,jamsampai,jalan,lat,lng";
+$cols="nrp,tgl,giat,tgldari,tglsampai,jamdari,jamsampai,jalan,lat,lng,rowid";
 $tname="tmc_data_giatpublik";
 ?>
 
@@ -72,15 +72,17 @@ function load_table(){
 		serverSide: false,
 		processing: true,
 		searching: false,
-		order: [[1,"desc"]],
+		ordering: false,
 		buttons: ['copy', {extend : 'excelHtml5', messageTop: $(".judul").text()}],
 		ajax: {
 			type: 'POST',
-			url: '<?php echo base_url()?>rekap/datatable_all',
+			url: '<?php echo base_url()?>rekap/datatable',
 			data: function (d) {
 				d.cols= '<?php echo base64_encode($cols); ?>',
 				d.tname= '<?php echo base64_encode($tname); ?>',
 				d.ismap=true,
+				d.isedit=true,
+				d.orders= '<?php echo base64_encode('tgl desc, rowid desc')?>',
 				d.tgl= $('#tgl').val();
 			}
 		},

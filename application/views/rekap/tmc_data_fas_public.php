@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 $cols="nrp,unit,polda,polres,dinas,subdinas,tgl,dasar,nomor,";
-$cols="nrp,tgl,fasilitas,nama,jalan,lat,lng,kedatangan_k,keberangkatan_k,kedatangan_p,keberangkatan_p,parkir";
+$cols="nrp,tgl,fasilitas,nama,jalan,lat,lng,kedatangan_k,keberangkatan_k,kedatangan_p,keberangkatan_p,parkir,rowid";
 $tname="tmc_data_fas_public";
 ?>
 
@@ -83,6 +83,7 @@ function load_table(){
 				d.cols= '<?php echo base64_encode($cols); ?>',
 				d.tname= '<?php echo base64_encode($tname); ?>',
 				d.ismap=true,
+				d.isedit=true,
 				d.orders= '<?php echo base64_encode('tgl desc, rowid desc')?>',
 				d.tgl= $('#tgl').val();
 			}
