@@ -101,6 +101,24 @@ if($mn=='user'){
 	$fvals=$passwd==''?"":"md5('$passwd')";
 	$res=crud($conn,$fcols,$fvals);
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+	if(post('rowid')==0){
+		$pwd=random_string();
+		$uid=post('nrp');
+		$sql="insert into core_user (uid,uname,upwd,ulvl,ugrp,uprof,uavatar,usts) values('$uid','$uid',md5('$pwd'),'1','','','','1')";
+		$re=exec_qry($conn,$sql);
+		if(db_error($conn)==""){
+			$msgs.=". Password: $pwd";
+		}
+	}
+}
+if($mn=='rpwd'){
+	$pwd=random_string();
+	$sql="update core_user set upwd=md5('$pwd') where uid='$uid'";
+	$re=exec_qry($conn,$sql);
+	if(db_error($conn)==""){
+		$code='200'; $ttl="Success";
+		$msgs="New Password: $pwd";
+	}
 }
 if($mn=='profile'){
 	$up=upload_file("favatar","avatars/",$s_ID);

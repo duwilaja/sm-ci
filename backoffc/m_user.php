@@ -48,8 +48,8 @@ disconnect($conn);
 					<div class="card-header">
 						<div class="card-title"><?php echo $card_title ?></div>
 						<div class="card-options ">
-							<!--a href="#" title="Batch" class=""><i class="fe fe-upload"></i></a>
-							<a href="#" onclick="openForm(0);" data-toggle="modal" data-target="#myModal" title="Add" class=""><i class="fe fe-plus"></i></a-->
+							<!--a href="#" title="Batch" class=""><i class="fe fe-upload"></i></a-->
+							<a href="#" onclick="openForm('user',0);" data-toggle="modal" data-target="#myModal" title="Add" class=""><i class="fe fe-plus"></i></a>
 							<a href="#" title="Expand/Collapse" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
 							<!--a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a-->
 						</div>
@@ -95,7 +95,7 @@ disconnect($conn);
 <input type="hidden" name="rowid" id="rowid" value="0">
 <input type="hidden" name="mnu" value="<?php echo $menu?>">
 <input type="hidden" id="sv" name="sv" />
-<input type="hidden" name="cols" value="email,isactive,das,adm" />
+<input type="hidden" name="cols" value="nrp,nama,unit,email,isactive,das,adm" />
 <input type="hidden" name="tname" value="persons" />
 		
 		  <div class="row">
@@ -167,7 +167,7 @@ disconnect($conn);
 		</form>
 	  </div>
 	  <div class="modal-footer">
-	    <!--button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button-->
+	    <button type="button" class="btn btn-danger" id="bdel"  onclick="resetpwd();">Reset Password</button>
 		<button type="button" class="btn btn-success" onclick="saveData();">Save</button>
 		<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
 		
@@ -221,7 +221,13 @@ $(document).ready(function(){
 	jvalidate = $("#myf").validate({
     ignore: ":hidden:not(.selectpicker)",
 	rules :{
-        "email" : {
+        "nrp" : {
+            required : true
+        },
+		"nama" : {
+            required : true
+        },
+		"email" : {
             required : true
         },
 		"pwd" : {
@@ -242,6 +248,23 @@ $(document).ready(function(){
 
 function reloadtbl(){
 	mytbl.ajax.reload();
+}
+
+function resetpwd(){
+	var frmdata={'mnu':'rpwd','uid':$("#nrp").val()};
+	$.ajax({
+		type: 'POST',
+		url: 'datasave.php',
+		data: frmdata,
+		success: function(data){
+			var json=JSON.parse(data);
+			alrt(json['msgs']);
+		},
+		error: function(xhr){
+			//log(xhr);
+			alrt(xhr.statusText);
+		}
+	});
 }
 </script>
 
