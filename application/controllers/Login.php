@@ -96,6 +96,28 @@ class Login extends CI_Controller {
 		
 		echo json_encode($retval);
 	}
+	public function mobileuser(){
+		$retval=array("msgs"=>"User/Password salah","data"=>[]);
+		$nrp=trim($this->input->post("user"));
+		$pwd=trim($this->input->post("passwd"));
+		$this->db->where('uid',$nrp);
+		$this->db->where('upwd',md5($pwd));
+		$acc=$this->db->get_where("core_user",['usts' => '1'])->result_array();
+		if(count($acc)>0){
+			$retval=array("msgs"=>"Anda tidak diijinkan mengakses. Silakan kontak admin untuk menambahkan akses anda","data"=>[]);
+			$this->db->where('nrp',$nrp);
+			$this->db->where('isactive','Y');
+			//$this->db->where('das','Y');
+			$rs=$this->db->get("persons")->result_array();
+			if(count($rs) > 0){
+				$token=md5(uniqid(rand(), true)).md5(uniqid(rand(), true));
+				$this->session->set_userdata('user_token',$token);
+				$retval=array("msgs"=>"OK","data"=>$token);
+			}
+		}
+		
+		echo json_encode($retval);
+	}
 	
 	public function out($re=0)
 	{
