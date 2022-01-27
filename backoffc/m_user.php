@@ -68,6 +68,8 @@ disconnect($conn);
 										<th>Polres</th>
 										<th>ADM</th>
 										<th>DASH</th>
+										<th>OPR</th>
+										<th>MOBILE</th>
 										<th>Aktif</th>
 									</tr>
 								</thead>
@@ -95,7 +97,7 @@ disconnect($conn);
 <input type="hidden" name="rowid" id="rowid" value="0">
 <input type="hidden" name="mnu" value="<?php echo $menu?>">
 <input type="hidden" id="sv" name="sv" />
-<input type="hidden" name="cols" value="nrp,nama,unit,email,isactive,das,adm" />
+<input type="hidden" name="cols" value="nrp,nama,email,isactive,das,adm,opr,mob" />
 <input type="hidden" name="tname" value="persons" />
 		
 		  <div class="row">
@@ -164,6 +166,20 @@ disconnect($conn);
 				</select>
 			</div>
 		  </div>
+		  <div class="row">
+			<div class="form-group col-md-6">
+				<label>OPR</label>
+				<select class="form-control selectpicker" id="opr" name="opr">
+					<?php echo options($o_yn)?>
+				</select>
+			</div>
+			<div class="form-group col-md-6">
+				<label>MOBILE</label>
+				<select class="form-control selectpicker" id="mob" name="mob">
+					<?php echo options($o_yn)?>
+				</select>
+			</div>
+		  </div>
 		</form>
 	  </div>
 	  <div class="modal-footer">
@@ -181,7 +197,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="persons p left join polda d on d.da_id=p.polda left join polres r on p.polres=r.res_id";
-$cols="nrp,nama,email,dinas,subdinas,da_nam,res_nam,adm,das,isactive,p.rowid";
+$cols="nrp,nama,email,dinas,subdinas,da_nam,res_nam,adm,das,opr,mob,isactive,p.rowid";
 $csrc="nama,nrp,email,subdinas,dinas,da_nam,res_nam";
 $where="nrp<>'$s_ID'";
 if($s_LVL=='Ditlantas'){
