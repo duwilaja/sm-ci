@@ -6,6 +6,7 @@ $cols.="situasi,kejadian,jalan,status,mulai,sampai,sebab,petugas,callsign,lat,ln
 
 <input type="hidden" name="tablename" value="tmc_cctv_lalin">
 <input type="hidden" name="fieldnames" value="<?php echo $cols?>">
+<input type="hidden" name="path" value="cctv/lalin/">
 
 <!--div class="row">
 <div class="col-lg-12">

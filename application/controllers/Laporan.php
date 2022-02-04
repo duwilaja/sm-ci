@@ -205,7 +205,7 @@ class Laporan extends CI_Controller {
 			$data=$this->input->post(explode(",",$fname));
 			if(strpos($fname,"uploadedfile")){
 				//upload here
-				$path="./uploads/cctv/lalin/";
+				$path="./uploads/".$this->input->post("path");
 				$config['upload_path'] = $path;
 				$config['allowed_types'] = '*';//'gif|jpg|jpeg|png';//all
 				//$config['file_name'] = $user['nrp'];
