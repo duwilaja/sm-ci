@@ -115,7 +115,7 @@ class PSDash extends CI_Controller {
 			$dt=$this->input->post('to');
 			$df=trim($df)==''?date('Y-m-d'):$df;
 			$dt=trim($dt)==''?date('Y-m-d'):$dt;
-			$this->db->select("stts,count(stts) as cnt");
+			$this->db->select("if(stts='','Menunggu Diproses',stts) as stts,count(stts) as cnt");
 			$this->db->from($this->tname);
 			$this->db->where("tgl >=",$df);
 			$this->db->where("tgl <=",$dt);
