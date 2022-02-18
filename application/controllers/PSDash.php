@@ -44,6 +44,7 @@ class PSDash extends CI_Controller {
 			$this->db->from($this->tname);
 			$this->db->where("tgl >=",$df);
 			$this->db->where("tgl <=",$dt);
+			$this->db->order_by("tgl desc,jam desc");
 			
 			//$total=$this->db->count_all_results($this->tname,FALSE);
 			
