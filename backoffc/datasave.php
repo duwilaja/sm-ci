@@ -101,13 +101,18 @@ if($mn=='user'){
 	$fvals=$passwd==''?"":"md5('$passwd')";
 	$res=crud($conn,$fcols,$fvals);
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+	$uid=post('nrp');
 	if(post('rowid')==0){
 		$pwd=random_string();
-		$uid=post('nrp');
 		$sql="insert into core_user (uid,uname,upwd,ulvl,ugrp,uprof,uavatar,usts) values('$uid','$uid',md5('$pwd'),'1','','','','1')";
 		$re=exec_qry($conn,$sql);
 		if(db_error($conn)==""){
 			$msgs.=". Password: $pwd";
+		}
+	}else{
+		if(post("sv")=='DEL'){
+			$sql="delete from core_user where uid='$uid'";
+			$re=exec_qry($conn,$sql);
 		}
 	}
 }
