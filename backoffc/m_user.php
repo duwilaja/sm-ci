@@ -190,7 +190,8 @@ disconnect($conn);
 		</form>
 	  </div>
 	  <div class="modal-footer">
-	    <button type="button" class="btn btn-danger" id="bdel"  onclick="resetpwd();">Reset Password</button>
+	    <button type="button" class="btn btn-danger bdel"  onclick="confirmDelete();">Delete</button>
+		<button type="button" class="btn btn-primary bdel"  onclick="resetpwd();">Reset Password</button>
 		<button type="button" class="btn btn-success" onclick="saveData();">Save</button>
 		<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
 		
